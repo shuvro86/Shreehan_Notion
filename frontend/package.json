@@ -1,0 +1,30 @@
+{
+  "name": "shreehan-hq",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build && cd .. && uv run --env-file .env uvicorn backend.main:app --reload --host localhost --port 8000",
+    "build": "next build --webpack",
+    "start": "cd .. && uv run --env-file .env uvicorn backend.main:app --host 0.0.0.0 --port 8000",
+    "typecheck": "tsc --noEmit",
+    "sync:notion": "cd .. && node scripts/sync-notion.mjs --once",
+    "test:sync": "node --test tests/sync.test.mjs tests/unseen-generation.test.mjs",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}

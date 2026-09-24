@@ -1,0 +1,13 @@
+.git
+.next
+out
+node_modules
+.venv
+.env*
+.notion-sync
+storage
+tmp
+test-results
+playwright-report
+__pycache__
+*.pyc

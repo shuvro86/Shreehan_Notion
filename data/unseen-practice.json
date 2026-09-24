@@ -1,0 +1,1260 @@
+{
+  "level": "Class 2",
+  "reviewedAt": "2026-09-21",
+  "sources": [
+    {
+      "documentId": "cc34eb9a-239f-434c-9358-71d6ee1a7137",
+      "sha256": "3ac71a98eb2300e645ed7d0fd309dccf8aab287085029b52fd00cd66978413ed",
+      "subject": "History",
+      "printedPage": 34,
+      "page": 1
+    },
+    {
+      "documentId": "a9135300-fe1d-4c7f-8c03-aed680009fd9",
+      "sha256": "794a821473fd8789a3136f82395f69099140799be1dbbc1c0974dd2f09f334d2",
+      "subject": "History",
+      "printedPage": 35,
+      "page": 1
+    },
+    {
+      "documentId": "91972b59-2045-4548-a2ec-cb6fa188b601",
+      "sha256": "ba3ded5f9d7a3ac91a65727186ed2bedee5be2ae7aa752f019ddb04478d4c54e",
+      "subject": "History",
+      "printedPage": 36,
+      "page": 1
+    },
+    {
+      "documentId": "262b0518-aa36-48c7-9bac-56b7813ac5c6",
+      "sha256": "37bd97bc3fe807a79f6bf8be54fb1196d94bea2dbaf3cf278393a309d59f893f",
+      "subject": "History",
+      "printedPage": 37,
+      "page": 1
+    },
+    {
+      "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+      "sha256": "dfaeac9a69e82a3bd0727cbb462d0a1ab8c3869ca4bebf5b53c7612a13ba283b",
+      "subject": "History",
+      "printedPage": 38,
+      "page": 1
+    },
+    {
+      "documentId": "48f1687d-73d9-415c-b2e5-2a8f0b9a4fc9",
+      "sha256": "791b468ac082181f1ea3248297130b6218e122b57796978d8b4fa2f61dd4df61",
+      "subject": "History",
+      "printedPage": 39,
+      "page": 1
+    },
+    {
+      "documentId": "23856b38-2f09-4a75-8868-948adba85e67",
+      "sha256": "b7cef6680ec42e84afa3446f346e6c4e5b200dbe9b4c422f5e060a62a63baf20",
+      "subject": "History",
+      "printedPage": 40,
+      "page": 1
+    },
+    {
+      "documentId": "a3d5dfa5-27c5-48a5-aa23-9853e1f19562",
+      "sha256": "d8f15ac2c652613f6d5d90b8c7a0aacda4886417b5f13042a996f6573669fb17",
+      "subject": "History",
+      "printedPage": 41,
+      "page": 1
+    },
+    {
+      "documentId": "eccfe316-9cd8-4932-8edf-06c175d27bc7",
+      "sha256": "ad7276efdbf738ede366ffa0ddaa2a70c98a3194ca2517c0f7d1e24ac41f7fc7",
+      "subject": "History",
+      "printedPage": 42,
+      "page": 1
+    },
+    {
+      "documentId": "e1ebbe91-1123-4dbe-be67-ff56570b78d1",
+      "sha256": "79ea218069d5d701d8d2ff801b781720e0fafc8f30fabd02d5f32d45e8ef6da7",
+      "subject": "History",
+      "printedPage": 43,
+      "page": 1
+    },
+    {
+      "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+      "sha256": "b18bc4e0be5b92eb66c150457397dcd5218a201e7dc1cca62f144689ed4f5084",
+      "subject": "Science",
+      "printedPage": 95,
+      "page": 1
+    },
+    {
+      "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+      "sha256": "3eccd82180223de671e85046c212677dfff4166cd437c27d7344d3c9180f7627",
+      "subject": "Science",
+      "printedPage": 96,
+      "page": 1
+    },
+    {
+      "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+      "sha256": "ac8cec8221e57492f25ec15e3dd165daaf27bf85fe53910dbde3360c9c79b059",
+      "subject": "Science",
+      "printedPage": 97,
+      "page": 1
+    },
+    {
+      "documentId": "6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5",
+      "sha256": "4e0ba92d427c83b163630fdfe9cc060274c44659a0bea5abcfa0d7b4a6f1dac7",
+      "subject": "Science",
+      "printedPage": 98,
+      "page": 1
+    },
+    {
+      "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+      "sha256": "c8b48c08a79814dc3d56ffcac24b2e35150c5c0051758d05d0195dcf94aa1dba",
+      "subject": "Science",
+      "printedPage": 99,
+      "page": 1
+    },
+    {
+      "documentId": "2fae7be6-1938-4393-ab14-f96983f3eb4d",
+      "sha256": "0089a6cf345ca9761674db6afdd5c665eddf352714e30dd0a9a6715308d53a5c",
+      "subject": "Science",
+      "printedPage": 100,
+      "page": 1
+    },
+    {
+      "documentId": "5ad564ee-5149-48b2-ba0c-3a5d292d1015",
+      "sha256": "90838f89b496071f62267dad548409274c1bbe452f516d0b16e8d2ce4da3e8fa",
+      "subject": "Science",
+      "printedPage": 101,
+      "page": 1
+    },
+    {
+      "documentId": "f1d56819-ae5e-4e6e-a5a9-0e16d1bde236",
+      "sha256": "3a0a98412bfbfa1588f0addced7633c0465865e25df6d69db9f0827b329dff1b",
+      "subject": "Science",
+      "printedPage": 102,
+      "page": 1
+    }
+  ],
+  "questions": [
+    {
+      "id": "unseen-science-001",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Fill in the blank",
+      "question": "Moving air is called _____.",
+      "answer": "wind",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-002",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "Which kind of wind is gentle?",
+      "answer": "A breeze",
+      "options": [
+        "A storm",
+        "A breeze",
+        "A strong gust"
+      ],
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-003",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What happens to a windmill when wind blows?",
+      "answer": "The wind turns its blades.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-004",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Fill in the blank",
+      "question": "The sun changes water in wet clothes into water _____.",
+      "answer": "vapour",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-005",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What gives a blown-up balloon its shape?",
+      "answer": "The air inside gives it shape.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-006",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "True / False",
+      "question": "We can feel air when it moves.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "sources": [
+        {
+          "documentId": "6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-007",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "Which one does not need wind to move?",
+      "answer": "A whale",
+      "options": [
+        "A kite",
+        "A sailboat",
+        "A whale"
+      ],
+      "sources": [
+        {
+          "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-008",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Name two things that wind helps to move.",
+      "answer": "A kite and a sailboat. Wind also turns a windmill's blades.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "2fae7be6-1938-4393-ab14-f96983f3eb4d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-009",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Think and answer",
+      "question": "Why should we cover our nose and mouth when we sneeze?",
+      "answer": "To help stop germs from spreading through the air.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "5ad564ee-5149-48b2-ba0c-3a5d292d1015",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-010",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Creative answer",
+      "question": "Write a short message asking people to plant trees for cleaner air.",
+      "answer": "Example: Plant a tree, keep our air clean!",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "f1d56819-ae5e-4e6e-a5a9-0e16d1bde236",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-011",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Name one thing a storm can damage.",
+      "answer": "A storm can damage trees or houses.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-012",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "Which of these can be found in air?",
+      "answer": "Water vapour",
+      "options": [
+        "A stone",
+        "Water vapour",
+        "A pencil"
+      ],
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-013",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "True / False",
+      "question": "Air takes up space.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-014",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Why should we breathe fresh, clean air?",
+      "answer": "Fresh, clean air helps us stay healthy.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-015",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Fill in the blank",
+      "question": "_____ comes out of vehicles and makes the air dirty.",
+      "answer": "Smoke",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-016",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Name two things that can make air dirty.",
+      "answer": "Dust and smoke. Germs can also make air dirty.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-017",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "The same football is weighed before and after filling it with air. Which is heavier?",
+      "answer": "The football filled with air",
+      "options": [
+        "The deflated football",
+        "Both weigh exactly the same",
+        "The football filled with air"
+      ],
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-018",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What does a wind vane tell us?",
+      "answer": "It tells us the direction of the wind.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-019",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Think and answer",
+      "question": "What can Shreehan grow to help keep the air clean?",
+      "answer": "He can grow plants and trees.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-020",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "True / False",
+      "question": "Wind is always harmful.",
+      "answer": "False",
+      "options": [
+        "True",
+        "False"
+      ],
+      "sources": [
+        {
+          "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-021",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Think and answer",
+      "question": "Shreehan hangs wet clothes outside. How can wind help?",
+      "answer": "Wind helps the clothes dry faster.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-022",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What happens to the water vapour from drying clothes?",
+      "answer": "It mixes with the air around us.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-023",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Fill in the blank",
+      "question": "Air fills space, gives shape to things, and has _____.",
+      "answer": "weight",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-024",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "Which vehicle in the lesson does not give off smoke?",
+      "answer": "A bullock cart",
+      "options": [
+        "A bus",
+        "A bullock cart",
+        "A car"
+      ],
+      "sources": [
+        {
+          "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-025",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "Which wind is most likely to damage a tree?",
+      "answer": "A storm",
+      "options": [
+        "A gentle breeze",
+        "A storm",
+        "A light wind"
+      ],
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-026",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "True / False",
+      "question": "We can see air itself with our eyes.",
+      "answer": "False",
+      "options": [
+        "True",
+        "False"
+      ],
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-027",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What does 'deflated' mean?",
+      "answer": "It means some air has been taken out of something.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-028",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Name two things that air gives shape to.",
+      "answer": "A balloon and a football.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "2fae7be6-1938-4393-ab14-f96983f3eb4d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-029",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Think and answer",
+      "question": "A balloon gets heavier after it is filled with air. What does this show?",
+      "answer": "It shows that air has weight.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "5ad564ee-5149-48b2-ba0c-3a5d292d1015",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-030",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Name two materials listed for making a wind vane.",
+      "answer": "A drinking straw and cardboard. The list also includes scissors, a pencil with an eraser, and a paper cup.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "f1d56819-ae5e-4e6e-a5a9-0e16d1bde236",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-031",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Fill in the blank",
+      "question": "A wind vane is also called a weather _____.",
+      "answer": "cock",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-032",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "What helps water in wet clothes change into water vapour?",
+      "answer": "Heat from the sun",
+      "options": [
+        "Heat from the sun",
+        "Dust on the clothes",
+        "A cold stone"
+      ],
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-033",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Think and answer",
+      "question": "Should we pluck leaves from plants just for fun? Why?",
+      "answer": "No. We should care for plants because they help keep the air fresh and clean.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-034",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "How is a breeze different from a storm?",
+      "answer": "A breeze is gentle. A storm has strong, fast winds.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-science-035",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Creative answer",
+      "question": "Name three things you could draw to show how wind helps us.",
+      "answer": "A flying kite, a sailing boat, and a turning windmill.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "2fae7be6-1938-4393-ab14-f96983f3eb4d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-001",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "Which emperor is this chapter about?",
+      "answer": "Emperor Ashoka.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "cc34eb9a-239f-434c-9358-71d6ee1a7137",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-002",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Multiple choice",
+      "question": "Where did Aaliya find the coin?",
+      "answer": "Under the sofa",
+      "options": [
+        "On a tree",
+        "Under the sofa",
+        "In her school bag"
+      ],
+      "sources": [
+        {
+          "documentId": "a9135300-fe1d-4c7f-8c03-aed680009fd9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-003",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "Why did Aaliya wash the coin?",
+      "answer": "The coin was dirty.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "a9135300-fe1d-4c7f-8c03-aed680009fd9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-004",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Fill in the blank",
+      "question": "Ashoka belonged to the _____ dynasty.",
+      "answer": "Maurya",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "91972b59-2045-4548-a2ec-cb6fa188b601",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-005",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Multiple choice",
+      "question": "Which war changed Ashoka's heart?",
+      "answer": "The Kalinga War",
+      "options": [
+        "The Kalinga War",
+        "A game of chess",
+        "A running race"
+      ],
+      "sources": [
+        {
+          "documentId": "262b0518-aa36-48c7-9bac-56b7813ac5c6",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-006",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "How did Ashoka feel when he saw the harm caused by the war?",
+      "answer": "He felt very sad.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "262b0518-aa36-48c7-9bac-56b7813ac5c6",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-007",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "True / False",
+      "question": "Ashoka wanted to care for his people.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "sources": [
+        {
+          "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-008",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "Name one place where India's national emblem can be seen.",
+      "answer": "On an Indian coin. It also appears on currency notes and government documents.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "48f1687d-73d9-415c-b2e5-2a8f0b9a4fc9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-009",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Think and answer",
+      "question": "What can we learn from the lives of people who helped others?",
+      "answer": "We can learn to be kind and do good work for others.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "23856b38-2f09-4a75-8868-948adba85e67",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-010",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Multiple choice",
+      "question": "In the lesson, what does 'tolerance' mean?",
+      "answer": "Being patient with others",
+      "options": [
+        "Being patient with others",
+        "Shouting at others",
+        "Always fighting"
+      ],
+      "sources": [
+        {
+          "documentId": "a3d5dfa5-27c5-48a5-aa23-9853e1f19562",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-011",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "True / False",
+      "question": "Ashoka believed in truth and non-violence after he changed.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "sources": [
+        {
+          "documentId": "eccfe316-9cd8-4932-8edf-06c175d27bc7",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-012",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "Open source page 43. Which animals stand at the top of the emblem?",
+      "answer": "Lions stand at the top of the emblem.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "e1ebbe91-1123-4dbe-be67-ff56570b78d1",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-013",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Fill in the blank",
+      "question": "Aaliya's coin was worth one _____.",
+      "answer": "rupee",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "a9135300-fe1d-4c7f-8c03-aed680009fd9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-014",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "What picture did Aaliya notice on the coin?",
+      "answer": "India's national emblem.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "91972b59-2045-4548-a2ec-cb6fa188b601",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-015",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "What did Ashoka give up after the Kalinga War?",
+      "answer": "He gave up war.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "262b0518-aa36-48c7-9bac-56b7813ac5c6",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-016",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Multiple choice",
+      "question": "What did Ashoka build to help people learn?",
+      "answer": "Universities",
+      "options": [
+        "Toy shops",
+        "Universities",
+        "Playground swings"
+      ],
+      "sources": [
+        {
+          "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-017",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "How did Ashoka help farmers?",
+      "answer": "He improved irrigation, so water could reach their fields.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-018",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Fill in the blank",
+      "question": "After the war, Ashoka became a follower of _____.",
+      "answer": "Buddhism",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "262b0518-aa36-48c7-9bac-56b7813ac5c6",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-019",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "True / False",
+      "question": "Ashoka treated people of different religions as equals.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "sources": [
+        {
+          "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-020",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Think and answer",
+      "question": "Why do people still remember Ashoka?",
+      "answer": "They remember his good work and his message of peace.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "23856b38-2f09-4a75-8868-948adba85e67",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-021",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "Who brought the coin from India?",
+      "answer": "Aaliya's uncle brought it.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "a9135300-fe1d-4c7f-8c03-aed680009fd9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-022",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Multiple choice",
+      "question": "Who told Aaliya she could keep the coin?",
+      "answer": "Her mother",
+      "options": [
+        "Her teacher",
+        "Her mother",
+        "Her neighbour"
+      ],
+      "sources": [
+        {
+          "documentId": "a9135300-fe1d-4c7f-8c03-aed680009fd9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-023",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "What was the name of Ashoka's father?",
+      "answer": "Bindusara.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "91972b59-2045-4548-a2ec-cb6fa188b601",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-024",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "What was the name of Ashoka's grandfather?",
+      "answer": "Chandragupta Maurya.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "91972b59-2045-4548-a2ec-cb6fa188b601",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-025",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Think and answer",
+      "question": "At first, why did Ashoka fight wars?",
+      "answer": "He wanted to make his kingdom bigger.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "a3d5dfa5-27c5-48a5-aa23-9853e1f19562",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-026",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "Where did Ashoka have teachings carved?",
+      "answer": "He had them carved on pillars.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "262b0518-aa36-48c7-9bac-56b7813ac5c6",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-027",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Multiple choice",
+      "question": "Why did Ashoka use a language spoken by ordinary people on his pillars?",
+      "answer": "So people could understand the teachings",
+      "options": [
+        "To hide the teachings",
+        "So people could understand the teachings",
+        "To make the pillars taller"
+      ],
+      "sources": [
+        {
+          "documentId": "eccfe316-9cd8-4932-8edf-06c175d27bc7",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-028",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "What does the name Ashoka mean in the lesson?",
+      "answer": "Without sorrow.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-029",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "True / False",
+      "question": "Ashoka showed mercy even to his enemies.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "sources": [
+        {
+          "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-030",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "Whom did Ashoka send to other countries to share Buddha's teachings?",
+      "answer": "His daughter Sangamitra and his son Mahendra.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-031",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Fill in the blank",
+      "question": "In this lesson, 'homage' means _____.",
+      "answer": "tribute",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "a3d5dfa5-27c5-48a5-aa23-9853e1f19562",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-032",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "Does history help us learn about the past or the future?",
+      "answer": "The past.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "48f1687d-73d9-415c-b2e5-2a8f0b9a4fc9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-033",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Think and answer",
+      "question": "Ashoka chose peace after seeing the harm caused by war. What good choice can we make when we disagree?",
+      "answer": "Example: We can talk kindly and solve the problem without hurting anyone.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "23856b38-2f09-4a75-8868-948adba85e67",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-034",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Short answer",
+      "question": "How does India honour Ashoka through its national emblem?",
+      "answer": "Its national emblem is based on Ashoka's Lion Capital.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "60406113-f8bb-478d-aa36-550c6d36a044",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "unseen-history-035",
+      "subject": "History",
+      "topic": "Emperor Ashoka",
+      "type": "Creative answer",
+      "question": "Write one sentence about the lions in India's national emblem.",
+      "answer": "Example: The lions stand together at the top of the emblem.",
+      "options": [],
+      "sources": [
+        {
+          "documentId": "e1ebbe91-1123-4dbe-be67-ff56570b78d1",
+          "page": 1
+        }
+      ]
+    }
+  ]
+}

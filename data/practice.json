@@ -1,0 +1,2143 @@
+{
+  "grade": "Class II",
+  "school": "Maple Leaf International School",
+  "questions": [
+    {
+      "id": "q-001",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "Where do we get fruits and vegetables?",
+      "answer": "We get fruits and vegetables from plants.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-002",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Multiple choice",
+      "question": "Which pair of plant stems do we eat?",
+      "answer": "Potato and ginger",
+      "options": [
+        "Potato and ginger",
+        "Carrot and radish",
+        "Cabbage and spinach"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-003",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Fill in the blank",
+      "question": "Pulses are found inside ____.",
+      "answer": "pods",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-004",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "Name two plant fibres.",
+      "answer": "Cotton and jute.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-005",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "True / False",
+      "question": "We make paper from plants.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-006",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "Name two plants from which we get oil.",
+      "answer": "Mustard and coconut.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-007",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "Which part of a carrot do we eat?",
+      "answer": "The root.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-008",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "Which part of cabbage do we eat?",
+      "answer": "The leaves.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-009",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "Name two flowers that we eat.",
+      "answer": "Cauliflower and broccoli.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-010",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "What are cereals? Give two examples.",
+      "answer": "Cereals are food grains from grass-like plants. Rice and wheat are cereals.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-011",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "Why do we add spices to food?",
+      "answer": "Spices add flavour to our food.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-012",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "Give two examples of spices.",
+      "answer": "Cinnamon and black pepper.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-013",
+      "subject": "Science",
+      "topic": "Uses of plants",
+      "type": "Short answer",
+      "question": "What do we get when wheat grains are ground?",
+      "answer": "Flour.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-014",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What is wind?",
+      "answer": "Moving air is called wind.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-015",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Fill in the blank",
+      "question": "A gentle wind is called a ____.",
+      "answer": "breeze",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-016",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Give two uses of wind.",
+      "answer": "Wind helps a kite fly and a boat sail.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-017",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Which instrument tells us the direction of wind?",
+      "answer": "A wind vane.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-018",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What can a storm damage?",
+      "answer": "A storm can damage trees and houses.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-019",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Name four things that air contains.",
+      "answer": "Air contains water vapour, dust, smoke, and germs.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-020",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What makes air dirty?",
+      "answer": "Dust, smoke, and germs make air dirty.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-021",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What happens to water in wet clothes when they dry in the sun?",
+      "answer": "The water changes into water vapour and mixes with the air.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-022",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "What are the three properties of air?",
+      "answer": "Air fills space, gives shape to things, and has weight.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-023",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Why does a balloon become bigger when we blow air into it?",
+      "answer": "Air fills the balloon and gives it shape.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-024",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Why is an inflated football heavier than an empty one?",
+      "answer": "The air inside the inflated football has weight.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-025",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Why should we grow more plants?",
+      "answer": "Plants help keep the air fresh and clean.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-026",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "True / False",
+      "question": "Air has no weight.",
+      "answer": "False",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "Air has weight, fills space, and gives shape to things.",
+      "sources": [
+        {
+          "documentId": "6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-027",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "True / False",
+      "question": "We can feel air when it moves.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-028",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "Which of these helps keep the air clean?",
+      "answer": "Plants",
+      "options": [
+        "Smoke",
+        "Dust",
+        "Plants"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-029",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Multiple choice",
+      "question": "Which does not need wind to move?",
+      "answer": "Whale",
+      "options": [
+        "Sail boat",
+        "Kite",
+        "Whale"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-030",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Name two things to which air gives shape.",
+      "answer": "A balloon and an inflated ball.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+          "page": 1
+        },
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-031",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Drawing",
+      "question": "Draw three things that move with the help of wind.",
+      "answer": "Draw a kite, a sailing boat, and a windmill.",
+      "options": [],
+      "explanation": "Label each drawing. This is an example answer.",
+      "sources": [
+        {
+          "documentId": "2fae7be6-1938-4393-ab14-f96983f3eb4d",
+          "page": 1
+        },
+        {
+          "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-032",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Fill in the blank",
+      "question": "Complete: air fills ____, gives ____, and has ____.",
+      "answer": "space; shape; weight",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2fae7be6-1938-4393-ab14-f96983f3eb4d",
+          "page": 1
+        },
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-033",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Short answer",
+      "question": "Why should we cover our nose and mouth when we sneeze?",
+      "answer": "To help stop germs from spreading into the air.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "5ad564ee-5149-48b2-ba0c-3a5d292d1015",
+          "page": 1
+        },
+        {
+          "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-034",
+      "subject": "Science",
+      "topic": "Air Around Us",
+      "type": "Apply",
+      "question": "Write a short slogan about planting trees.",
+      "answer": "Plant more trees. Keep our air clean!",
+      "options": [],
+      "explanation": "This is an example slogan. You can write your own.",
+      "sources": [
+        {
+          "documentId": "f1d56819-ae5e-4e6e-a5a9-0e16d1bde236",
+          "page": 1
+        },
+        {
+          "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-035",
+      "subject": "History",
+      "topic": "Crossing Barriers",
+      "type": "Short answer",
+      "question": "How did people travel before the wheel was invented?",
+      "answer": "They walked and used domesticated animals.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7e540156-cd7e-4ff7-9d18-d1779dcab3a3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-036",
+      "subject": "History",
+      "topic": "Crossing Barriers",
+      "type": "Short answer",
+      "question": "How did the wheel change travel?",
+      "answer": "The wheel made travel faster and helped people explore more places.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7e540156-cd7e-4ff7-9d18-d1779dcab3a3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-037",
+      "subject": "History",
+      "topic": "Crossing Barriers",
+      "type": "Multiple choice",
+      "question": "Match George Stephenson with his invention.",
+      "answer": "Steam locomotive",
+      "options": [
+        "Steam locomotive",
+        "Petrol car",
+        "Bicycle"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7e540156-cd7e-4ff7-9d18-d1779dcab3a3",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-038",
+      "subject": "History",
+      "topic": "Crossing Barriers",
+      "type": "Short answer",
+      "question": "Who is matched with the first petrol car in your notes?",
+      "answer": "Karl Benz.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7e540156-cd7e-4ff7-9d18-d1779dcab3a3",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-039",
+      "subject": "History",
+      "topic": "Crossing Barriers",
+      "type": "Short answer",
+      "question": "What was used when air travel began?",
+      "answer": "Hot-air balloons.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7e540156-cd7e-4ff7-9d18-d1779dcab3a3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-040",
+      "subject": "History",
+      "topic": "Crossing Barriers",
+      "type": "Short answer",
+      "question": "Who was the first person to set foot on the Moon?",
+      "answer": "Neil Armstrong.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7e540156-cd7e-4ff7-9d18-d1779dcab3a3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-041",
+      "subject": "History",
+      "topic": "Crossing Barriers",
+      "type": "Short answer",
+      "question": "In which spaceship did Yuri Gagarin orbit the Earth?",
+      "answer": "Vostok 1.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7e540156-cd7e-4ff7-9d18-d1779dcab3a3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-042",
+      "subject": "Bangladesh Studies",
+      "topic": "Rakhain community",
+      "type": "Short answer",
+      "question": "According to the notes, where did the Rakhains originally come from?",
+      "answer": "Arakan.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "073a9100-3462-4622-8741-3e78fe9b0f9a",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-043",
+      "subject": "Bangladesh Studies",
+      "topic": "Rakhain community",
+      "type": "Short answer",
+      "question": "What main occupation of the Rakhain community is given in the notes?",
+      "answer": "Farming.",
+      "options": [],
+      "explanation": "The notes also mention weaving and making salt and molasses.",
+      "sources": [
+        {
+          "documentId": "073a9100-3462-4622-8741-3e78fe9b0f9a",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-044",
+      "subject": "Bangladesh Studies",
+      "topic": "Rakhain community",
+      "type": "Short answer",
+      "question": "What is Sundrey?",
+      "answer": "Sundrey is a three-day community festival of the Rakhains during Chaitra Sankranti.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "073a9100-3462-4622-8741-3e78fe9b0f9a",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-045",
+      "subject": "Bangladesh Studies",
+      "topic": "Nawab Faizunnesa",
+      "type": "Short answer",
+      "question": "Name two ways Nawab Faizunnesa helped women.",
+      "answer": "She established a school for girls and a hospital for women.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "073a9100-3462-4622-8741-3e78fe9b0f9a",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-046",
+      "subject": "Bangladesh Studies",
+      "topic": "Nawab Faizunnesa",
+      "type": "Short answer",
+      "question": "Who awarded Faizunnesa the title of Nawab?",
+      "answer": "Queen Victoria.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "073a9100-3462-4622-8741-3e78fe9b0f9a",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-047",
+      "subject": "Bangladesh Studies",
+      "topic": "Nawab Faizunnesa",
+      "type": "Short answer",
+      "question": "Why was Faizunnesa awarded the title of Nawab?",
+      "answer": "For her social work.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "073a9100-3462-4622-8741-3e78fe9b0f9a",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-048",
+      "subject": "Bangladesh Studies",
+      "topic": "Assignment practice",
+      "type": "Fill in the blank",
+      "question": "Complete the assignment: Faizunnesa founded a ____ and later upgraded it to a ____.",
+      "answer": "madrasha; college",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7231a216-f63a-40a1-954d-1ba0f43e3268",
+          "page": 1
+        },
+        {
+          "documentId": "073a9100-3462-4622-8741-3e78fe9b0f9a",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-049",
+      "subject": "Moral Studies",
+      "topic": "Having Good Thoughts",
+      "type": "Short answer",
+      "question": "What was Robert Bruce’s goal in the story?",
+      "answer": "To free his country from the enemy.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "179aae0d-6d5e-44ca-95d5-5b6e08f1bdd9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-050",
+      "subject": "Moral Studies",
+      "topic": "Having Good Thoughts",
+      "type": "True / False",
+      "question": "The spider reached the next beam on its seventh try.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "179aae0d-6d5e-44ca-95d5-5b6e08f1bdd9",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-051",
+      "subject": "Moral Studies",
+      "topic": "Having Good Thoughts",
+      "type": "Short answer",
+      "question": "What does the story of the king and the spider teach us?",
+      "answer": "Keep trying, think positively, and do not give up hope.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "179aae0d-6d5e-44ca-95d5-5b6e08f1bdd9",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-052",
+      "subject": "Moral Studies",
+      "topic": "Having Good Thoughts",
+      "type": "Apply",
+      "question": "What could you say to a friend who did not win a competition?",
+      "answer": "Keep practicing. Be proud of trying, and congratulate the winner.",
+      "options": [],
+      "explanation": "This is a kind example response based on the lesson.",
+      "sources": [
+        {
+          "documentId": "179aae0d-6d5e-44ca-95d5-5b6e08f1bdd9",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-053",
+      "subject": "Moral Studies",
+      "topic": "Being a Family",
+      "type": "Short answer",
+      "question": "Why did the girls’ mother need money?",
+      "answer": "She needed money for their father’s treatment.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "316158d0-f217-43a4-95be-640e11945999",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-054",
+      "subject": "Moral Studies",
+      "topic": "Being a Family",
+      "type": "Short answer",
+      "question": "Why did Jo cut off her hair?",
+      "answer": "She sold her hair to help pay for her father’s treatment.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "316158d0-f217-43a4-95be-640e11945999",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-055",
+      "subject": "Moral Studies",
+      "topic": "Being a Family",
+      "type": "True / False",
+      "question": "Family members should help each other in difficult times.",
+      "answer": "True",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "316158d0-f217-43a4-95be-640e11945999",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-056",
+      "subject": "Moral Studies",
+      "topic": "Assignment practice",
+      "type": "Apply",
+      "question": "What can Ejaz do after a fight with his brother?",
+      "answer": "He can apologise, listen, and talk kindly with his brother.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "c3b20473-1071-451c-8e75-ac59e36f1b84",
+          "page": 2
+        },
+        {
+          "documentId": "316158d0-f217-43a4-95be-640e11945999",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-057",
+      "subject": "English Literature",
+      "topic": "Cuckoo!",
+      "type": "Short answer",
+      "question": "Why did Winnie want to go home?",
+      "answer": "She was tired.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-058",
+      "subject": "English Literature",
+      "topic": "Cuckoo!",
+      "type": "Short answer",
+      "question": "How were Tony and Winnie related?",
+      "answer": "They were brother and sister.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-059",
+      "subject": "English Literature",
+      "topic": "Cuckoo!",
+      "type": "Short answer",
+      "question": "Who did Tony think was making the cuckoo sound?",
+      "answer": "Winnie.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-060",
+      "subject": "English Literature",
+      "topic": "Cuckoo!",
+      "type": "Short answer",
+      "question": "What did Winnie help her mother make?",
+      "answer": "Tea.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-061",
+      "subject": "English Literature",
+      "topic": "Cuckoo!",
+      "type": "Short answer",
+      "question": "What does “astonished” mean?",
+      "answer": "Very surprised.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-062",
+      "subject": "English Literature",
+      "topic": "Cuckoo!",
+      "type": "Short answer",
+      "question": "What does “hunted” mean in the notes?",
+      "answer": "Looked for.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-063",
+      "subject": "English Literature",
+      "topic": "Dumbo vocabulary",
+      "type": "Short answer",
+      "question": "What does “thrilling” mean?",
+      "answer": "Exciting.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-064",
+      "subject": "English Literature",
+      "topic": "Dumbo vocabulary",
+      "type": "Short answer",
+      "question": "What does “ached” mean?",
+      "answer": "Hurt.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-065",
+      "subject": "English Language",
+      "topic": "Plurals",
+      "type": "Fill in the blank",
+      "question": "Write the plural of “bird”.",
+      "answer": "birds",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "62ca0e99-35c5-4f4c-9aba-67d3009baf06",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-066",
+      "subject": "English Language",
+      "topic": "Plurals",
+      "type": "Fill in the blank",
+      "question": "Write the plural of “box”.",
+      "answer": "boxes",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "62ca0e99-35c5-4f4c-9aba-67d3009baf06",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-067",
+      "subject": "English Language",
+      "topic": "Plurals",
+      "type": "Fill in the blank",
+      "question": "Write the plural of “fly”.",
+      "answer": "flies",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "62ca0e99-35c5-4f4c-9aba-67d3009baf06",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-068",
+      "subject": "English Language",
+      "topic": "Irregular plurals",
+      "type": "Multiple choice",
+      "question": "What is the plural of “child”?",
+      "answer": "children",
+      "options": [
+        "childs",
+        "children",
+        "childes"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7b22ce70-215c-4432-b3b8-d628da7454ab",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-069",
+      "subject": "English Language",
+      "topic": "Irregular plurals",
+      "type": "Fill in the blank",
+      "question": "Write the plural of “tooth”.",
+      "answer": "teeth",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7b22ce70-215c-4432-b3b8-d628da7454ab",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-070",
+      "subject": "English Language",
+      "topic": "Irregular plurals",
+      "type": "Fill in the blank",
+      "question": "Write the singular of “mice”.",
+      "answer": "mouse",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7b22ce70-215c-4432-b3b8-d628da7454ab",
+          "page": 4
+        }
+      ]
+    },
+    {
+      "id": "q-071",
+      "subject": "English Language",
+      "topic": "Capital letters",
+      "type": "Apply",
+      "question": "Correct the capitals: “we hope to go next friday.”",
+      "answer": "We hope to go next Friday.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7b22ce70-215c-4432-b3b8-d628da7454ab",
+          "page": 6
+        }
+      ]
+    },
+    {
+      "id": "q-072",
+      "subject": "English Language",
+      "topic": "Here and hear",
+      "type": "Multiple choice",
+      "question": "Choose: “I can ____ the bird singing.”",
+      "answer": "hear",
+      "options": [
+        "here",
+        "hear"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "7b22ce70-215c-4432-b3b8-d628da7454ab",
+          "page": 7
+        }
+      ]
+    },
+    {
+      "id": "q-073",
+      "subject": "English Language",
+      "topic": "Adjectives",
+      "type": "Short answer",
+      "question": "Find the describing word: “A big lorry was parked outside the school.”",
+      "answer": "big",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "6ee12943-e20e-420c-b748-965df55d04e3",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-074",
+      "subject": "English Language",
+      "topic": "Questions",
+      "type": "Multiple choice",
+      "question": "Which mark belongs at the end of a question?",
+      "answer": "Question mark (?)",
+      "options": [
+        "Full stop (.)",
+        "Question mark (?)",
+        "Comma (,)"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "6ee12943-e20e-420c-b748-965df55d04e3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-075",
+      "subject": "English Language",
+      "topic": "Weather words",
+      "type": "Fill in the blank",
+      "question": "When there is fog, the weather is ____.",
+      "answer": "foggy",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "6ee12943-e20e-420c-b748-965df55d04e3",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-076",
+      "subject": "English Language",
+      "topic": "Using the right word",
+      "type": "Multiple choice",
+      "question": "Choose: “The books ____ kept on the shelf.”",
+      "answer": "are",
+      "options": [
+        "is",
+        "are"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "6ee12943-e20e-420c-b748-965df55d04e3",
+          "page": 4
+        }
+      ]
+    },
+    {
+      "id": "q-077",
+      "subject": "English Language",
+      "topic": "Singular and plural",
+      "type": "Fill in the blank",
+      "question": "One horse, two ____.",
+      "answer": "horses",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "53916209-0455-45db-a37b-e875f8d08a97",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-078",
+      "subject": "English Language",
+      "topic": "A and an",
+      "type": "Multiple choice",
+      "question": "Choose: “____ apple”.",
+      "answer": "an",
+      "options": [
+        "a",
+        "an"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "53916209-0455-45db-a37b-e875f8d08a97",
+          "page": 6
+        }
+      ]
+    },
+    {
+      "id": "q-079",
+      "subject": "English Language",
+      "topic": "A and an",
+      "type": "Multiple choice",
+      "question": "Choose: “____ book”.",
+      "answer": "a",
+      "options": [
+        "a",
+        "an"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "53916209-0455-45db-a37b-e875f8d08a97",
+          "page": 6
+        }
+      ]
+    },
+    {
+      "id": "q-080",
+      "subject": "English Language",
+      "topic": "Action words",
+      "type": "Fill in the blank",
+      "question": "Add “-ing” to “dance”.",
+      "answer": "dancing",
+      "options": [],
+      "explanation": "Drop the final e before adding -ing.",
+      "sources": [
+        {
+          "documentId": "53916209-0455-45db-a37b-e875f8d08a97",
+          "page": 8
+        }
+      ]
+    },
+    {
+      "id": "q-081",
+      "subject": "English Language",
+      "topic": "Nouns",
+      "type": "Multiple choice",
+      "question": "Which word names a person?",
+      "answer": "teacher",
+      "options": [
+        "teacher",
+        "quickly",
+        "run"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a1581c5a-711d-4ddf-8903-eecd9bd4a25e",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-082",
+      "subject": "English Language",
+      "topic": "Nouns",
+      "type": "Short answer",
+      "question": "Find the noun: “The window was broken.”",
+      "answer": "window",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a1581c5a-711d-4ddf-8903-eecd9bd4a25e",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-083",
+      "subject": "English Language",
+      "topic": "Verbs",
+      "type": "Short answer",
+      "question": "Find the doing word: “The little girl cried.”",
+      "answer": "cried",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a1581c5a-711d-4ddf-8903-eecd9bd4a25e",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-084",
+      "subject": "English Language",
+      "topic": "Verbs",
+      "type": "Short answer",
+      "question": "Find the doing word: “The clown smiled.”",
+      "answer": "smiled",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a1581c5a-711d-4ddf-8903-eecd9bd4a25e",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-085",
+      "subject": "Math",
+      "topic": "Geometry",
+      "type": "Short answer",
+      "question": "Name two instruments used in geometry.",
+      "answer": "A ruler and a compass.",
+      "options": [],
+      "explanation": "The notes also list a set square, protractor, and divider.",
+      "sources": [
+        {
+          "documentId": "a67cadb8-66b1-41e6-9182-1dc8a9e48faa",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-086",
+      "subject": "Math",
+      "topic": "Geometry",
+      "type": "Multiple choice",
+      "question": "Which line keeps the same direction?",
+      "answer": "Straight line",
+      "options": [
+        "Straight line",
+        "Curved line"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a67cadb8-66b1-41e6-9182-1dc8a9e48faa",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-087",
+      "subject": "Math",
+      "topic": "Geometry",
+      "type": "Drawing",
+      "question": "Draw one straight line and one curved line.",
+      "answer": "Draw a straight line like — and a curved line like ∩. Label both.",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "a67cadb8-66b1-41e6-9182-1dc8a9e48faa",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-088",
+      "subject": "Math",
+      "topic": "Number sense",
+      "type": "Multiple choice",
+      "question": "How many digits do we use in our number system?",
+      "answer": "10",
+      "options": [
+        "9",
+        "10",
+        "11"
+      ],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "0aef709a-81f7-41ee-ad3e-6f136fef253d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-089",
+      "subject": "Math",
+      "topic": "Number sense",
+      "type": "Short answer",
+      "question": "What is the smallest two-digit number?",
+      "answer": "10",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "0aef709a-81f7-41ee-ad3e-6f136fef253d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-090",
+      "subject": "Math",
+      "topic": "Number sense",
+      "type": "Short answer",
+      "question": "What is the largest three-digit number?",
+      "answer": "999",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "0aef709a-81f7-41ee-ad3e-6f136fef253d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-091",
+      "subject": "Math",
+      "topic": "Number names",
+      "type": "Short answer",
+      "question": "Write “five hundred and twenty-three” in digits.",
+      "answer": "523",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "0aef709a-81f7-41ee-ad3e-6f136fef253d",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-092",
+      "subject": "Math",
+      "topic": "Place value",
+      "type": "Short answer",
+      "question": "In 4,582, which digit is in the hundreds place?",
+      "answer": "5",
+      "options": [],
+      "explanation": "4 thousands, 5 hundreds, 8 tens, and 2 ones. This is a new number for practice.",
+      "sources": [
+        {
+          "documentId": "0aef709a-81f7-41ee-ad3e-6f136fef253d",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-093",
+      "subject": "Math",
+      "topic": "Place value",
+      "type": "Short answer",
+      "question": "What is the value of 7 in 3,746?",
+      "answer": "700",
+      "options": [],
+      "explanation": "The 7 is in the hundreds place. This is a new practice number.",
+      "sources": [
+        {
+          "documentId": "0aef709a-81f7-41ee-ad3e-6f136fef253d",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-094",
+      "subject": "Geography",
+      "topic": "UK map",
+      "type": "Short answer",
+      "question": "What is the capital of England?",
+      "answer": "London",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "b6d69a22-f105-45b2-8f15-56c12958ef7d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-095",
+      "subject": "Geography",
+      "topic": "UK map",
+      "type": "Short answer",
+      "question": "What is the capital of Wales?",
+      "answer": "Cardiff",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "b6d69a22-f105-45b2-8f15-56c12958ef7d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-096",
+      "subject": "Geography",
+      "topic": "UK map",
+      "type": "Short answer",
+      "question": "What is the capital of Scotland?",
+      "answer": "Edinburgh",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "b6d69a22-f105-45b2-8f15-56c12958ef7d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-097",
+      "subject": "Geography",
+      "topic": "UK map",
+      "type": "Short answer",
+      "question": "What is the capital of Northern Ireland?",
+      "answer": "Belfast",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "b6d69a22-f105-45b2-8f15-56c12958ef7d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-098",
+      "subject": "Geography",
+      "topic": "UK map",
+      "type": "Drawing",
+      "question": "Label England and London on an outline map of the UK.",
+      "answer": "Label England in the southern part of Great Britain and London in southeast England.",
+      "options": [],
+      "explanation": "Compare your labels with the original map.",
+      "sources": [
+        {
+          "documentId": "b6d69a22-f105-45b2-8f15-56c12958ef7d",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-099",
+      "subject": "Bangla 1",
+      "topic": "আমার বাড়ি আমার কাজ",
+      "type": "Short answer",
+      "question": "তুলি কী কাজ করবে?",
+      "answer": "তুলি ঘর পরিষ্কার করবে ও কাপড় গোছাবে।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-100",
+      "subject": "Bangla 1",
+      "topic": "আমার বাড়ি আমার কাজ",
+      "type": "Short answer",
+      "question": "তপু কার সাথে বাজারে যেতে চাইল?",
+      "answer": "তপু বাবার সাথে বাজারে যেতে চাইল।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-101",
+      "subject": "Bangla 1",
+      "topic": "বিড়ালছানা",
+      "type": "Short answer",
+      "question": "পশুপাখির সাথে আমরা কেমন আচরণ করব?",
+      "answer": "পশুপাখির সাথে আমরা সদয় আচরণ করব।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "q-102",
+      "subject": "Bangla 1",
+      "topic": "প্রজাপতি",
+      "type": "Short answer",
+      "question": "প্রজাপতির পাখা কেমন?",
+      "answer": "প্রজাপতির পাখা রঙিন।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-103",
+      "subject": "Bangla 1",
+      "topic": "শব্দার্থ",
+      "type": "Short answer",
+      "question": "“পাখা” শব্দের অর্থ কী?",
+      "answer": "ডানা।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-104",
+      "subject": "Bangla 1",
+      "topic": "শব্দার্থ",
+      "type": "Short answer",
+      "question": "“ক্ষত” শব্দের অর্থ কী?",
+      "answer": "ঘা।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-105",
+      "subject": "Bangla 1",
+      "topic": "পরিভাষা",
+      "type": "Short answer",
+      "question": "“Knowledge” এর বাংলা কী?",
+      "answer": "জ্ঞান।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-106",
+      "subject": "Bangla 1",
+      "topic": "পরিভাষা",
+      "type": "Short answer",
+      "question": "“Playground” এর বাংলা কী?",
+      "answer": "খেলার মাঠ।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 3
+        }
+      ]
+    },
+    {
+      "id": "q-107",
+      "subject": "Bangla 1",
+      "topic": "Assignment practice",
+      "type": "Fill in the blank",
+      "question": "শূন্যস্থান পূরণ কর: ফুলে ফুলে ____ উড়ছে।",
+      "answer": "প্রজাপতি",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "afa9fa12-80e9-4d2f-a550-1827bd8883b3",
+          "page": 1
+        },
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 2
+        }
+      ]
+    },
+    {
+      "id": "q-108",
+      "subject": "Bangla 2",
+      "topic": "Assignment practice",
+      "type": "Short answer",
+      "question": "“Drawing” এর বাংলা কী?",
+      "answer": "অঙ্কন।",
+      "options": [],
+      "explanation": "",
+      "sources": [
+        {
+          "documentId": "8fa91aac-a974-4af6-9c64-d3a2449acdd8",
+          "page": 1
+        },
+        {
+          "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+          "page": 3
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "documentId": "3c7b02ff-0db8-4ac4-a947-3300ca6447dc",
+      "summary": "Class II, Rose section weekly routine. The class teacher is Tithi Biswas.",
+      "topics": [
+        "Sunday–Thursday timetable",
+        "Six class periods",
+        "Tiffin 10:15–10:35"
+      ],
+      "note": "The second PDF page is blank. Preserve it as part of the original."
+    },
+    {
+      "documentId": "b504a1a9-68ba-4238-9076-aee908e2ff13",
+      "summary": "First Monthly Examination 2026–2027, Class II July Session: the master guide for scope and question formats.",
+      "topics": [
+        "Seen and unseen chapters",
+        "English, mathematics, science and humanities",
+        "Bangla, Islamic Studies and Moral Studies"
+      ],
+      "note": "A syllabus lists topics; it does not supply all textbook content. Unuploaded chapters are not treated as read."
+    },
+    {
+      "documentId": "a67cadb8-66b1-41e6-9182-1dc8a9e48faa",
+      "summary": "Geometry definitions, instruments, and examples of straight and curved lines.",
+      "topics": [
+        "Geometry instruments",
+        "Straight lines",
+        "Curved lines"
+      ],
+      "note": ""
+    },
+    {
+      "documentId": "0aef709a-81f7-41ee-ad3e-6f136fef253d",
+      "summary": "Joy of Mathematics exercises for the first monthly examination.",
+      "topics": [
+        "Number names and numerals",
+        "Four-digit place value",
+        "Comparing and ordering numbers",
+        "Arithmetic exercises"
+      ],
+      "note": "The syllabus asks for changed numbers. One source line calls 1 the smallest one-digit number; distinguish positive counting numbers from 0 when teaching."
+    },
+    {
+      "documentId": "179aae0d-6d5e-44ca-95d5-5b6e08f1bdd9",
+      "summary": "Having Good Thoughts: Robert Bruce and the spider, with recall questions and everyday applications.",
+      "topics": [
+        "Perseverance",
+        "Positive thinking",
+        "Responding kindly to setbacks"
+      ],
+      "note": ""
+    },
+    {
+      "documentId": "316158d0-f217-43a4-95be-640e11945999",
+      "summary": "Being a Family: Jo and the March family, with questions about care and helping others.",
+      "topics": [
+        "Jo’s sacrifice",
+        "Helping family members",
+        "Kind communication"
+      ],
+      "note": ""
+    },
+    {
+      "documentId": "9dca9e45-37b5-4eda-a7fa-7c9360d333c8",
+      "summary": "Uses of Plants: plant foods, fibres, oil, and other useful products.",
+      "topics": [
+        "Roots, stems, leaves and flowers we eat",
+        "Cereals versus pulses",
+        "Spices and plant fibres",
+        "Observe, apply and label diagrams"
+      ],
+      "note": "Use the original diagrams for picture questions. The plant examples are lesson content, not medical advice."
+    },
+    {
+      "documentId": "7e540156-cd7e-4ff7-9d18-d1779dcab3a3",
+      "summary": "Crossing Barriers: developments in land, water, air and space travel.",
+      "topics": [
+        "The wheel and early travel",
+        "Transport inventions",
+        "Air and space travel"
+      ],
+      "note": "Some historical superlatives and simplified attributions in the notes need teacher context; practice avoids the undersea-tunnel superlative."
+    },
+    {
+      "documentId": "255dccd4-05a7-427b-92ab-8103f353b9d3",
+      "summary": "বাংলা প্রথম পত্রের গদ্য, পদ্য, শব্দার্থ, যুক্তবর্ণ এবং কিছু বাংলা দ্বিতীয় পত্রের পরিভাষা।",
+      "topics": [
+        "আমার বাড়ি আমার কাজ",
+        "বিড়ালছানা",
+        "প্রজাপতি",
+        "ইংরেজি থেকে বাংলা পরিভাষা"
+      ],
+      "note": "Legacy-font text required OCR. Check যুক্তবর্ণ and unclear spellings in the original image."
+    },
+    {
+      "documentId": "073a9100-3462-4622-8741-3e78fe9b0f9a",
+      "summary": "School notes about the Rakhain community and Nawab Faizunnesa.",
+      "topics": [
+        "Rakhain festivals and occupations",
+        "Nawab Faizunnesa’s education and social work"
+      ],
+      "note": "Read community descriptions as the wording of these school notes. Practice focuses on named facts and avoids appearance-based generalisations."
+    },
+    {
+      "documentId": "2ff8101b-11ad-4227-b20c-f9c0a51db238",
+      "summary": "Cuckoo! comprehension, sentence completion and vocabulary; a Dumbo vocabulary list.",
+      "topics": [
+        "Tony and Winnie",
+        "Story comprehension",
+        "Cuckoo! word meanings",
+        "Dumbo word meanings"
+      ],
+      "note": "The complete Dumbo story is not attached. Do not invent story answers from its vocabulary list."
+    },
+    {
+      "documentId": "b6d69a22-f105-45b2-8f15-56c12958ef7d",
+      "summary": "An outline map of the United Kingdom with countries and capitals labeled.",
+      "topics": [
+        "England — London",
+        "Wales — Cardiff",
+        "Scotland — Edinburgh",
+        "Northern Ireland — Belfast"
+      ],
+      "note": "The Earth, planets, day/night, and living-planet chapters are listed in the syllabus but are not in this attachment."
+    },
+    {
+      "documentId": "62ca0e99-35c5-4f4c-9aba-67d3009baf06",
+      "summary": "Junior English regular plural forms, spelling changes, and answer exercises.",
+      "topics": [
+        "Add -s or -es",
+        "Change y to -ies",
+        "Change f to -ves"
+      ],
+      "note": "Some worksheet lists contain mismatched examples; use the checked answer forms and original context."
+    },
+    {
+      "documentId": "7b22ce70-215c-4432-b3b8-d628da7454ab",
+      "summary": "Irregular plurals, singular/plural sentence changes, capital letters, and here/hear/there/their.",
+      "topics": [
+        "Irregular noun forms",
+        "Sentence transformations",
+        "Capital letters",
+        "Homophones"
+      ],
+      "note": "An early example prints feet → feet; the later answer key correctly gives feet → foot."
+    },
+    {
+      "documentId": "6ee12943-e20e-420c-b748-965df55d04e3",
+      "summary": "Describing words, question words, punctuation, weather vocabulary, and correct verb forms.",
+      "topics": [
+        "Adjectives",
+        "Question marks and full stops",
+        "Weather words",
+        "Is/are, was/were, saw/seen"
+      ],
+      "note": ""
+    },
+    {
+      "documentId": "53916209-0455-45db-a37b-e875f8d08a97",
+      "summary": "Singular and plural nouns, a/an, and verb endings -ed and -ing.",
+      "topics": [
+        "One versus more than one",
+        "A and an",
+        "Verb spelling changes"
+      ],
+      "note": ""
+    },
+    {
+      "documentId": "a1581c5a-711d-4ddf-8903-eecd9bd4a25e",
+      "summary": "Nouns as naming words and verbs as doing words, with complete exercise answers.",
+      "topics": [
+        "People, animals and things",
+        "Finding nouns in sentences",
+        "Finding action words"
+      ],
+      "note": ""
+    },
+    {
+      "documentId": "c3b20473-1071-451c-8e75-ac59e36f1b84",
+      "summary": "Moral Studies assignment for the first monthly: Jo’s family and Robert Bruce.",
+      "topics": [
+        "Multiple choice",
+        "True/false and gap filling",
+        "Short answers and life skills"
+      ],
+      "note": "This is an unfilled worksheet. Model answers are sourced from the corresponding study notes."
+    },
+    {
+      "documentId": "7231a216-f63a-40a1-954d-1ba0f43e3268",
+      "summary": "Bangladesh Studies assignment on Rakhain life and Nawab Faizunnesa.",
+      "topics": [
+        "Short answers",
+        "Fill in the blanks",
+        "True/false"
+      ],
+      "note": "Answer support is in Bangladesh Studies.pdf."
+    },
+    {
+      "documentId": "afa9fa12-80e9-4d2f-a550-1827bd8883b3",
+      "summary": "বাংলা প্রথম পত্রের অ্যাসাইনমেন্ট: প্রশ্নোত্তর, শব্দার্থ, বাক্য, শূন্যস্থান এবং যুক্তবর্ণ।",
+      "topics": [
+        "তুলি ও পশুপাখি",
+        "প্রজাপতি",
+        "শব্দার্থ ও বাক্য গঠন"
+      ],
+      "note": "Answers should be checked against the Bangla study notes. OCR can miss letter combinations."
+    },
+    {
+      "documentId": "8fa91aac-a974-4af6-9c64-d3a2449acdd8",
+      "summary": "বাংলা দ্বিতীয় পত্রের অ্যাসাইনমেন্ট: ব্যাকরণ, অর্ধমাত্রা, বচন, লিঙ্গ এবং পরিভাষা।",
+      "topics": [
+        "বাংলা ব্যাকরণ",
+        "বচন ও লিঙ্গ পরিবর্তন",
+        "ইংরেজি থেকে বাংলা"
+      ],
+      "note": "The uploaded notes do not provide a complete answer key for every grammar item. Those answers are not invented."
+    },
+    {
+      "documentId": "68681a57-0240-42cb-8340-ab2dbfc933fb",
+      "summary": "Scanned First Monthly Examination schedule for Class II.",
+      "topics": [
+        "Exam dates and subjects",
+        "Exam timing and instructions"
+      ],
+      "note": "Use the original scan to confirm dates. This is a schedule, not a question paper."
+    },
+    {
+      "documentId": "fe8ef472-ee4f-4203-98a5-f3cec10c3f97",
+      "summary": "Moving air, useful wind, breeze, storm, and wind direction.",
+      "topics": [
+        "Wind and breeze",
+        "Uses of wind",
+        "Storms",
+        "Wind vane"
+      ],
+      "note": "Scanned textbook page. Check diagrams and any unclear OCR against the original. Question-only prompts need supporting chapter evidence."
+    },
+    {
+      "documentId": "70dd84f6-d253-4809-bd6e-bb2e9aac01ef",
+      "summary": "What air contains and how dust, smoke, and germs make it dirty.",
+      "topics": [
+        "Water vapour",
+        "Smoke and dust",
+        "Germs",
+        "Clean air"
+      ],
+      "note": "Scanned textbook page. Check diagrams and any unclear OCR against the original. Question-only prompts need supporting chapter evidence."
+    },
+    {
+      "documentId": "9e5558d0-d0ce-4715-85c7-444dffbc9b66",
+      "summary": "Properties of air and keeping air clean.",
+      "topics": [
+        "Air fills space",
+        "Air gives shape",
+        "Air has weight",
+        "Growing plants"
+      ],
+      "note": "Scanned textbook page. Check diagrams and any unclear OCR against the original. Question-only prompts need supporting chapter evidence."
+    },
+    {
+      "documentId": "6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5",
+      "summary": "Recall questions and a summary of Air Around Us.",
+      "topics": [
+        "True/false",
+        "Wind, breeze, storm",
+        "Air properties"
+      ],
+      "note": "Scanned textbook page. Check diagrams and any unclear OCR against the original. Question-only prompts need supporting chapter evidence."
+    },
+    {
+      "documentId": "a9c711b9-91a2-4de3-b9ef-bfa1d82b05c9",
+      "summary": "Air Around Us exercises: fill-in-the-blanks, true/false, multiple choice, and examples.",
+      "topics": [
+        "Choose the right word",
+        "Properties and uses of air",
+        "Examples"
+      ],
+      "note": "Scanned textbook page. Check diagrams and any unclear OCR against the original. Question-only prompts need supporting chapter evidence."
+    },
+    {
+      "documentId": "2fae7be6-1938-4393-ab14-f96983f3eb4d",
+      "summary": "Short-answer questions, a concept map, and wind-powered drawing activities.",
+      "topics": [
+        "Five short-answer prompts",
+        "Concept map",
+        "Draw three things"
+      ],
+      "note": "Scanned textbook page. Check diagrams and any unclear OCR against the original. Question-only prompts need supporting chapter evidence."
+    },
+    {
+      "documentId": "5ad564ee-5149-48b2-ba0c-3a5d292d1015",
+      "summary": "Picture comparison, sneezing, hot air, and an air-quality illustration.",
+      "topics": [
+        "Compare inflated objects",
+        "Apply chapter ideas",
+        "Read the picture"
+      ],
+      "note": "Scanned textbook page. Check diagrams and any unclear OCR against the original. Question-only prompts need supporting chapter evidence."
+    },
+    {
+      "documentId": "f1d56819-ae5e-4e6e-a5a9-0e16d1bde236",
+      "summary": "Air-quality picture questions and creative activities.",
+      "topics": [
+        "Explain dirty air",
+        "Write a planting slogan",
+        "Make a wind vane"
+      ],
+      "note": "Scanned textbook page. Check diagrams and any unclear OCR against the original. Question-only prompts need supporting chapter evidence."
+    }
+  ],
+  "coverageNote": "The bank covers evidence present in the imported notes and Air Around Us pages 95–102. The full Dumbo story, Emperor Ashoka chapter, most geography textbook chapters, Harrap spelling sets, and separate Mental Mathematics exercises are not attached. They are syllabus topics, not claimed as imported lessons. Bangla grammar prompts without an answer source remain for teacher review. Model answers are study aids, not an official school answer key."
+}

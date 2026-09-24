@@ -1,0 +1,1552 @@
+{
+  "databases": [
+    {
+      "id": "3c49ecdd38af80aa8205dbaad10da968",
+      "metadata": {
+        "type": "database"
+      },
+      "title": "1. Routine",
+      "url": "https://app.notion.com/p/3c49ecdd38af80aa8205dbaad10da968?pvs=204",
+      "text": "<database url=\"{{https://app.notion.com/p/3c49ecdd38af80aa8205dbaad10da968}}\" inline=\"false\" icon=\"/icons/document_red.svg\">\nThe title of this Database is: 1. Routine\n<ancestor-path></ancestor-path>\nHere are the Database's Data Sources:\nYou can use the \"fetch\" tool on the URL of any Data Source to see its full schema configuration.\n<data-sources>\n<data-source url=\"{{collection://3c49ecdd-38af-80e8-888b-000b22c321f0}}\">\nThe title of this Data Source is: 1. Routine\n\nHere is the database's configurable state:\nProperties with `readOnly: true` are synced or system-managed. Do not try to update their values with page update tools.\n<data-source-state>\n{\"default_page_template\":\"https://app.notion.com/p/3c49ecdd38af806aaaf8d7757d8639c8\",\"icon\":\"/icons/document_red.svg\",\"name\":\"1. Routine\",\"schema\":{\"Category\":{\"description\":\"\",\"name\":\"Category\",\"options\":[{\"color\":\"green\",\"description\":\"\",\"name\":\"ROUTINE\",\"url\":\"collectionPropertyOption://3c49ecdd-38af-80e8-888b-000b22c321f0/QlJYVA/YmQxMTc3NmYtYzFlZC00MjU4LWFhNDMtNzgzMjc1YmI5YzZk\"}],\"type\":\"multi_select\"},\"Created by\":{\"description\":\"\",\"name\":\"Created by\",\"type\":\"created_by\"},\"Created time\":{\"description\":\"\",\"name\":\"Created time\",\"type\":\"created_time\"},\"Doc name\":{\"description\":\"\",\"name\":\"Doc name\",\"type\":\"title\"},\"Files & media\":{\"description\":\"\",\"name\":\"Files & media\",\"type\":\"file\"}},\"url\":\"collection://3c49ecdd-38af-80e8-888b-000b22c321f0\"}\n</data-source-state>\n\nHere is the SQLite table definition for this data source.\n<sqlite-table>\nCREATE TABLE IF NOT EXISTS \"collection://3c49ecdd-38af-80e8-888b-000b22c321f0\" (\n\turl TEXT UNIQUE,\n\tcreatedTime TEXT, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Created time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Category\" TEXT, -- JSON array with zero or more of [\"ROUTINE\"]\n\t\"Created by\" TEXT,\n\t\"Files & media\" TEXT, -- JSON array of zero or more file IDs, Notion Folder URLs, or <folder> tags copied from fetch output. Folders are stored as native Folder references.\n\t\"Doc name\" TEXT\n)\n</sqlite-table>\n\n<templates>\n<template id=\"3c49ecdd-38af-806a-aaf8-d7757d8639c8\" name=\"New doc\" default=\"true\"/>\n</templates>\n</data-source>\n</data-sources>\nHere are the Database's Views:\nYou can use the \"fetch\" tool on the URL of any View to see its full configuration.\n<views>\n<view url=\"{{view://3c49ecdd-38af-8095-9c11-000cf0d682fb}}\">\n{\"dataSourceUrl\":\"{{collection://3c49ecdd-38af-80e8-888b-000b22c321f0}}\",\"displayProperties\":[\"Doc name\",\"Category\",\"Files & media\",\"Created by\",\"Created time\"],\"name\":\"All Docs\",\"type\":\"table\"}\n</view>\n</views>\n</database>"
+    },
+    {
+      "id": "3c49ecdd38af804ebce9e86206305609",
+      "metadata": {
+        "type": "database"
+      },
+      "title": "2. Syllabus",
+      "url": "https://app.notion.com/p/3c49ecdd38af804ebce9e86206305609?pvs=204",
+      "text": "<database url=\"{{https://app.notion.com/p/3c49ecdd38af804ebce9e86206305609}}\" inline=\"false\" icon=\"/icons/document_red.svg\">\nThe title of this Database is: 2. Syllabus\n<ancestor-path></ancestor-path>\nHere are the Database's Data Sources:\nYou can use the \"fetch\" tool on the URL of any Data Source to see its full schema configuration.\n<data-sources>\n<data-source url=\"{{collection://df59ecdd-38af-8385-baa3-071126e0e412}}\">\nThe title of this Data Source is: 2. Syllabus\n\nHere is the database's configurable state:\nProperties with `readOnly: true` are synced or system-managed. Do not try to update their values with page update tools.\n<data-source-state>\n{\"default_page_template\":\"https://app.notion.com/p/db19ecdd38af832e881101d7951f5d15\",\"icon\":\"/icons/document_red.svg\",\"name\":\"2. Syllabus\",\"schema\":{\"Category\":{\"description\":\"\",\"name\":\"Category\",\"options\":[{\"color\":\"green\",\"description\":\"\",\"name\":\"FIRST MONTHLY\",\"url\":\"collectionPropertyOption://df59ecdd-38af-8385-baa3-071126e0e412/QlJYVA/ZmYwMWVhYTUtYzY3ZS00YTlmLTgxNjAtOTM5YTBhNDViNjE2\"}],\"type\":\"multi_select\"},\"Created by\":{\"description\":\"\",\"name\":\"Created by\",\"type\":\"created_by\"},\"Created time\":{\"description\":\"\",\"name\":\"Created time\",\"type\":\"created_time\"},\"Doc name\":{\"description\":\"\",\"name\":\"Doc name\",\"type\":\"title\"},\"Files & media\":{\"description\":\"\",\"name\":\"Files & media\",\"type\":\"file\"}},\"url\":\"collection://df59ecdd-38af-8385-baa3-071126e0e412\"}\n</data-source-state>\n\nHere is the SQLite table definition for this data source.\n<sqlite-table>\nCREATE TABLE IF NOT EXISTS \"collection://df59ecdd-38af-8385-baa3-071126e0e412\" (\n\turl TEXT UNIQUE,\n\tcreatedTime TEXT, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Created time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Category\" TEXT, -- JSON array with zero or more of [\"FIRST MONTHLY\"]\n\t\"Files & media\" TEXT, -- JSON array of zero or more file IDs, Notion Folder URLs, or <folder> tags copied from fetch output. Folders are stored as native Folder references.\n\t\"Created by\" TEXT,\n\t\"Doc name\" TEXT\n)\n</sqlite-table>\n\n<templates>\n<template id=\"db19ecdd-38af-832e-8811-01d7951f5d15\" name=\"New doc\" default=\"true\"/>\n</templates>\n</data-source>\n</data-sources>\nHere are the Database's Views:\nYou can use the \"fetch\" tool on the URL of any View to see its full configuration.\n<views>\n<view url=\"{{view://5019ecdd-38af-828a-bd6e-880b3789f5dc}}\">\n{\"dataSourceUrl\":\"{{collection://df59ecdd-38af-8385-baa3-071126e0e412}}\",\"displayProperties\":[\"Doc name\",\"Category\",\"Files & media\",\"Created by\",\"Created time\"],\"name\":\"All Docs\",\"type\":\"table\"}\n</view>\n</views>\n</database>"
+    },
+    {
+      "id": "3c49ecdd38af800fb72df5988abf3b43",
+      "metadata": {
+        "type": "database"
+      },
+      "title": "3. Study Note",
+      "url": "https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43?pvs=204",
+      "text": "<database url=\"{{https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43}}\" inline=\"false\" icon=\"/icons/document_red.svg\">\nThe title of this Database is: 3. Study Note\n<ancestor-path></ancestor-path>\nHere are the Database's Data Sources:\nYou can use the \"fetch\" tool on the URL of any Data Source to see its full schema configuration.\n<data-sources>\n<data-source url=\"{{collection://3c49ecdd-38af-8049-a483-000b9709e58c}}\">\nThe title of this Data Source is: 3. Study Note\n\nHere is the database's configurable state:\nProperties with `readOnly: true` are synced or system-managed. Do not try to update their values with page update tools.\n<data-source-state>\n{\"default_page_template\":\"https://app.notion.com/p/3c49ecdd38af8058a037d1195481fe3d\",\"icon\":\"/icons/document_red.svg\",\"name\":\"3. Study Note\",\"schema\":{\"Category\":{\"description\":\"\",\"name\":\"Category\",\"options\":[{\"color\":\"purple\",\"description\":\"\",\"name\":\"FIRST MONTHLY\",\"url\":\"collectionPropertyOption://3c49ecdd-38af-8049-a483-000b9709e58c/VmtbPQ/OGRhMWRjZjYtM2MwYS00MGVlLWJhZmUtYWMyZWVkY2M1MmVh\"}],\"type\":\"multi_select\"},\"Created by\":{\"description\":\"\",\"name\":\"Created by\",\"type\":\"created_by\"},\"Created time\":{\"description\":\"\",\"name\":\"Created time\",\"type\":\"created_time\"},\"Doc name\":{\"description\":\"\",\"name\":\"Doc name\",\"type\":\"title\"},\"Files & media\":{\"description\":\"\",\"name\":\"Files & media\",\"type\":\"file\"},\"Last edited by\":{\"description\":\"\",\"name\":\"Last edited by\",\"type\":\"last_edited_by\"},\"Last updated time\":{\"description\":\"\",\"name\":\"Last updated time\",\"type\":\"last_edited_time\"}},\"url\":\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\"}\n</data-source-state>\n\nHere is the SQLite table definition for this data source.\n<sqlite-table>\nCREATE TABLE IF NOT EXISTS \"collection://3c49ecdd-38af-8049-a483-000b9709e58c\" (\n\turl TEXT UNIQUE,\n\tcreatedTime TEXT, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Last edited by\" TEXT,\n\t\"Files & media\" TEXT, -- JSON array of zero or more file IDs, Notion Folder URLs, or <folder> tags copied from fetch output. Folders are stored as native Folder references.\n\t\"Category\" TEXT, -- JSON array with zero or more of [\"FIRST MONTHLY\"]\n\t\"Created time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Created by\" TEXT,\n\t\"Last updated time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was last edited.\n\t\"Doc name\" TEXT\n)\n</sqlite-table>\n\n<templates>\n<template id=\"3c49ecdd-38af-8058-a037-d1195481fe3d\" name=\"New doc\" default=\"true\"/>\n</templates>\n</data-source>\n</data-sources>\nHere are the Database's Views:\nYou can use the \"fetch\" tool on the URL of any View to see its full configuration.\n<views>\n<view url=\"{{view://3c49ecdd-38af-807a-aa83-000cc5c01900}}\">\n{\"dataSourceUrl\":\"{{collection://3c49ecdd-38af-8049-a483-000b9709e58c}}\",\"displayProperties\":[\"Doc name\",\"Category\",\"Files & media\",\"Created by\",\"Created time\",\"Last edited by\",\"Last updated time\"],\"name\":\"All Docs\",\"type\":\"table\"}\n</view>\n</views>\n</database>"
+    },
+    {
+      "id": "3c49ecdd38af805bb96afe5722a95f6c",
+      "metadata": {
+        "type": "database"
+      },
+      "title": "4. Assignment",
+      "url": "https://app.notion.com/p/3c49ecdd38af805bb96afe5722a95f6c?pvs=204",
+      "text": "<database url=\"{{https://app.notion.com/p/3c49ecdd38af805bb96afe5722a95f6c}}\" inline=\"false\" icon=\"/icons/document_red.svg\">\nThe title of this Database is: 4. Assignment\n<ancestor-path></ancestor-path>\nHere are the Database's Data Sources:\nYou can use the \"fetch\" tool on the URL of any Data Source to see its full schema configuration.\n<data-sources>\n<data-source url=\"{{collection://2af9ecdd-38af-82cd-abd4-075ad3581c69}}\">\nThe title of this Data Source is: 4. Assignment\n\nHere is the database's configurable state:\nProperties with `readOnly: true` are synced or system-managed. Do not try to update their values with page update tools.\n<data-source-state>\n{\"default_page_template\":\"https://app.notion.com/p/92f9ecdd38af82b4a7cd01e656285afa\",\"icon\":\"/icons/document_red.svg\",\"name\":\"4. Assignment\",\"schema\":{\"Category\":{\"description\":\"\",\"name\":\"Category\",\"options\":[{\"color\":\"purple\",\"description\":\"\",\"name\":\"FIRST MONTHLY\",\"url\":\"collectionPropertyOption://2af9ecdd-38af-82cd-abd4-075ad3581c69/VmtbPQ/OGRhMWRjZjYtM2MwYS00MGVlLWJhZmUtYWMyZWVkY2M1MmVh\"}],\"type\":\"multi_select\"},\"Created by\":{\"description\":\"\",\"name\":\"Created by\",\"type\":\"created_by\"},\"Created time\":{\"description\":\"\",\"name\":\"Created time\",\"type\":\"created_time\"},\"Deadline\":{\"description\":\"\",\"name\":\"Deadline\",\"querySqlColumns\":{\"columns\":[{\"name\":\"date:Deadline:start\",\"sqlType\":\"TEXT\"},{\"name\":\"date:Deadline:end\",\"sqlType\":\"TEXT\"},{\"name\":\"date:Deadline:is_datetime\",\"sqlType\":\"INTEGER\"}],\"usage\":\"For connections.notion.querySql. Main schema name not queryable.\"},\"type\":\"date\"},\"Doc name\":{\"description\":\"\",\"name\":\"Doc name\",\"type\":\"title\"},\"Files & media\":{\"description\":\"\",\"name\":\"Files & media\",\"type\":\"file\"},\"Last edited by\":{\"description\":\"\",\"name\":\"Last edited by\",\"type\":\"last_edited_by\"},\"Last updated time\":{\"description\":\"\",\"name\":\"Last updated time\",\"type\":\"last_edited_time\"}},\"url\":\"collection://2af9ecdd-38af-82cd-abd4-075ad3581c69\"}\n</data-source-state>\n\nHere is the SQLite table definition for this data source.\n<sqlite-table>\nCREATE TABLE IF NOT EXISTS \"collection://2af9ecdd-38af-82cd-abd4-075ad3581c69\" (\n\turl TEXT UNIQUE,\n\tcreatedTime TEXT, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Last edited by\" TEXT,\n\t\"Files & media\" TEXT, -- JSON array of zero or more file IDs, Notion Folder URLs, or <folder> tags copied from fetch output. Folders are stored as native Folder references.\n\t\"Category\" TEXT, -- JSON array with zero or more of [\"FIRST MONTHLY\"]\n\t\"date:Deadline:start\" TEXT, -- ISO-8601 date or datetime string. Use the expanded property (date:<column_name>:start) to set this value.\n\t\"date:Deadline:end\" TEXT, -- ISO-8601 date or datetime string, can be empty. Must be NULL if the date is a single date, and must be present if the date is a range. Use the expanded property (date:<column_name>:end) to set this value.\n\t\"date:Deadline:is_datetime\" INTEGER, -- 1 if the date is a datetime, 0 if it is a date, NULL defaults to 0. Use the expanded property (date:<column_name>:is_datetime) to set this value.\n\t\"Created time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Created by\" TEXT,\n\t\"Last updated time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was last edited.\n\t\"Doc name\" TEXT\n)\n</sqlite-table>\n\n<templates>\n<template id=\"92f9ecdd-38af-82b4-a7cd-01e656285afa\" name=\"New doc\" default=\"true\"/>\n</templates>\n</data-source>\n</data-sources>\nHere are the Database's Views:\nYou can use the \"fetch\" tool on the URL of any View to see its full configuration.\n<views>\n<view url=\"{{view://1389ecdd-38af-82fd-b0a9-8877624fcaa7}}\">\n{\"dataSourceUrl\":\"{{collection://2af9ecdd-38af-82cd-abd4-075ad3581c69}}\",\"displayProperties\":[\"Doc name\",\"Category\",\"Files & media\",\"Deadline\",\"Created by\",\"Created time\",\"Last edited by\",\"Last updated time\"],\"name\":\"All Docs\",\"type\":\"table\"}\n</view>\n</views>\n</database>"
+    },
+    {
+      "id": "3c49ecdd38af80f7afbec860cd6176b1",
+      "metadata": {
+        "type": "database"
+      },
+      "title": "5. Exam",
+      "url": "https://app.notion.com/p/3c49ecdd38af80f7afbec860cd6176b1?pvs=204",
+      "text": "<database url=\"{{https://app.notion.com/p/3c49ecdd38af80f7afbec860cd6176b1}}\" inline=\"false\" icon=\"/icons/document_red.svg\">\nThe title of this Database is: 5. Exam\n<ancestor-path></ancestor-path>\nHere are the Database's Data Sources:\nYou can use the \"fetch\" tool on the URL of any Data Source to see its full schema configuration.\n<data-sources>\n<data-source url=\"{{collection://58f9ecdd-38af-8367-98ce-87fc9beb6c03}}\">\nThe title of this Data Source is: 5. Exam\n\nHere is the database's configurable state:\nProperties with `readOnly: true` are synced or system-managed. Do not try to update their values with page update tools.\n<data-source-state>\n{\"default_page_template\":\"https://app.notion.com/p/b859ecdd38af83bb93d68117545318ee\",\"icon\":\"/icons/document_red.svg\",\"name\":\"5. Exam\",\"schema\":{\"Category\":{\"description\":\"\",\"name\":\"Category\",\"options\":[{\"color\":\"purple\",\"description\":\"\",\"name\":\"FIRST MONTHLY\",\"url\":\"collectionPropertyOption://58f9ecdd-38af-8367-98ce-87fc9beb6c03/VmtbPQ/OGRhMWRjZjYtM2MwYS00MGVlLWJhZmUtYWMyZWVkY2M1MmVh\"}],\"type\":\"multi_select\"},\"Created by\":{\"description\":\"\",\"name\":\"Created by\",\"type\":\"created_by\"},\"Created time\":{\"description\":\"\",\"name\":\"Created time\",\"type\":\"created_time\"},\"Doc name\":{\"description\":\"\",\"name\":\"Doc name\",\"type\":\"title\"},\"Files & media\":{\"description\":\"\",\"name\":\"Files & media\",\"type\":\"file\"},\"Last edited by\":{\"description\":\"\",\"name\":\"Last edited by\",\"type\":\"last_edited_by\"},\"Last updated time\":{\"description\":\"\",\"name\":\"Last updated time\",\"type\":\"last_edited_time\"}},\"url\":\"collection://58f9ecdd-38af-8367-98ce-87fc9beb6c03\"}\n</data-source-state>\n\nHere is the SQLite table definition for this data source.\n<sqlite-table>\nCREATE TABLE IF NOT EXISTS \"collection://58f9ecdd-38af-8367-98ce-87fc9beb6c03\" (\n\turl TEXT UNIQUE,\n\tcreatedTime TEXT, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Last edited by\" TEXT,\n\t\"Files & media\" TEXT, -- JSON array of zero or more file IDs, Notion Folder URLs, or <folder> tags copied from fetch output. Folders are stored as native Folder references.\n\t\"Category\" TEXT, -- JSON array with zero or more of [\"FIRST MONTHLY\"]\n\t\"Created time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Created by\" TEXT,\n\t\"Last updated time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was last edited.\n\t\"Doc name\" TEXT\n)\n</sqlite-table>\n\n<templates>\n<template id=\"b859ecdd-38af-83bb-93d6-8117545318ee\" name=\"New doc\" default=\"true\"/>\n</templates>\n</data-source>\n</data-sources>\nHere are the Database's Views:\nYou can use the \"fetch\" tool on the URL of any View to see its full configuration.\n<views>\n<view url=\"{{view://ad39ecdd-38af-835b-ac7b-08241a6edd25}}\">\n{\"dataSourceUrl\":\"{{collection://58f9ecdd-38af-8367-98ce-87fc9beb6c03}}\",\"displayProperties\":[\"Doc name\",\"Category\",\"Files & media\",\"Created by\",\"Created time\",\"Last edited by\",\"Last updated time\"],\"name\":\"All Docs\",\"type\":\"table\"}\n</view>\n</views>\n</database>"
+    },
+    {
+      "id": "3c49ecdd38af808c8ac4ef768f5d8a22",
+      "metadata": {
+        "type": "database"
+      },
+      "title": "6. Unseen Paper",
+      "url": "https://app.notion.com/p/3c49ecdd38af808c8ac4ef768f5d8a22?pvs=204",
+      "text": "<database url=\"{{https://app.notion.com/p/3c49ecdd38af808c8ac4ef768f5d8a22}}\" inline=\"false\" icon=\"/icons/document_red.svg\">\nThe title of this Database is: 6. Unseen Paper\n<ancestor-path></ancestor-path>\nHere are the Database's Data Sources:\nYou can use the \"fetch\" tool on the URL of any Data Source to see its full schema configuration.\n<data-sources>\n<data-source url=\"{{collection://3c49ecdd-38af-80a1-b920-000b80931d52}}\">\nThe title of this Data Source is: 6. Unseen Paper\n\nHere is the database's configurable state:\nProperties with `readOnly: true` are synced or system-managed. Do not try to update their values with page update tools.\n<data-source-state>\n{\"default_page_template\":\"https://app.notion.com/p/3c49ecdd38af805584cfd35cd57d356c\",\"icon\":\"/icons/document_red.svg\",\"name\":\"6. Unseen Paper\",\"schema\":{\"Category\":{\"description\":\"\",\"name\":\"Category\",\"options\":[{\"color\":\"gray\",\"description\":\"\",\"name\":\"Air Around Us\",\"url\":\"collectionPropertyOption://3c49ecdd-38af-80a1-b920-000b80931d52/d2tEag/OGFjYjRlYWYtZTk5Yy00NjU0LWI5NTYtNzQwMWVkNTMxNzli\"}],\"type\":\"multi_select\"},\"Created by\":{\"description\":\"\",\"name\":\"Created by\",\"type\":\"created_by\"},\"Created time\":{\"description\":\"\",\"name\":\"Created time\",\"type\":\"created_time\"},\"Doc name\":{\"description\":\"\",\"name\":\"Doc name\",\"type\":\"title\"},\"Exam Category\":{\"description\":\"\",\"name\":\"Exam Category\",\"options\":[{\"color\":\"red\",\"description\":\"\",\"name\":\"FIRST MONTHLY\",\"url\":\"collectionPropertyOption://3c49ecdd-38af-80a1-b920-000b80931d52/RjpoZg/NzY0ZDJlYzItYzJjNS00YTY0LWEwOWUtMjkyNjA0ZjNhNzg5\"}],\"type\":\"multi_select\"},\"Files & media\":{\"description\":\"\",\"name\":\"Files & media\",\"type\":\"file\"},\"Last edited by\":{\"description\":\"\",\"name\":\"Last edited by\",\"type\":\"last_edited_by\"},\"Last updated time\":{\"description\":\"\",\"name\":\"Last updated time\",\"type\":\"last_edited_time\"}},\"url\":\"collection://3c49ecdd-38af-80a1-b920-000b80931d52\"}\n</data-source-state>\n\nHere is the SQLite table definition for this data source.\n<sqlite-table>\nCREATE TABLE IF NOT EXISTS \"collection://3c49ecdd-38af-80a1-b920-000b80931d52\" (\n\turl TEXT UNIQUE,\n\tcreatedTime TEXT, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Exam Category\" TEXT, -- JSON array with zero or more of [\"FIRST MONTHLY\"]\n\t\"Last edited by\" TEXT,\n\t\"Files & media\" TEXT, -- JSON array of zero or more file IDs, Notion Folder URLs, or <folder> tags copied from fetch output. Folders are stored as native Folder references.\n\t\"Last updated time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was last edited.\n\t\"Created by\" TEXT,\n\t\"Category\" TEXT, -- JSON array with zero or more of [\"Air Around Us\"]\n\t\"Created time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Doc name\" TEXT\n)\n</sqlite-table>\n\n<templates>\n<template id=\"3c49ecdd-38af-8055-84cf-d35cd57d356c\" name=\"New doc\" default=\"true\"/>\n</templates>\n</data-source>\n</data-sources>\nHere are the Database's Views:\nYou can use the \"fetch\" tool on the URL of any View to see its full configuration.\n<views>\n<view url=\"{{view://3c49ecdd-38af-80c8-beb1-000ca27698a2}}\">\n{\"dataSourceUrl\":\"{{collection://3c49ecdd-38af-80a1-b920-000b80931d52}}\",\"displayProperties\":[\"Doc name\",\"Category\",\"Exam Category\",\"Files & media\",\"Created by\",\"Created time\",\"Last edited by\",\"Last updated time\"],\"name\":\"All Docs\",\"type\":\"table\"}\n</view>\n</views>\n</database>"
+    },
+    {
+      "id": "3cb9ecdd38af804c84e9ca5417b5e150",
+      "metadata": {
+        "type": "database"
+      },
+      "title": "7. CT",
+      "url": "https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150?pvs=204",
+      "text": "<database url=\"{{https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150}}\" inline=\"false\" icon=\"/icons/document_red.svg\">\nThe title of this Database is: 7. CT\n<ancestor-path></ancestor-path>\nHere are the Database's Data Sources:\nYou can use the \"fetch\" tool on the URL of any Data Source to see its full schema configuration.\n<data-sources>\n<data-source url=\"{{collection://8dd9ecdd-38af-82c5-9db1-8774940109b4}}\">\nThe title of this Data Source is: 7. CT\n\nHere is the database's configurable state:\nProperties with `readOnly: true` are synced or system-managed. Do not try to update their values with page update tools.\n<data-source-state>\n{\"default_page_template\":\"https://app.notion.com/p/a619ecdd38af8345be2d81c998f8e512\",\"icon\":\"/icons/document_red.svg\",\"name\":\"7. CT\",\"schema\":{\"CT Date\":{\"description\":\"\",\"name\":\"CT Date\",\"querySqlColumns\":{\"columns\":[{\"name\":\"date:CT Date:start\",\"sqlType\":\"TEXT\"},{\"name\":\"date:CT Date:end\",\"sqlType\":\"TEXT\"},{\"name\":\"date:CT Date:is_datetime\",\"sqlType\":\"INTEGER\"}],\"usage\":\"For connections.notion.querySql. Main schema name not queryable.\"},\"type\":\"date\"},\"Category\":{\"description\":\"\",\"name\":\"Category\",\"options\":[{\"color\":\"purple\",\"description\":\"\",\"name\":\"FIRST MONTHLY\",\"url\":\"collectionPropertyOption://8dd9ecdd-38af-82c5-9db1-8774940109b4/VmtbPQ/OGRhMWRjZjYtM2MwYS00MGVlLWJhZmUtYWMyZWVkY2M1MmVh\"}],\"type\":\"multi_select\"},\"Created by\":{\"description\":\"\",\"name\":\"Created by\",\"type\":\"created_by\"},\"Created time\":{\"description\":\"\",\"name\":\"Created time\",\"type\":\"created_time\"},\"Doc name\":{\"description\":\"\",\"name\":\"Doc name\",\"type\":\"title\"},\"Last edited by\":{\"description\":\"\",\"name\":\"Last edited by\",\"type\":\"last_edited_by\"},\"Last updated time\":{\"description\":\"\",\"name\":\"Last updated time\",\"type\":\"last_edited_time\"},\"Topics\":{\"description\":\"\",\"name\":\"Topics\",\"type\":\"text\"}},\"url\":\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\"}\n</data-source-state>\n\nHere is the SQLite table definition for this data source.\n<sqlite-table>\nCREATE TABLE IF NOT EXISTS \"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\" (\n\turl TEXT UNIQUE,\n\tcreatedTime TEXT, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Topics\" TEXT,\n\t\"Last edited by\" TEXT,\n\t\"date:CT Date:start\" TEXT, -- ISO-8601 date or datetime string. Use the expanded property (date:<column_name>:start) to set this value.\n\t\"date:CT Date:end\" TEXT, -- ISO-8601 date or datetime string, can be empty. Must be NULL if the date is a single date, and must be present if the date is a range. Use the expanded property (date:<column_name>:end) to set this value.\n\t\"date:CT Date:is_datetime\" INTEGER, -- 1 if the date is a datetime, 0 if it is a date, NULL defaults to 0. Use the expanded property (date:<column_name>:is_datetime) to set this value.\n\t\"Category\" TEXT, -- JSON array with zero or more of [\"FIRST MONTHLY\"]\n\t\"Created time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Created by\" TEXT,\n\t\"Last updated time\" TEXT NOT NULL, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was last edited.\n\t\"Doc name\" TEXT\n)\n</sqlite-table>\n\n<templates>\n<template id=\"a619ecdd-38af-8345-be2d-81c998f8e512\" name=\"New doc\" default=\"true\"/>\n</templates>\n</data-source>\n</data-sources>\nHere are the Database's Views:\nYou can use the \"fetch\" tool on the URL of any View to see its full configuration.\n<views>\n<view url=\"{{view://0ec9ecdd-38af-836e-86cd-88563af31754}}\">\n{\"dataSourceUrl\":\"{{collection://8dd9ecdd-38af-82c5-9db1-8774940109b4}}\",\"displayProperties\":[\"Doc name\",\"Category\",\"CT Date\",\"Topics\",\"Created by\",\"Created time\",\"Last edited by\",\"Last updated time\"],\"name\":\"All Docs\",\"type\":\"table\"}\n</view>\n</views>\n</database>"
+    },
+    {
+      "id": "2ac9ecdd38af80f1a5e1ee52b491b84a",
+      "metadata": {
+        "type": "database"
+      },
+      "title": "Todo List",
+      "url": "https://app.notion.com/p/2ac9ecdd38af80f1a5e1ee52b491b84a?pvs=204",
+      "text": "<database url=\"{{https://app.notion.com/p/2ac9ecdd38af80f1a5e1ee52b491b84a}}\" inline=\"true\" deleted>\nThe title of this Database is: Todo List\n<ancestor-path>\n<parent-page url=\"https://app.notion.com/p/2ac9ecdd38af801b9342c1e55b23629f\" title=\"To Do List\"/>\n</ancestor-path>\nHere are the Database's Data Sources:\nYou can use the \"fetch\" tool on the URL of any Data Source to see its full schema configuration.\n<data-sources>\n<data-source url=\"{{collection://2ac9ecdd-38af-80dd-a124-000b83f08ad5}}\">\nThe title of this Data Source is: Todo List\n\nHere is the database's configurable state:\nProperties with `readOnly: true` are synced or system-managed. Do not try to update their values with page update tools.\n<data-source-state>\n{\"name\":\"Todo List\",\"schema\":{\"Assignee\":{\"description\":\"Who’s responsible for the project?\",\"name\":\"Assignee\",\"type\":\"person\"},\"Due date\":{\"date_format\":\"relative\",\"description\":\"\",\"name\":\"Due date\",\"querySqlColumns\":{\"columns\":[{\"name\":\"date:Due date:start\",\"sqlType\":\"TEXT\"},{\"name\":\"date:Due date:end\",\"sqlType\":\"TEXT\"},{\"name\":\"date:Due date:is_datetime\",\"sqlType\":\"INTEGER\"}],\"usage\":\"For connections.notion.querySql. Main schema name not queryable.\"},\"type\":\"date\"},\"Status\":{\"description\":\"\",\"groups\":{\"complete\":[{\"color\":\"green\",\"description\":\"\",\"name\":\"Done\",\"url\":\"collectionPropertyOption://2ac9ecdd-38af-80dd-a124-000b83f08ad5/ZGNmag/MjE1MDg2N2ItMGE4ZC00YTRlLTkxMzUtODUwZTQ4N2ViYWQ3\"}],\"current\":[],\"future\":[],\"in_progress\":[{\"color\":\"blue\",\"description\":\"\",\"name\":\"In progress\",\"url\":\"collectionPropertyOption://2ac9ecdd-38af-80dd-a124-000b83f08ad5/ZGNmag/NTlhMjYwMzItZDQ0Ny00NGVkLTliMTctN2M5ZGVjNDM2ZmQz\"}],\"to_do\":[{\"description\":\"\",\"name\":\"Not started\",\"url\":\"collectionPropertyOption://2ac9ecdd-38af-80dd-a124-000b83f08ad5/ZGNmag/Mjg4MmJjNGUtZGE5Zi00ZWIyLWE2OTUtYzliNjRhM2M5ODk5\"}]},\"name\":\"Status\",\"type\":\"status\"},\"Task name\":{\"description\":\"\",\"name\":\"Task name\",\"type\":\"title\"}},\"url\":\"collection://2ac9ecdd-38af-80dd-a124-000b83f08ad5\"}\n</data-source-state>\n\nHere is the SQLite table definition for this data source.\n<sqlite-table>\nCREATE TABLE IF NOT EXISTS \"collection://2ac9ecdd-38af-80dd-a124-000b83f08ad5\" (\n\turl TEXT UNIQUE,\n\tcreatedTime TEXT, -- ISO-8601 datetime string, automatically set. This is the canonical time for when the page was created.\n\t\"Assignee\" TEXT, -- JSON array of zero or more user IDs\n\t\"Status\" TEXT, -- one of [\"Not started\", \"In progress\", \"Done\"]\n\t\"date:Due date:start\" TEXT, -- ISO-8601 date or datetime string. Use the expanded property (date:<column_name>:start) to set this value.\n\t\"date:Due date:end\" TEXT, -- ISO-8601 date or datetime string, can be empty. Must be NULL if the date is a single date, and must be present if the date is a range. Use the expanded property (date:<column_name>:end) to set this value.\n\t\"date:Due date:is_datetime\" INTEGER, -- 1 if the date is a datetime, 0 if it is a date, NULL defaults to 0. Use the expanded property (date:<column_name>:is_datetime) to set this value.\n\t\"Task name\" TEXT\n)\n</sqlite-table>\n</data-source>\n</data-sources>\nHere are the Database's Views:\nYou can use the \"fetch\" tool on the URL of any View to see its full configuration.\n<views>\n<view url=\"{{view://2ac9ecdd-38af-80d2-b1f5-000cfe45c0b8}}\">\n{\"dataSourceUrl\":\"{{collection://2ac9ecdd-38af-80dd-a124-000b83f08ad5}}\",\"displayProperties\":[\"Status\",\"Task name\",\"Due date\"],\"name\":\"To Do\",\"type\":\"list\"}\n</view>\n<view url=\"{{view://2ac9ecdd-38af-8073-b584-000c59dd62f8}}\">\n{\"dataSourceUrl\":\"{{collection://2ac9ecdd-38af-80dd-a124-000b83f08ad5}}\",\"displayProperties\":[\"Status\",\"Task name\"],\"name\":\"Done\",\"simpleFilters\":[{\"filter\":{\"operator\":\"status_is\",\"property\":\"Status\",\"propertyType\":\"status\",\"type\":\"property\",\"value\":{\"type\":\"is_group\",\"value\":\"Complete\"}},\"id\":\"81c18df2-274b-4dc0-be38-86aaf841e000\"}],\"type\":\"list\"}\n</view>\n</views>\n</database>"
+    }
+  ],
+  "rows": [
+    {
+      "Created time": "2026-08-22T15:00:21.540Z",
+      "Category": "[\"ROUTINE\"]",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A3c7b02ff-0db8-4ac4-a947-3300ca6447dc%3Aoffsched_c22_s16_20260730_34570f.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80e1-ab65-c6270ae699ce%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Doc name": "Current- Class Teach (Tithi Bissash)",
+      "url": "https://app.notion.com/p/3c49ecdd38af80e1ab65c6270ae699ce",
+      "collection": "Routine",
+      "databaseId": "3c49ecdd38af80aa8205dbaad10da968"
+    },
+    {
+      "Created time": "2026-08-22T15:03:18.821Z",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3Ab504a1a9-68ba-4238-9076-aee908e2ff13%3Asyllabus_c22_s16_20260717_df885b.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8050-99bc-e3d9394655e0%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Doc name": "FIRST MONTHLY",
+      "url": "https://app.notion.com/p/3c49ecdd38af805099bce3d9394655e0",
+      "collection": "Syllabus",
+      "databaseId": "3c49ecdd38af804ebce9e86206305609"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3Aa67cadb8-66b1-41e6-9182-1dc8a9e48faa%3AMath.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-803a-a208-f3831c225a66%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A0aef709a-81f7-41ee-ad3e-6f136fef253d%3AJOM2.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-803a-a208-f3831c225a66%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-22T14:49:26.459Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-28T19:19:24.796Z",
+      "Doc name": "MATH",
+      "url": "https://app.notion.com/p/3c49ecdd38af803aa208f3831c225a66",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A179aae0d-6d5e-44ca-95d5-5b6e08f1bdd9%3AMoral_Studies_1.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80b3-8e66-e75b1e2d34a0%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A316158d0-f217-43a4-95be-640e11945999%3AMoral_Studies_2.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80b3-8e66-e75b1e2d34a0%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-22T14:49:26.465Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-22T14:57:28.222Z",
+      "Doc name": "MORAL STUDIES",
+      "url": "https://app.notion.com/p/3c49ecdd38af80b38e66e75b1e2d34a0",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A9dca9e45-37b5-4eda-a7fa-7c9360d333c8%3AScience.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8021-b299-c62954f4b89d%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-22T14:49:26.470Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-22T14:57:32.870Z",
+      "Doc name": "SCIENCE",
+      "url": "https://app.notion.com/p/3c49ecdd38af8021b299c62954f4b89d",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A7e540156-cd7e-4ff7-9d18-d1779dcab3a3%3AHistory.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80f3-ac1e-f9071a4f2374%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-22T14:52:32.295Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-22T14:57:38.646Z",
+      "Doc name": "HISTORY",
+      "url": "https://app.notion.com/p/3c49ecdd38af80f3ac1ef9071a4f2374",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A255dccd4-05a7-427b-92ab-8103f353b9d3%3ABangla_Paper_I.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-803c-aff9-de164bdb18e1%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-22T14:52:51.829Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-22T14:57:30.523Z",
+      "Doc name": "BANGLA 1",
+      "url": "https://app.notion.com/p/3c49ecdd38af803caff9de164bdb18e1",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A073a9100-3462-4622-8741-3e78fe9b0f9a%3ABangladesh_Studies.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8010-b5ef-e0fcafee38e3%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-22T14:53:11.584Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-22T14:57:35.844Z",
+      "Doc name": "BANGLADESH STUDIES",
+      "url": "https://app.notion.com/p/3c49ecdd38af8010b5efe0fcafee38e3",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A2ff8101b-11ad-4227-b20c-f9c0a51db238%3AEnglish_Literature.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8018-ac2c-e17b527cf4bc%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-22T14:53:30.225Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-22T14:57:41.685Z",
+      "Doc name": "ENGLISH LITERATURE",
+      "url": "https://app.notion.com/p/3c49ecdd38af8018ac2ce17b527cf4bc",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3Ab6d69a22-f105-45b2-8f15-56c12958ef7d%3A1787467035.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c69ecdd-38af-8022-a146-fcb23550bba1%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-24T19:05:02.341Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-24T19:08:11.855Z",
+      "Doc name": "GEOGRAPHY",
+      "url": "https://app.notion.com/p/3c69ecdd38af8022a146fcb23550bba1",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A62ca0e99-35c5-4f4c-9aba-67d3009baf06%3AEL1.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A7b22ce70-215c-4432-b3b8-d628da7454ab%3AEL2.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A6ee12943-e20e-420c-b748-965df55d04e3%3AEL3.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A53916209-0455-45db-a37b-e875f8d08a97%3AEL4.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3Aa1581c5a-711d-4ddf-8903-eecd9bd4a25e%3AEL5.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-30T12:53:15.715Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-30T12:54:28.404Z",
+      "Doc name": "ENGLISH LANGUAGE",
+      "url": "https://app.notion.com/p/3cc9ecdd38af808cbe01ed03810e9755",
+      "collection": "Study Note",
+      "databaseId": "3c49ecdd38af800fb72df5988abf3b43"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3Ac3b20473-1071-451c-8e75-ac59e36f1b84%3Aassign_MSpdf.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80a1-af80-e522a0ebfd90%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "date:Deadline:start": "2026-09-12",
+      "date:Deadline:is_datetime": 0,
+      "Created time": "2026-08-22T15:16:24.178Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-28T19:31:08.117Z",
+      "Doc name": "Moral Studies",
+      "url": "https://app.notion.com/p/3c49ecdd38af80a1af80e522a0ebfd90",
+      "collection": "Assignment",
+      "databaseId": "3c49ecdd38af805bb96afe5722a95f6c"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A7231a216-f63a-40a1-954d-1ba0f43e3268%3Aassign_bs.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223ca9ecdd-38af-8013-a9f1-cb7d12d4181f%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "date:Deadline:start": "2026-09-10",
+      "date:Deadline:is_datetime": 0,
+      "Created time": "2026-08-28T19:29:19.335Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-28T19:31:17.063Z",
+      "Doc name": "Bangladesh Studies",
+      "url": "https://app.notion.com/p/3ca9ecdd38af8013a9f1cb7d12d4181f",
+      "collection": "Assignment",
+      "databaseId": "3c49ecdd38af805bb96afe5722a95f6c"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3Aafa9fa12-80e9-4d2f-a550-1827bd8883b3%3ABangla_1.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223d19ecdd-38af-80c9-b495-ca8dea49cf6d%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "date:Deadline:start": "2026-09-10",
+      "date:Deadline:is_datetime": 0,
+      "Created time": "2026-09-04T18:56:08.980Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-04T19:10:02.498Z",
+      "Doc name": "Bangla 1",
+      "url": "https://app.notion.com/p/3d19ecdd38af80c9b495ca8dea49cf6d",
+      "collection": "Assignment",
+      "databaseId": "3c49ecdd38af805bb96afe5722a95f6c"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A8fa91aac-a974-4af6-9c64-d3a2449acdd8%3ABangla_2.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223d19ecdd-38af-8090-a996-e939c600463c%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "date:Deadline:start": "2026-09-10",
+      "date:Deadline:is_datetime": 0,
+      "Created time": "2026-09-04T18:56:23.713Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-04T19:29:42.140Z",
+      "Doc name": "Bangla 2",
+      "url": "https://app.notion.com/p/3d19ecdd38af8090a996e939c600463c",
+      "collection": "Assignment",
+      "databaseId": "3c49ecdd38af805bb96afe5722a95f6c"
+    },
+    {
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3A68681a57-0240-42cb-8340-ab2dbfc933fb%3ACamScanner_22-08-2026_21.42.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-9777-c2f5896a35e5%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-22T15:46:17.214Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-22T15:46:58.542Z",
+      "Doc name": "First Monthly Exam",
+      "url": "https://app.notion.com/p/3c49ecdd38af80159777c2f5896a35e5",
+      "collection": "Exam",
+      "databaseId": "3c49ecdd38af80f7afbec860cd6176b1"
+    },
+    {
+      "Exam Category": "[\"FIRST MONTHLY\"]",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Files & media": "[\"file://%7B%22source%22%3A%22attachment%3Afe8ef472-ee4f-4203-98a5-f3cec10c3f97%3A95.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A70dd84f6-d253-4809-bd6e-bb2e9aac01ef%3A96.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A9e5558d0-d0ce-4715-85c7-444dffbc9b66%3A97.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5%3A98.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3Aa9c711b9-91a2-4de3-b9ef-bfa1d82b05c9%3A99.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A2fae7be6-1938-4393-ab14-f96983f3eb4d%3A100.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3A5ad564ee-5149-48b2-ba0c-3a5d292d1015%3A101.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\",\"file://%7B%22source%22%3A%22attachment%3Af1d56819-ae5e-4e6e-a5a9-0e16d1bde236%3A102.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\"]",
+      "Last updated time": "2026-08-28T14:35:50.187Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Created time": "2026-08-22T17:28:15.028Z",
+      "Doc name": "Science",
+      "url": "https://app.notion.com/p/3c49ecdd38af801598a9d777830f768e",
+      "collection": "Unseen Paper",
+      "databaseId": "3c49ecdd38af808c8ac4ef768f5d8a22"
+    },
+    {
+      "Topics": "Plants (Seen)",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-02",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-29T04:31:27.581Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-01T12:52:32.832Z",
+      "Doc name": "Science",
+      "url": "https://app.notion.com/p/3cb9ecdd38af80e2bc69d2a7c520dc9c",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "Spellings & Dictation",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-03",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-29T04:33:17.848Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-01T12:57:01.353Z",
+      "Doc name": "English Literature",
+      "url": "https://app.notion.com/p/3cb9ecdd38af80628dfbcc7c2fa77f2f",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-01",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-29T04:33:54.966Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-29T04:34:12.965Z",
+      "Doc name": "Mental Math",
+      "url": "https://app.notion.com/p/3cb9ecdd38af80b9b4eef3c835392f85",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "Seen Chapter",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-08-31",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-29T04:35:02.080Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-30T13:35:16.980Z",
+      "Doc name": "History",
+      "url": "https://app.notion.com/p/3cb9ecdd38af80a4a9d0d0af15cb2f1c",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "Rakhain",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-08-30",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-29T04:35:53.268Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-29T19:17:57.556Z",
+      "Doc name": "Bangladesh Studies",
+      "url": "https://app.notion.com/p/3cb9ecdd38af80f08e05db8673c4e4dc",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-08-25",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-29T04:36:56.452Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-29T04:37:17.619Z",
+      "Doc name": "Geometry",
+      "url": "https://app.notion.com/p/3cb9ecdd38af8008899cf895c1b90541",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "Chap1+Chap2",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-08-31",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-30T08:25:22.199Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-08-30T13:34:21.071Z",
+      "Doc name": "Moral Studies",
+      "url": "https://app.notion.com/p/3cc9ecdd38af8019a06efa3c42030726",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-06",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-08-30T13:35:30.339Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-01T12:54:03.357Z",
+      "Doc name": "Brighter Grammer",
+      "url": "https://app.notion.com/p/3cc9ecdd38af80a5abf2f2f81e45d4c9",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-07",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-09-01T01:52:28.298Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-01T01:52:51.590Z",
+      "Doc name": "Jr. English",
+      "url": "https://app.notion.com/p/3ce9ecdd38af807b885fcee1ab7aa535",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "27, 30, 31, 34",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-03",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-09-01T12:49:31.731Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-01T12:50:30.074Z",
+      "Doc name": "Math JOM",
+      "url": "https://app.notion.com/p/3ce9ecdd38af8070965ff04e4b4b8380",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "7,9,11",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-06",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-09-01T12:50:42.657Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-01T12:51:11.563Z",
+      "Doc name": "Mental Math",
+      "url": "https://app.notion.com/p/3ce9ecdd38af804ea953f9f304c31ba2",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "নবাব Faizunnesa (Oral)",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-06",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-09-01T12:54:38.279Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-01T12:55:41.952Z",
+      "Doc name": "Bangladesh Studies",
+      "url": "https://app.notion.com/p/3ce9ecdd38af801486b4e32fb7ef5527",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Topics": "Based on seen study notes",
+      "Last edited by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "date:CT Date:start": "2026-09-06",
+      "date:CT Date:is_datetime": 0,
+      "Category": "[\"FIRST MONTHLY\"]",
+      "Created time": "2026-09-03T13:27:21.742Z",
+      "Created by": "user://298d872b-594c-81a0-bbc0-0002557cece8",
+      "Last updated time": "2026-09-03T13:28:00.256Z",
+      "Doc name": "Science",
+      "url": "https://app.notion.com/p/3d09ecdd38af80b3a571ec9592a05cb9",
+      "collection": "CT",
+      "databaseId": "3cb9ecdd38af804c84e9ca5417b5e150"
+    },
+    {
+      "Assignee": "[\"user://298d872b-594c-81a0-bbc0-0002557cece8\"]",
+      "Status": "Done",
+      "date:Due date:start": "2025-11-15",
+      "date:Due date:is_datetime": 0,
+      "Task name": "Check the box to mark items as done",
+      "url": "https://app.notion.com/p/2ac9ecdd38af80428045ddf58813d9aa",
+      "collection": "Todo List",
+      "databaseId": "2ac9ecdd38af80f1a5e1ee52b491b84a"
+    },
+    {
+      "Assignee": "[\"user://298d872b-594c-81a0-bbc0-0002557cece8\"]",
+      "Status": "Not started",
+      "date:Due date:start": "2025-11-15",
+      "date:Due date:is_datetime": 0,
+      "Task name": "Click the due date to change it",
+      "url": "https://app.notion.com/p/2ac9ecdd38af800395dbe2ccb671eacf",
+      "collection": "Todo List",
+      "databaseId": "2ac9ecdd38af80f1a5e1ee52b491b84a"
+    },
+    {
+      "Assignee": "[\"user://298d872b-594c-81a0-bbc0-0002557cece8\"]",
+      "Status": "Not started",
+      "date:Due date:start": "2025-11-15",
+      "date:Due date:is_datetime": 0,
+      "Task name": "Click me to see even more detail",
+      "url": "https://app.notion.com/p/2ac9ecdd38af80f8a93dc89c98526a32",
+      "collection": "Todo List",
+      "databaseId": "2ac9ecdd38af80f1a5e1ee52b491b84a"
+    },
+    {
+      "Assignee": "[\"user://298d872b-594c-81a0-bbc0-0002557cece8\"]",
+      "Status": "Not started",
+      "date:Due date:start": "2025-11-15",
+      "date:Due date:is_datetime": 0,
+      "Task name": "Click the blue New button to add a task",
+      "url": "https://app.notion.com/p/2ac9ecdd38af80bb9b75f2a0eebc4b91",
+      "collection": "Todo List",
+      "databaseId": "2ac9ecdd38af80f1a5e1ee52b491b84a"
+    },
+    {
+      "Assignee": "[\"user://298d872b-594c-81a0-bbc0-0002557cece8\"]",
+      "Status": "Not started",
+      "date:Due date:start": "2025-11-15",
+      "date:Due date:is_datetime": 0,
+      "Task name": "Click me to learn how to hide checked items",
+      "url": "https://app.notion.com/p/2ac9ecdd38af80c789b1e369b68d78d1",
+      "collection": "Todo List",
+      "databaseId": "2ac9ecdd38af80f1a5e1ee52b491b84a"
+    },
+    {
+      "Assignee": "[\"user://298d872b-594c-81a0-bbc0-0002557cece8\"]",
+      "Status": "Not started",
+      "date:Due date:start": "2025-11-15",
+      "date:Due date:is_datetime": 0,
+      "Task name": "See finished items in the “Done” view",
+      "url": "https://app.notion.com/p/2ac9ecdd38af80048fb2f3aab57a664a",
+      "collection": "Todo List",
+      "databaseId": "2ac9ecdd38af80f1a5e1ee52b491b84a"
+    },
+    {
+      "Assignee": "[\"user://298d872b-594c-81a0-bbc0-0002557cece8\"]",
+      "Status": "Not started",
+      "date:Due date:start": "2025-11-16",
+      "date:Due date:is_datetime": 0,
+      "Task name": "Click me to learn how to see your content your way",
+      "url": "https://app.notion.com/p/2ac9ecdd38af8031bebec2c12a8b0eb2",
+      "collection": "Todo List",
+      "databaseId": "2ac9ecdd38af80f1a5e1ee52b491b84a"
+    }
+  ],
+  "pages": [
+    {
+      "source": {
+        "id": "3c89ecdd-38af-8034-9a22-f4d5af9fde88",
+        "title": "HW",
+        "url": "https://app.notion.com/p/3c89ecdd38af80349a22f4d5af9fde88?pvs=204",
+        "type": "page",
+        "highlight": "HW",
+        "timestamp": "2026-09-13T02:39:00.000Z",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"HW\",\"url\":\"https://app.notion.com/p/3c89ecdd38af80349a22f4d5af9fde88?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c89ecdd38af80349a22f4d5af9fde88 as of 2026-09-13T02:39:23.709Z:\\n<page url=\\\"https://app.notion.com/p/3c89ecdd38af80349a22f4d5af9fde88\\\">\\n<ancestor-path></ancestor-path>\\n<properties>\\n{\\\"title\\\":\\\"HW\\\"}\\n</properties>\\n<iconMetadata>null</iconMetadata>\\n<content>\\n<empty-block/>\\n- After coming from today's exam, keep the books and other materials ready for the next exam. \\n- Complete all activities like shower, lunch by 1 PM\\n- Start the study by following the sysllabus from 1 PM - 3 PM in the study room. Avoid going outside the room in this time frame. \\n- Go to sleep before or after coming of Teacher. \\n- Will resume the last preparation study from 8 PM - 10 PM \\n<empty-block/>\\n<empty-block/>\\n</content>\\n</page>\",\"cover\":null,\"icon\":null,\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-13T02:39:03.798Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-801d-8721-d5643d2c5284",
+        "title": "README.md",
+        "url": "https://app.notion.com/p/3c49ecdd38af801d8721d5643d2c5284?pvs=204",
+        "type": "page",
+        "highlight": "README.md",
+        "timestamp": "2026-08-22T17:47:00.000Z",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"README.md\",\"url\":\"https://app.notion.com/p/3c49ecdd38af801d8721d5643d2c5284?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af801d8721d5643d2c5284 as of 2026-08-22T17:47:13.952Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af801d8721d5643d2c5284\\\">\\n<ancestor-path></ancestor-path>\\n<properties>\\n{\\\"title\\\":\\\"README.md\\\"}\\n</properties>\\n<iconMetadata>null</iconMetadata>\\n<content>\\n# My name is Shreehan, and I am a Class 2 student at Maple Leaf International School.\\n<empty-block/>\\n- Unseen Paper question and answer should be maintained of Class 2 standard.\\n</content>\\n</page>\",\"cover\":null,\"icon\":null,\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T17:47:02.808Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3d09ecdd-38af-80b3-a571-ec9592a05cb9",
+        "title": "Science",
+        "url": "https://app.notion.com/p/3d09ecdd38af80b3a571ec9592a05cb9?pvs=204",
+        "type": "page",
+        "highlight": "Science",
+        "timestamp": "2026-09-03T13:28:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Science\",\"url\":\"https://app.notion.com/p/3d09ecdd38af80b3a571ec9592a05cb9?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3d09ecdd38af80b3a571ec9592a05cb9 as of 2026-09-03T13:27:23.022Z:\\n<page url=\\\"https://app.notion.com/p/3d09ecdd38af80b3a571ec9592a05cb9\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-09-03T13:27:21.742Z\\\",\\\"Doc name\\\":\\\"Science\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-03T13:28:00.256Z\\\",\\\"Topics\\\":\\\"Based on seen study notes\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-06\\\",\\\"url\\\":\\\"https://app.notion.com/p/3d09ecdd38af80b3a571ec9592a05cb9\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-03T13:28:00.256Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3ce9ecdd-38af-807b-885f-cee1ab7aa535",
+        "title": "Jr. English",
+        "url": "https://app.notion.com/p/3ce9ecdd38af807b885fcee1ab7aa535?pvs=204",
+        "type": "page",
+        "highlight": "Jr. English",
+        "timestamp": "2026-09-01T01:52:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Jr. English\",\"url\":\"https://app.notion.com/p/3ce9ecdd38af807b885fcee1ab7aa535?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3ce9ecdd38af807b885fcee1ab7aa535 as of 2026-09-01T01:52:29.807Z:\\n<page url=\\\"https://app.notion.com/p/3ce9ecdd38af807b885fcee1ab7aa535\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-09-01T01:52:28.298Z\\\",\\\"Doc name\\\":\\\"Jr. English\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-01T01:52:51.590Z\\\",\\\"Topics\\\":\\\"\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-07\\\",\\\"url\\\":\\\"https://app.notion.com/p/3ce9ecdd38af807b885fcee1ab7aa535\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-01T01:52:51.590Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3ce9ecdd-38af-804e-a953-f9f304c31ba2",
+        "title": "Mental Math",
+        "url": "https://app.notion.com/p/3ce9ecdd38af804ea953f9f304c31ba2?pvs=204",
+        "type": "page",
+        "highlight": "Mental Math",
+        "timestamp": "2026-09-01T12:51:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Mental Math\",\"url\":\"https://app.notion.com/p/3ce9ecdd38af804ea953f9f304c31ba2?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3ce9ecdd38af804ea953f9f304c31ba2 as of 2026-09-01T12:50:44.070Z:\\n<page url=\\\"https://app.notion.com/p/3ce9ecdd38af804ea953f9f304c31ba2\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-09-01T12:50:42.657Z\\\",\\\"Doc name\\\":\\\"Mental Math\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-01T12:51:11.563Z\\\",\\\"Topics\\\":\\\"7,9,11\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-06\\\",\\\"url\\\":\\\"https://app.notion.com/p/3ce9ecdd38af804ea953f9f304c31ba2\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-01T12:51:11.563Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-80e1-ab65-c6270ae699ce",
+        "title": "Current- Class Teach (Tithi Bissash)",
+        "url": "https://app.notion.com/p/3c49ecdd38af80e1ab65c6270ae699ce?pvs=204",
+        "type": "page",
+        "highlight": "Current- Class Teach (Tithi Bissash)",
+        "timestamp": "2026-08-22T15:11:00.000Z",
+        "path": "1. Routine",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Current- Class Teach (Tithi Bissash)\",\"url\":\"https://app.notion.com/p/3c49ecdd38af80e1ab65c6270ae699ce?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af80e1ab65c6270ae699ce as of 2026-08-22T15:00:21.557Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af80e1ab65c6270ae699ce\\\" icon=\\\"icons/star_yellow\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-80e8-888b-000b22c321f0\\\" name=\\\"1. Routine\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af80aa8205dbaad10da968\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"ROUTINE\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T15:00:21.540Z\\\",\\\"Doc name\\\":\\\"Current- Class Teach (Tithi Bissash)\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A3c7b02ff-0db8-4ac4-a947-3300ca6447dc%3Aoffsched_c22_s16_20260730_34570f.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80e1-ab65-c6270ae699ce%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af80e1ab65c6270ae699ce\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"star\\\",\\\"color\\\":\\\"yellow\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"star\",\"color\":\"yellow\"}},\"path\":\"1. Routine\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T15:11:05.258Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3ce9ecdd-38af-8014-86b4-e32fb7ef5527",
+        "title": "Bangladesh Studies",
+        "url": "https://app.notion.com/p/3ce9ecdd38af801486b4e32fb7ef5527?pvs=204",
+        "type": "page",
+        "highlight": "Bangladesh Studies",
+        "timestamp": "2026-09-01T12:55:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Bangladesh Studies\",\"url\":\"https://app.notion.com/p/3ce9ecdd38af801486b4e32fb7ef5527?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3ce9ecdd38af801486b4e32fb7ef5527 as of 2026-09-01T12:54:39.651Z:\\n<page url=\\\"https://app.notion.com/p/3ce9ecdd38af801486b4e32fb7ef5527\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-09-01T12:54:38.279Z\\\",\\\"Doc name\\\":\\\"Bangladesh Studies\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-01T12:55:41.952Z\\\",\\\"Topics\\\":\\\"নবাব Faizunnesa (Oral)\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-06\\\",\\\"url\\\":\\\"https://app.notion.com/p/3ce9ecdd38af801486b4e32fb7ef5527\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-01T12:55:41.952Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cc9ecdd-38af-8019-a06e-fa3c42030726",
+        "title": "Moral Studies",
+        "url": "https://app.notion.com/p/3cc9ecdd38af8019a06efa3c42030726?pvs=204",
+        "type": "page",
+        "highlight": "Moral Studies",
+        "timestamp": "2026-08-30T13:34:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Moral Studies\",\"url\":\"https://app.notion.com/p/3cc9ecdd38af8019a06efa3c42030726?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cc9ecdd38af8019a06efa3c42030726 as of 2026-08-30T08:25:23.986Z:\\n<page url=\\\"https://app.notion.com/p/3cc9ecdd38af8019a06efa3c42030726\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-30T08:25:22.199Z\\\",\\\"Doc name\\\":\\\"Moral Studies\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-30T13:34:21.071Z\\\",\\\"Topics\\\":\\\"Chap1+Chap2\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-08-31\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cc9ecdd38af8019a06efa3c42030726\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-30T13:34:21.071Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-8015-98a9-d777830f768e",
+        "title": "Science",
+        "url": "https://app.notion.com/p/3c49ecdd38af801598a9d777830f768e?pvs=204",
+        "type": "page",
+        "highlight": "Science",
+        "timestamp": "2026-08-28T14:35:00.000Z",
+        "path": "6. Unseen Paper",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Science\",\"url\":\"https://app.notion.com/p/3c49ecdd38af801598a9d777830f768e?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af801598a9d777830f768e as of 2026-08-22T17:28:15.050Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af801598a9d777830f768e\\\" icon=\\\"icons/star_yellow\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-80a1-b920-000b80931d52\\\" name=\\\"6. Unseen Paper\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af808c8ac4ef768f5d8a22\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T17:28:15.028Z\\\",\\\"Doc name\\\":\\\"Science\\\",\\\"Exam Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3Afe8ef472-ee4f-4203-98a5-f3cec10c3f97%3A95.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A70dd84f6-d253-4809-bd6e-bb2e9aac01ef%3A96.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A9e5558d0-d0ce-4715-85c7-444dffbc9b66%3A97.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A6d2ec6f1-3b62-4d98-b3b1-f804f74f34b5%3A98.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3Aa9c711b9-91a2-4de3-b9ef-bfa1d82b05c9%3A99.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A2fae7be6-1938-4393-ab14-f96983f3eb4d%3A100.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A5ad564ee-5149-48b2-ba0c-3a5d292d1015%3A101.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3Af1d56819-ae5e-4e6e-a5a9-0e16d1bde236%3A102.jpeg%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-98a9-d777830f768e%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-28T14:35:50.187Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af801598a9d777830f768e\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"star\\\",\\\"color\\\":\\\"yellow\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"star\",\"color\":\"yellow\"}},\"path\":\"6. Unseen Paper\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-28T14:35:50.187Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c69ecdd-38af-8022-a146-fcb23550bba1",
+        "title": "GEOGRAPHY",
+        "url": "https://app.notion.com/p/3c69ecdd38af8022a146fcb23550bba1?pvs=204",
+        "type": "page",
+        "highlight": "GEOGRAPHY",
+        "timestamp": "2026-08-24T19:08:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"GEOGRAPHY\",\"url\":\"https://app.notion.com/p/3c69ecdd38af8022a146fcb23550bba1?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c69ecdd38af8022a146fcb23550bba1 as of 2026-08-24T19:05:04.211Z:\\n<page url=\\\"https://app.notion.com/p/3c69ecdd38af8022a146fcb23550bba1\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-24T19:05:02.341Z\\\",\\\"Doc name\\\":\\\"GEOGRAPHY\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3Ab6d69a22-f105-45b2-8f15-56c12958ef7d%3A1787467035.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c69ecdd-38af-8022-a146-fcb23550bba1%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-24T19:08:11.855Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c69ecdd38af8022a146fcb23550bba1\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-24T19:08:11.855Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3ce9ecdd-38af-8070-965f-f04e4b4b8380",
+        "title": "Math JOM",
+        "url": "https://app.notion.com/p/3ce9ecdd38af8070965ff04e4b4b8380?pvs=204",
+        "type": "page",
+        "highlight": "Math JOM",
+        "timestamp": "2026-09-01T12:50:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Math JOM\",\"url\":\"https://app.notion.com/p/3ce9ecdd38af8070965ff04e4b4b8380?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3ce9ecdd38af8070965ff04e4b4b8380 as of 2026-09-01T12:49:33.929Z:\\n<page url=\\\"https://app.notion.com/p/3ce9ecdd38af8070965ff04e4b4b8380\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-09-01T12:49:31.731Z\\\",\\\"Doc name\\\":\\\"Math JOM\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-01T12:50:30.074Z\\\",\\\"Topics\\\":\\\"27, 30, 31, 34\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-03\\\",\\\"url\\\":\\\"https://app.notion.com/p/3ce9ecdd38af8070965ff04e4b4b8380\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n<meeting-notes readOnlyViewMeetingNoteUrl=\\\"https://app.notion.com/p/3ce9ecdd38af8070965ff04e4b4b8380#3ce9ecdd38af80e3a106f07e985801b9\\\">\\n\\tMeeting <mention-date start=\\\"2026-09-01\\\"/>\\n\\t<notes>\\n\\t\\t<empty-block/>\\n\\t</notes>\\n</meeting-notes>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-01T12:50:30.074Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-803a-a208-f3831c225a66",
+        "title": "MATH",
+        "url": "https://app.notion.com/p/3c49ecdd38af803aa208f3831c225a66?pvs=204",
+        "type": "page",
+        "highlight": "MATH",
+        "timestamp": "2026-08-28T19:19:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"MATH\",\"url\":\"https://app.notion.com/p/3c49ecdd38af803aa208f3831c225a66?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af803aa208f3831c225a66 as of 2026-08-22T14:49:26.475Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af803aa208f3831c225a66\\\" icon=\\\"icons/star_yellow\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T14:49:26.459Z\\\",\\\"Doc name\\\":\\\"MATH\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3Aa67cadb8-66b1-41e6-9182-1dc8a9e48faa%3AMath.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-803a-a208-f3831c225a66%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A0aef709a-81f7-41ee-ad3e-6f136fef253d%3AJOM2.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-803a-a208-f3831c225a66%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-28T19:19:24.796Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af803aa208f3831c225a66\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"star\\\",\\\"color\\\":\\\"yellow\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"star\",\"color\":\"yellow\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-28T19:19:24.796Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-8021-b299-c62954f4b89d",
+        "title": "SCIENCE",
+        "url": "https://app.notion.com/p/3c49ecdd38af8021b299c62954f4b89d?pvs=204",
+        "type": "page",
+        "highlight": "SCIENCE",
+        "timestamp": "2026-08-22T14:57:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"SCIENCE\",\"url\":\"https://app.notion.com/p/3c49ecdd38af8021b299c62954f4b89d?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af8021b299c62954f4b89d as of 2026-08-22T14:49:26.475Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af8021b299c62954f4b89d\\\" icon=\\\"icons/groups_blue\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T14:49:26.470Z\\\",\\\"Doc name\\\":\\\"SCIENCE\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A9dca9e45-37b5-4eda-a7fa-7c9360d333c8%3AScience.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8021-b299-c62954f4b89d%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T14:57:32.870Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af8021b299c62954f4b89d\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"groups\\\",\\\"color\\\":\\\"blue\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"groups\",\"color\":\"blue\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T14:57:32.870Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cb9ecdd-38af-80e2-bc69-d2a7c520dc9c",
+        "title": "Science",
+        "url": "https://app.notion.com/p/3cb9ecdd38af80e2bc69d2a7c520dc9c?pvs=204",
+        "type": "page",
+        "highlight": "Science",
+        "timestamp": "2026-09-01T12:52:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Science\",\"url\":\"https://app.notion.com/p/3cb9ecdd38af80e2bc69d2a7c520dc9c?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cb9ecdd38af80e2bc69d2a7c520dc9c as of 2026-08-29T04:31:28.980Z:\\n<page url=\\\"https://app.notion.com/p/3cb9ecdd38af80e2bc69d2a7c520dc9c\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-29T04:31:27.581Z\\\",\\\"Doc name\\\":\\\"Science\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-01T12:52:32.832Z\\\",\\\"Topics\\\":\\\"Plants (Seen)\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-02\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cb9ecdd38af80e2bc69d2a7c520dc9c\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-01T12:52:32.832Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cb9ecdd-38af-80a4-a9d0-d0af15cb2f1c",
+        "title": "History",
+        "url": "https://app.notion.com/p/3cb9ecdd38af80a4a9d0d0af15cb2f1c?pvs=204",
+        "type": "page",
+        "highlight": "History",
+        "timestamp": "2026-08-30T13:35:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"History\",\"url\":\"https://app.notion.com/p/3cb9ecdd38af80a4a9d0d0af15cb2f1c?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cb9ecdd38af80a4a9d0d0af15cb2f1c as of 2026-08-29T04:35:02.841Z:\\n<page url=\\\"https://app.notion.com/p/3cb9ecdd38af80a4a9d0d0af15cb2f1c\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-29T04:35:02.080Z\\\",\\\"Doc name\\\":\\\"History\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-30T13:35:16.980Z\\\",\\\"Topics\\\":\\\"Seen Chapter\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-08-31\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cb9ecdd38af80a4a9d0d0af15cb2f1c\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-30T13:35:16.980Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "a619ecdd-38af-8345-be2d-81c998f8e512",
+        "title": "Untitled",
+        "url": "https://app.notion.com/p/a619ecdd38af8345be2d81c998f8e512?pvs=204",
+        "type": "page",
+        "highlight": "Untitled",
+        "timestamp": "2026-08-29T04:30:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"New doc\",\"url\":\"https://app.notion.com/p/a619ecdd38af8345be2d81c998f8e512?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/a619ecdd38af8345be2d81c998f8e512 as of 2026-08-29T04:30:46.863Z:\\n<page url=\\\"https://app.notion.com/p/a619ecdd38af8345be2d81c998f8e512\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-29T04:30:46.864Z\\\",\\\"Doc name\\\":\\\"\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-29T04:30:46.864Z\\\",\\\"Topics\\\":\\\"\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"url\\\":\\\"https://app.notion.com/p/a619ecdd38af8345be2d81c998f8e512\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-29T04:30:46.864Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cb9ecdd-38af-8008-899c-f895c1b90541",
+        "title": "Geometry",
+        "url": "https://app.notion.com/p/3cb9ecdd38af8008899cf895c1b90541?pvs=204",
+        "type": "page",
+        "highlight": "Geometry",
+        "timestamp": "2026-08-29T04:37:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Geometry\",\"url\":\"https://app.notion.com/p/3cb9ecdd38af8008899cf895c1b90541?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cb9ecdd38af8008899cf895c1b90541 as of 2026-08-29T04:36:57.591Z:\\n<page url=\\\"https://app.notion.com/p/3cb9ecdd38af8008899cf895c1b90541\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-29T04:36:56.452Z\\\",\\\"Doc name\\\":\\\"Geometry\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-29T04:37:17.619Z\\\",\\\"Topics\\\":\\\"\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-08-25\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cb9ecdd38af8008899cf895c1b90541\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-29T04:37:17.619Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-8010-b5ef-e0fcafee38e3",
+        "title": "BANGLADESH STUDIES",
+        "url": "https://app.notion.com/p/3c49ecdd38af8010b5efe0fcafee38e3?pvs=204",
+        "type": "page",
+        "highlight": "BANGLADESH STUDIES",
+        "timestamp": "2026-08-22T14:57:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"BANGLADESH STUDIES\",\"url\":\"https://app.notion.com/p/3c49ecdd38af8010b5efe0fcafee38e3?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af8010b5efe0fcafee38e3 as of 2026-08-22T14:53:12.430Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af8010b5efe0fcafee38e3\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T14:53:11.584Z\\\",\\\"Doc name\\\":\\\"BANGLADESH STUDIES\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A073a9100-3462-4622-8741-3e78fe9b0f9a%3ABangladesh_Studies.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8010-b5ef-e0fcafee38e3%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T14:57:35.844Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af8010b5efe0fcafee38e3\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T14:57:35.844Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-8050-99bc-e3d9394655e0",
+        "title": "FIRST MONTHLY",
+        "url": "https://app.notion.com/p/3c49ecdd38af805099bce3d9394655e0?pvs=204",
+        "type": "page",
+        "highlight": "FIRST MONTHLY",
+        "timestamp": "2026-08-22T15:04:00.000Z",
+        "path": "2. Syllabus",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"FIRST MONTHLY\",\"url\":\"https://app.notion.com/p/3c49ecdd38af805099bce3d9394655e0?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af805099bce3d9394655e0 as of 2026-08-22T15:03:20.061Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af805099bce3d9394655e0\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://df59ecdd-38af-8385-baa3-071126e0e412\\\" name=\\\"2. Syllabus\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af804ebce9e86206305609\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T15:03:18.821Z\\\",\\\"Doc name\\\":\\\"FIRST MONTHLY\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3Ab504a1a9-68ba-4238-9076-aee908e2ff13%3Asyllabus_c22_s16_20260717_df885b.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8050-99bc-e3d9394655e0%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af805099bce3d9394655e0\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"2. Syllabus\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T15:04:14.131Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cc9ecdd-38af-808c-be01-ed03810e9755",
+        "title": "ENGLISH LANGUAGE",
+        "url": "https://app.notion.com/p/3cc9ecdd38af808cbe01ed03810e9755?pvs=204",
+        "type": "page",
+        "highlight": "ENGLISH LANGUAGE",
+        "timestamp": "2026-08-30T12:54:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"ENGLISH LANGUAGE\",\"url\":\"https://app.notion.com/p/3cc9ecdd38af808cbe01ed03810e9755?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cc9ecdd38af808cbe01ed03810e9755 as of 2026-08-30T12:53:16.558Z:\\n<page url=\\\"https://app.notion.com/p/3cc9ecdd38af808cbe01ed03810e9755\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-30T12:53:15.715Z\\\",\\\"Doc name\\\":\\\"ENGLISH LANGUAGE\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A62ca0e99-35c5-4f4c-9aba-67d3009baf06%3AEL1.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A7b22ce70-215c-4432-b3b8-d628da7454ab%3AEL2.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A6ee12943-e20e-420c-b748-965df55d04e3%3AEL3.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A53916209-0455-45db-a37b-e875f8d08a97%3AEL4.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3Aa1581c5a-711d-4ddf-8903-eecd9bd4a25e%3AEL5.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223cc9ecdd-38af-808c-be01-ed03810e9755%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-30T12:54:28.404Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cc9ecdd38af808cbe01ed03810e9755\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-30T12:54:28.404Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cb9ecdd-38af-80b9-b4ee-f3c835392f85",
+        "title": "Mental Math",
+        "url": "https://app.notion.com/p/3cb9ecdd38af80b9b4eef3c835392f85?pvs=204",
+        "type": "page",
+        "highlight": "Mental Math",
+        "timestamp": "2026-08-29T04:34:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Mental Math\",\"url\":\"https://app.notion.com/p/3cb9ecdd38af80b9b4eef3c835392f85?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cb9ecdd38af80b9b4eef3c835392f85 as of 2026-08-29T04:33:55.667Z:\\n<page url=\\\"https://app.notion.com/p/3cb9ecdd38af80b9b4eef3c835392f85\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-29T04:33:54.966Z\\\",\\\"Doc name\\\":\\\"Mental Math\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-29T04:34:12.965Z\\\",\\\"Topics\\\":\\\"\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-01\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cb9ecdd38af80b9b4eef3c835392f85\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-29T04:34:12.965Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "92f9ecdd-38af-82b4-a7cd-01e656285afa",
+        "title": "Untitled",
+        "url": "https://app.notion.com/p/92f9ecdd38af82b4a7cd01e656285afa?pvs=204",
+        "type": "page",
+        "highlight": "Untitled",
+        "timestamp": "2026-08-22T15:15:00.000Z",
+        "path": "4. Assignment",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"New doc\",\"url\":\"https://app.notion.com/p/92f9ecdd38af82b4a7cd01e656285afa?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/92f9ecdd38af82b4a7cd01e656285afa as of 2026-08-22T15:15:10.966Z:\\n<page url=\\\"https://app.notion.com/p/92f9ecdd38af82b4a7cd01e656285afa\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://2af9ecdd-38af-82cd-abd4-075ad3581c69\\\" name=\\\"4. Assignment\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af805bb96afe5722a95f6c\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T15:15:10.968Z\\\",\\\"Doc name\\\":\\\"\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T15:15:10.968Z\\\",\\\"date:Deadline:is_datetime\\\":0,\\\"url\\\":\\\"https://app.notion.com/p/92f9ecdd38af82b4a7cd01e656285afa\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"4. Assignment\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T15:15:10.968Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cc9ecdd-38af-80a5-abf2-f2f81e45d4c9",
+        "title": "Brighter Grammer",
+        "url": "https://app.notion.com/p/3cc9ecdd38af80a5abf2f2f81e45d4c9?pvs=204",
+        "type": "page",
+        "highlight": "Brighter Grammer",
+        "timestamp": "2026-09-01T12:54:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Brighter Grammer\",\"url\":\"https://app.notion.com/p/3cc9ecdd38af80a5abf2f2f81e45d4c9?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cc9ecdd38af80a5abf2f2f81e45d4c9 as of 2026-08-30T13:35:31.215Z:\\n<page url=\\\"https://app.notion.com/p/3cc9ecdd38af80a5abf2f2f81e45d4c9\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-30T13:35:30.339Z\\\",\\\"Doc name\\\":\\\"Brighter Grammer\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-01T12:54:03.357Z\\\",\\\"Topics\\\":\\\"\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-06\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cc9ecdd38af80a5abf2f2f81e45d4c9\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-01T12:54:03.357Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-80f3-ac1e-f9071a4f2374",
+        "title": "HISTORY",
+        "url": "https://app.notion.com/p/3c49ecdd38af80f3ac1ef9071a4f2374?pvs=204",
+        "type": "page",
+        "highlight": "HISTORY",
+        "timestamp": "2026-08-22T14:57:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"HISTORY\",\"url\":\"https://app.notion.com/p/3c49ecdd38af80f3ac1ef9071a4f2374?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af80f3ac1ef9071a4f2374 as of 2026-08-22T14:52:33.051Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af80f3ac1ef9071a4f2374\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T14:52:32.295Z\\\",\\\"Doc name\\\":\\\"HISTORY\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A7e540156-cd7e-4ff7-9d18-d1779dcab3a3%3AHistory.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80f3-ac1e-f9071a4f2374%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T14:57:38.646Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af80f3ac1ef9071a4f2374\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T14:57:38.646Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-8015-9777-c2f5896a35e5",
+        "title": "First Monthly Exam",
+        "url": "https://app.notion.com/p/3c49ecdd38af80159777c2f5896a35e5?pvs=204",
+        "type": "page",
+        "highlight": "First Monthly Exam",
+        "timestamp": "2026-08-22T15:46:00.000Z",
+        "path": "5. Exam",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"First Monthly Exam\",\"url\":\"https://app.notion.com/p/3c49ecdd38af80159777c2f5896a35e5?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af80159777c2f5896a35e5 as of 2026-08-22T15:46:18.362Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af80159777c2f5896a35e5\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://58f9ecdd-38af-8367-98ce-87fc9beb6c03\\\" name=\\\"5. Exam\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af80f7afbec860cd6176b1\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T15:46:17.214Z\\\",\\\"Doc name\\\":\\\"First Monthly Exam\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A68681a57-0240-42cb-8340-ab2dbfc933fb%3ACamScanner_22-08-2026_21.42.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8015-9777-c2f5896a35e5%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T15:46:58.542Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af80159777c2f5896a35e5\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"5. Exam\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T15:46:58.542Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3ca9ecdd-38af-8013-a9f1-cb7d12d4181f",
+        "title": "Bangladesh Studies",
+        "url": "https://app.notion.com/p/3ca9ecdd38af8013a9f1cb7d12d4181f?pvs=204",
+        "type": "page",
+        "highlight": "Bangladesh Studies",
+        "timestamp": "2026-08-28T19:31:00.000Z",
+        "path": "4. Assignment",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Bangladesh Studies\",\"url\":\"https://app.notion.com/p/3ca9ecdd38af8013a9f1cb7d12d4181f?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3ca9ecdd38af8013a9f1cb7d12d4181f as of 2026-08-28T19:29:20.445Z:\\n<page url=\\\"https://app.notion.com/p/3ca9ecdd38af8013a9f1cb7d12d4181f\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://2af9ecdd-38af-82cd-abd4-075ad3581c69\\\" name=\\\"4. Assignment\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af805bb96afe5722a95f6c\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-28T19:29:19.335Z\\\",\\\"Doc name\\\":\\\"Bangladesh Studies\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A7231a216-f63a-40a1-954d-1ba0f43e3268%3Aassign_bs.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223ca9ecdd-38af-8013-a9f1-cb7d12d4181f%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-28T19:31:17.063Z\\\",\\\"date:Deadline:is_datetime\\\":0,\\\"date:Deadline:start\\\":\\\"2026-09-10\\\",\\\"url\\\":\\\"https://app.notion.com/p/3ca9ecdd38af8013a9f1cb7d12d4181f\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"4. Assignment\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-28T19:31:17.063Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-8058-a037-d1195481fe3d",
+        "title": "Untitled",
+        "url": "https://app.notion.com/p/3c49ecdd38af8058a037d1195481fe3d?pvs=204",
+        "type": "page",
+        "highlight": "Untitled",
+        "timestamp": "2026-08-22T14:49:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"New doc\",\"url\":\"https://app.notion.com/p/3c49ecdd38af8058a037d1195481fe3d?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af8058a037d1195481fe3d as of 2026-08-22T14:49:26.475Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af8058a037d1195481fe3d\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T14:49:26.448Z\\\",\\\"Doc name\\\":\\\"\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T14:49:26.475Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af8058a037d1195481fe3d\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T14:49:26.475Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-8055-84cf-d35cd57d356c",
+        "title": "Untitled",
+        "url": "https://app.notion.com/p/3c49ecdd38af805584cfd35cd57d356c?pvs=204",
+        "type": "page",
+        "highlight": "Untitled",
+        "timestamp": "2026-08-22T17:28:00.000Z",
+        "path": "6. Unseen Paper",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"New doc\",\"url\":\"https://app.notion.com/p/3c49ecdd38af805584cfd35cd57d356c?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af805584cfd35cd57d356c as of 2026-08-22T17:28:15.050Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af805584cfd35cd57d356c\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-80a1-b920-000b80931d52\\\" name=\\\"6. Unseen Paper\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af808c8ac4ef768f5d8a22\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T17:28:15.017Z\\\",\\\"Doc name\\\":\\\"\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T17:28:15.050Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af805584cfd35cd57d356c\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"6. Unseen Paper\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T17:28:15.050Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "b859ecdd-38af-83bb-93d6-8117545318ee",
+        "title": "Untitled",
+        "url": "https://app.notion.com/p/b859ecdd38af83bb93d68117545318ee?pvs=204",
+        "type": "page",
+        "highlight": "Untitled",
+        "timestamp": "2026-08-22T15:41:00.000Z",
+        "path": "5. Exam",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"New doc\",\"url\":\"https://app.notion.com/p/b859ecdd38af83bb93d68117545318ee?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/b859ecdd38af83bb93d68117545318ee as of 2026-08-22T15:41:26.302Z:\\n<page url=\\\"https://app.notion.com/p/b859ecdd38af83bb93d68117545318ee\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://58f9ecdd-38af-8367-98ce-87fc9beb6c03\\\" name=\\\"5. Exam\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af80f7afbec860cd6176b1\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T15:41:26.303Z\\\",\\\"Doc name\\\":\\\"\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T15:41:26.303Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/b859ecdd38af83bb93d68117545318ee\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"5. Exam\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T15:41:26.303Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-806a-aaf8-d7757d8639c8",
+        "title": "Untitled",
+        "url": "https://app.notion.com/p/3c49ecdd38af806aaaf8d7757d8639c8?pvs=204",
+        "type": "page",
+        "highlight": "Untitled",
+        "timestamp": "2026-08-22T15:00:00.000Z",
+        "path": "1. Routine",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"New doc\",\"url\":\"https://app.notion.com/p/3c49ecdd38af806aaaf8d7757d8639c8?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af806aaaf8d7757d8639c8 as of 2026-08-22T15:00:21.557Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af806aaaf8d7757d8639c8\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-80e8-888b-000b22c321f0\\\" name=\\\"1. Routine\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af80aa8205dbaad10da968\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T15:00:21.529Z\\\",\\\"Doc name\\\":\\\"\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af806aaaf8d7757d8639c8\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"1. Routine\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T15:00:21.557Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cb9ecdd-38af-80f0-8e05-db8673c4e4dc",
+        "title": "Bangladesh Studies",
+        "url": "https://app.notion.com/p/3cb9ecdd38af80f08e05db8673c4e4dc?pvs=204",
+        "type": "page",
+        "highlight": "Bangladesh Studies",
+        "timestamp": "2026-08-29T19:17:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Bangladesh Studies\",\"url\":\"https://app.notion.com/p/3cb9ecdd38af80f08e05db8673c4e4dc?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cb9ecdd38af80f08e05db8673c4e4dc as of 2026-08-29T04:35:54.076Z:\\n<page url=\\\"https://app.notion.com/p/3cb9ecdd38af80f08e05db8673c4e4dc\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-29T04:35:53.268Z\\\",\\\"Doc name\\\":\\\"Bangladesh Studies\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-29T19:17:57.556Z\\\",\\\"Topics\\\":\\\"Rakhain\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-08-30\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cb9ecdd38af80f08e05db8673c4e4dc\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-29T19:17:57.556Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3cb9ecdd-38af-8062-8dfb-cc7c2fa77f2f",
+        "title": "English Literature",
+        "url": "https://app.notion.com/p/3cb9ecdd38af80628dfbcc7c2fa77f2f?pvs=204",
+        "type": "page",
+        "highlight": "English Literature",
+        "timestamp": "2026-09-01T12:57:00.000Z",
+        "path": "7. CT",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"English Literature\",\"url\":\"https://app.notion.com/p/3cb9ecdd38af80628dfbcc7c2fa77f2f?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3cb9ecdd38af80628dfbcc7c2fa77f2f as of 2026-08-29T04:33:18.565Z:\\n<page url=\\\"https://app.notion.com/p/3cb9ecdd38af80628dfbcc7c2fa77f2f\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://8dd9ecdd-38af-82c5-9db1-8774940109b4\\\" name=\\\"7. CT\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3cb9ecdd38af804c84e9ca5417b5e150\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-29T04:33:17.848Z\\\",\\\"Doc name\\\":\\\"English Literature\\\",\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-01T12:57:01.353Z\\\",\\\"Topics\\\":\\\"Spellings & Dictation\\\",\\\"date:CT Date:is_datetime\\\":0,\\\"date:CT Date:start\\\":\\\"2026-09-03\\\",\\\"url\\\":\\\"https://app.notion.com/p/3cb9ecdd38af80628dfbcc7c2fa77f2f\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"7. CT\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-01T12:57:01.353Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3d19ecdd-38af-80c9-b495-ca8dea49cf6d",
+        "title": "Bangla 1",
+        "url": "https://app.notion.com/p/3d19ecdd38af80c9b495ca8dea49cf6d?pvs=204",
+        "type": "page",
+        "highlight": "Bangla 1",
+        "timestamp": "2026-09-04T19:10:00.000Z",
+        "path": "4. Assignment",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Bangla 1\",\"url\":\"https://app.notion.com/p/3d19ecdd38af80c9b495ca8dea49cf6d?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3d19ecdd38af80c9b495ca8dea49cf6d as of 2026-09-04T18:56:09.885Z:\\n<page url=\\\"https://app.notion.com/p/3d19ecdd38af80c9b495ca8dea49cf6d\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://2af9ecdd-38af-82cd-abd4-075ad3581c69\\\" name=\\\"4. Assignment\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af805bb96afe5722a95f6c\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-09-04T18:56:08.980Z\\\",\\\"Doc name\\\":\\\"Bangla 1\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3Aafa9fa12-80e9-4d2f-a550-1827bd8883b3%3ABangla_1.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223d19ecdd-38af-80c9-b495-ca8dea49cf6d%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-04T19:10:02.498Z\\\",\\\"date:Deadline:is_datetime\\\":0,\\\"date:Deadline:start\\\":\\\"2026-09-10\\\",\\\"url\\\":\\\"https://app.notion.com/p/3d19ecdd38af80c9b495ca8dea49cf6d\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"4. Assignment\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-04T19:10:02.498Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-80b3-8e66-e75b1e2d34a0",
+        "title": "MORAL STUDIES",
+        "url": "https://app.notion.com/p/3c49ecdd38af80b38e66e75b1e2d34a0?pvs=204",
+        "type": "page",
+        "highlight": "MORAL STUDIES",
+        "timestamp": "2026-08-22T14:57:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"MORAL STUDIES\",\"url\":\"https://app.notion.com/p/3c49ecdd38af80b38e66e75b1e2d34a0?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af80b38e66e75b1e2d34a0 as of 2026-08-22T14:49:26.475Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af80b38e66e75b1e2d34a0\\\" icon=\\\"icons/calendar-month_blue\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T14:49:26.465Z\\\",\\\"Doc name\\\":\\\"MORAL STUDIES\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A179aae0d-6d5e-44ca-95d5-5b6e08f1bdd9%3AMoral_Studies_1.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80b3-8e66-e75b1e2d34a0%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\",\\\"file://%7B%22source%22%3A%22attachment%3A316158d0-f217-43a4-95be-640e11945999%3AMoral_Studies_2.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80b3-8e66-e75b1e2d34a0%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T14:57:28.222Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af80b38e66e75b1e2d34a0\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"calendar-month\\\",\\\"color\\\":\\\"blue\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"calendar-month\",\"color\":\"blue\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T14:57:28.222Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3d19ecdd-38af-8090-a996-e939c600463c",
+        "title": "Bangla 2",
+        "url": "https://app.notion.com/p/3d19ecdd38af8090a996e939c600463c?pvs=204",
+        "type": "page",
+        "highlight": "Bangla 2",
+        "timestamp": "2026-09-04T19:29:00.000Z",
+        "path": "4. Assignment",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Bangla 2\",\"url\":\"https://app.notion.com/p/3d19ecdd38af8090a996e939c600463c?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3d19ecdd38af8090a996e939c600463c as of 2026-09-04T18:56:24.813Z:\\n<page url=\\\"https://app.notion.com/p/3d19ecdd38af8090a996e939c600463c\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://2af9ecdd-38af-82cd-abd4-075ad3581c69\\\" name=\\\"4. Assignment\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af805bb96afe5722a95f6c\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-09-04T18:56:23.713Z\\\",\\\"Doc name\\\":\\\"Bangla 2\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A8fa91aac-a974-4af6-9c64-d3a2449acdd8%3ABangla_2.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223d19ecdd-38af-8090-a996-e939c600463c%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-09-04T19:29:42.140Z\\\",\\\"date:Deadline:is_datetime\\\":0,\\\"date:Deadline:start\\\":\\\"2026-09-10\\\",\\\"url\\\":\\\"https://app.notion.com/p/3d19ecdd38af8090a996e939c600463c\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"4. Assignment\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-09-04T19:29:42.140Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "db19ecdd-38af-832e-8811-01d7951f5d15",
+        "title": "Untitled",
+        "url": "https://app.notion.com/p/db19ecdd38af832e881101d7951f5d15?pvs=204",
+        "type": "page",
+        "highlight": "Untitled",
+        "timestamp": "2026-08-22T15:00:00.000Z",
+        "path": "2. Syllabus",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"New doc\",\"url\":\"https://app.notion.com/p/db19ecdd38af832e881101d7951f5d15?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/db19ecdd38af832e881101d7951f5d15 as of 2026-08-22T15:00:50.751Z:\\n<page url=\\\"https://app.notion.com/p/db19ecdd38af832e881101d7951f5d15\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://df59ecdd-38af-8385-baa3-071126e0e412\\\" name=\\\"2. Syllabus\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af804ebce9e86206305609\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T15:00:50.752Z\\\",\\\"Doc name\\\":\\\"\\\",\\\"url\\\":\\\"https://app.notion.com/p/db19ecdd38af832e881101d7951f5d15\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"2. Syllabus\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T15:00:50.752Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-80a1-af80-e522a0ebfd90",
+        "title": "Moral Studies",
+        "url": "https://app.notion.com/p/3c49ecdd38af80a1af80e522a0ebfd90?pvs=204",
+        "type": "page",
+        "highlight": "Moral Studies",
+        "timestamp": "2026-08-28T19:31:00.000Z",
+        "path": "4. Assignment",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"Moral Studies\",\"url\":\"https://app.notion.com/p/3c49ecdd38af80a1af80e522a0ebfd90?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af80a1af80e522a0ebfd90 as of 2026-08-22T15:16:25.140Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af80a1af80e522a0ebfd90\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://2af9ecdd-38af-82cd-abd4-075ad3581c69\\\" name=\\\"4. Assignment\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af805bb96afe5722a95f6c\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T15:16:24.178Z\\\",\\\"Doc name\\\":\\\"Moral Studies\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3Ac3b20473-1071-451c-8e75-ac59e36f1b84%3Aassign_MSpdf.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-80a1-af80-e522a0ebfd90%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-28T19:31:08.117Z\\\",\\\"date:Deadline:is_datetime\\\":0,\\\"date:Deadline:start\\\":\\\"2026-09-12\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af80a1af80e522a0ebfd90\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"4. Assignment\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-28T19:31:08.117Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-8018-ac2c-e17b527cf4bc",
+        "title": "ENGLISH LITERATURE",
+        "url": "https://app.notion.com/p/3c49ecdd38af8018ac2ce17b527cf4bc?pvs=204",
+        "type": "page",
+        "highlight": "ENGLISH LITERATURE",
+        "timestamp": "2026-08-22T14:57:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"ENGLISH LITERATURE\",\"url\":\"https://app.notion.com/p/3c49ecdd38af8018ac2ce17b527cf4bc?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af8018ac2ce17b527cf4bc as of 2026-08-22T14:53:31.088Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af8018ac2ce17b527cf4bc\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T14:53:30.225Z\\\",\\\"Doc name\\\":\\\"ENGLISH LITERATURE\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A2ff8101b-11ad-4227-b20c-f9c0a51db238%3AEnglish_Literature.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-8018-ac2c-e17b527cf4bc%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T14:57:41.685Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af8018ac2ce17b527cf4bc\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T14:57:41.685Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "source": {
+        "id": "3c49ecdd-38af-803c-aff9-de164bdb18e1",
+        "title": "BANGLA 1",
+        "url": "https://app.notion.com/p/3c49ecdd38af803caff9de164bdb18e1?pvs=204",
+        "type": "page",
+        "highlight": "BANGLA 1",
+        "timestamp": "2026-08-22T14:57:00.000Z",
+        "path": "3. Study Note",
+        "verification": {
+          "state": "unverified"
+        }
+      },
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"metadata\":{\"type\":\"page\"},\"title\":\"BANGLA 1\",\"url\":\"https://app.notion.com/p/3c49ecdd38af803caff9de164bdb18e1?pvs=204\",\"text\":\"Here is the result of \\\"fetch\\\" for the Page with URL https://app.notion.com/p/3c49ecdd38af803caff9de164bdb18e1 as of 2026-08-22T14:52:52.669Z:\\n<page url=\\\"https://app.notion.com/p/3c49ecdd38af803caff9de164bdb18e1\\\" icon=\\\"icons/document_red\\\">\\n<ancestor-path>\\n<parent-data-source url=\\\"collection://3c49ecdd-38af-8049-a483-000b9709e58c\\\" name=\\\"3. Study Note\\\"/>\\n<ancestor-2-database url=\\\"https://app.notion.com/p/3c49ecdd38af800fb72df5988abf3b43\\\" title=\\\"\\\"/>\\n</ancestor-path>\\n<properties>\\n{\\\"Category\\\":[\\\"FIRST MONTHLY\\\"],\\\"Created by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Created time\\\":\\\"2026-08-22T14:52:51.829Z\\\",\\\"Doc name\\\":\\\"BANGLA 1\\\",\\\"Files & media\\\":[\\\"file://%7B%22source%22%3A%22attachment%3A255dccd4-05a7-427b-92ab-8103f353b9d3%3ABangla_Paper_I.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%223c49ecdd-38af-803c-aff9-de164bdb18e1%22%2C%22spaceId%22%3A%22e9a9ecdd-38af-8107-8a94-00034a3dc797%22%7D%7D\\\"],\\\"Last edited by\\\":\\\"<mention-user url=\\\\\\\"user://298d872b-594c-81a0-bbc0-0002557cece8\\\\\\\"></mention-user>\\\",\\\"Last updated time\\\":\\\"2026-08-22T14:57:30.523Z\\\",\\\"url\\\":\\\"https://app.notion.com/p/3c49ecdd38af803caff9de164bdb18e1\\\"}\\n</properties>\\n<iconMetadata>{\\\"type\\\":\\\"icon\\\",\\\"icon\\\":{\\\"name\\\":\\\"document\\\",\\\"color\\\":\\\"red\\\"}}</iconMetadata>\\n<content>\\n# Background\\nContext, objectives, and scope of the document\\n# Analysis\\nResearch findings, data insights, and key considerations\\n# Recommendations\\nProposed solutions, strategies, and next steps\\n# Implementation\\nAction items, timeline, and resource requirements\\n</content>\\n</page>\",\"cover\":null,\"icon\":{\"type\":\"icon\",\"icon\":{\"name\":\"document\",\"color\":\"red\"}},\"path\":\"3. Study Note\",\"verification\":{\"state\":\"unverified\"},\"page_last_edited_at\":\"2026-08-22T14:57:30.523Z\"}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    }
+  ]
+}

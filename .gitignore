@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+test-results/
+playwright-report/
+*.tsbuildinfo
+tmp/
+data/*.db*
+storage/
+
+.notion-sync/
+.vercel
