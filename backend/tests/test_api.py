@@ -113,3 +113,60 @@ def test_first_and_reset_password_accept_six_characters(client):
     assert browser.post("/api/auth/reset-password", json={"ticket": ticket, "password": "12345"}).status_code == 422
     assert browser.post("/api/auth/reset-password", json={"ticket": ticket, "password": "654321"}).status_code == 200
     assert browser.post("/api/auth/login", json={"username": "short_user", "password": "654321"}).status_code == 200
+
+
+def test_idle_expiry_polling_and_absolute_expiry(client):
+    from backend.db import connection
+    browser, codes, _ = client
+    register(browser, codes)
+    with connection() as db:
+        db.execute("UPDATE sessions SET last_active_at=?", (auth.utc_after(minutes=-31),))
+    response = browser.get('/api/auth/me')
+    assert response.status_code == 401
+    assert 'no-store' in response.headers['cache-control']
+    assert 'Max-Age=0' in response.headers['set-cookie']
+    browser.post('/api/auth/login', json={'username': 'shreehan', 'password': 'good-secret-123'})
+    with connection() as db:
+        before = db.execute('SELECT last_active_at FROM sessions').fetchone()[0]
+    browser.get('/api/auth/me')
+    browser.get('/api/library')
+    with connection() as db:
+        assert db.execute('SELECT last_active_at FROM sessions').fetchone()[0] == before
+    assert browser.post('/api/auth/activity').status_code == 200
+    with connection() as db:
+        assert db.execute('SELECT last_active_at FROM sessions').fetchone()[0] > before
+        db.execute('UPDATE sessions SET expires_at=?', (auth.utc_after(minutes=-1),))
+    assert browser.post('/api/auth/activity').status_code == 401
+
+
+def test_rotation_revocation_and_cross_origin(client):
+    from backend.db import connection
+    browser, codes, _ = client
+    register(browser, codes)
+    old = browser.cookies.get(auth.COOKIE)
+    browser.post('/api/auth/login', json={'username': 'shreehan', 'password': 'good-secret-123'})
+    assert browser.cookies.get(auth.COOKIE) != old
+    with connection() as db:
+        assert db.execute('SELECT count(*) FROM sessions').fetchone()[0] == 1
+    other = TestClient(app)
+    other.post('/api/auth/login', json={'username': 'shreehan', 'password': 'good-secret-123'})
+    old = browser.cookies.get(auth.COOKIE)
+    assert browser.post('/api/auth/change-password', json={'new_password':'replacement-123', 'confirm_password':'replacement-123'}).status_code == 200
+    assert browser.cookies.get(auth.COOKIE) != old
+    assert other.get('/api/auth/me').status_code == 401
+    assert browser.post('/api/auth/logout', headers={'Origin':'https://evil.test'}).status_code == 403
+    assert browser.get('/api/auth/me').status_code == 200
+    assert browser.post('/api/auth/logout-all').status_code == 200
+    assert browser.get('/api/auth/me').status_code == 401
+
+
+def test_head_navigation_and_secure_cookie(client, monkeypatch):
+    browser, codes, _ = client
+    assert browser.head('/login').status_code == 200
+    assert browser.head('/', follow_redirects=False).status_code == 303
+    monkeypatch.setenv('APP_ENV', 'production')
+    register(browser, codes)
+    cookie = browser.cookies.get(auth.COOKIE)
+    assert cookie
+    # HTTPS-only cookies must not authenticate an HTTP request.
+    assert browser.get('/api/auth/me').status_code == 401

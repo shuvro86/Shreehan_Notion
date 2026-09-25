@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import hmac
+import os
 import re
 import secrets
 import sqlite3
@@ -49,11 +50,23 @@ def token_hash(token: str) -> str:
     return hashlib.sha256(token.encode()).hexdigest()
 
 
-def session_for(db, response: Response, user_id: str):
+def idle_cutoff():
+    return utc_after(minutes=-int(os.getenv("SESSION_IDLE_MINUTES", "30")))
+
+
+def secure_cookie():
+    return os.getenv("APP_ENV") == "production" or bool(os.getenv("VERCEL"))
+
+
+def session_for(db, response: Response, user_id: str, request: Request):
+    # Replace this browser's previous credential, and prune abandoned sessions.
+    previous = request.cookies.get(COOKIE)
+    if previous:
+        db.execute("DELETE FROM sessions WHERE token_hash=?", (token_hash(previous),))
+    db.execute("DELETE FROM sessions WHERE expires_at<=? OR last_active_at<=?", (now(), idle_cutoff()))
     token = secrets.token_urlsafe(32)
-    expiry = utc_after(days=7)
-    db.execute("INSERT INTO sessions VALUES (?,?,?,?)", (token_hash(token), user_id, expiry, now()))
-    response.set_cookie(COOKIE, token, httponly=True, secure=__import__("os").getenv("APP_ENV") == "production", samesite="lax", max_age=7 * 86400, path="/")
+    db.execute("INSERT INTO sessions (token_hash,user_id,expires_at,created_at,last_active_at) VALUES (?,?,?,?,?)", (token_hash(token), user_id, utc_after(days=7), now(), now()))
+    response.set_cookie(COOKIE, token, httponly=True, secure=secure_cookie(), samesite="lax", max_age=7 * 86400, path="/")
 
 
 def current_user(request: Request):
@@ -61,7 +74,7 @@ def current_user(request: Request):
     if not token:
         raise HTTPException(401, "Please sign in to continue.")
     with connection() as db:
-        row = db.execute("SELECT users.id,users.username,users.email FROM sessions JOIN users ON users.id=sessions.user_id WHERE sessions.token_hash=? AND sessions.expires_at>? AND users.verified_at IS NOT NULL", (token_hash(token), now())).fetchone()
+        row = db.execute("SELECT users.id,users.username,users.email FROM sessions JOIN users ON users.id=sessions.user_id WHERE sessions.token_hash=? AND sessions.expires_at>? AND sessions.last_active_at>? AND users.verified_at IS NOT NULL", (token_hash(token), now(), idle_cutoff())).fetchone()
     if not row:
         raise HTTPException(401, "Your session has expired. Please sign in again.")
     return dict(row)
@@ -169,7 +182,7 @@ def ticket_user(db, ticket: str, purpose: str):
 
 
 @auth_router.post("/set-password")
-def set_password(body: PasswordTicket, response: Response):
+def set_password(body: PasswordTicket, response: Response, request: Request):
     with connection() as db:
         user_id = ticket_user(db, body.ticket, "signup")
         db.execute("UPDATE users SET password_hash=?, verified_at=? WHERE id=? AND verified_at IS NULL", (hash_password(body.password), now(), user_id))
@@ -177,22 +190,22 @@ def set_password(body: PasswordTicket, response: Response):
             raise HTTPException(400, "This account is already active.")
         create_starter_data(db, user_id)
         db.execute("DELETE FROM otp_challenges WHERE id=?", (body.ticket,))
-        session_for(db, response, user_id)
+        session_for(db, response, user_id, request)
     return {"message": "Account ready."}
 
 
 @auth_router.post("/login")
-def login(body: Login, response: Response):
+def login(body: Login, response: Response, request: Request):
     with connection() as db:
         row = db.execute("SELECT id,password_hash FROM users WHERE username=? COLLATE NOCASE AND verified_at IS NOT NULL", (body.username.strip(),)).fetchone()
         if not row or not check_password(body.password, row["password_hash"]):
             raise HTTPException(401, "Username or password is incorrect.")
-        session_for(db, response, row["id"])
+        session_for(db, response, row["id"], request)
     return {"message": "Signed in."}
 
 
 @auth_router.post("/change-password")
-def change_password(body: ChangePassword, request: Request, user=Depends(current_user)):
+def change_password(body: ChangePassword, request: Request, response: Response, user=Depends(current_user)):
     if body.new_password != body.confirm_password:
         raise HTTPException(400, "New passwords do not match.")
     with connection() as db:
@@ -202,8 +215,8 @@ def change_password(body: ChangePassword, request: Request, user=Depends(current
         if check_password(body.new_password, row["password_hash"]):
             raise HTTPException(400, "Choose a different new password.")
         db.execute("UPDATE users SET password_hash=? WHERE id=?", (hash_password(body.new_password), user["id"]))
-        current_token = request.cookies.get(COOKIE)
-        db.execute("DELETE FROM sessions WHERE user_id=? AND token_hash<>?", (user["id"], token_hash(current_token or "")))
+        db.execute("DELETE FROM sessions WHERE user_id=?", (user["id"],))
+        session_for(db, response, user["id"], request)
     return {"message": "Password changed."}
 
 
@@ -248,3 +261,19 @@ def logout(request: Request, response: Response):
             db.execute("DELETE FROM sessions WHERE token_hash=?", (token_hash(token),))
     response.delete_cookie(COOKIE, path="/")
     return {"message": "Signed out."}
+
+
+@auth_router.post("/activity")
+def activity(request: Request, user=Depends(current_user)):
+    # Only actual browser interaction calls this; background library polls do not.
+    with connection() as db:
+        db.execute("UPDATE sessions SET last_active_at=? WHERE token_hash=? AND user_id=? AND expires_at>? AND last_active_at>?", (now(), token_hash(request.cookies[COOKIE]), user["id"], now(), idle_cutoff()))
+    return {"message": "Session active."}
+
+
+@auth_router.post("/logout-all")
+def logout_all(response: Response, user=Depends(current_user)):
+    with connection() as db:
+        db.execute("DELETE FROM sessions WHERE user_id=?", (user["id"],))
+    response.delete_cookie(COOKIE, path="/")
+    return {"message": "Signed out on all devices."}

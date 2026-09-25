@@ -26,6 +26,9 @@ def read_json(path: Path, fallback):
 
 
 def current_library():
+    if os.getenv("TURSO_DATABASE_URL"):
+        from backend.cloud_content import read_json as cloud_json
+        return cloud_json("library.json", {})
     return read_json(SYNC_DIR / "library.json", read_json(ROOT / "data/library.json", {}))
 
 
@@ -58,6 +61,14 @@ def version_key(doc):
 
 
 def sync_health():
+    if os.getenv("TURSO_DATABASE_URL"):
+        from backend.cloud_content import read_json as cloud_json
+        status = cloud_json("status.json", {"state": "starting", "lastSuccess": None})
+        try:
+            age = (datetime.now(timezone.utc) - datetime.fromisoformat(status["lastSuccess"].replace("Z", "+00:00"))).total_seconds()
+        except (ValueError, TypeError, KeyError):
+            age = float("inf")
+        return {**status, "state": status.get("state", "ready") if age < 1800 else "stale", "message": "Scheduled Notion sync; GitHub scheduling may be delayed." if age < 1800 else "Notion sync is delayed. Showing the last successful copy.", "intervalSeconds": 300}
     status = read_json(SYNC_DIR / "status.json", {"state":"starting", "lastSuccess":None})
     worker = read_json(SYNC_DIR / "worker.json", {})
     def age(value):
@@ -79,7 +90,11 @@ def sync_health():
 def library(response: Response):
     response.headers["Cache-Control"] = "no-store"
     data = current_library()
-    return {"library": data, "sync": sync_health(), "unseenPractice": merged_practice(data, read_json(ROOT / "data/unseen-practice.json", {}), read_json(SYNC_DIR / "unseen-practice.json", {"documents": {}}))}
+    saved = read_json(SYNC_DIR / "unseen-practice.json", {"documents": {}})
+    if os.getenv("TURSO_DATABASE_URL"):
+        from backend.cloud_content import read_json as cloud_json
+        saved = cloud_json("unseen-practice.json", {"documents": {}})
+    return {"library": data, "sync": sync_health(), "unseenPractice": merged_practice(data, read_json(ROOT / "data/unseen-practice.json", {}), saved)}
 
 
 class Message(BaseModel):

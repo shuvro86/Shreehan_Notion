@@ -114,7 +114,7 @@ export default function Home() {
    if (active) { setTasks(next); setTasksReady(true); }
   } catch { if (active) setTaskError('Could not load your tasks. Refresh to try again.'); } })(); return () => { active = false; }; }, []);
  async function saveTasks(next: Task[]) { if (!tasksReady) return; setTaskError(''); try { const response = await fetch('/api/tasks', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tasks: next }) }); if (!response.ok) throw Error(); setTasks((await response.json()).tasks); } catch { setTaskError('Could not save your tasks. Please try again.'); } }
- async function signOut() { await fetch('/api/auth/logout', { method: 'POST' }); window.location.assign('/login'); }
+ async function signOut(allDevices = false) { const response = await fetch(allDevices ? '/api/auth/logout-all' : '/api/auth/logout', { method: 'POST' }); if (response.ok || response.status === 401) window.location.assign('/login'); }
  async function changePassword(event: FormEvent<HTMLFormElement>) {
   event.preventDefault(); setPasswordError(''); setPasswordBusy(true);
   const values = new FormData(event.currentTarget);
@@ -162,7 +162,7 @@ export default function Home() {
    <nav aria-label="Main navigation"><button className={`nav-item ${active === 'Overview' ? 'selected' : ''}`} onClick={() => navigate('Overview')}><LayoutDashboard size={18}/>Overview<span className="active-dot"/></button><button className={`nav-item ${active === 'My tasks' ? 'selected' : ''}`} onClick={() => navigate('My tasks')}><CheckCheck size={18}/>My tasks<span className="nav-count">{tasks.filter(t => !t.done).length}</span></button></nav>
    <a className="nav-item" href="/library"><BookOpen size={18}/>Document library<span className="nav-count">{library.documents.length}</span></a><a className="nav-item" href="/assistant"><Bot size={18}/>Shreehan Digital Twin</a><a className="nav-item" href="/practice"><GraduationCap size={18}/>Class 2 practice</a><a className="nav-item" href="/kanban"><Columns3 size={18}/>Project board</a><div className="nav-label collection-label">COLLECTIONS <span>8</span></div>
    <nav aria-label="Collections">{collections.map(c => <button key={c.name} onClick={() => navigate(c.name)} className={`nav-item ${active === c.name ? 'selected' : ''}`}><c.icon size={17}/>{c.name}</button>)}</nav>
-   <div className="sidebar-bottom"><button className="nav-item" onClick={() => { setPasswordError(''); setPasswordSuccess(false); setPasswordOpen(true); setMobile(false); }}><KeyRound size={17}/>Change password</button><div className="profile"><div className="avatar">{account.slice(0,2).toUpperCase()}</div><span><strong>{account}</strong><small>Workspace member</small></span><button aria-label="Sign out" onClick={signOut}><LogOut size={17}/></button></div></div>
+   <div className="sidebar-bottom"><button className="nav-item" onClick={() => void signOut(true)}><LogOut size={17}/>Sign out all devices</button><button className="nav-item" onClick={() => { setPasswordError(''); setPasswordSuccess(false); setPasswordOpen(true); setMobile(false); }}><KeyRound size={17}/>Change password</button><div className="profile"><div className="avatar">{account.slice(0,2).toUpperCase()}</div><span><strong>{account}</strong><small>Workspace member</small></span><button aria-label="Sign out" onClick={() => void signOut()}><LogOut size={17}/></button></div></div>
   </aside>
   <div className="main-shell">
    <main>

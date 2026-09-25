@@ -12,3 +12,5 @@ storage/
 
 .notion-sync/
 .vercel
+__pycache__/
+*.pyc
