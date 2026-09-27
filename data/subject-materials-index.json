@@ -1,0 +1,31 @@
+{
+  "description": "Verified public files linked by the current Notion Subject Materials records. Folder discovery still requires a Drive API credential.",
+  "folders": [
+    {
+      "id": "1Ul6d6t91xoKfAp9dJ8I3W1hNfeA-FgJV",
+      "subject": "Science",
+      "files": [
+        ["1c63HWHtmeerAmet7F_26rs6MxK4C9Mlc", "59.png"],
+        ["1PogeSgCwEPMr3YHiYjm83bZu77KUuDXi", "60.png"],
+        ["1f_n6U3bZPacPYcY_5GbNm1SQDTRcIxKn", "61.png"],
+        ["1Drd8uuLVroPf_lfSL7EGhSJh6TcwAJ8I", "62.png"],
+        ["1ZLnNKqYU9ORP5Dc2SeLtghoGmn8O0J23", "63.png"],
+        ["1Q0l6soXzdp0_x-VaFCM_2Ak7KsZt_plK", "64.png"],
+        ["1YkFkx9Z0Z3z2Qx_FcikWXyTwbVm3yMsN", "65.png"],
+        ["1B5lPwZI4eaieauvHwcsTiqilWDgzwIrt", "66.png"],
+        ["1ot-eIWKDSFQLnrv802b2OETZbXNjVzJ1", "84.png"],
+        ["1-xeTXMNEoumEUFFlAy-z1QC0wWQSvJcS", "85.png"],
+        ["11a21L7w-1d6jze0eUE6n8yyYOi8yeBFb", "86.png"],
+        ["1BgfbINHG6RHiiqQYO1OVEbwZSnml2smf", "87.png"],
+        ["1PeFXJpBnpHv0gthLRdq_3KbeJQzWkKvN", "88.png"],
+        ["1QO5EVkc1uyxOxf5kHeq-apg91Spt76yx", "89.png"],
+        ["1CUwCjLyDHXMharzB4lzudHkYVnDND8Wz", "90.png"]
+      ]
+    },
+    {
+      "id": "1285u1rum6poCTWWGwl69ABZYrROm0uj2",
+      "subject": "Geography",
+      "files": [["1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a", "Geography.pdf"]]
+    }
+  ]
+}

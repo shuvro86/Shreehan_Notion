@@ -20,6 +20,7 @@ def test_old_success_and_dead_worker_are_not_reported_as_synced(tmp_path, monkey
 
 
 def test_supervisor_starts_on_app_lifecycle_and_lease_survives_restart(tmp_path, monkeypatch):
+    monkeypatch.setenv('CONTENT_SOURCE', 'notion')
     monkeypatch.delenv('NOTION_SYNC_DISABLED')
     monkeypatch.setenv('NOTION_TOKEN', 'test')
     monkeypatch.delenv('OPENROUTER_API_KEY', raising=False)
@@ -40,6 +41,14 @@ def test_supervisor_starts_on_app_lifecycle_and_lease_survives_restart(tmp_path,
         assert len(calls)==2
         await second.stop()
     asyncio.run(scenario())
+
+
+def test_default_source_is_notion_with_thirty_second_checks(tmp_path, monkeypatch):
+    monkeypatch.delenv('CONTENT_SOURCE', raising=False)
+    monkeypatch.delenv('NOTION_SYNC_INTERVAL_SECONDS', raising=False)
+    worker = NotionSupervisor(tmp_path)
+    assert not worker.drive
+    assert worker.interval == 30
 
 
 def test_crashed_child_is_retried_and_reaped(tmp_path, monkeypatch):

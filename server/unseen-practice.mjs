@@ -5,7 +5,7 @@ import { read, atomic, root } from './notion-sync.mjs';
 
 const digest = value => crypto.createHash('sha256').update(value).digest('hex').slice(0, 16);
 export const versionKey = doc => digest(JSON.stringify([doc.id, doc.sha256, doc.subject, doc.title, doc.pages?.map(p => [p.number, p.text, p.method, p.confidence])]));
-const eligible = doc => doc.collection === 'Unseen Paper';
+const eligible = doc => doc.collection === 'Unseen Paper' || (doc.sourceType === 'google_drive' && doc.collection !== 'Syllabus');
 const matches = (source, doc) => source.documentId === doc.id && source.sha256 === doc.sha256 && source.subject === doc.subject;
 
 export function mergedPractice(library, curated, saved = { documents: {} }) {
@@ -73,11 +73,36 @@ export async function generateQuestions({ doc, chunk, count, existing }, request
   }),
   signal: AbortSignal.timeout(90000),
  });
- if (!response.ok) throw Error('provider');
+ if (!response.ok) throw Error(`provider_${response.status}`);
  const data = await response.json();
  const content = data.choices?.[0]?.message?.content;
  if (typeof content !== 'string') throw Error('invalid');
- try { return JSON.parse(content.replace(/^\s*```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '')); } catch { throw Error('invalid'); }
+ try {
+  const payload = JSON.parse(content.replace(/^\s*```(?:json)?\s*/i, '').replace(/\s*```\s*$/, ''));
+  const types = new Map([['short answer','Short answer'],['multiple choice','Multiple choice'],['true false','True / False'],['fill in the blank','Fill in the blank'],['think and answer','Think and answer']]);
+  const normalizeType = value => types.get(String(value || '').toLowerCase().replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim()) || value;
+  const normalizeText = value => String(value || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const items = (Array.isArray(payload.items) ? payload.items : []).map(item => {
+   if (!item || typeof item !== 'object') return item;
+   let evidence = typeof item.evidence === 'string' ? item.evidence.trim() : '';
+   if (evidence && !normalizeText(chunk.text).includes(normalizeText(evidence))) {
+    // Models occasionally return ellipses or join OCR lines in a shortened quote.
+    // Map that quote back to the most similar verbatim source sentence before validation.
+    const words = [...new Set((evidence.toLowerCase().match(/[\p{L}\p{N}]{3,}/gu) || []).filter(word => !['the','and','for','with','from','that','this','when','where','what','which','into','were','was','are','his','her','their'].includes(word)))];
+    const source = chunk.text.replace(/\s+/g, ' ').match(/[^.!?]+[.!?]?/g) || [];
+    let best = {score: 0, text: ''};
+    for (const sentence of source) {
+     const sentenceWords = new Set(sentence.toLowerCase().match(/[\p{L}\p{N}]{3,}/gu) || []);
+     const overlap = words.filter(word => sentenceWords.has(word)).length;
+     const score = overlap / Math.max(1, words.length);
+     if (score > best.score) best = {score, text: sentence.trim()};
+    }
+    if (best.score >= 0.35) evidence = best.text;
+   }
+   return {...item, type: normalizeType(item.type), options: Array.isArray(item.options) ? item.options : [], evidence};
+  });
+  return {...payload, items};
+ } catch { throw Error('invalid'); }
 }
 
 const messages = {

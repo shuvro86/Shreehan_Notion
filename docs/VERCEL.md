@@ -10,11 +10,11 @@ Session tokens are random, hashed in the database, and sent only in HttpOnly, Sa
 
 ## Notion on the free hosting plan
 
-The `Sync Notion` GitHub Actions workflow runs on a five-minute schedule and supports manual dispatch. GitHub schedules are best effort and may run late; this is not an instant-sync guarantee. The application polls the shared snapshot every 15 seconds while open. It reports stale sync after 30 minutes without success.
+The `Sync Notion` GitHub Actions workflow runs on a five-minute schedule and supports manual dispatch. GitHub schedules are best effort and may run late. This deployment does not yet meet the new 30-second sync requirement; it needs a persistent worker with Notion and read-only Drive credentials and access to the shared snapshot store. The application polls the shared snapshot every 15 seconds while open. It reports stale sync after 30 minutes without success.
 
 The workflow restores the last archive, runs the existing Notion importer and OCR tools, then publishes the manifest and changed assets in one database transaction. Removed documents are removed from the archive and become inaccessible. Failed imports preserve the last successful snapshot. Originals, previews, Homework and generated Class 2 practice are stored centrally; no developer computer is required.
 
-Repository Actions secrets: `NOTION_TOKEN`, `OPENROUTER_API_KEY`, `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`. The Vercel runtime needs only the two Turso variables, `OPENROUTER_API_KEY`, and `APP_ENV=production`. Do not expose these as `NEXT_PUBLIC_` variables.
+Repository Actions secrets: `NOTION_TOKEN`, `OPENROUTER_API_KEY`, `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, and either `GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON` or the three Google Drive OAuth settings listed in `.env.example`. The Vercel runtime needs only the two Turso variables, `OPENROUTER_API_KEY`, and `APP_ENV=production`. Do not expose secrets as `NEXT_PUBLIC_` variables.
 
 Existing account passwords and personal workspace data were migrated; old session credentials were not. SMTP settings are required for production signup and password recovery; production never logs verification codes as a substitute for email.
 

@@ -1,58 +1,110 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Check, ChevronRight, FileText, Sparkles } from 'lucide-react';
-import type { UnseenPractice } from '../lib/unseen-practice';
+import type { SubjectPractice } from '../lib/subject-practice';
 import './unseen-paper.css';
 
 type Document = { id: string; title: string; collection: string; subject: string; sha256?: string };
+type SyncProgress = {state:string;phase:string;percent:number;message:string;subject?:string|null;questionsReady?:number;questionsTarget?:number;subjectsTotal?:number;subjectsCompleted?:number};
 
-export default function UnseenPaper({ documents, bank }: { documents: Document[]; bank: UnseenPractice }) {
- const [selectedSubject, setSubject] = useState('Science');
- const [counts, setCounts] = useState<Record<string, number>>({});
+export default function UnseenPaper({ documents, bank, drivePending }: { documents: Document[]; bank: SubjectPractice; drivePending?: boolean }) {
+ const [selectedSubject, setSubject] = useState('');
+ const [localBank, setLocalBank] = useState(bank);
  const [revealed, setRevealed] = useState<string[]>([]);
  const [answers, setAnswers] = useState<Record<string, string>>({});
- const unseenDocuments = documents.filter(d => d.collection === 'Unseen Paper');
- // A reviewed answer is valid only for the exact source version that was read.
- const reviewed = bank.sources.filter(source => unseenDocuments.some(d => d.id === source.documentId && d.sha256 === source.sha256 && d.subject === source.subject));
- const readyIds = new Set(reviewed.map(source => source.documentId));
- const questions = bank.questions.filter(q => q.sources.every(source => readyIds.has(source.documentId)));
- const subjects = [...new Set(unseenDocuments.map(d => d.subject || 'Other'))].sort();
- const subject = subjects.includes(selectedSubject) ? selectedSubject : subjects[0];
- const subjectDocuments = unseenDocuments.filter(d => (d.subject || 'Other') === subject);
- const subjectQuestions = questions.filter(q => q.subject === subject);
- const pending = subjectDocuments.filter(d => !readyIds.has(d.id));
- const count = counts[subject] ?? 20;
- const visible = subjectQuestions.slice(0, count);
+ const [busy, setBusy] = useState(false);
+ const [error, setError] = useState('');
+ const [syncProgress, setSyncProgress] = useState<SyncProgress>({state:'idle',phase:'idle',percent:0,message:'Ready to sync Subject Materials.'});
+ useEffect(() => setLocalBank(bank), [bank]);
+ useEffect(() => {
+  let active = true;
+  async function refreshProgress() {
+   try {
+    const response = await fetch('/api/subject-materials/sync', {cache:'no-store'});
+    if (!response.ok) return;
+    const progress = await response.json() as SyncProgress;
+    if (active) {
+     setSyncProgress(progress);
+     if (progress.state !== 'running' && progress.state !== 'idle') window.dispatchEvent(new CustomEvent('shreehan:library-refresh'));
+    }
+   } catch { /* Keep the last visible sync state if the network blips. */ }
+  }
+  if (syncProgress.state === 'idle') void refreshProgress();
+  if (syncProgress.state !== 'running') return () => {active=false};
+  const timer = setInterval(refreshProgress, 1200);
+  return () => {active=false;clearInterval(timer)};
+ }, [syncProgress.state]);
+ const subjects = localBank.subjects;
+ const selected = subjects.find(item => item.name === selectedSubject) || subjects[0];
+ const subject = selected?.name || '';
+ const subjectDocuments = documents.filter(doc => selected?.documentIds.includes(doc.id));
+ const questions = selected?.questions || [];
+ const visible = questions.slice(0, selected?.target || 15);
  const reveal = (id: string) => setRevealed(current => current.includes(id) ? current.filter(item => item !== id) : [...current, id]);
- return <section className="unseen-paper-module" aria-label="Unseen Paper practice">
+ async function generateMore() {
+  if (!selected || busy) return;
+  setBusy(true); setError('');
+  try {
+   const response = await fetch(`/api/subject-practice/${encodeURIComponent(subject)}/generate-more`, {method: 'POST', cache: 'no-store'});
+   const data = await response.json();
+   if (!response.ok) throw Error(typeof data.detail === 'string' ? data.detail : 'Could not generate questions. Please try again.');
+   setLocalBank(data as SubjectPractice);
+  } catch (cause) { setError(cause instanceof Error ? cause.message : 'Could not generate questions. Please try again.'); }
+  finally { setBusy(false); }
+ }
+ async function syncNotion() {
+  if (syncProgress.state === 'running') return;
+  setError('');
+  setSyncProgress({state:'running',phase:'starting',percent:1,message:'Starting Notion sync…'});
+  try {
+   const response = await fetch('/api/subject-materials/sync', {method:'POST',cache:'no-store'});
+   const progress = await response.json();
+   if (!response.ok) throw Error(progress.error || progress.detail || 'Could not start Notion sync.');
+   setSyncProgress(progress as SyncProgress);
+  } catch (cause) {
+   setSyncProgress(current => ({...current,state:'error',phase:'error',message:cause instanceof Error ? cause.message : 'Could not start Notion sync.'}));
+  }
+ }
+ return <section className="unseen-paper-module" aria-label="Analytical Material">
   <div className="unseen-paper-heading">
-   <div><div className="eyebrow"><span/> SUBJECT PRACTICE · CLASS 2</div><h2>Unseen Paper challenge.</h2><p>Choose a subject. Try each question, then reveal its answer. Every small step helps you learn, Shreehan!</p></div>
-   <div className="unseen-paper-count" aria-live="polite"><strong>{visible.length}</strong><span>of {subjectQuestions.length} questions</span></div>
+   <div><div className="eyebrow"><span/> SUBJECT MATERIALS · CLASS 2</div><h2>Analytical Material</h2><p>Choose a subject from Notion. Each question and answer comes from its linked study material.</p></div>
+   <div className="unseen-paper-count" aria-live="polite"><strong>{visible.length}</strong><span>of {selected?.target || 15} questions</span></div>
+  </div>
+  <div className="subject-sync-control">
+   <button className="sync-notion-button" onClick={syncNotion} disabled={syncProgress.state==='running'}><Sparkles size={16}/>{syncProgress.state==='running'?'Syncing…':'Sync Notion'}</button>
+   {syncProgress.state !== 'idle' && <div className="subject-sync-status" aria-live="polite">
+    <div className="subject-sync-status-heading"><strong>{syncProgress.state==='running'?'Sync in progress':syncProgress.state==='complete'?'Sync complete':syncProgress.state==='partial'?'Sync partially complete':syncProgress.state==='error'?'Sync failed':'Ready to sync'}</strong><span>{syncProgress.percent}%</span></div>
+    <progress value={syncProgress.percent} max={100} aria-label="Notion sync and analysis progress"/>
+    <p>{syncProgress.message}{syncProgress.phase==='analysis'&&syncProgress.subjectsTotal?` · Subject ${Math.min((syncProgress.subjectsCompleted||0)+1,syncProgress.subjectsTotal)} of ${syncProgress.subjectsTotal}`:''}</p>
+   </div>}
+   {drivePending && <p className="subject-sync-limitation">New files inside linked Drive folders need a server-side Drive credential to be discovered.</p>}
   </div>
   <div className="unseen-subjects" role="group" aria-label="Choose a subject">
-   {subjects.map(name => <button key={name} aria-pressed={subject === name} onClick={() => setSubject(name)}>{name}<span>{questions.filter(q => q.subject === name).length} questions</span></button>)}
+   {subjects.map(item => <button key={item.name} aria-pressed={subject === item.name} onClick={() => {setSubject(item.name);setError('');}}>{item.name}<span>{item.questions.length} of {item.target} questions</span></button>)}
   </div>
-  <div className="unseen-paper-note"><Sparkles size={18}/><span>{subjectQuestions[0]?.topic ? <strong>{subjectQuestions[0].topic} · </strong> : null}{subjectDocuments.length - pending.length} of {subjectDocuments.length} synced files have questions for {subject || 'this collection'}. Start with up to 20 questions and add five at a time. New files are prepared automatically. AI-prepared answers are learning aids; check the linked source if anything seems unclear.</span></div>
-  {!!pending.length && <div className="unseen-pending" role="status"><strong>{pending.length} new or changed {pending.length === 1 ? 'file is' : 'files are'} awaiting automatic questions.</strong>{pending.map(doc => <p key={doc.id}>{doc.title}: {bank.jobs?.find(job => job.documentId === doc.id)?.message || 'Waiting for automatic question preparation.'}</p>)}</div>}
-  <details className="unseen-source-list"><summary>View {subject || 'collection'} source pages ({subjectDocuments.length})</summary>
-   {subjectDocuments.map(doc => { const source = reviewed.find(s => s.documentId === doc.id); return <a key={doc.id} href={`/library?doc=${doc.id}&page=1`} target="_blank" rel="noreferrer"><FileText size={14}/>{doc.title}{source ? ` · ${source.origin === 'ai' ? 'AI questions ready' : 'reviewed questions ready'}` : ' · preparing questions'}</a>; })}
-  </details>
-  {!subjectQuestions.length && <p className="unseen-finished">Questions will appear here automatically when preparation finishes. You can read the source pages above.</p>}
-  <div className="unseen-question-grid">{visible.map((q, index) => {
-   const shown = revealed.includes(q.id);
-   return <article className="unseen-question-card" key={q.id} data-question-id={q.id}>
-    <div className="unseen-question-meta"><span>{q.subject} · {q.topic}</span><span>{q.type}</span></div>
-    <h3><b>{String(index + 1).padStart(2, '0')}</b>{q.question}</h3>
-    {q.options.length ? <div className="unseen-options">{q.options.map(option => <button key={option} disabled={shown} aria-pressed={answers[q.id] === option} className={`${answers[q.id] === option ? 'selected' : ''} ${shown && option === q.answer ? 'correct' : ''}`} onClick={() => setAnswers(current => ({ ...current, [q.id]: option }))}>{option}{shown && option === q.answer && <Check size={14}/>}</button>)}</div> : <textarea aria-label={`Your answer: ${q.question}`} placeholder="Write your answer here…" value={answers[q.id] || ''} onChange={e => setAnswers(current => ({ ...current, [q.id]: e.target.value }))} disabled={shown}/>}
-    <div className="unseen-question-actions"><button className="unseen-answer-button" aria-expanded={shown} aria-controls={`answer-${q.id}`} onClick={() => reveal(q.id)}>{shown ? 'Hide answer' : 'Show answer'}<ChevronRight size={15}/></button></div>
-    <div id={`answer-${q.id}`} hidden={!shown} className="unseen-model-answer"><small>MODEL ANSWER · CLASS 2</small><p>{q.answer}</p></div>
-    <div className="unseen-sources">{q.sources.map(source => {
-     const reviewedSource = reviewed.find(s => s.documentId === source.documentId);
-     return <a key={`${source.documentId}-${source.page}`} href={`/library?doc=${source.documentId}&page=${source.page}`} target="_blank" rel="noreferrer"><FileText size={12}/>Read source · {reviewedSource?.printedPage ? `book page ${reviewedSource.printedPage}` : `page ${source.page}`}</a>;
-    })}</div>
-   </article>;
-  })}</div>
-  {count < subjectQuestions.length ? <button className="unseen-more-button" onClick={() => setCounts(current => ({ ...current, [subject]: Math.min(count + 5, subjectQuestions.length) }))}><Sparkles size={17}/>Show {Math.min(5, subjectQuestions.length - count)} more different questions</button> : !!subjectQuestions.length && <div className="unseen-finished">All {subjectQuestions.length} {subject} questions are now shown. Wonderful work, Shreehan! Try another subject or practise these again.</div>}
+  {!subjects.length && <p className="unseen-finished">Subject Materials will appear here when Notion finishes syncing.</p>}
+  {selected && <>
+   <div className="unseen-paper-note"><Sparkles size={18}/><span>{subjectDocuments.length} linked {subjectDocuments.length === 1 ? 'file' : 'files'} for {subject}. Generate More adds five questions. Check the linked page if an answer seems unclear.</span></div>
+   {selected.state !== 'ready' && <div className="unseen-pending" role="status"><strong>{selected.message}</strong></div>}
+   <details className="unseen-source-list"><summary>View {subject} source material ({subjectDocuments.length} files)</summary>
+    {selected.notionUrls.filter(Boolean).map(url => <a key={url} href={url} target="_blank" rel="noreferrer"><FileText size={14}/>Subject Materials in Notion</a>)}
+    {subjectDocuments.map(doc => <a key={doc.id} href={`/library?doc=${encodeURIComponent(doc.id)}&page=1`} target="_blank" rel="noreferrer"><FileText size={14}/>{doc.title}</a>)}
+   </details>
+   {!questions.length && <p className="unseen-finished">Questions will appear when the linked material has been read and checked.</p>}
+   <div className="unseen-question-grid">{visible.map((q, index) => {
+    const shown = revealed.includes(q.id);
+    return <article className="unseen-question-card" key={q.id} data-question-id={q.id}>
+     <div className="unseen-question-meta"><span>{q.subject} · {q.topic}</span><span>{q.type}</span></div>
+     <h3><b>{String(index + 1).padStart(2, '0')}</b>{q.question}</h3>
+     {q.options.length ? <div className="unseen-options">{q.options.map(option => <button key={option} disabled={shown} aria-pressed={answers[q.id] === option} className={`${answers[q.id] === option ? 'selected' : ''} ${shown && option === q.answer ? 'correct' : ''}`} onClick={() => setAnswers(current => ({ ...current, [q.id]: option }))}>{option}{shown && option === q.answer && <Check size={14}/>}</button>)}</div> : <textarea aria-label={`Your answer: ${q.question}`} placeholder="Write your answer here…" value={answers[q.id] || ''} onChange={event => setAnswers(current => ({...current, [q.id]: event.target.value}))} disabled={shown}/>}
+     <div className="unseen-question-actions"><button className="unseen-answer-button" aria-expanded={shown} aria-controls={`answer-${q.id}`} onClick={() => reveal(q.id)}>{shown ? 'Hide answer' : 'Show answer'}<ChevronRight size={15}/></button></div>
+     <div id={`answer-${q.id}`} hidden={!shown} className="unseen-model-answer"><small>MODEL ANSWER · CLASS 2</small><p>{q.answer}</p></div>
+     <div className="unseen-sources">{q.sources.map(source => <a key={`${source.documentId}-${source.page}`} href={`/library?doc=${encodeURIComponent(source.documentId)}&page=${source.page}`} target="_blank" rel="noreferrer"><FileText size={12}/>Read source · page {source.page}</a>)}</div>
+    </article>;
+   })}</div>
+   {error && <p className="unseen-pending" role="alert">{error}</p>}
+   <button className="unseen-more-button" disabled={busy || syncProgress.state==='running' || selected.state !== 'ready' || questions.length < selected.target} onClick={generateMore}><Sparkles size={17}/>{busy ? 'Generating five questions…' : 'Generate More'}<span>+5 questions</span></button>
+  </>}
  </section>;
 }

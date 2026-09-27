@@ -28,11 +28,12 @@ class NotionSupervisor:
         self.store = store
         self.tasks = []
         self.leader = None
-        self.interval = max(30, int(os.getenv('NOTION_SYNC_INTERVAL_SECONDS', '60')))
-        self.timeout = max(60, int(os.getenv('NOTION_SYNC_TIMEOUT_SECONDS', '600')))
+        self.drive = os.getenv('CONTENT_SOURCE', 'notion') == 'google_drive'
+        self.interval = max(30, int(os.getenv('GOOGLE_DRIVE_SYNC_INTERVAL_SECONDS' if self.drive else 'NOTION_SYNC_INTERVAL_SECONDS', '30')))
+        self.timeout = max(60, int(os.getenv('GOOGLE_DRIVE_SYNC_TIMEOUT_SECONDS' if self.drive else 'NOTION_SYNC_TIMEOUT_SECONDS', '1200')))
 
     async def start(self):
-        if os.getenv('NOTION_SYNC_DISABLED') == '1':
+        if os.getenv('CONTENT_SYNC_DISABLED') == '1' or (not self.drive and os.getenv('NOTION_SYNC_DISABLED') == '1'):
             return
         self.store.mkdir(parents=True, exist_ok=True)
         # OS releases this lease on exit; PID reuse and container restarts cannot strand it.
@@ -48,13 +49,17 @@ class NotionSupervisor:
         except (OSError, BlockingIOError):
             self.leader.close(); self.leader = None
             return
-        if not os.getenv('NOTION_TOKEN') or not shutil.which('node'):
-            write_status(self.store / 'worker.json', {'state':'unconfigured','updatedAt':timestamp(), 'message':'Notion sync needs a token and Node.js on the server.'})
+        has_credentials = bool(os.getenv('GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON') or all(os.getenv(k) for k in ('GOOGLE_DRIVE_CLIENT_ID', 'GOOGLE_DRIVE_CLIENT_SECRET', 'GOOGLE_DRIVE_REFRESH_TOKEN')) or os.getenv('G_DRIVE_KEY')) if self.drive else bool(os.getenv('NOTION_TOKEN'))
+        if not has_credentials or not shutil.which('node'):
+            source = 'Google Drive' if self.drive else 'Notion'
+            write_status(self.store / 'worker.json', {'state':'unconfigured','updatedAt':timestamp(), 'message':f'{source} sync needs server credentials and Node.js.'})
             return
-        self.tasks = [asyncio.create_task(self.loop(['scripts/sync-notion.mjs', '--once', '--sync-only'], self.interval, True))]
+        command = ['scripts/sync-drive.mjs', '--once'] if self.drive else ['scripts/sync-notion.mjs', '--once', '--sync-only']
+        self.tasks = [asyncio.create_task(self.loop(command, self.interval, True))]
         if os.getenv('OPENROUTER_API_KEY'):
-            # Question generation never delays the Notion import loop.
+            # Question generation never delays the source import loop.
             self.tasks.append(asyncio.create_task(self.loop(['scripts/prepare-unseen.mjs'], 120, False)))
+            self.tasks.append(asyncio.create_task(self.loop(['scripts/prepare-subject-practice.mjs'], 30, False)))
 
     async def stop_child(self, child):
         if child.returncode is not None:
@@ -88,15 +93,15 @@ class NotionSupervisor:
                             with contextlib.suppress(OSError, ValueError, KeyError):
                                 status = json.loads((self.store / 'status.json').read_text())
                                 last_progress = time.time()-datetime.fromisoformat(status['updatedAt'].replace('Z','+00:00')).timestamp()
-                        if time.monotonic()-started > self.timeout or (primary and last_progress > 180):
-                            raise TimeoutError('Notion worker exceeded its time limit')
+                        if time.monotonic()-started > self.timeout or (primary and last_progress > 600):
+                            raise TimeoutError('Content worker exceeded its time limit')
                 if child.returncode:
                     raise RuntimeError('Notion worker exited unsuccessfully')
             except asyncio.CancelledError:
                 raise
             except Exception:
                 failed = True
-                log.warning('Notion %s worker failed; automatic retry scheduled', 'sync' if primary else 'practice')
+                log.warning('%s %s worker failed; automatic retry scheduled', 'Google Drive' if self.drive else 'Notion', 'sync' if primary else 'practice')
                 if primary:
                     write_status(self.store / 'worker.json', {'state':'error','updatedAt':timestamp(),'message':'Sync interrupted. Retrying automatically; saved content remains available.'})
             finally:

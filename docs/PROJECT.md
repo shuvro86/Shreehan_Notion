@@ -8,7 +8,7 @@
 
 ## 1. Product overview
 
-Shreehan HQ is a responsive personal learning workspace for a Class II learner. It combines a learning dashboard, a Notion-fed document library, source-linked study questions, Unseen Paper practice, a document-grounded AI assistant, and a small Agile-style Kanban board. The UI is aimed at Shreehan and uses friendly language, accessible controls, responsive layouts, and account-scoped persistence for personal progress.
+Shreehan HQ is a responsive personal learning workspace for a Class II learner. It combines a learning dashboard, a Notion-fed document library, the Analytical Material question module, a document-grounded AI assistant, and a small Agile-style Kanban board. The UI is aimed at Shreehan and uses friendly language, accessible controls, responsive layouts, and account-scoped persistence for personal progress.
 
 The Next.js App Router frontend builds to a static export. Python FastAPI serves that export at `/` and owns the live APIs, authentication, and SQLite persistence. A long-running Node worker can synchronize Notion content into local disk storage. The Docker image packages the frontend, backend, worker, PDF/OCR tools, and baseline data; a persistent volume holds SQLite and synchronized files.
 
@@ -38,7 +38,7 @@ The Next.js App Router frontend builds to a static export. Python FastAPI serves
 - The sidebar links to the dashboard, document library, Digital Twin, Class 2 practice, and Project board.
 - The homepage sidebar footer contains Change password and the account profile/sign-out controls. The workspace switcher still opens workspace information; there is no separate Help & workspace info item or decorative focus-note card.
 - Dashboard Overview, My tasks, and the eight collection controls switch the view within `/`; the four module links open their own routes and each module provides a link back to the dashboard.
-- Collections shown in the dashboard include Routine, Syllabus, Study Note, Assignment, Exam, Unseen Paper, CT, and Todo List.
+- Collections shown in the dashboard include Routine, Syllabus, Study Note, Assignment, Exam, Analytical Material, CT, and Todo List.
 - The dashboard includes sample tasks, an example weekly routine, exam schedule information, rotating encouragement, and a daily context panel. The routine and task seed data are examples, not live school data.
 - Dashboard tasks can be added, completed, filtered, and saved per signed-in account through FastAPI and SQLite. Quick search is opened with Cmd/Ctrl+K. Each new account receives the sample task set.
 - Daily context displays Dhaka weather and date-specific history when its external sources respond. Network failures leave the rest of the dashboard usable.
@@ -54,12 +54,12 @@ The Next.js App Router frontend builds to a static export. Python FastAPI serves
 - Practice completion is saved per signed-in account in SQLite. Answer drafts and reveal state remain ephemeral in the current browser session.
 - `docs/CLASS2_STUDY_GUIDE.md` describes source coverage and known gaps in the imported school material. Prepared answers are learning aids, not an official school answer key.
 
-### Unseen Paper practice
+### Analytical Material
 
-- The Unseen Paper module is presented from the dashboard’s Unseen Paper collection.
+- The Analytical Material module appears in the dashboard collection navigation.
 - It groups eligible documents by subject and presents source-linked, question-and-answer practice. It supports answer reveal, multiple-choice or written responses, source-page links, and incremental question display.
 - Reviewed questions from `data/unseen-practice.json` are used only when the document checksum and subject still match. Generated question state lives in `.notion-sync/unseen-practice.json` and is checkpointed by source version.
-- The background worker can use OpenRouter to prepare questions for new or changed Unseen Paper files. It validates that every generated answer has an exact evidence excerpt from the source text, enforces the supported question formats, and rejects duplicate or unsupported answers.
+- Subject Materials question preparation runs separately from legacy Unseen Paper document preparation. It checks each new question against source text and rejects unsupported formats and duplicates.
 - Unreadable scans and unsupported formats are surfaced for attention rather than answered by guessing.
 
 ### Shreehan Digital Twin
@@ -142,7 +142,7 @@ There is no ORM, external authentication provider, queue service, or cloud objec
 
 | Path | Purpose |
 |---|---|
-| `frontend/app/page.tsx` | Dashboard, dashboard navigation, collection views, tasks, routine, exam schedule, and Unseen Paper entry point |
+| `frontend/app/page.tsx` | Dashboard, dashboard navigation, collection views, tasks, routine, exam schedule, and Analytical Material entry point |
 | `frontend/app/globals.css` | Global UI styles and shared workspace layout |
 | `frontend/app/layout.tsx`, `frontend/app/components/auth-gate.tsx` | Root layout, client session guard, and application metadata |
 | `frontend/app/login/page.tsx`, `frontend/app/login/login.css` | Animated sign-in, signup/OTP, first-password, and recovery UI |
@@ -153,8 +153,8 @@ There is no ORM, external authentication provider, queue service, or cloud objec
 | `frontend/app/components/library.tsx` | Library, document reader, import report, and curated practice UI |
 | `frontend/app/components/library.css` | Library and practice styles |
 | `frontend/app/components/use-library.ts` | Polls the library API, builds sync labels, and filters stale practice against source checksums |
-| `frontend/app/components/unseen-paper.tsx` | Unseen Paper study UI |
-| `frontend/app/components/unseen-paper.css` | Unseen Paper styles |
+| `frontend/app/components/unseen-paper.tsx` | Analytical Material study UI (legacy component filename) |
+| `frontend/app/components/unseen-paper.css` | Analytical Material styles (legacy stylesheet filename) |
 | `frontend/app/assistant/page.tsx` | Assistant chat and Q&A UI |
 | `frontend/app/assistant/assistant.css` | Assistant styles |
 | `backend/main.py` | FastAPI application, static site host, API guards, and synced-asset route |
@@ -277,7 +277,7 @@ Account data follows the learner between browsers that sign into the same server
 
 - API: `https://openrouter.ai/api/v1/chat/completions`.
 - Required secret: `OPENROUTER_API_KEY`.
-- Model: `openai/gpt-oss-120b` for the FastAPI assistant. The background Unseen Paper generator defaults to this same slug via `OPENROUTER_MODEL`.
+- Model: `openai/gpt-oss-120b` for the FastAPI assistant. Background practice generators default to this same slug via `OPENROUTER_MODEL`.
 - Used for assistant chat/Q&A and background unseen-paper question generation.
 - Study Q&A uses JSON response mode where supported. Unseen questions are checked against a verbatim source excerpt before they are saved or shown.
 - For Digital Twin prompts, selected library excerpts and the current conversation history are sent to the provider. Do not represent this flow as local-only inference.
@@ -394,7 +394,7 @@ When a later user request changes the project, update this document in the same 
 
 - Created this document after reviewing the app routes, UI components, API handlers, Notion sync worker, AI question generation, static data, local persistence, configuration, deployment constraints, and existing tests.
 - Recorded the current single-board Kanban scope and palette, current dataset counts, environment variable names, external service contracts, clean-room setup, and the persistent-disk deployment requirement.
-- Updated stale Playwright assertions to match current dashboard and Unseen Paper copy, and added `tests/kanban.spec.ts` to cover the board’s core requirements.
+- Updated stale Playwright assertions to match current dashboard copy, and added `tests/kanban.spec.ts` to cover the board’s core requirements.
 - Validation: `npm run typecheck` passed; `npm run build` passed; `npm run test:sync` passed all 10 tests; `npx playwright test` passed all 18 browser tests (including the two Kanban flows).
 
 ### 2026-09-23 — Code review

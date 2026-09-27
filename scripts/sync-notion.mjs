@@ -6,7 +6,7 @@ nextEnv.loadEnvConfig(process.cwd());
 const {sync,atomic,root}=await import('../server/notion-sync.mjs');
 if(!process.env.NOTION_TOKEN){await atomic(root+'/status.json',{state:'unconfigured',message:'Set NOTION_TOKEN on the server to enable automatic sync.'});process.exit(1)}
 if(process.env.VERCEL){console.error('Automatic sync requires a persistent Node server and disk.');process.exit(1)}
-const interval=Math.max(30,Number(process.env.NOTION_SYNC_INTERVAL_SECONDS)||60)*1000;
+const interval=Math.max(30,Number(process.env.NOTION_SYNC_INTERVAL_SECONDS)||30)*1000;
 do{
  try{
   const result=await sync();

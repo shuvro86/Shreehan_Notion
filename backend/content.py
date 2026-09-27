@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import hashlib
+import asyncio
 import os
 import re
 from datetime import datetime, timezone
@@ -11,11 +12,13 @@ from zoneinfo import ZoneInfo
 
 import httpx
 from fastapi import APIRouter, HTTPException, Response
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).resolve().parents[1]
 SYNC_DIR = Path(os.getenv("NOTION_SYNC_DIR", ROOT / ".notion-sync"))
 router = APIRouter(prefix="/api")
+_subject_sync_task: asyncio.Task | None = None
 
 
 def read_json(path: Path, fallback):
@@ -28,8 +31,12 @@ def read_json(path: Path, fallback):
 def current_library():
     if os.getenv("TURSO_DATABASE_URL"):
         from backend.cloud_content import read_json as cloud_json
-        return cloud_json("library.json", {})
-    return read_json(SYNC_DIR / "library.json", read_json(ROOT / "data/library.json", {}))
+        data = cloud_json("library.json", {})
+    else:
+        data = read_json(SYNC_DIR / "library.json", read_json(ROOT / "data/library.json", {}))
+    if os.getenv('CONTENT_SOURCE', 'notion') == 'google_drive' and data.get('sourceType') != 'google_drive':
+        return {'sourceType':'google_drive', 'documents':[], 'records':[], 'homework':{'sources':[], 'items':[]}, 'expectedAttachments':0, 'missing':[], 'scope':'Waiting for the configured Google Drive folder to sync.'}
+    return data
 
 
 def active_asset(url: str):
@@ -37,7 +44,7 @@ def active_asset(url: str):
 
 
 def merged_practice(library, curated, saved):
-    documents = [d for d in library.get("documents", []) if d.get("collection") == "Unseen Paper"]
+    documents = [d for d in library.get("documents", []) if d.get("collection") == "Unseen Paper" or (d.get('sourceType') == 'google_drive' and d.get('collection') != 'Syllabus')]
     sources = [s for s in curated.get("sources", []) if any(s.get("documentId") == d.get("id") and s.get("sha256") == d.get("sha256") and s.get("subject") == d.get("subject") for d in documents)]
     ids = {s["documentId"] for s in sources}
     questions = [q for q in curated.get("questions", []) if all(s.get("documentId") in ids for s in q.get("sources", []))]
@@ -60,6 +67,31 @@ def version_key(doc):
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()[:16]
 
 
+def subject_practice_view(library, saved):
+    records = [r for r in library.get('records', []) if r.get('collection') == 'Subject Materials' and r.get('subject')]
+    subjects = []
+    for subject in sorted({r['subject'] for r in records}):
+        related = [r for r in records if r['subject'] == subject]
+        urls = {r.get('url') for r in related}
+        documents = [d for d in library.get('documents', []) if d.get('subject') == subject and (d.get('notionUrl') in urls or d.get('collection') == 'Subject Materials' or d.get('sourceType') == 'google_drive')]
+        sources = sorted([[d.get('id'), d.get('sha256'), version_key(d)] for d in documents])
+        entry = saved.get('subjects', {}).get(subject, {})
+        saved_sources = entry.get('sources', [])
+        current = len(saved_sources) == len(sources) and {tuple(item) for item in saved_sources} == {tuple(item) for item in sources}
+        questions = entry.get('questions', []) if current else []
+        subjects.append({'name': subject, 'notionUrls': [r.get('url') for r in related], 'documentIds': [d.get('id') for d in documents], 'target': entry.get('target', 15) if current else 15, 'state': entry.get('state', 'queued') if current else 'queued', 'message': entry.get('message', 'Preparing the first 15 questions.') if current else 'Source material changed; preparing fresh questions.', 'questions': questions})
+    return {'subjects': subjects}
+
+
+def current_subject_practice(library):
+    if os.getenv('TURSO_DATABASE_URL'):
+        from backend.cloud_content import read_json as cloud_json
+        saved = cloud_json('subject-practice.json', {'subjects': {}})
+    else:
+        saved = read_json(SYNC_DIR / 'subject-practice.json', {'subjects': {}})
+    return subject_practice_view(library, saved)
+
+
 def sync_health():
     if os.getenv("TURSO_DATABASE_URL"):
         from backend.cloud_content import read_json as cloud_json
@@ -68,7 +100,8 @@ def sync_health():
             age = (datetime.now(timezone.utc) - datetime.fromisoformat(status["lastSuccess"].replace("Z", "+00:00"))).total_seconds()
         except (ValueError, TypeError, KeyError):
             age = float("inf")
-        return {**status, "state": status.get("state", "ready") if age < 1800 else "stale", "message": "Scheduled Notion sync; GitHub scheduling may be delayed." if age < 1800 else "Notion sync is delayed. Showing the last successful copy.", "intervalSeconds": 300}
+        source = 'Google Drive' if os.getenv('CONTENT_SOURCE', 'notion') == 'google_drive' else 'Notion'
+        return {**status, "state": status.get("state", "ready") if age < 1800 else "stale", "message": f"Scheduled {source} sync; GitHub scheduling may be delayed." if age < 1800 else f"{source} sync is delayed. Showing the last successful copy.", "intervalSeconds": 300}
     status = read_json(SYNC_DIR / "status.json", {"state":"starting", "lastSuccess":None})
     worker = read_json(SYNC_DIR / "worker.json", {})
     def age(value):
@@ -78,11 +111,11 @@ def sync_health():
     if worker.get("state") == "unconfigured":
         return {**status, "state":"unconfigured", "message":worker.get("message")}
     if age(worker.get("updatedAt")) > 45:
-        return {**status, "state":"stale", "message":"Notion sync is not running. Showing the last saved copy."}
+        return {**status, "state":"stale", "message":"Source sync is not running. Showing the last saved copy."}
     if worker.get("state") == "error":
         return {**status, "state":"error", "message":worker.get("message")}
     if age(status.get("lastSuccess")) > max(180, worker.get("intervalSeconds", 60)*3):
-        return {**status, "state":"stale", "message":"Notion updates are delayed. Recovery is running; showing the last saved copy."}
+        return {**status, "state":"stale", "message":"Source updates are delayed. Recovery is running; showing the last saved copy."}
     return status
 
 
@@ -94,7 +127,85 @@ def library(response: Response):
     if os.getenv("TURSO_DATABASE_URL"):
         from backend.cloud_content import read_json as cloud_json
         saved = cloud_json("unseen-practice.json", {"documents": {}})
-    return {"library": data, "sync": sync_health(), "unseenPractice": merged_practice(data, read_json(ROOT / "data/unseen-practice.json", {}), saved)}
+    return {"library": data, "sync": sync_health(), "unseenPractice": merged_practice(data, read_json(ROOT / "data/unseen-practice.json", {}), saved), "subjectPractice": current_subject_practice(data)}
+
+
+def subject_material_sync_status():
+    return read_json(SYNC_DIR / "subject-materials-sync.json", {"state":"idle", "phase":"idle", "percent":0, "message":"Ready to sync Subject Materials."})
+
+
+async def _run_subject_material_sync():
+    try:
+        process = await asyncio.create_subprocess_exec(
+            'node', 'scripts/sync-subject-materials.mjs', cwd=ROOT,
+            env={**os.environ, 'NOTION_SYNC_DIR': str(SYNC_DIR)},
+            stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL,
+        )
+        await asyncio.wait_for(process.wait(), timeout=1800)
+        status = subject_material_sync_status()
+        if process.returncode and status.get('state') not in ('error', 'partial'):
+            atomic_write_json(SYNC_DIR / 'subject-materials-sync.json', {**status, 'state':'error', 'phase':'error', 'message':'Sync or analysis failed. Your previously saved materials are still available.', 'updatedAt':datetime.now(timezone.utc).isoformat()})
+    except asyncio.CancelledError:
+        raise
+    except asyncio.TimeoutError:
+        process.kill()
+        await process.wait()
+        status = subject_material_sync_status()
+        atomic_write_json(SYNC_DIR / 'subject-materials-sync.json', {**status, 'state':'error', 'phase':'error', 'message':'Sync took too long. Your previously saved materials are still available.', 'updatedAt':datetime.now(timezone.utc).isoformat()})
+    except Exception:
+        status = subject_material_sync_status()
+        atomic_write_json(SYNC_DIR / 'subject-materials-sync.json', {**status, 'state':'error', 'phase':'error', 'message':'Could not start the sync worker. Your previously saved materials are still available.', 'updatedAt':datetime.now(timezone.utc).isoformat()})
+
+
+def atomic_write_json(path: Path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix('.tmp')
+    temporary.write_text(json.dumps(value))
+    temporary.replace(path)
+
+
+@router.get('/subject-materials/sync')
+def subject_material_sync_progress(response: Response):
+    response.headers['Cache-Control'] = 'no-store'
+    return subject_material_sync_status()
+
+
+@router.post('/subject-materials/sync')
+async def start_subject_material_sync():
+    global _subject_sync_task
+    if os.getenv('VERCEL'):
+        raise HTTPException(503, 'Manual sync needs the persistent local worker.')
+    if not os.getenv('NOTION_TOKEN'):
+        raise HTTPException(503, 'Notion sync is not configured on the server.')
+    if _subject_sync_task and not _subject_sync_task.done():
+        return JSONResponse(subject_material_sync_status(), status_code=202)
+    atomic_write_json(SYNC_DIR / 'subject-materials-sync.json', {'state':'running', 'phase':'starting', 'percent':1, 'message':'Starting Notion sync…', 'updatedAt':datetime.now(timezone.utc).isoformat()})
+    _subject_sync_task = asyncio.create_task(_run_subject_material_sync())
+    return JSONResponse(subject_material_sync_status(), status_code=202)
+
+
+@router.post('/subject-practice/{subject}/generate-more')
+async def generate_more_subject_questions(subject: str):
+    if os.getenv('VERCEL'):
+        raise HTTPException(503, 'Interactive question generation needs a persistent worker.')
+    if subject not in {r.get('subject') for r in current_library().get('records', []) if r.get('collection') == 'Subject Materials'}:
+        raise HTTPException(404, 'Subject Materials subject not found.')
+    if not os.getenv('OPENROUTER_API_KEY'):
+        raise HTTPException(503, 'Question generation is not configured on the server.')
+    process = await asyncio.create_subprocess_exec('node', 'scripts/prepare-subject-practice.mjs', '--more', subject, cwd=ROOT, env={**os.environ, 'NOTION_SYNC_DIR': str(SYNC_DIR)}, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+    try:
+        await asyncio.wait_for(process.communicate(), timeout=300)
+    except asyncio.TimeoutError:
+        process.kill()
+        await process.wait()
+        raise HTTPException(504, 'Question generation took too long. Please try again.')
+    if process.returncode == 2:
+        raise HTTPException(409, 'Questions are already being prepared. Try again shortly.')
+    if process.returncode == 3:
+        raise HTTPException(409, 'The first 15 questions are still being prepared.')
+    if process.returncode:
+        raise HTTPException(502, 'Questions could not be generated. Please try again.')
+    return current_subject_practice(current_library())
 
 
 class Message(BaseModel):

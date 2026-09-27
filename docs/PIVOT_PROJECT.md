@@ -1,0 +1,150 @@
+# Project pivot: Class II half-yearly study source
+
+Updated: 2026-09-27 (Asia/Dhaka). Keep this working brief current when source scope, sync behavior, question generation, or deployment changes.
+
+## Source of truth
+
+The application connects directly to the **Shreehan HQ** TeamSpace in the Shreehan Notion workspace. Its half-yearly records link to the [Shreehan / Mapleleaf / 2 / Half Yearly Google Drive folder](https://drive.google.com/drive/folders/1pg3lbrlzwxJClmKCMQEpZg-9aMIrHnwr), owned by the connected account `sun.srs86@gmail.com`. Notion pages and databases remain the application's primary workspace source; the linked Drive folder supplies original study files. Sync its descendants, including future additions, edits, renames, moves, and deletions. Exclude unrelated parts of Drive.
+
+The folder was inventoried and its 17 files reviewed on 2026-09-27. The three-page syllabus and all 15 Science images were read; the 12-page image-only Geography PDF was rendered and checked page by page. `Study Notes` was empty at that check. Drive may change after this observation. On a later check, the [Notion Half Yearly syllabus record](https://app.notion.com/p/3e59ecdd38af80919219c6c9968e08b4) was fetched again: its body is a template, while `Files & media` links to the readable three-page `syllabus.pdf` in Drive. The PDF covers Class II half-yearly 2026–2027 subjects, including Science, Geography, Bangla I/II, Islamic Studies, and Moral Studies; the Bangla page has legacy-font text encoding and needs visual review.
+
+```text
+Half Yearly/
+├── Syllabus/
+│   └── syllabus.pdf                    3 PDF pages
+├── Study Notes/                       empty at review
+└── Materials/
+    ├── Science/
+    │   ├── 59.png–66.png              Food for Health, 8 textbook pages
+    │   └── 84.png–90.png              Rocks and Minerals, 7 textbook pages
+    └── Geograpgy/                     spelling as found in Drive
+        └── Geography.pdf               12 scanned PDF pages, textbook pp. 14–25
+```
+
+### Source analysis
+
+| Source | Coverage | Limit |
+| --- | --- | --- |
+| [syllabus.pdf](https://drive.google.com/file/d/1wjYczLYdFtruV5ETLMPUKpIXGuq2qVr0/view) | Maple Leaf International School, Class II July session, Half-Yearly Examination 2026–2027. English, mathematics, science, history, geography, spelling, Bangladesh Studies, poetry, reading, drawing, Bangla I/II, Islamic Studies, and Moral Studies. | A syllabus lists topics; it is not an answer source for missing lessons. It says content can change without notice. Bangla extracts with legacy-font encoding and needs visual review. |
+| [Science pp. 59–66](https://drive.google.com/drive/folders/1Ul6d6t91xoKfAp9dJ8I3W1hNfeA-FgJV) | Food for Health: plant/animal foods; energy-giving, body-building, and protective foods; meals; healthy eating; exercises and picture tasks. | Photographed textbook content, not completed answer sheets. |
+| [Science pp. 84–90](https://drive.google.com/drive/folders/1Ul6d6t91xoKfAp9dJ8I3W1hNfeA-FgJV) | Rocks and Minerals: hard/soft rocks, granite/marble/sandstone/chalk/slate, minerals and everyday uses, gemstones, exercises and diagrams. | Page 84 is mainly a colouring activity; blank exercise lines are not an answer key. |
+| [Geography.pdf](https://drive.google.com/file/d/1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a/view) | Textbook pp. 14–25: shape of land and river journey; volcanoes; world wonders; everyday weather and symbols; extreme weather. PDF pages 1–12 correspond to textbook pp. 14–25. | Scanned with no embedded text. OCR is needed for search and automatic Q&A. |
+
+The syllabus specifies **Food for Health** as seen Science and **Rocks and Minerals** as unseen Science. Geography textbook pp. 14, 16, 18, 20 are seen; pp. 22 and 24 are labelled unseen; diagrams matter. Mathematics says exam numbers will change. The folder does not currently contain lesson pages for most other syllabus subjects, so the app must disclose those gaps instead of inventing answers.
+
+### Verified mathematics syllabus extract
+
+Read from the [PDF linked by the Notion Half Yearly syllabus record](https://drive.google.com/file/d/1wjYczLYdFtruV5ETLMPUKpIXGuq2qVr0/view), page 1: **Joy of Mathematics, Book 3** — page 44 exercises 1–5; pages 46, 48, and 53; page 97 exercises b and c; page 98 exercises 1–5. **Mental Mathematics** — exercises 18, 21, and 25. Numerical values will be changed in the examination. **Geometry** — circle, semicircle, and square, with diagrams and definitions to be done in class.
+
+## Source-grounded Q&A examples
+
+These are review examples, not an official school answer key. The practice engine should regenerate from current file versions and link every answer to its original page.
+
+| Question | Model answer | Evidence |
+| --- | --- | --- |
+| Which three groups divide the food we eat? | Energy-giving, body-building, and protective foods. | [Science p. 60](https://drive.google.com/file/d/1PogeSgCwEPMr3YHiYjm83bZu77KUuDXi/view) |
+| Name one energy-giving food. | Rice. | [Science p. 60](https://drive.google.com/file/d/1PogeSgCwEPMr3YHiYjm83bZu77KUuDXi/view) |
+| What are the three meals usually eaten in a day? | Breakfast, lunch, and dinner. | [Science p. 61](https://drive.google.com/file/d/1f_n6U3bZPacPYcY_5GbNm1SQDTRcIxKn/view) |
+| Give one healthy eating rule. | Wash your hands before and after eating. | [Science p. 62](https://drive.google.com/file/d/1Drd8uuLVroPf_lfSL7EGhSJh6TcwAJ8I/view) |
+| What are all rocks made of? | Minerals. | [Science p. 86](https://drive.google.com/file/d/11a21L7w-1d6jze0eUE6n8yyYOi8yeBFb/view) |
+| Which rock is used for kitchen counters? | Granite. | [Science p. 85](https://drive.google.com/file/d/1-xeTXMNEoumEUFFlAy-z1QC0wWQSvJcS/view) |
+| Which mineral is used as the “lead” of a pencil? | Graphite. | [Science p. 86](https://drive.google.com/file/d/11a21L7w-1d6jze0eUE6n8yyYOi8yeBFb/view) |
+| Where does water from mountains flow? | Through streams and rivers toward the sea. | [Geography.pdf](https://drive.google.com/file/d/1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a/view), PDF p. 1 / textbook p. 14 |
+| What did the trout pass on its journey to the sea? | It passed a waterfall, dodged a fisher’s hook, and swam past an otter. | [Geography.pdf](https://drive.google.com/file/d/1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a/view), PDF p. 1 / textbook p. 14 |
+| What comes to the surface through volcanoes? | Hot rocks from under the ground. | [Geography.pdf](https://drive.google.com/file/d/1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a/view), PDF p. 3 / textbook p. 16 |
+| What three wonders did Azim see? | An iceberg, a cave, and the northern lights. | [Geography.pdf](https://drive.google.com/file/d/1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a/view), PDF pp. 5–6 / textbook pp. 18–19 |
+| What happened when Mika’s gentle breeze became a gale? | The wind blew into his umbrella and lifted him into the air before he fell into a pond. | [Geography.pdf](https://drive.google.com/file/d/1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a/view), PDF p. 7 / textbook p. 20 |
+| Which weather symbols are shown for a storm? | A cloud, rain, and lightning. | [Geography.pdf](https://drive.google.com/file/d/1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a/view), PDF p. 10 / textbook p. 23 |
+| Name two examples of extreme weather shown in the book. | A tornado and a flood. | [Geography.pdf](https://drive.google.com/file/d/1ENILHb56Lr3r9Edf1YpTvk02En-ML-1a/view), PDF pp. 11–12 / textbook pp. 24–25 |
+
+Question generation rules: cite a real Drive file and PDF/image page; retain textbook page numbers in image titles; use Class II vocabulary; vary short answer, MCQ, true/false, fill-in, and diagram prompts; preserve the original page for visual checks; reject low-confidence OCR and unsupported answers. Do not use the syllabus alone to answer a missing lesson. Recheck examples when files change.
+
+## Integration architecture and sync contract
+
+```mermaid
+flowchart LR
+    D[Google Drive account<br/>sun.srs86@gmail.com<br/>Half Yearly folder] -->|Drive links in Files & media| N[Notion TeamSpace<br/>Shreehan HQ]
+    N -->|Notion API / NOTION_TOKEN<br/>public direct-file links| W[Persistent FastAPI supervisor<br/>30-second poll]
+    D -->|Drive API / read-only credential<br/>reconcile linked folder| W
+    W -->|atomic manifest + OCR assets| S[Content snapshot]
+    S -->|authenticated /api/library<br/>and /api/documents| A[FastAPI]
+    A --> U[Next.js interface]
+    S --> Q[Source-grounded Q&A preparation]
+    Q --> A
+```
+
+The application reads Notion directly. The connected Notion workspace is `Shreehan`, and the verified TeamSpace is `Shreehan HQ` (ID `2a79ecdd-38af-8100-95a3-0042c2ae1b84`). The integration imports active pages shared with its Notion token; Notion API search is scoped by integration sharing rather than the TeamSpace ID. The connector review found the `6. Subject Materials` and `2. Syllabus` databases. Half-yearly records contain Drive links in `Files & media`, including Science and Geography folders and the syllabus PDF. These links identify sources; a Notion page does not itself contain every binary in the linked Drive folder. The importer records those links and uses a separate **server-side read-only Drive credential** to enumerate and download the configured root folder. ChatGPT plugin access is for this review and does not authenticate the deployed application.
+
+The persistent FastAPI supervisor starts the Notion importer at startup and schedules subsequent checks every **30 seconds** (`NOTION_SYNC_INTERVAL_SECONDS=30`, minimum 30). A check cannot overlap itself: if OCR or network work exceeds 30 seconds, the next check begins after completion. Browser views refresh `/api/library` every 15 seconds. Imported files are versioned, extracted/OCRed, and published with Notion records as one snapshot. Errors retain the last complete library; sync health reports partial, delayed, or failed states. Changed source files invalidate derived questions by checksum. The storage directory still uses `.notion-sync` for compatibility.
+
+Set `CONTENT_SOURCE=notion`, `NOTION_TOKEN`, `GOOGLE_DRIVE_FOLDER_ID`, and either `GOOGLE_DRIVE_SERVICE_ACCOUNT_JSON` (with access to the folder) or all three OAuth settings `GOOGLE_DRIVE_CLIENT_ID`, `GOOGLE_DRIVE_CLIENT_SECRET`, `GOOGLE_DRIVE_REFRESH_TOKEN`. Keep secrets server-side. If Drive credentials are absent, Notion records can sync but linked Drive files are marked pending; this does **not** meet full folder synchronization. A live isolated importer run on 2026-09-27 succeeded with **8 Notion records, 3 Drive links, and 1 direct attachment**; it correctly reported `partial` and `drivePending=true`. The local `.env` has a Notion token but no Drive credential, so a live end-to-end Drive sync has not been verified.
+
+The app now imports publicly downloadable **direct Drive file links** in Notion without a Drive API credential, while retaining the Notion page and Drive file URLs as sources. This covers the current syllabus PDF. A local FastAPI run at `http://127.0.0.1:8000` on 2026-09-27 imported 8 Notion records and 2 files, including `syllabus.pdf` (3 pages); the app retrieval path found **Joy of Mathematics** on page 1. The worker completed repeated syncs and advertises a 30-second interval. The status remains `partial` until a Drive API credential permits recursive folder reconciliation. Public direct-file access is an observed property of this specific link, not a substitute for Drive folder authentication. The frontend build, 19 JavaScript sync tests, and 19 Python tests passed.
+
+Production currently uses Vercel plus a GitHub Actions sync workflow scheduled every five minutes. That schedule **does not satisfy a 30-second production sync requirement**. A persistent worker with the above credentials and access to the shared snapshot store is required for 30-second production polling; this deployment change is still outstanding. The model's connected plugins cannot operate as that worker. Verify the first live sync, file edit and deletion, OCR, and Q&A against the deployed snapshot before calling production synchronized.
+
+## Observed Notion integration points
+
+| Notion source | Linked Drive item | App use |
+| --- | --- | --- |
+| [6. Subject Materials, Science](https://app.notion.com/p/3c49ecdd38af801598a9d777830f768e) | [Science folder](https://drive.google.com/drive/folders/1Ul6d6t91xoKfAp9dJ8I3W1hNfeA-FgJV) | Subject metadata plus original textbook images. |
+| [6. Subject Materials, Geography](https://app.notion.com/p/3e79ecdd38af80efbd7cc972e4949a95) | [Geography folder](https://drive.google.com/drive/folders/1285u1rum6poCTWWGwl69ABZYrROm0uj2) | Subject metadata plus scanned PDF. |
+| [2. Syllabus, Half Yearly](https://app.notion.com/p/3e59ecdd38af80919219c6c9968e08b4) | [syllabus.pdf](https://drive.google.com/file/d/1wjYczLYdFtruV5ETLMPUKpIXGuq2qVr0/view) | Exam scope and coverage gaps. |
+
+## Decisions and verification still needed
+
+- Add a runtime Drive credential with read access to the half-yearly root folder, then verify an actual combined Notion/Drive snapshot. Never place the credential in this file or frontend settings.
+- Move production sync to an always-on worker if the 30-second requirement also applies to the deployed Vercel app. The existing GitHub schedule remains five minutes until that deployment is changed.
+- Confirm whether later uploads for other syllabus subjects should enter practice automatically. Current question preparation covers readable linked study files and excludes syllabus-only answers.
+- After each future project instruction, update this file with the resulting architecture, source scope, integration details, decisions, and verified status.
+
+## Local account operation (2026-09-27)
+
+The `adm1` password was reset in the persistent `shreehan-data` Docker volume using the application's password hasher. The password itself is deliberately not recorded here. Existing sessions were revoked. The host `data/shreehan.db` has no users and is not the account store for this login. The local app now runs at `http://127.0.0.1:8000` in container `shreehan-hq-pivot-local`, using the persistent volume and the current repository code through read-only mounts. Login, session validation, and `/api/library` each returned HTTP 200 during verification; the test session was then revoked. A fresh Docker image build on this arm64 host failed while compiling the `libsql` package, so the local container currently uses the existing image and mounted current source rather than a newly built image.
+
+## Subject Materials → Analytical Material (2026-09-27)
+
+The dashboard's **Analytical Material** module lists subjects from Notion's `6. Subject Materials` records. The previous dashboard label, **Unseen Paper**, has been renamed; internal component filenames and legacy collection fields remain as compatibility identifiers. The current Notion records include [Science](https://app.notion.com/p/3c49ecdd38af801598a9d777830f768e), [Geography](https://app.notion.com/p/3e79ecdd38af80efbd7cc972e4949a95), and English Literature. Their available linked materials include 15 Science images and one 12-page Geography PDF. English Literature currently has no readable linked file in the local snapshot.
+
+Account controls: the dashboard sidebar no longer shows **Sign out all devices**. The profile's regular **Sign out** action remains available; the authenticated logout-all API remains for existing clients and tests.
+
+The Analytical Material module now has an authenticated **Sync Notion** button. It starts a manual Notion/library refresh, then analyzes Subject Materials for source-linked questions, while a progress bar reports sync and question preparation progress. Existing source data stays available during the refresh. Completion can be partial when files are unreadable or linked Drive folders cannot be fully listed; without a server Drive credential, the UI explains that newly added Drive folder files cannot be discovered. The local persistent worker supports this manual job; Vercel has no persistent job worker and returns an unavailable response until that deployment is changed.
+
+Manual sync verification on 2026-09-27: the authenticated POST returned HTTP 202; progress advanced through Notion record import and question analysis to 100%, and finished `partial` with the Drive credential limitation stated. It refreshed 9 Notion records and 19 documents. Existing Science and Geography banks were available; English Literature had no readable document and remains partial until material is linked and accessible.
+
+## Drive API key and offline question preparation (2026-09-27)
+
+The local `.env` now contains `G_DRIVE_KEY`. This is a 39-character Google API key, not a Google user OAuth token or service-account credential. The application now recognizes it for Drive API requests to publicly accessible folders and files. A live `files.get` request for the configured Half Yearly root folder returned **HTTP 403**, so this key does not authorize the app to enumerate the private folder as `sun.srs86@gmail.com`. The importer handles that denial without aborting Notion synchronization: it retains direct Notion file imports and the known public-file index, and sets `drivePending=true`. Newly added files inside private Drive folders still require OAuth refresh-token settings or a service-account JSON shared onto the source folder. The API key value is never logged or recorded here.
+
+Live sync on 2026-09-27 refreshed **9 Notion records and 19 documents**, with no pending OCR extraction. It completed with the expected partial Drive status because of the 403. Direct files attached to Notion pages can still be downloaded when their links are accessible; discovery of later folder uploads or deletions is not verified until user-scoped Drive access is configured.
+
+The configured OpenRouter model returned **HTTP 402** for the current generation request, so the model could not produce drafts. The worker now normalizes common model question-type labels and can map shortened OCR evidence back to exact source sentences when the provider is available. For this OCR-heavy current set, a local source-backed fallback has been added so users still receive complete study banks during provider outages. The refreshed local Analytical Material banks are **15/15 English Literature**, **15/15 Geography**, and **15/15 Science**, all saved as `ready` and each question links to the supporting source page. Geography questions cover the textbook’s weather stories; Science questions cover Food for Health and Rocks and Minerals; English Literature questions cover The Ice King. Future subjects with readable material use the same AI path and generic evidence-checked fallback; an unreadable/insufficient source remains partial rather than receiving invented answers.
+
+The persistent worker continues source polling and subject analysis at the configured 30-second interval. The API key alone cannot make private Drive additions visible to that worker. To satisfy full automatic folder sync, provide one of the server-side OAuth or service-account configurations described above.
+
+The running local container was also checked: it does not currently inherit `G_DRIVE_KEY` from the host `.env`; its saved banks remain readable and its existing counts were Geography **30/30**, Science **15/15**, and English Literature **20/20**, all `ready`. After replacing English Literature and Science with the improved fallback banks, every saved question in those banks matched its cited page excerpt; all 30 Geography questions also matched cited source excerpts. The `.env` key will need to be added to the container environment if future deployment changes rely on it, but doing so alone will still return 403 for this private folder.
+
+```mermaid
+flowchart LR
+    N[Notion Subject Materials<br/>subject + folder link] --> W[30-second source sync]
+    D[Linked Drive study files] --> W
+    W --> L[Versioned library snapshot<br/>source pages + original assets]
+    L --> Q[Subject question worker<br/>15 initial questions]
+    Q --> V[Evidence and duplicate checks]
+    V --> B[Subject question bank]
+    B --> A[Analytical Material module]
+    A -->|Generate More| G[Server request: five more]
+    G --> Q
+```
+
+The subject worker groups files by their Notion Subject Materials subject, samples readable pages across each subject, and creates an initial set of **15 questions and model answers per subject**. OCR pages need at least 60% extraction confidence; a lower threshold admitted a damaged Geography word that changed a statement's meaning, so that bank was invalidated and regenerated. The worker checks each question for a verbatim supporting excerpt on the cited page, supported answer format, and duplication. The Analytical Material module shows the Notion subject list, linked source files, answers on reveal, and page links. Its **Generate More** button requests five newly generated questions per click; the persisted target rises by five only after the previous target is complete. Source file or extracted text changes invalidate that subject's bank and restart the initial 15. The local question worker retries every 30 seconds; browser data refreshes every 15 seconds.
+
+The current local runtime has no Drive API credential. As an interim bridge, `data/subject-materials-index.json` records the 16 file IDs verified through the connected Drive account; public file downloads let the local sync read their contents. It refreshes known files hourly. The index cannot discover later uploads or deletions in those folders. Full automatic reconciliation, including future Subject Materials files, still requires a server-side read-only Drive credential. The user has been asked which credential can be provided. No plugin credential is copied into the application.
+
+The local FastAPI endpoint is `POST /api/subject-practice/{subject}/generate-more`; `/api/library` includes `subjectPractice`. Production's scheduled sync can publish subject banks, but the current Vercel runtime cannot handle interactive Generate More because it has no persistent worker. That production capability remains outstanding until an always-on worker or equivalent request path is deployed.
+
+Verification: frontend production build passed; the 14 existing JavaScript source-sync tests, ten selected Python content/worker tests, and two new subject-bank tests for OCR filtering, 15 initial questions, +5, and source invalidation passed. Both Geography and Science reached 15 source-linked questions locally. An authenticated `Generate More` request returned HTTP 200 and increased Geography from 15 to 20 questions; a further request brought it to 25. The restarted local `/api/library` endpoint now reports Geography 25/25 ready and Science 15/15 ready. During live verification, Python and JavaScript sorted Drive IDs differently; a source-set comparison replaced positional comparison so the API no longer hides Science's completed bank.
+
+## Generate Q&A removal (2026-09-27)
+
+The briefly added **Generate Q&A** 15-question batch control was removed at the user's request, along with its dedicated progress display, API endpoints, and script mode. **Generate More** continues to add five questions per click, while the background worker prepares the initial 15 for each subject. The separate **Sync Notion** progress bar remains. A local Science batch run before removal produced 15 source-linked questions and left its saved bank at **35/35 ready**; removing the control does not erase saved questions. The local app continues to run at `http://127.0.0.1:8000`.

@@ -22,7 +22,7 @@ if sys.argv[1] == 'restore':
     print(f'Restored {len(rows)} archive entries')
 elif sys.argv[1] == 'publish':
     library = json.loads((root / 'library.json').read_text())
-    keys = {'library.json', 'status.json', 'cache.json', 'unseen-practice.json'}
+    keys = {'library.json', 'status.json', 'cache.json', 'unseen-practice.json', 'subject-practice.json'}
     for doc in library.get('documents', []):
         for url in [doc.get('url', ''), *(page.get('image', '') for page in doc.get('pages', []))]:
             if url.startswith('/api/documents/'):

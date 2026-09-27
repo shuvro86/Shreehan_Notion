@@ -8,7 +8,8 @@
     "start": "cd .. && uv run --env-file .env uvicorn backend.main:app --host 0.0.0.0 --port 8000",
     "typecheck": "tsc --noEmit",
     "sync:notion": "cd .. && node scripts/sync-notion.mjs --once",
-    "test:sync": "node --test tests/sync.test.mjs tests/unseen-generation.test.mjs",
+    "sync:drive": "cd .. && node scripts/sync-drive.mjs --once",
+    "test:sync": "node --test tests/sync.test.mjs tests/drive-sync.test.mjs tests/unseen-generation.test.mjs",
     "test:e2e": "playwright test"
   },
   "dependencies": {

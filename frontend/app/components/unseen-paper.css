@@ -1,4 +1,15 @@
 .unseen-paper-module{margin-top:25px;padding:28px;background:linear-gradient(145deg,#f5fff7,#eefaf1 52%,#fffbed);border:2px solid #b9dfc5;border-radius:18px;box-shadow:0 12px 26px #3f8b5720}
+.unseen-more-button:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+.unseen-more-button span{margin-left:auto;font-size:12px;font-weight:500}
+.subject-sync-control{display:grid;grid-template-columns:minmax(145px,auto) 1fr;gap:12px;align-items:center;margin-top:20px}
+.sync-notion-button{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:12px 17px;border-radius:10px;background:#285f8f;color:#fff;font-size:13px;font-weight:700}
+.sync-notion-button:hover{background:#1f4e77}.sync-notion-button:disabled{opacity:.6;cursor:wait}
+.subject-sync-status{min-width:0;padding:10px 13px;border:1px solid #c9dfef;border-radius:10px;background:#f5fbff;color:#355c78}
+.subject-sync-status-heading{display:flex;justify-content:space-between;gap:10px;font-size:12px}
+.subject-sync-status progress{display:block;width:100%;height:9px;margin-top:8px;accent-color:#347eae}
+.subject-sync-status p,.subject-sync-limitation{margin-top:6px;font-size:11px;line-height:1.5;color:#58768d}
+.subject-sync-limitation{grid-column:1/-1;color:#875a25}
+@media(max-width:500px){.subject-sync-control{grid-template-columns:1fr}.subject-sync-limitation{grid-column:auto}}
 .unseen-subjects{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
 .unseen-subjects button{display:flex;flex-direction:column;gap:5px;min-width:135px;padding:14px 20px;border:1px solid #9ecbaa;border-radius:12px;background:#fff;color:#235237;text-align:left;font-size:16px;font-weight:700}
 .unseen-subjects button span{font-size:12px;font-weight:400}

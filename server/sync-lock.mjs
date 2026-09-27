@@ -15,8 +15,8 @@ export async function processIdentity(pid){
  const {stdout}=await exec('ps',['-p',String(pid),'-o','lstart=']);
  return `${os.hostname()}:${stdout.trim()}`;
 }
-export async function acquireLock(store){
- await fs.mkdir(store,{recursive:true});const file=path.join(store,'lock');
+export async function acquireLock(store,name='lock'){
+ await fs.mkdir(store,{recursive:true});const file=path.join(store,name);
  const owner={pid:process.pid,identity:await processIdentity(process.pid),nonce:randomUUID()};
  for(let attempt=0;attempt<3;attempt++){
   try{const handle=await fs.open(file,'wx');await handle.writeFile(JSON.stringify(owner));await handle.close();return async()=>{const current=JSON.parse(await fs.readFile(file,'utf8').catch(()=>'null'));if(current?.nonce===owner.nonce)await fs.unlink(file).catch(()=>{})}}
