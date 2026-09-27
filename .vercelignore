@@ -11,6 +11,11 @@ frontend/public/documents
 storage
 tmp
 .env*
+**/.DS_Store
+**/*.db
+**/*.db-shm
+**/*.db-wal
+skills-lock.json
 **/__pycache__
 **/*.pyc
 backend/tests
