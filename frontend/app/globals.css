@@ -47,5 +47,13 @@ body{background-color:#ddf5ff;background-image:radial-gradient(circle at 12% 12%
 /* Classy canvas for the main learning area. */
 .main-shell main{min-height:calc(100vh - 73px);background:radial-gradient(circle at 95% 4%,#f7e59c66 0 8%,transparent 28%),radial-gradient(circle at 6% 16%,#4a9a6688 0 7%,transparent 25%),radial-gradient(circle at 88% 58%,#9edbb466 0 10%,transparent 30%),linear-gradient(145deg,#e8f7e9 0%,#d8f0dc 48%,#eef8df 100%);border-left:1px solid #ffffff99;border-right:1px solid #ffffff99;box-shadow:inset 0 1px 0 #ffffffcc}
 .main-shell main:has(.unseen-paper-module) .imported-collection{display:none}
+.collection-detail .collection-detail-actions{flex:0 1 250px;display:grid;gap:9px;min-width:190px}
+.collection-detail-actions .primary-button,.collection-sync-button{display:flex;align-items:center;justify-content:center;gap:8px;width:100%}
+.collection-sync-button{padding:11px 15px;border:1px solid #9acbdc;border-radius:10px;background:#eaf8ff;color:#285f8f;font-size:12px;font-weight:700}
+.collection-sync-button:hover{background:#d7f0fb}.collection-sync-button:disabled{opacity:.65;cursor:wait}
+.collection-sync-message{font-size:11px;line-height:1.5;color:#526579;overflow-wrap:anywhere}
+.collection-sync-message.error{color:#9b3f38}.collection-sync-message.complete{color:#286b46}
+.collection-sync-message progress{display:block;width:100%;height:8px;margin-bottom:5px;accent-color:#4082ad}
+.collection-sync-empty{padding:16px 0;color:#697b8d;font-size:12px}
 .history-group-heading{margin:18px 0 6px;font-size:16px;color:#20583a}.history-event>div{min-width:0}.history-event a{display:inline-block;margin-top:7px;font-size:12px;color:#236b40;text-decoration:underline}.history-modal section+section{margin-top:22px;padding-top:10px;border-top:2px solid #d5ead9}
 .password-change-form{display:grid;gap:15px}.password-change-form label{display:grid;gap:7px;font-size:12px;font-weight:700;color:#032147}.password-change-form input{width:100%;padding:12px 13px;border:1px solid #d4dce8;border-radius:10px;background:#fff;color:#032147}.password-change-form input:focus-visible{outline:3px solid #209dd755;border-color:#209dd7}.password-change-form .form-footer{margin-top:5px}.password-error{color:#a82742;font-size:12px}.password-success{display:grid;gap:16px;justify-items:start;color:#20583a}.password-success p{line-height:1.5}

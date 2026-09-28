@@ -150,3 +150,31 @@ Verification: frontend production build passed; the 14 existing JavaScript sourc
 The briefly added **Generate Q&A** 15-question batch control was removed at the user's request, along with its dedicated progress display, API endpoints, and script mode. **Generate More** continues to add five questions per click, while the background worker prepares the initial 15 for each subject. The separate **Sync Notion** progress bar remains. A local Science batch run before removal produced 15 source-linked questions and left its saved bank at **35/35 ready**; removing the control does not erase saved questions. The local app continues to run at `http://127.0.0.1:8000`.
 
 Release verification: the removal and source-sync changes were pushed to GitHub `main`; the linked Vercel production deployment reached `READY` at `https://shreehan-notion.vercel.app`. The public login page returned HTTP 200, and an unauthenticated `GET /api/library` returned HTTP 401. The GitHub Notion sync workflow for the application revision completed successfully. The frontend production build, 19 JavaScript sync tests, and ten selected backend tests passed. A local `.vercelignore` update excludes development databases and other workspace artifacts from uploads. Production still uses the five-minute GitHub sync schedule and cannot provide the requested 30-second guarantee without a persistent worker.
+
+## Study Note, Exam, and Assignment collection sync (2026-09-27)
+
+Each of these three dashboard collection views now has its own **Sync Notion** button. It starts an authenticated local job for that collection, reports the current stage and counts of notes and files added, changed, or removed, and refreshes the visible collection when complete. Synced Notion notes and their attached files are listed in the matching view, including Exam. The sample First Monthly exam schedule remains a separate static display and is labeled as such.
+
+The local FastAPI routes are `POST /api/collections/{collection}/sync` and `GET /api/collections/{collection}/sync`, with an allowlist of `Study Note`, `Exam`, and `Assignment`. `scripts/sync-collection.mjs` calls the existing Notion importer in collection mode. The importer discovers current Notion pages, reconciles the selected collection by stable record/file IDs, preserves other collections and their attachment cache, and retains the last complete workspace sync timestamp. It waits for the existing import lock when a background sync is active. The previous saved collection stays available if a source request fails. The existing 30-second local worker continues whole-workspace updates independently.
+
+```mermaid
+flowchart LR
+    A[Study Note / Exam / Assignment view] -->|Sync Notion| B[Authenticated collection job]
+    B --> C[Notion data source and pages]
+    C --> D[Reconcile selected notes and files]
+    D --> E[Shared library snapshot]
+    E --> A
+    B -->|status| A
+```
+
+Local verification: the Next.js production build, 20 JavaScript sync tests, and ten selected backend tests passed; a focused test covered add, edit, and removal of notes/files while preserving Exam content during a Study Note sync. All three authenticated local POST requests returned HTTP 202 and completed. The current Notion data sources contain no publishable Study Note or Exam rows and one blank Assignment template row, so each live run correctly reported zero changes and showed an empty collection. A browser check confirmed the button is visible in all three views. Vercel still lacks a persistent worker for manual collection jobs; the deployed buttons report this limitation.
+
+## Repository and HTTP boundary cleanup (2026-09-28)
+
+Shared Next.js components and helpers moved to private `frontend/app/_components/` and `frontend/app/_lib/` folders. Route files remain in the normal App Router layout. The FastAPI entry point delegates cross-origin write checks and response headers to `backend/security.py`. Unsafe browser requests from another origin or site are rejected; responses have no-sniff, frame blocking, referrer, permission, cache and resource-policy headers. HSTS is set on production HTTPS responses. The existing document-specific sandbox CSP is preserved.
+
+Tracked Finder metadata, a local inspection SQLite database and its GUI project, and generated `next-env.d.ts` were removed from the repository; ignore rules prevent their return. Two obsolete diagnostic launcher scripts were deleted. Baseline study PDFs and images remain because seed data and practice refer to them. The Docker runtime now includes `scripts/sync-collection.mjs` so the new collection controls work in a persistent container. Credentials remain server-side and are not part of the source tree.
+
+The removed inspection database existed in earlier Git history of the public repository. This commit removes it from the current tree, but history cleanup would require a separate coordinated rewrite and review of any sensitive contents. Production still needs a persistent worker and suitable Drive access to meet the requested 30-second, complete Notion/Drive synchronization contract.
+
+Verification before release: Next.js production build, 20 JavaScript sync tests, 22 backend tests, and a production npm dependency audit passed (zero reported vulnerabilities). GitHub and Vercel release status is recorded in the release update below.

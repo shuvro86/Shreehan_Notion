@@ -74,6 +74,27 @@ def test_static_login_and_api_guard(client):
     assert browser.post("/api/assistant", json={"message": "Hello"}).status_code == 401
 
 
+def test_security_headers_and_cross_origin_write_guard(client):
+    browser, _, _ = client
+    response = browser.get("/login")
+    assert response.headers["x-content-type-options"] == "nosniff"
+    assert response.headers["x-frame-options"] == "DENY"
+    assert "frame-ancestors 'none'" in response.headers["content-security-policy"]
+    assert response.headers["cache-control"] == "private, no-store"
+    endpoint = "/api/auth/signup"
+    payload = {"username": "guard_test", "email": "guard@example.test"}
+    for headers in (
+        {"Sec-Fetch-Site": "cross-site"},
+        {"Sec-Fetch-Site": "same-site"},
+        {"Origin": "https://evil.test"},
+        {"Origin": "http://testserver/other"},
+    ):
+        rejected = browser.post(endpoint, json=payload, headers=headers)
+        assert rejected.status_code == 403
+        assert rejected.headers["x-content-type-options"] == "nosniff"
+    assert browser.post(endpoint, json=payload, headers={"Origin": "http://testserver"}).status_code == 200
+
+
 def test_two_accounts_cannot_edit_each_others_board(client):
     browser, codes, _ = client
     register(browser, codes, "first_user", "first@example.test")

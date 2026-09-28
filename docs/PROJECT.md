@@ -144,34 +144,32 @@ There is no ORM, external authentication provider, queue service, or cloud objec
 |---|---|
 | `frontend/app/page.tsx` | Dashboard, dashboard navigation, collection views, tasks, routine, exam schedule, and Analytical Material entry point |
 | `frontend/app/globals.css` | Global UI styles and shared workspace layout |
-| `frontend/app/layout.tsx`, `frontend/app/components/auth-gate.tsx` | Root layout, client session guard, and application metadata |
+| `frontend/app/layout.tsx`, `frontend/app/_components/auth-gate.tsx` | Root layout, client session guard, and application metadata |
 | `frontend/app/login/page.tsx`, `frontend/app/login/login.css` | Animated sign-in, signup/OTP, first-password, and recovery UI |
 | `frontend/app/kanban/page.tsx` | Kanban board API state, legacy-state migration, column rename, card actions, and native drag-and-drop |
 | `frontend/app/kanban/kanban.css` | Kanban layout, responsive behavior, animations, and requested color palette |
 | `frontend/app/library/page.tsx` | Document library route wrapper |
 | `frontend/app/practice/page.tsx` | Class 2 practice route wrapper |
-| `frontend/app/components/library.tsx` | Library, document reader, import report, and curated practice UI |
-| `frontend/app/components/library.css` | Library and practice styles |
-| `frontend/app/components/use-library.ts` | Polls the library API, builds sync labels, and filters stale practice against source checksums |
-| `frontend/app/components/unseen-paper.tsx` | Analytical Material study UI (legacy component filename) |
-| `frontend/app/components/unseen-paper.css` | Analytical Material styles (legacy stylesheet filename) |
+| `frontend/app/_components/library.tsx` | Library, document reader, import report, and curated practice UI |
+| `frontend/app/_components/library.css` | Library and practice styles |
+| `frontend/app/_components/use-library.ts` | Polls the library API, builds sync labels, and filters stale practice against source checksums |
+| `frontend/app/_components/unseen-paper.tsx` | Analytical Material study UI (legacy component filename) |
+| `frontend/app/_components/unseen-paper.css` | Analytical Material styles (legacy stylesheet filename) |
+| `frontend/app/_components/collection-sync.tsx` | Collection-specific Notion sync controls |
 | `frontend/app/assistant/page.tsx` | Assistant chat and Q&A UI |
 | `frontend/app/assistant/assistant.css` | Assistant styles |
-| `backend/main.py` | FastAPI application, static site host, API guards, and synced-asset route |
+| `backend/main.py`, `backend/security.py` | FastAPI application, static host, HTTP boundary controls, and synced-asset route |
 | `backend/auth.py`, `backend/mailer.py` | Account, OTP, password, session, and SMTP logic |
 | `backend/db.py`, `backend/workspace.py` | SQLite schema/starter data and board/task/practice APIs |
 | `backend/content.py` | Library, assistant/OpenRouter, and daily context APIs |
 | `backend/tests/` | API/auth/persistence and content unit tests |
-| `frontend/app/lib/unseen-practice.ts` | Shared unseen-practice data types |
-| `frontend/app/lib/day-history.ts` | Dhaka date handling, Bangladesh event recognition, and event selection |
+| `frontend/app/_lib/unseen-practice.ts` | Shared unseen-practice data types |
+| `frontend/app/_lib/day-history.ts` | Dhaka date handling, Bangladesh event recognition, and event selection |
 | `server/notion-sync.mjs` | Notion API client, page/data-source traversal, attachment handling, extraction, and snapshot reconciliation |
 | `server/unseen-practice.mjs` | OpenRouter question generation, evidence validation, versioned checkpoints, and merged question bank |
-| `scripts/serve.mjs` | Legacy Next.js development launcher; the integrated site uses FastAPI |
-| `scripts/start.sh`, `scripts/stop.sh` | macOS/Linux local or Docker start and stop (`--docker`) |
-| `scripts/start.ps1`, `scripts/stop.ps1` | Windows PowerShell local or Docker start and stop (`-Docker`) |
 | `scripts/container-start.sh` | Starts the optional Notion worker and FastAPI within Docker |
 | `scripts/sync-notion.mjs` | Background and one-shot Notion sync worker |
-| `scripts/probe-notion.mjs` | Manual Notion API diagnostic helper |
+| `scripts/sync-collection.mjs` | Manual Study Note, Exam, and Assignment reconciliation |
 | `scripts/import-notion.py` | Historical import/reconciliation helper for exported Notion archives; depends on local export files |
 | `scripts/ocr-documents.cjs` | Historical OCR batch helper for the initial import queue |
 | `scripts/build-practice.py` | Rebuilds the curated practice JSON and import report from its prepared source inputs |
@@ -181,7 +179,7 @@ There is no ORM, external authentication provider, queue service, or cloud objec
 | `data/notion-source.json` | Import inventory/provenance structure used by historical import tooling; currently contains 8 database descriptors, 37 rows, and 39 page snapshots |
 | `frontend/public/documents/` | Committed original document files, previews, and import report for the baseline library |
 | `frontend/package.json`, `frontend/package-lock.json` | Frontend dependencies and npm scripts |
-| `frontend/next.config.ts`, `frontend/postcss.config.mjs`, `frontend/tsconfig.json`, `frontend/next-env.d.ts` | Next.js, CSS processing, and TypeScript configuration |
+| `frontend/next.config.ts`, `frontend/postcss.config.mjs`, `frontend/tsconfig.json` | Next.js, CSS processing, and TypeScript configuration; Next generates `next-env.d.ts` locally |
 | `frontend/playwright.config.ts`, `frontend/tests/` | Browser and frontend-adjacent integration tests |
 | `Dockerfile`, `.dockerignore` | Reproducible Docker build and runtime image |
 | `pyproject.toml`, `uv.lock` | Python dependency specification and locked versions |

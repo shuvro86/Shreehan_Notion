@@ -16,6 +16,7 @@ tmp
 **/*.db-shm
 **/*.db-wal
 skills-lock.json
+**/*.sqbpro
 **/__pycache__
 **/*.pyc
 backend/tests

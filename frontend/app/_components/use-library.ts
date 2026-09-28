@@ -4,8 +4,8 @@ import seed from '../../../data/library.json';
 import prepared from '../../../data/practice.json';
 import unseen from '../../../data/unseen-practice.json';
 import type {HomeworkData} from './homework';
-import type { UnseenPractice } from '../lib/unseen-practice';
-import type { SubjectPractice } from '../lib/subject-practice';
+import type { UnseenPractice } from '../_lib/unseen-practice';
+import type { SubjectPractice } from '../_lib/subject-practice';
 export function useLibrary(){
  const [library,setLibrary]=useState<typeof seed & {homework?:HomeworkData}>({...seed,documents:[] as typeof seed.documents,records:[] as typeof seed.records});
  const [unseenPractice,setUnseenPractice]=useState<UnseenPractice>(unseen);

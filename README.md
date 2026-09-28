@@ -27,7 +27,7 @@ uv run pytest -q
 docker build -t shreehan-hq .
 ```
 
-The Next.js app, static assets, npm files, and Playwright tests live under `frontend/`. Shared seed data, the FastAPI backend, Notion worker, and runtime scripts remain at the repository root. The browser integration test `frontend/tests/cr1.spec.ts` needs a verified local account and `E2E_BASE_URL`, `E2E_USERNAME`, and `E2E_PASSWORD` environment variables. See [docs/PROJECT.md](docs/PROJECT.md) for the complete requirements, API contracts, stack, integrations, deployment design, and change log. The proposed database schema is in [docs/DATABASE_SCHEMA.json](docs/DATABASE_SCHEMA.json).
+The Next.js App Router routes live in `frontend/app/`; shared UI and pure helpers are in its private `_components/` and `_lib/` folders. The FastAPI app and HTTP security boundary live in `backend/`, the Notion/Drive importers in `server/`, and executable entry points in `scripts/`. Baseline content is in `data/` and `frontend/public/documents/`. Generated databases, secrets, Next.js output, and machine files are ignored. The browser integration test `frontend/tests/cr1.spec.ts` needs a verified local account and `E2E_BASE_URL`, `E2E_USERNAME`, and `E2E_PASSWORD` environment variables. See [docs/PROJECT.md](docs/PROJECT.md) for the full map, API contracts, integrations, and deployment design.
 
 ## Notion synchronization
 
@@ -36,4 +36,3 @@ FastAPI automatically starts and supervises Notion sync, including when launched
 A worker heartbeat and the full last-sync date/time expose stale data. Crashed or stalled workers restart automatically; failures keep the last complete library available. Process-start-aware locks prevent a Docker restart from blocking sync when process numbers are reused. Class 2 question preparation runs separately from imports.
 
 The authoritative status is `/api/library` from the running app; for a direct local run, its content snapshot is in `.notion-sync`. Runtime details and regression coverage are in `docs/PROJECT.md`.
-# Shreehan_Notion

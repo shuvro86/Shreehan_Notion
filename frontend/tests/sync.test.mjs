@@ -7,6 +7,50 @@ import {acquireLock,processIdentity} from '../../server/sync-lock.mjs';
 import {sync,list,atomic,fileIdentity,googleDriveFileId,publicAddress} from '../../server/notion-sync.mjs';
 test('pagination retains all results',async()=>{const calls=[];const out=await list(async(p,b)=>{calls.push(b);return b.start_cursor?{results:[2],has_more:false}:{results:[1],has_more:true,next_cursor:'next'}},'search',{});assert.deepEqual(out,[1,2]);assert.equal(calls[1].start_cursor,'next')});
 test('signed URL rotation preserves identity; private targets rejected',()=>{assert.equal(fileIdentity('https://example.com/a.pdf?signature=1'),fileIdentity('https://example.com/a.pdf?signature=2'));for(const ip of ['127.0.0.1','10.1.1.1','172.20.0.1','192.168.1.1','169.254.169.254','::1','::ffff:127.0.0.1'])assert.equal(publicAddress(ip),false);assert.equal(publicAddress('8.8.8.8'),true)});
+test('a collection sync reconciles its notes and files without changing other collections',async()=>{
+ const store=await fs.mkdtemp(path.join(os.tmpdir(),'notion-collection-'));
+ let version=1,removed=false;
+ const source={id:'study-source',object:'data_source',title:[{plain_text:'4. Study Note'}],parent:{database_id:'study-db'}};
+ const page=()=>({id:'lesson',object:'page',url:'https://notion.so/lesson',parent:{data_source_id:'study-source'},last_edited_time:String(version),archived:removed,properties:{Name:{type:'title',title:[{plain_text:'Plants'}]},Files:{type:'files',files:[{name:'plants.txt',external:{url:'https://example.com/plants.txt'}}]}}});
+ const api=async endpoint=>{
+  if(endpoint==='users/me')return {bot:{workspace_name:'Shreehan'}};
+  if(endpoint==='search')return {results:[source]};
+  if(endpoint==='databases/study-db')return {parent:{page_id:'workspace'},data_sources:[{id:'study-source'}]};
+  if(endpoint==='data_sources/study-source/query')return {results:removed?[]:[page()]};
+  if(endpoint.startsWith('blocks/lesson/children'))return {results:[{id:'paragraph',type:'paragraph',paragraph:{rich_text:[{plain_text:`Plants lesson ${version}`}]}}]};
+  if(endpoint==='pages/lesson')return page();
+  if(endpoint==='pages/old'){const error=Error('gone');error.status=404;throw error;}
+  throw Error(endpoint);
+ };
+ const exam={id:'exam-record',collection:'Exam',title:'Exam dates',body:'Keep this record'};
+ const examFile={id:'exam-file',collection:'Exam',title:'Exam paper',sha256:'unchanged'};
+ const oldNote={id:'old',collection:'Study Note',title:'Old note',body:'Remove me'};
+ const oldFile={id:'old-file',collection:'Study Note',title:'Old file',sha256:'obsolete'};
+ await atomic(path.join(store,'library.json'),{records:[exam,oldNote],documents:[examFile,oldFile],drivePending:true,syncedAt:'2026-09-26T00:00:00Z'});
+ await atomic(path.join(store,'status.json'),{state:'partial',lastSuccess:'2026-09-26T00:00:00Z',drivePending:true});
+ const options={store,collection:'Study Note',api,getFile:async()=>Buffer.from(`Lesson file ${version}`),processFile:async()=>[{number:1,text:`Lesson file ${version}`,image:'',method:'File',confidence:null}]};
+ try{
+  let result=await sync(options);
+  assert.deepEqual(result.records.filter(item=>item.collection==='Exam'),[exam]);
+  assert.deepEqual(result.documents.filter(item=>item.collection==='Exam'),[examFile]);
+  assert.equal(result.records.filter(item=>item.collection==='Study Note').length,1);
+  assert.equal(result.documents.filter(item=>item.collection==='Study Note').length,1);
+  assert.equal(result.drivePending,true);
+  assert.equal(result.syncedAt,'2026-09-26T00:00:00Z');
+  assert.equal((await fs.readFile(path.join(store,'status.json'),'utf8')).includes('"state":"partial"'),true);
+  const firstHash=result.documents.find(item=>item.collection==='Study Note').sha256;
+  version++;
+  result=await sync(options);
+  assert.match(result.records.find(item=>item.id==='lesson').body,/lesson 2/);
+  assert.notEqual(result.documents.find(item=>item.collection==='Study Note').sha256,firstHash);
+  removed=true;
+  result=await sync(options);
+  assert.equal(result.records.filter(item=>item.collection==='Study Note').length,0);
+  assert.equal(result.documents.filter(item=>item.collection==='Study Note').length,0);
+  assert.deepEqual(result.records.filter(item=>item.collection==='Exam'),[exam]);
+  assert.deepEqual(result.documents.filter(item=>item.collection==='Exam'),[examFile]);
+ }finally{await fs.rm(store,{recursive:true,force:true})}
+});
 test('a direct Drive file in Notion is imported with its stable Drive identity',async()=>{const store=await fs.mkdtemp(path.join(os.tmpdir(),'notion-drive-pdf-'));await atomic(path.join(store,'library.json'),{documents:[],records:[]});const link='https://drive.google.com/file/d/syllabus-id/view?usp=drive_link';const page={id:'syllabus',object:'page',url:'https://notion.so/syllabus',properties:{Name:{type:'title',title:[{plain_text:'HALF YEARLY'}]},Files:{type:'files',files:[{name:'syllabus.pdf',external:{url:link}}]}}};const api=async endpoint=>endpoint==='users/me'?{bot:{workspace_name:'Shreehan'}}:endpoint==='search'?{results:[page]}:{results:[]};try{const result=await sync({store,api,getFile:async()=>Buffer.from('%PDF syllabus'),processFile:async()=>[{number:1,text:'Mathematics: geometry',image:'',method:'PDF text',confidence:null}]});assert.equal(googleDriveFileId(link),'syllabus-id');assert.equal(result.documents[0].id,'syllabus-id');assert.equal(result.documents[0].driveUrl,link);assert.equal(result.documents[0].pages[0].text,'Mathematics: geometry');assert.equal(result.drivePending,true)}finally{await fs.rm(store,{recursive:true,force:true})}});
 test('Notion Drive links stay as references until server Drive access is configured',async()=>{const store=await fs.mkdtemp(path.join(os.tmpdir(),'notion-drive-link-'));await atomic(path.join(store,'library.json'),{documents:[],records:[]});const page={id:'page',object:'page',url:'https://notion.so/page',properties:{Name:{type:'title',title:[{plain_text:'Half Yearly'}]},Files:{type:'files',files:[{name:'Science',external:{url:'https://drive.google.com/drive/folders/folder-id'}}]}}};const api=async endpoint=>endpoint==='users/me'?{bot:{workspace_name:'Shreehan'}}:endpoint==='search'?{results:[page]}:{results:[]};try{const result=await sync({store,api,getFile:async()=>{throw Error('Drive folder must not be downloaded as a file')}});assert.equal(result.documents.length,0);assert.deepEqual(result.records[0].driveLinks,['https://drive.google.com/drive/folders/folder-id']);assert.equal(result.drivePending,true);assert.equal(JSON.parse(await fs.readFile(path.join(store,'status.json'))).state,'partial')}finally{await fs.rm(store,{recursive:true,force:true})}});
 test('Notion records and linked Drive files publish in one library snapshot',async()=>{const store=await fs.mkdtemp(path.join(os.tmpdir(),'notion-drive-merge-'));await atomic(path.join(store,'library.json'),{documents:[],records:[]});const page={id:'page',object:'page',url:'https://notion.so/page',properties:{Name:{type:'title',title:[{plain_text:'Half Yearly'}]},Files:{type:'files',files:[{name:'Science',external:{url:'https://drive.google.com/drive/folders/folder-id'}}]}}};const api=async endpoint=>endpoint==='users/me'?{bot:{workspace_name:'Shreehan'}}:endpoint==='search'?{results:[page]}:{results:[]};const drive={file:async()=>({mimeType:'application/vnd.google-apps.folder',name:'Half Yearly'}),children:async()=>[{id:'image',name:'60.png',mimeType:'image/png',modifiedTime:'1'}],download:async()=>Buffer.from('image bytes')};try{const result=await sync({store,api,drive,processFile:async()=>[{number:1,text:'Foods give us energy',image:'',method:'OCR',confidence:99}]});assert.equal(result.drivePending,false);assert.equal(result.records.length,1);assert.equal(result.documents.length,1);assert.equal(result.documents[0].sourceType,'google_drive');assert.equal(JSON.parse(await fs.readFile(path.join(store,'library.json'))).documents.length,1)}finally{await fs.rm(store,{recursive:true,force:true})}});

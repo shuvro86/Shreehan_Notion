@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { dhakaDate, selectHistory } from '../app/lib/day-history';
+import { dhakaDate, selectHistory } from '../app/_lib/day-history';
 
 test('Bangladesh events are found before truncation, including historical place names', () => {
  const world = Array.from({ length: 12 }, (_, i) => ({ year: 2000 + i, text: `World event ${i}` }));

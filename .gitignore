@@ -9,6 +9,15 @@ playwright-report/
 tmp/
 data/*.db*
 storage/
+**/.DS_Store
+**/*.db
+**/*.db-shm
+**/*.db-wal
+*.sqbpro
+skills-lock.json
+.agents/
+.pytest_cache/
+frontend/next-env.d.ts
 
 .notion-sync/
 .vercel

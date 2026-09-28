@@ -19,6 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SYNC_DIR = Path(os.getenv("NOTION_SYNC_DIR", ROOT / ".notion-sync"))
 router = APIRouter(prefix="/api")
 _subject_sync_task: asyncio.Task | None = None
+_collection_sync_task: asyncio.Task | None = None
+_collection_sync_name: str | None = None
+COLLECTION_SYNC_SLUGS = {'Study Note': 'study-note', 'Exam': 'exam', 'Assignment': 'assignment'}
 
 
 def read_json(path: Path, fallback):
@@ -134,6 +137,16 @@ def subject_material_sync_status():
     return read_json(SYNC_DIR / "subject-materials-sync.json", {"state":"idle", "phase":"idle", "percent":0, "message":"Ready to sync Subject Materials."})
 
 
+def collection_sync_status(collection: str):
+    slug = COLLECTION_SYNC_SLUGS.get(collection)
+    if not slug:
+        raise HTTPException(404, 'Collection sync is not available.')
+    status = read_json(SYNC_DIR / f'collection-sync-{slug}.json', {'state':'idle', 'phase':'idle', 'collection':collection, 'message':f'Ready to sync {collection}.'})
+    if status.get('state') == 'running' and (_collection_sync_task is None or _collection_sync_task.done() or _collection_sync_name != collection):
+        return {**status, 'state':'error', 'phase':'error', 'message':f'{collection} sync was interrupted. Try again.'}
+    return status
+
+
 async def _run_subject_material_sync():
     try:
         process = await asyncio.create_subprocess_exec(
@@ -177,11 +190,66 @@ async def start_subject_material_sync():
         raise HTTPException(503, 'Manual sync needs the persistent local worker.')
     if not os.getenv('NOTION_TOKEN'):
         raise HTTPException(503, 'Notion sync is not configured on the server.')
+    if _collection_sync_task and not _collection_sync_task.done():
+        raise HTTPException(409, 'A collection sync is running. Try again after it finishes.')
     if _subject_sync_task and not _subject_sync_task.done():
         return JSONResponse(subject_material_sync_status(), status_code=202)
     atomic_write_json(SYNC_DIR / 'subject-materials-sync.json', {'state':'running', 'phase':'starting', 'percent':1, 'message':'Starting Notion sync…', 'updatedAt':datetime.now(timezone.utc).isoformat()})
     _subject_sync_task = asyncio.create_task(_run_subject_material_sync())
     return JSONResponse(subject_material_sync_status(), status_code=202)
+
+
+async def _run_collection_sync(collection: str):
+    path = SYNC_DIR / f'collection-sync-{COLLECTION_SYNC_SLUGS[collection]}.json'
+    process = None
+    try:
+        process = await asyncio.create_subprocess_exec(
+            'node', 'scripts/sync-collection.mjs', collection, cwd=ROOT,
+            env={**os.environ, 'NOTION_SYNC_DIR': str(SYNC_DIR)},
+            stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL,
+        )
+        await asyncio.wait_for(process.wait(), timeout=1800)
+        status = collection_sync_status(collection)
+        if process.returncode and status.get('state') != 'error':
+            atomic_write_json(path, {**status, 'state':'error', 'phase':'error', 'message':f'Could not sync {collection}. Saved content is still available.', 'updatedAt':datetime.now(timezone.utc).isoformat()})
+    except asyncio.CancelledError:
+        raise
+    except asyncio.TimeoutError:
+        if process and process.returncode is None:
+            process.kill()
+            await process.wait()
+        status = collection_sync_status(collection)
+        atomic_write_json(path, {**status, 'state':'error', 'phase':'error', 'message':f'{collection} sync took too long. Saved content is still available.', 'updatedAt':datetime.now(timezone.utc).isoformat()})
+    except Exception:
+        status = collection_sync_status(collection)
+        atomic_write_json(path, {**status, 'state':'error', 'phase':'error', 'message':f'Could not start {collection} sync. Saved content is still available.', 'updatedAt':datetime.now(timezone.utc).isoformat()})
+
+
+@router.get('/collections/{collection}/sync')
+def get_collection_sync(collection: str, response: Response):
+    response.headers['Cache-Control'] = 'no-store'
+    return collection_sync_status(collection)
+
+
+@router.post('/collections/{collection}/sync')
+async def start_collection_sync(collection: str):
+    global _collection_sync_task, _collection_sync_name
+    collection_sync_status(collection)
+    if os.getenv('VERCEL'):
+        raise HTTPException(503, 'Manual collection sync needs the persistent local worker.')
+    if not os.getenv('NOTION_TOKEN'):
+        raise HTTPException(503, 'Notion sync is not configured on the server.')
+    if _subject_sync_task and not _subject_sync_task.done():
+        raise HTTPException(409, 'Subject Materials sync is running. Try again after it finishes.')
+    if _collection_sync_task and not _collection_sync_task.done():
+        if _collection_sync_name == collection:
+            return JSONResponse(collection_sync_status(collection), status_code=202)
+        raise HTTPException(409, 'Another collection sync is running. Try again after it finishes.')
+    status = {'state':'running', 'phase':'starting', 'collection':collection, 'message':f'Starting {collection} sync…', 'updatedAt':datetime.now(timezone.utc).isoformat()}
+    atomic_write_json(SYNC_DIR / f'collection-sync-{COLLECTION_SYNC_SLUGS[collection]}.json', status)
+    _collection_sync_name = collection
+    _collection_sync_task = asyncio.create_task(_run_collection_sync(collection))
+    return JSONResponse(status, status_code=202)
 
 
 @router.post('/subject-practice/{subject}/generate-more')

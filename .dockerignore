@@ -11,3 +11,12 @@ test-results
 playwright-report
 __pycache__
 *.pyc
+.agents
+.vercel
+.pytest_cache
+**/.DS_Store
+**/*.db
+**/*.db-shm
+**/*.db-wal
+*.sqbpro
+skills-lock.json

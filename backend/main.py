@@ -5,7 +5,6 @@ import mimetypes
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
-from urllib.parse import urlsplit
 
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException, Request
@@ -19,9 +18,8 @@ from backend import content
 from backend.auth import COOKIE, auth_router, current_user
 from backend.db import initialize_database
 from backend.workspace import router as workspace_router
+from backend.security import apply_security_headers, cross_origin_write
 
-ROOT = Path(__file__).resolve().parents[1]
-load_dotenv(ROOT / ".env")
 STATIC_DIR = Path(os.getenv("APP_STATIC_DIR", str(ROOT / "frontend" / "out"))).resolve()
 
 
@@ -46,16 +44,11 @@ app.include_router(workspace_router)
 
 @app.middleware("http")
 async def private_responses(request: Request, call_next):
-    if request.method not in ("GET", "HEAD", "OPTIONS"):
-        origin = request.headers.get("origin")
-        if request.headers.get("sec-fetch-site") == "cross-site" or (origin and urlsplit(origin).netloc != request.headers.get("host")):
-            return JSONResponse({"error": "Cross-origin requests are not allowed."}, status_code=403, headers={"Cache-Control": "no-store"})
-    response = await call_next(request)
-    if not request.url.path.startswith("/_next/"):
-        response.headers["Cache-Control"] = "private, no-store"
-        response.headers["Vary"] = "Cookie"
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    return response
+    if cross_origin_write(request):
+        response = JSONResponse({"error": "Cross-origin requests are not allowed."}, status_code=403)
+    else:
+        response = await call_next(request)
+    return apply_security_headers(request, response)
 
 
 @app.exception_handler(HTTPException)

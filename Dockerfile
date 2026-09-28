@@ -6,7 +6,7 @@ RUN npm ci
 WORKDIR /app
 COPY frontend/app ./frontend/app
 COPY frontend/public ./frontend/public
-COPY frontend/next.config.ts frontend/postcss.config.mjs frontend/tsconfig.json frontend/next-env.d.ts ./frontend/
+COPY frontend/next.config.ts frontend/postcss.config.mjs frontend/tsconfig.json ./frontend/
 COPY data ./data
 WORKDIR /app/frontend
 RUN npm run build
@@ -23,7 +23,7 @@ COPY --from=web /app/frontend/package.json ./package.json
 COPY backend ./backend
 COPY data ./data
 COPY server ./server
-COPY scripts/sync-notion.mjs scripts/sync-drive.mjs scripts/prepare-unseen.mjs scripts/prepare-subject-practice.mjs scripts/sync-subject-materials.mjs scripts/container-start.sh ./scripts/
+COPY scripts/sync-notion.mjs scripts/sync-drive.mjs scripts/prepare-unseen.mjs scripts/prepare-subject-practice.mjs scripts/sync-subject-materials.mjs scripts/sync-collection.mjs scripts/container-start.sh ./scripts/
 COPY --from=web /app/frontend/out ./out
 VOLUME ["/app/storage"]
 EXPOSE 8000

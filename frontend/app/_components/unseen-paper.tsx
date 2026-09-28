@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Check, ChevronRight, FileText, Sparkles } from 'lucide-react';
-import type { SubjectPractice } from '../lib/subject-practice';
+import type { SubjectPractice } from '../_lib/subject-practice';
 import './unseen-paper.css';
 
 type Document = { id: string; title: string; collection: string; subject: string; sha256?: string };
