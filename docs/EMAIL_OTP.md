@@ -33,3 +33,7 @@ Implementation and deployment verification results are recorded in `PIVOT_PROJEC
 ## Restricted test sender configured (2026-10-05)
 
 The user-supplied `RESEND_API_KEY` and `RESEND_FROM=shreehan@resend.dev` were saved as sensitive Vercel Production variables. The key is not stored in Git or this document. Production deployment `dpl_4Q2UvktGQB12L6rzFRf8QGGBbdrg` completed READY with these settings. This sender remains restricted to Resend testing; arbitrary-user signup requires a verified owned domain. See https://resend.com/docs/knowledge-base/403-error-resend-dev-domain. Live email acceptance and inbox delivery remain unverified: automatic approval review blocked sending a test OTP to the existing production account pending explicit recipient/send authorization.
+
+## Supplied testing configuration (2026-10-05)
+
+The user supplied a Resend key and `onboarding@resend.dev`. Both were saved as sensitive Vercel Production environment variables; the secret is not stored in this repository. This activates restricted account-owner testing only. A verified domain sender is still required for general signup. Vercel deployment `dpl_4h6dyrjU5iFHMdirFgvo56zxnhLE` reached READY and the live signup resend endpoint returned HTTP 200 with `delivery=email` for the existing unverified account owned by the user. This confirms provider acceptance, not inbox receipt. Inbox receipt and entering the emailed OTP still require the recipient.
