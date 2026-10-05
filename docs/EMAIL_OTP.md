@@ -29,3 +29,7 @@ API reference: https://resend.com/docs/api-reference/emails/send-email
 The signed-in Resend account has an existing sending-access key named **Onboarding**, but no verified domains. No Resend or SMTP credentials were configured in the inspected project environment files. A usable key and verified sender are still needed for live delivery. Automated tests use a mocked provider; they do not send email or prove inbox delivery.
 
 Implementation and deployment verification results are recorded in `PIVOT_PROJECT.md`.
+
+## Restricted test sender configured (2026-10-05)
+
+The user-supplied `RESEND_API_KEY` and `RESEND_FROM=shreehan@resend.dev` were saved as sensitive Vercel Production variables. The key is not stored in Git or this document. Production deployment `dpl_4Q2UvktGQB12L6rzFRf8QGGBbdrg` completed READY with these settings. This sender remains restricted to Resend testing; arbitrary-user signup requires a verified owned domain. See https://resend.com/docs/knowledge-base/403-error-resend-dev-domain. Live email acceptance and inbox delivery remain unverified: automatic approval review blocked sending a test OTP to the existing production account pending explicit recipient/send authorization.
