@@ -33,3 +33,29 @@ test('Subject Materials get 15 questions, then five new questions per request, a
   assert.notEqual(changed.version,initial.version);
  } finally { await fs.rm(store,{recursive:true,force:true}); }
 });
+
+test('reviewed English Language is local, source-bound, supports more and rejects altered evidence', async () => {
+ const {englishSource,reviewedEnglishQuestions} = await import('../../server/english-language.mjs');
+ const text = 'It was Saturday and baby Paul was hurting badly with a new tooth coming through. Pleasure’s dad said he would shop. But you had better stay close,” he told her. That market’s a busy place. On the top of the bus going to market. A pound for a present for Paul. But her Dad was busy checking his list. At the market the stalls looked bright from above: good fun like a fair. Vegetables, he said, holding her tightly. He bought chillies, potatoes and beans. Bernard Ashley';
+ const doc = {...englishSource,subject:'English Language',title:'HALF YEARLY',kind:'PDF',collection:'Subject Materials',pages:[{number:1,text,method:'OCR',confidence:71}]};
+ const library = {records:[{id:'english',collection:'Subject Materials',subject:doc.subject,url:'https://notion.test/english'}],documents:[doc]};
+ const store = await fs.mkdtemp(path.join(os.tmpdir(),'english-review-'));
+ try {
+  const options = {store,apiKey:'test',generate:async()=>{assert.fail('Reviewed page must not be sent to a provider');}};
+  const first = await prepareSubject(library,doc.subject,options);
+  assert.equal(first.questions.length,15);
+  assert.equal(first.state,'ready');
+  assert.ok(first.questions.some(q => q.answer === 'A new tooth was coming through.'));
+  assert.equal(new Set(first.questions.map(q=>q.type)).size,5);
+  const more = await prepareSubject(library,doc.subject,{...options,more:true});
+  assert.equal(more.questions.length,20);
+  assert.ok(more.questions.every(q=>q.sources[0].documentId===doc.id && q.sources[0].page===1));
+  doc.pages[0].text = text.replace('Bernard Ashley','Unknown writer');
+  assert.equal(reviewedEnglishQuestions(readableChunks({documents:[doc]})).length,19);
+  doc.sha256 = 'replacement';
+  assert.equal(reviewedEnglishQuestions(readableChunks({documents:[doc]})).length,0);
+  const changed = await prepareSubject(library,doc.subject,{store,apiKey:null});
+  assert.notEqual(changed.version,first.version);
+  assert.ok(!changed.questions.some(q=>q.answer==='Bernard Ashley.'));
+ } finally { await fs.rm(store,{recursive:true,force:true}); }
+});

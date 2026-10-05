@@ -1,3 +1,4 @@
+import {englishReviewVersion, isReviewedEnglish, reviewedEnglishQuestions} from './english-language.mjs';
 import {noteQuestions, reviewedStudyVersion} from './study-notes.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -236,7 +237,7 @@ export async function prepareSubject(library, subject, {store = root, generate =
     const saved = await read(file, {subjects: {}});
     saved.subjects ||= {};
     const sources = sourceIds(group.documents);
-    const version = hash([collection === 'Study Note' ? `study-local-v4:${reviewedStudyVersion}` : 'ocr-min-60-v2', group.records.map(record => [record.id, record.url]), sources]);
+    const version = hash([collection === 'Study Note' ? `study-local-v4:${reviewedStudyVersion}` : subject === 'English Language' ? englishReviewVersion : 'ocr-min-60-v2', group.records.map(record => [record.id, record.url]), sources]);
     const bankKey = collection === 'Subject Materials' ? subject : `${collection}:${subject}`;
     let entry = saved.subjects[bankKey];
     const stale = refresh || !entry || entry.version !== version || !same(entry.sources, sources);
@@ -278,10 +279,20 @@ export async function prepareSubject(library, subject, {store = root, generate =
       await atomic(file, saved);
       return entry;
     }
+    for (const candidate of reviewedEnglishQuestions(chunks)) {
+      if (entry.questions.length >= entry.target) break;
+      const source = chunks.find(item => item.doc.id === candidate.sources[0].documentId && item.chunk.page === candidate.page);
+      try {
+        const [question] = validateQuestions({items:[candidate],topic:candidate.topic}, source.chunk, source.doc, entry.nextBatch++, entry.questions);
+        entry.questions.push(question);
+      } catch { /* Reject duplicates and evidence mismatches. */ }
+    }
+    // Reviewed pages are processed locally; do not replace reviewed answers with OCR guesses.
+    const generationChunks = chunks.filter(item => !isReviewedEnglish(item.doc));
     const failures = new Map();
     let consecutiveNoProgress = 0;
-    for (let call = 0; apiKey && call < maxCalls && entry.questions.length < entry.target; call++) {
-      const ranked = chunks.map((item, order) => ({...item, order, used: entry.questions.filter(q => q.sources?.some(source => source.documentId === item.doc.id && source.page === item.chunk.page)).length, failed: failures.get(item.key) || 0}));
+    for (let call = 0; apiKey && generationChunks.length && call < maxCalls && entry.questions.length < entry.target; call++) {
+      const ranked = generationChunks.map((item, order) => ({...item, order, used: entry.questions.filter(q => q.sources?.some(source => source.documentId === item.doc.id && source.page === item.chunk.page)).length, failed: failures.get(item.key) || 0}));
       ranked.sort((a, b) => a.used - b.used || a.failed - b.failed || a.order - b.order);
       const item = ranked[0];
       entry.state = 'preparing';
@@ -311,7 +322,7 @@ export async function prepareSubject(library, subject, {store = root, generate =
       if (consecutiveNoProgress >= 5) break;
     }
     if (entry.questions.length < entry.target) {
-      const fallback = extractiveQuestions(chunks, group.documents[0], entry.questions, entry.nextBatch, entry.target);
+      const fallback = extractiveQuestions(generationChunks, group.documents[0], entry.questions, entry.nextBatch, entry.target);
       for (const candidate of fallback) {
         if (entry.questions.length >= entry.target) break;
         try {
