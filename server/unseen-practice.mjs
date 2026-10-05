@@ -5,7 +5,7 @@ import { read, atomic, root } from './notion-sync.mjs';
 
 const digest = value => crypto.createHash('sha256').update(value).digest('hex').slice(0, 16);
 export const versionKey = doc => digest(JSON.stringify([doc.id, doc.sha256, doc.subject, doc.title, doc.pages?.map(p => [p.number, p.text, p.method, p.confidence])]));
-const eligible = doc => doc.collection === 'Unseen Paper' || (doc.sourceType === 'google_drive' && doc.collection !== 'Syllabus');
+const eligible = doc => doc.collection === 'Unseen Paper' || (doc.sourceType === 'google_drive' && !['Syllabus', 'Study Note'].includes(doc.collection));
 const matches = (source, doc) => source.documentId === doc.id && source.sha256 === doc.sha256 && source.subject === doc.subject;
 
 export function mergedPractice(library, curated, saved = { documents: {} }) {

@@ -47,7 +47,7 @@ def active_asset(url: str):
 
 
 def merged_practice(library, curated, saved):
-    documents = [d for d in library.get("documents", []) if d.get("collection") == "Unseen Paper" or (d.get('sourceType') == 'google_drive' and d.get('collection') != 'Syllabus')]
+    documents = [d for d in library.get("documents", []) if d.get("collection") == "Unseen Paper" or (d.get('sourceType') == 'google_drive' and d.get('collection') not in ('Syllabus', 'Study Note'))]
     sources = [s for s in curated.get("sources", []) if any(s.get("documentId") == d.get("id") and s.get("sha256") == d.get("sha256") and s.get("subject") == d.get("subject") for d in documents)]
     ids = {s["documentId"] for s in sources}
     questions = [q for q in curated.get("questions", []) if all(s.get("documentId") in ids for s in q.get("sources", []))]
@@ -70,15 +70,15 @@ def version_key(doc):
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()[:16]
 
 
-def subject_practice_view(library, saved):
-    records = [r for r in library.get('records', []) if r.get('collection') == 'Subject Materials' and r.get('subject')]
+def subject_practice_view(library, saved, collection='Subject Materials'):
+    records = [r for r in library.get('records', []) if r.get('collection') == collection and r.get('subject')]
     subjects = []
     for subject in sorted({r['subject'] for r in records}):
         related = [r for r in records if r['subject'] == subject]
         urls = {r.get('url') for r in related}
-        documents = [d for d in library.get('documents', []) if d.get('subject') == subject and (d.get('notionUrl') in urls or d.get('collection') == 'Subject Materials' or d.get('sourceType') == 'google_drive')]
+        documents = [d for d in library.get('documents', []) if d.get('subject') == subject and (d.get('collection') == collection or (collection == 'Subject Materials' and d.get('collection') != 'Study Note' and (d.get('notionUrl') in urls or d.get('sourceType') == 'google_drive')))]
         sources = sorted([[d.get('id'), d.get('sha256'), version_key(d)] for d in documents])
-        entry = saved.get('subjects', {}).get(subject, {})
+        entry = saved.get('subjects', {}).get(subject if collection == 'Subject Materials' else f'{collection}:{subject}', {})
         saved_sources = entry.get('sources', [])
         current = len(saved_sources) == len(sources) and {tuple(item) for item in saved_sources} == {tuple(item) for item in sources}
         questions = entry.get('questions', []) if current else []
@@ -86,13 +86,13 @@ def subject_practice_view(library, saved):
     return {'subjects': subjects}
 
 
-def current_subject_practice(library):
+def current_subject_practice(library, collection='Subject Materials'):
     if os.getenv('TURSO_DATABASE_URL'):
         from backend.cloud_content import read_json as cloud_json
         saved = cloud_json('subject-practice.json', {'subjects': {}})
     else:
         saved = read_json(SYNC_DIR / 'subject-practice.json', {'subjects': {}})
-    return subject_practice_view(library, saved)
+    return subject_practice_view(library, saved, collection)
 
 
 def sync_health():
@@ -130,7 +130,7 @@ def library(response: Response):
     if os.getenv("TURSO_DATABASE_URL"):
         from backend.cloud_content import read_json as cloud_json
         saved = cloud_json("unseen-practice.json", {"documents": {}})
-    return {"library": data, "sync": sync_health(), "unseenPractice": merged_practice(data, read_json(ROOT / "data/unseen-practice.json", {}), saved), "subjectPractice": current_subject_practice(data)}
+    return {"library": data, "sync": sync_health(), "unseenPractice": merged_practice(data, read_json(ROOT / "data/unseen-practice.json", {}), saved), "subjectPractice": current_subject_practice(data), "studyNotePractice": current_subject_practice(data, "Study Note")}
 
 
 def subject_material_sync_status():

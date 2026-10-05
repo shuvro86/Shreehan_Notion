@@ -82,7 +82,7 @@ function ExamSchedule() {
 }
 
 export default function Home() {
- const {library,practice,syncLabel,subjectPractice,sync}=useLibrary();
+ const {library,practice,syncLabel,subjectPractice,studyNotePractice,sync}=useLibrary();
  const [active, setActive] = useState('Overview');
  const [tasks, setTasks] = useState<Task[]>(initialTasks);
  const [taskError, setTaskError] = useState('');
@@ -179,6 +179,7 @@ export default function Home() {
     </>}
     {current && <section className="collection-detail"><span className={`icon-tile ${current.color}`}><current.icon size={28}/></span><div><span className="eyebrow">SHREEHAN HQ COLLECTION</span><h2>{current.tag.toLowerCase().replace(/^./, s => s.toUpperCase())}.</h2><p>{current.description} Open the original collection to view and manage your documents in Notion.</p></div><div className="collection-detail-actions"><a className="primary-button" href={`https://app.notion.com/p/${current.id}`} target="_blank" rel="noreferrer">Open in Notion <ExternalLink size={16}/></a>{syncCollection && <CollectionSync collection={syncCollection}/>}</div></section>}
     {current?.name === 'Exam' && <ExamSchedule/>}
+    {current?.name === 'Study Note' && <UnseenPaper documents={library.documents} bank={studyNotePractice} studyNotes/>}
     {current?.name === 'Analytical Material' && <UnseenPaper documents={library.documents} bank={subjectPractice} drivePending={sync.drivePending===true}/>}
     {active==='Homework List'&&<Homework data={library.homework} documents={library.documents} syncLabel={syncLabel}/>}
     {current && current.name !== 'Homework List' && <section className="panel imported-collection"><div className="section-heading"><div><h2>{syncCollection ? `Synced material in ${current.name}` : `Documents in ${current.name}`}</h2><p>{syncCollection ? 'Notes and files from this Notion collection.' : 'Originals imported from your Notion workspace.'}</p></div><a className="secondary-button" href={`/library?collection=${encodeURIComponent(current.name)}`}>Browse library <ArrowUpRight size={14}/></a></div>

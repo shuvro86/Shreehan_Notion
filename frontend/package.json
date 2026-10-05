@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "sync:notion": "cd .. && node scripts/sync-notion.mjs --once",
     "sync:drive": "cd .. && node scripts/sync-drive.mjs --once",
-    "test:sync": "node --test tests/sync.test.mjs tests/drive-sync.test.mjs tests/unseen-generation.test.mjs",
+    "test:sync": "node --test tests/sync.test.mjs tests/drive-sync.test.mjs tests/unseen-generation.test.mjs tests/study-notes.test.mjs tests/subject-practice.test.mjs",
     "test:e2e": "playwright test"
   },
   "dependencies": {

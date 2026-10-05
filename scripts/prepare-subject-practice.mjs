@@ -12,7 +12,7 @@ try{
   const result=await prepareSubject(library,subject,{more:mode==='more',refresh:mode==='refresh',maxCalls:30});
   console.log(JSON.stringify({subject,target:result.target,questions:result.questions.length,state:result.state}));
  }else{
-  const results=await prepareAllSubjects(library);
+  const results=await prepareAllSubjects(library,process.argv.includes('--study-notes')?{collection:'Study Note'}:{});
   console.log(JSON.stringify(results.map(item=>({subject:item.subject,target:item.result.target,questions:item.result.questions.length,state:item.result.state}))));
  }
 }catch(error){

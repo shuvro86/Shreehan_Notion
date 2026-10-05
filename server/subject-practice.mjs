@@ -1,3 +1,4 @@
+import {noteQuestions} from './study-notes.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {acquireLock} from './sync-lock.mjs';
@@ -9,17 +10,17 @@ const sourceIds = docs => docs.map(doc => [doc.id, doc.sha256, versionKey(doc)])
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 export const subjectFile = store => path.join(store, 'subject-practice.json');
 
-export function materialGroups(library) {
+export function materialGroups(library, collection = 'Subject Materials') {
   const groups = new Map();
   for (const record of library.records || []) {
-    if (record.collection !== 'Subject Materials' || !record.subject) continue;
+    if (record.collection !== collection || !record.subject) continue;
     const group = groups.get(record.subject) || {subject: record.subject, records: [], documents: []};
     group.records.push(record);
     groups.set(record.subject, group);
   }
   for (const group of groups.values()) {
     const urls = new Set(group.records.map(record => record.url));
-    group.documents = (library.documents || []).filter(doc => doc.subject === group.subject && (urls.has(doc.notionUrl) || doc.collection === 'Subject Materials' || doc.sourceType === 'google_drive'));
+    group.documents = (library.documents || []).filter(doc => doc.subject === group.subject && (doc.collection === collection || (collection === 'Subject Materials' && doc.collection !== 'Study Note' && (urls.has(doc.notionUrl) || doc.sourceType === 'google_drive'))));
     group.documents.sort((a, b) => (a.sourcePage || 0) - (b.sourcePage || 0) || a.title.localeCompare(b.title));
   }
   return [...groups.values()].sort((a, b) => a.subject.localeCompare(b.subject));
@@ -28,7 +29,7 @@ export function materialGroups(library) {
 export function readableChunks(group) {
   const chunks = [];
   for (const doc of group.documents) {
-    if (!['PDF', 'Image'].includes(doc.kind) || doc.processingError) continue;
+    if (!['PDF', 'Image', 'Note'].includes(doc.kind) || doc.processingError) continue;
     for (const page of doc.pages || []) {
       const text = (page.text || '').trim();
       if (text.length < 40 || page.method === 'Pending' || (page.method === 'OCR' && (typeof page.confidence !== 'number' || page.confidence < 60))) continue;
@@ -225,8 +226,8 @@ export function extractiveQuestions(chunks, doc, existing = [], batchStart = 0, 
   return questions;
 }
 
-export async function prepareSubject(library, subject, {store = root, generate = generateQuestions, apiKey = process.env.OPENROUTER_API_KEY, more = false, refresh = false, maxCalls = 15, onProgress} = {}) {
-  const group = materialGroups(library).find(item => item.subject === subject);
+export async function prepareSubject(library, subject, {store = root, generate = generateQuestions, apiKey = process.env.OPENROUTER_API_KEY, more = false, refresh = false, maxCalls = 15, onProgress, collection = 'Subject Materials'} = {}) {
+  const group = materialGroups(library, collection).find(item => item.subject === subject);
   if (!group) throw Error('subject_not_found');
   const release = await acquireLock(store, 'subject-practice.lock');
   if (!release) throw Error('busy');
@@ -235,12 +236,13 @@ export async function prepareSubject(library, subject, {store = root, generate =
     const saved = await read(file, {subjects: {}});
     saved.subjects ||= {};
     const sources = sourceIds(group.documents);
-    const version = hash(['ocr-min-60-v2', group.records.map(record => [record.id, record.url]), sources]);
-    let entry = saved.subjects[subject];
+    const version = hash([collection === 'Study Note' ? 'study-local-v3' : 'ocr-min-60-v2', group.records.map(record => [record.id, record.url]), sources]);
+    const bankKey = collection === 'Subject Materials' ? subject : `${collection}:${subject}`;
+    let entry = saved.subjects[bankKey];
     const stale = refresh || !entry || entry.version !== version || !same(entry.sources, sources);
     if (stale) {
-      entry = {version, sources, target: 15, questions: [], nextBatch: 0, state: 'preparing', message: 'Preparing the first 15 questions from Subject Materials.'};
-      saved.subjects[subject] = entry;
+      entry = {version, sources, target: 15, questions: [], nextBatch: 0, state: 'preparing', message: `Preparing the first 15 questions from ${collection}.`};
+      saved.subjects[bankKey] = entry;
     }
     if (more) {
       if (entry.questions.length < entry.target) throw Error('initial_not_ready');
@@ -254,9 +256,26 @@ export async function prepareSubject(library, subject, {store = root, generate =
     const chunks = readableChunks(group);
     if (!chunks.length) {
       entry.state = 'waiting_for_files';
-      entry.message = 'Readable Subject Materials files have not synced yet.';
+      entry.message = `Readable ${collection} files have not synced yet.`;
       await atomic(file, saved);
       await onProgress?.({subject, state: entry.state, questions: entry.questions.length, target: entry.target, message: entry.message});
+      return entry;
+    }
+    if (collection === 'Study Note') {
+      const candidates = noteQuestions(chunks);
+      for (const candidate of candidates) {
+        const source = group.documents.find(doc => doc.id === candidate.sources[0].documentId);
+        const chunk = chunks.find(item => item.doc.id === source.id && item.chunk.page === candidate.page)?.chunk;
+        try {
+          const [question] = validateQuestions({items:[candidate],topic:candidate.topic}, chunk, source, entry.nextBatch++, entry.questions);
+          entry.questions.push(question);
+        } catch { /* Only exact source-supported, unique items are published. */ }
+      }
+      entry.target = entry.questions.length || 15;
+      entry.state = entry.questions.length >= entry.target ? 'ready' : 'partial';
+      entry.message = `${entry.questions.length} source-backed questions prepared locally. ` + (entry.state === 'ready' ? 'Check original pages for diagrams.' : 'Add more readable question-and-answer notes for further practice.');
+      entry.updatedAt = new Date().toISOString();
+      await atomic(file, saved);
       return entry;
     }
     const failures = new Map();
@@ -316,9 +335,11 @@ export async function prepareSubject(library, subject, {store = root, generate =
 
 export async function prepareAllSubjects(library, options = {}) {
   const results = [];
-  for (const group of materialGroups(library)) {
-    try { results.push({subject: group.subject, result: await prepareSubject(library, group.subject, options)}); }
+  for (const collection of options.collection ? [options.collection] : ['Subject Materials', 'Study Note']) {
+  for (const group of materialGroups(library, collection)) {
+    try { results.push({subject: group.subject, result: await prepareSubject(library, group.subject, {...options, collection})}); }
     catch (error) { if (error.message !== 'busy') throw error; }
+  }
   }
   return results;
 }

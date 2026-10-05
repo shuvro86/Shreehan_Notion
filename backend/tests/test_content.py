@@ -52,3 +52,16 @@ def test_subject_practice_source_order_does_not_hide_completed_bank():
     sources = [[doc['id'], doc['sha256'], content.version_key(doc)] for doc in documents]
     saved = {'subjects': {'Science': {'sources': list(reversed(sources)), 'target': 15, 'state': 'ready', 'questions': [{'id': 'question'}]}}}
     assert content.subject_practice_view(library, saved)['subjects'][0]['questions'] == [{'id': 'question'}]
+
+
+def test_study_notes_bank_is_isolated_and_removed_sources_hide_answers():
+    doc = {'id': 'note', 'subject': 'Science', 'collection': 'Study Note', 'sha256': 'one', 'title': 'Food', 'pages': []}
+    library = {'records': [{'collection': 'Study Note', 'subject': 'Science', 'url': 'https://notion.test/note'}], 'documents': [doc, {**doc, 'id': 'material', 'collection': 'Subject Materials'}]}
+    saved = {'subjects': {'Study Note:Science': {'sources': [['note', 'one', content.version_key(doc)]], 'questions': [{'id': 'note-question'}]}, 'Science': {'questions': [{'id': 'wrong-bank'}]}}}
+    result = content.subject_practice_view(library, saved, 'Study Note')['subjects'][0]
+    assert result['documentIds'] == ['note']
+    assert result['questions'] == [{'id': 'note-question'}]
+    library['documents'] = []
+    assert content.subject_practice_view(library, saved, 'Study Note')['subjects'][0]['questions'] == []
+    library['records'] = []
+    assert content.subject_practice_view(library, saved, 'Study Note')['subjects'] == []

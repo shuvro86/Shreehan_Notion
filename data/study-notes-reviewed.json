@@ -1,0 +1,254 @@
+[
+  {
+    "documentId": "1d13cxoBr7u88mN7EufBRxJUPvEsaQ87j",
+    "sha256": "fcb798f8c5bfa900035cc2c6e7e3d69729ecfba36400a01a23c00b9543fd9eeb",
+    "questions": [
+      {
+        "page": 1,
+        "question": "Why do we need food?",
+        "answer": "To live and grow.",
+        "evidence": "1. We need food to live and grow (breathe/live and grow)",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "How much food should we eat to stay healthy?",
+        "answer": "The right amount.",
+        "evidence": "2. We should eat the right (the right/less) amount of food to stay healthy",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "Which food group makes our bones and muscles strong?",
+        "answer": "Body-building foods.",
+        "evidence": "3. Body-building (Energy-giving/ Body-building) foods make our bones and muscles strong",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "Which protects us from falling sick: nuts or eggs?",
+        "answer": "Nuts.",
+        "evidence": "4. Nuts (Nuts/Eggs) protect us from falling sick",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "How many meals do we usually eat each day?",
+        "answer": "Three.",
+        "evidence": "5. We usually eat three (three/five) meals in a day",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "Name two foods we get from plants.",
+        "answer": "Fruits and vegetables.",
+        "evidence": "1. Food we get from plants                   fruits         vegetables",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "Name two foods we get from animals.",
+        "answer": "Eggs and milk.",
+        "evidence": "2. Food we get from animals                  eggs           milk",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "Name two energy-giving foods.",
+        "answer": "Rice and wheat.",
+        "evidence": "3. Energy-giving foods                       rice           wheat",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "Name two body-building foods.",
+        "answer": "Milk and chicken.",
+        "evidence": "4. Body-building foods                       milk           chickens",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "Name two protective foods.",
+        "answer": "Vegetables and fruits.",
+        "evidence": "5. Protective foods                          vegetables     fruits",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "What are the three meals we usually eat?",
+        "answer": "Breakfast, lunch, and dinner.",
+        "evidence": "We usually have three meals during the day. They are breakfast, lunch, and dinner.",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "When should we wash our hands?",
+        "answer": "Before and after eating.",
+        "evidence": "iii. We should wash our hands before and after eating.",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "Should we eat well-cooked food?",
+        "answer": "Yes.",
+        "evidence": "i. We should eat well-cooked food.",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 3,
+        "question": "Why can dirty hands make us sick?",
+        "answer": "They contain many germs.",
+        "evidence": "Ans. Yes, He can fall sick because his dirty hands contain many germs.",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 3,
+        "question": "Roshni eats rice and wheat but no fruits or vegetables. What food group is she missing?",
+        "answer": "Protective foods.",
+        "evidence": "Ans. No, Roshni is not eating healthy foods because she is not eating protective foods such as fruits, vegetables",
+        "type": "Short answer",
+        "options": []
+      }
+    ]
+  },
+  {
+    "documentId": "1IG-nBfHlSuDSsWzVlWrx3YHxnowqlcOK",
+    "sha256": "b8402953708fbecac7229f55530649ceff50a114bbf4b63216e84af112524d33",
+    "questions": [
+      {
+        "page": 1,
+        "question": "মহানবি হজরত মুহম্মদ (স) কোথায় থাকতেন?",
+        "answer": "তিনি মদিনায় থাকতেন।",
+        "evidence": "DËi t gnvbwe nRiZ gyn¤§` (m) gw`bvq _vK‡Zb|",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "মহানবি (স) শহরের চারপাশে কী খুঁড়তে বললেন?",
+        "answer": "তিনি পরিখা খুঁড়তে বললেন।",
+        "evidence": "DËi t gnvbwe (m) kn‡ii Pvicv‡k cwiLv Lyuo‡Z ej‡jb|",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "নবিজি (স) সবাইকে কী বোঝালেন?",
+        "answer": "একসাথে করলে কাজ সহজ হয়।",
+        "evidence": "DËi t bwewR (m) mevB‡K eySv‡jb GKmv‡_ Ki‡j KvR mnR nq|",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "কোন মাসে নদীতে হাঁটুজল থাকে?",
+        "answer": "বৈশাখ মাসে।",
+        "evidence": "DËi t ‰ekvL gv‡m b`x‡Z nvuUyRj _v‡K|",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "কাশবন দেখতে কেমন?",
+        "answer": "ফুলে ফুলে সাদা।",
+        "evidence": "DËi t Kvkeb ‡`L‡Z dy‡j dy‡j mv`v|",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "অস্ত্র ধরে যুদ্ধ করল কারা?",
+        "answer": "মুক্তিসেনারা।",
+        "evidence": "DËi t A¯¿ a‡i hy× Kij gyw³‡mbviv|",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "মুক্তিসেনারা কেন যুদ্ধ করল?",
+        "answer": "মাতৃভূমির জন্য।",
+        "evidence": "DËi t gyw³‡mbviv gvZ…f~wgi Rb¨ hy× Kij|",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 1,
+        "question": "কাদের শহিদ বলে?",
+        "answer": "যাঁরা দেশের জন্য যুদ্ধ করে জীবন দেন তাঁদের শহিদ বলে।",
+        "evidence": "DËi t hvuiv ‡`‡ki Rb¨ hy× K‡i Rxeb ‡`b Zv‡`i kwn` e‡j|",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "“মদিনা” শব্দের অর্থ কী?",
+        "answer": "আরবের একটি শহর।",
+        "evidence": "1| gw`bv = Avi‡ei GKwU kni                                     2| nvgjv = AvK&ªgY",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "“হামলা” শব্দের অর্থ কী?",
+        "answer": "আক্রমণ।",
+        "evidence": "1| gw`bv = Avi‡ei GKwU kni                                     2| nvgjv = AvK&ªgY",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "“ধার” শব্দের অর্থ কী?",
+        "answer": "তীর।",
+        "evidence": "3| avi = Zxi                                                   4| Xvjy = wbPy",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "“ঢালু” শব্দের অর্থ কী?",
+        "answer": "নিচু।",
+        "evidence": "3| avi = Zxi                                                   4| Xvjy = wbPy",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "“সেথা” শব্দের অর্থ কী?",
+        "answer": "সেখানে।",
+        "evidence": "5| ‡m_v = ‡mLv‡b                                               6| SvuK = `j",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "“মুক্তিসেনা” শব্দের অর্থ কী?",
+        "answer": "মুক্তিযোদ্ধা।",
+        "evidence": "7| nvuK = WvK                                                  8| gyw³‡mbv = gyw³‡hv×v",
+        "type": "Short answer",
+        "options": []
+      },
+      {
+        "page": 2,
+        "question": "“মাতৃভূমি” শব্দের অর্থ কী?",
+        "answer": "স্বদেশ।",
+        "evidence": "9| gvZ…f~wg = ¯^‡`k                                            10| A¯¿ = hy× Kivi nvwZqvi",
+        "type": "Short answer",
+        "options": []
+      }
+    ]
+  }
+]

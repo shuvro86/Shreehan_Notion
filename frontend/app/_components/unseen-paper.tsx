@@ -8,7 +8,7 @@ import './unseen-paper.css';
 type Document = { id: string; title: string; collection: string; subject: string; sha256?: string };
 type SyncProgress = {state:string;phase:string;percent:number;message:string;subject?:string|null;questionsReady?:number;questionsTarget?:number;subjectsTotal?:number;subjectsCompleted?:number};
 
-export default function UnseenPaper({ documents, bank, drivePending }: { documents: Document[]; bank: SubjectPractice; drivePending?: boolean }) {
+export default function UnseenPaper({ documents, bank, drivePending, studyNotes = false }: { documents: Document[]; bank: SubjectPractice; drivePending?: boolean; studyNotes?: boolean }) {
  const [selectedSubject, setSubject] = useState('');
  const [localBank, setLocalBank] = useState(bank);
  const [revealed, setRevealed] = useState<string[]>([]);
@@ -18,6 +18,7 @@ export default function UnseenPaper({ documents, bank, drivePending }: { documen
  const [syncProgress, setSyncProgress] = useState<SyncProgress>({state:'idle',phase:'idle',percent:0,message:'Ready to sync Subject Materials.'});
  useEffect(() => setLocalBank(bank), [bank]);
  useEffect(() => {
+  if (studyNotes) return;
   let active = true;
   async function refreshProgress() {
    try {
@@ -34,7 +35,7 @@ export default function UnseenPaper({ documents, bank, drivePending }: { documen
   if (syncProgress.state !== 'running') return () => {active=false};
   const timer = setInterval(refreshProgress, 1200);
   return () => {active=false;clearInterval(timer)};
- }, [syncProgress.state]);
+ }, [syncProgress.state, studyNotes]);
  const subjects = localBank.subjects;
  const selected = subjects.find(item => item.name === selectedSubject) || subjects[0];
  const subject = selected?.name || '';
@@ -66,12 +67,13 @@ export default function UnseenPaper({ documents, bank, drivePending }: { documen
    setSyncProgress(current => ({...current,state:'error',phase:'error',message:cause instanceof Error ? cause.message : 'Could not start Notion sync.'}));
   }
  }
- return <section className="unseen-paper-module" aria-label="Analytical Material">
+ return <section className="unseen-paper-module" aria-label={studyNotes ? "Study Notes questions" : "Analytical Material"}>
   <div className="unseen-paper-heading">
-   <div><div className="eyebrow"><span/> SUBJECT MATERIALS · CLASS 2</div><h2>Analytical Material</h2><p>Choose a subject from Notion. Each question and answer comes from its linked study material.</p></div>
+   <div><div className="eyebrow"><span/> {studyNotes ? "STUDY NOTES · CLASS 2" : "SUBJECT MATERIALS · CLASS 2"}</div><h2>{studyNotes ? "Study Notes questions & answers" : "Analytical Material"}</h2><p>Choose a subject from Notion. Each question and answer comes from its linked study material.</p></div>
    <div className="unseen-paper-count" aria-live="polite"><strong>{visible.length}</strong><span>of {selected?.target || 15} questions</span></div>
   </div>
-  <div className="subject-sync-control">
+  {studyNotes && <p className="unseen-paper-note">New and edited notes refresh automatically after sync. Production checks are scheduled every five minutes; processing can take longer. Unclear scans may need review.</p>}
+  {!studyNotes && <div className="subject-sync-control">
    <button className="sync-notion-button" onClick={syncNotion} disabled={syncProgress.state==='running'}><Sparkles size={16}/>{syncProgress.state==='running'?'Syncing…':'Sync Notion'}</button>
    {syncProgress.state !== 'idle' && <div className="subject-sync-status" aria-live="polite">
     <div className="subject-sync-status-heading"><strong>{syncProgress.state==='running'?'Sync in progress':syncProgress.state==='complete'?'Sync complete':syncProgress.state==='partial'?'Sync partially complete':syncProgress.state==='error'?'Sync failed':'Ready to sync'}</strong><span>{syncProgress.percent}%</span></div>
@@ -80,15 +82,15 @@ export default function UnseenPaper({ documents, bank, drivePending }: { documen
    </div>}
    {drivePending && <p className="subject-sync-limitation">New files inside linked Drive folders need a server-side Drive credential to be discovered.</p>}
   </div>
-  <div className="unseen-subjects" role="group" aria-label="Choose a subject">
+  }<div className="unseen-subjects" role="group" aria-label="Choose a subject">
    {subjects.map(item => <button key={item.name} aria-pressed={subject === item.name} onClick={() => {setSubject(item.name);setError('');}}>{item.name}<span>{item.questions.length} of {item.target} questions</span></button>)}
   </div>
-  {!subjects.length && <p className="unseen-finished">Subject Materials will appear here when Notion finishes syncing.</p>}
+  {!subjects.length && <p className="unseen-finished">{studyNotes ? "Add subject notes and readable PDFs to Study Notes in Notion. Questions appear after synchronization and analysis." : "Subject Materials will appear here when Notion finishes syncing."}</p>}
   {selected && <>
-   <div className="unseen-paper-note"><Sparkles size={18}/><span>{subjectDocuments.length} linked {subjectDocuments.length === 1 ? 'file' : 'files'} for {subject}. Generate More adds five questions. Check the linked page if an answer seems unclear.</span></div>
+   <div className="unseen-paper-note"><Sparkles size={18}/><span>{subjectDocuments.length} linked {subjectDocuments.length === 1 ? 'file' : 'files'} for {subject}. {studyNotes ? "Questions refresh automatically when these files change." : "Generate More adds five questions."} Check the linked page if an answer seems unclear.</span></div>
    {selected.state !== 'ready' && <div className="unseen-pending" role="status"><strong>{selected.message}</strong></div>}
    <details className="unseen-source-list"><summary>View {subject} source material ({subjectDocuments.length} files)</summary>
-    {selected.notionUrls.filter(Boolean).map(url => <a key={url} href={url} target="_blank" rel="noreferrer"><FileText size={14}/>Subject Materials in Notion</a>)}
+    {selected.notionUrls.filter(Boolean).map(url => <a key={url} href={url} target="_blank" rel="noreferrer"><FileText size={14}/>{studyNotes ? "Study Notes in Notion" : "Subject Materials in Notion"}</a>)}
     {subjectDocuments.map(doc => <a key={doc.id} href={`/library?doc=${encodeURIComponent(doc.id)}&page=1`} target="_blank" rel="noreferrer"><FileText size={14}/>{doc.title}</a>)}
    </details>
    {!questions.length && <p className="unseen-finished">Questions will appear when the linked material has been read and checked.</p>}
@@ -104,7 +106,7 @@ export default function UnseenPaper({ documents, bank, drivePending }: { documen
     </article>;
    })}</div>
    {error && <p className="unseen-pending" role="alert">{error}</p>}
-   <button className="unseen-more-button" disabled={busy || syncProgress.state==='running' || selected.state !== 'ready' || questions.length < selected.target} onClick={generateMore}><Sparkles size={17}/>{busy ? 'Generating five questions…' : 'Generate More'}<span>+5 questions</span></button>
+   {!studyNotes && <button className="unseen-more-button" disabled={busy || syncProgress.state==='running' || selected.state !== 'ready' || questions.length < selected.target} onClick={generateMore}><Sparkles size={17}/>{busy ? 'Generating five questions…' : 'Generate More'}<span>+5 questions</span></button>}
   </>}
  </section>;
 }

@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['server/**', 'scripts/sync-notion.mjs', 'scripts/sync-drive.mjs', 'scripts/cloud-snapshot.py', '.github/workflows/notion-sync.yml']
+    paths: ['server/**', 'data/study-notes-reviewed.json', 'scripts/prepare-subject-practice.mjs', 'scripts/sync-notion.mjs', 'scripts/sync-drive.mjs', 'scripts/cloud-snapshot.py', '.github/workflows/notion-sync.yml']
 concurrency:
   group: notion-production-sync
   cancel-in-progress: false

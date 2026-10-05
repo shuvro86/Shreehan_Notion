@@ -34,7 +34,7 @@ test('a collection sync reconciles its notes and files without changing other co
   assert.deepEqual(result.records.filter(item=>item.collection==='Exam'),[exam]);
   assert.deepEqual(result.documents.filter(item=>item.collection==='Exam'),[examFile]);
   assert.equal(result.records.filter(item=>item.collection==='Study Note').length,1);
-  assert.equal(result.documents.filter(item=>item.collection==='Study Note').length,1);
+  assert.equal(result.documents.filter(item=>item.collection==='Study Note').length,2);
   assert.equal(result.drivePending,true);
   assert.equal(result.syncedAt,'2026-09-26T00:00:00Z');
   assert.equal((await fs.readFile(path.join(store,'status.json'),'utf8')).includes('"state":"partial"'),true);

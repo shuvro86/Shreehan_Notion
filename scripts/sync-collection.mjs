@@ -31,6 +31,11 @@ try{
     }
   }
   if(!result)throw Error('Notion sync remained busy. Try again shortly.');
+  if(collection==='Study Note'){
+    await report({state:'running',phase:'analysis',message:'Preparing Class 2 Study Notes questions…'});
+    const {prepareAllSubjects}=await import('../server/subject-practice.mjs');
+    await prepareAllSubjects(result,{collection});
+  }
   const records=changes(items(before,'records'),items(result,'records'),['title','body','date','subject','blocks']);
   const documents=changes(items(before,'documents'),items(result,'documents'),['title','sha256','pages','subject']);
   await report({state:'complete',phase:'done',message:`${collection} synced: ${records.added} notes added, ${records.changed} changed, ${records.removed} removed; ${documents.added} files added, ${documents.changed} changed, ${documents.removed} removed.`,records,documents});
