@@ -191,3 +191,42 @@ def test_head_navigation_and_secure_cookie(client, monkeypatch):
     assert cookie
     # HTTPS-only cookies must not authenticate an HTTP request.
     assert browser.get('/api/auth/me').status_code == 401
+
+
+def test_email_failure_rolls_back_signup_and_can_retry(client,monkeypatch):
+    browser,codes,_ = client
+    def fail(*args): raise RuntimeError('We could not send your code. Please try again in a minute.')
+    monkeypatch.setattr(auth,'send_code',fail)
+    body = {'username':'delivery_retry','email':'retry@example.test'}
+    assert browser.post('/api/auth/signup',json=body).status_code == 503
+    from backend.db import connection
+    with connection() as db:
+        assert db.execute('SELECT id FROM users WHERE email=?',(body['email'],)).fetchone() is None
+    monkeypatch.setattr(auth,'send_code',lambda email,code,purpose:codes.append((email,code,purpose)) or 'email')
+    register(browser,codes,body['username'],body['email'])
+    assert browser.post('/api/auth/verify-signup',json={'email':body['email'],'code':codes[-1][1]}).status_code == 400
+
+
+def test_signup_through_resend_adapter(client,monkeypatch):
+    import httpx
+    from backend import mailer
+    browser,_,_ = client
+    sent=[]
+    monkeypatch.setenv('RESEND_API_KEY','test-key')
+    monkeypatch.setenv('RESEND_FROM','otp@example.test')
+    monkeypatch.setattr(auth,'send_code',mailer.send_code)
+    def deliver(url,**kwargs):
+        sent.append(kwargs['json'])
+        return httpx.Response(200,json={'id':'test-message'},request=httpx.Request('POST',url))
+    monkeypatch.setattr(mailer.httpx,'post',deliver)
+    body={'username':'resend_user','email':'resend@example.test'}
+    response=browser.post('/api/auth/signup',json=body)
+    assert response.status_code == 200
+    assert response.json()['delivery'] == 'email'
+    import re
+    code=re.search(r'Your code is ([0-9]{6})',sent[0]['text']).group(1)
+    assert sent[0]['to'] == [body['email']]
+    assert code not in response.text
+    ticket=browser.post('/api/auth/verify-signup',json={'email':body['email'],'code':code}).json()['ticket']
+    assert browser.post('/api/auth/set-password',json={'ticket':ticket,'password':'safe-test-password'}).status_code == 200
+    assert browser.get('/api/auth/me').json()['email'] == body['email']

@@ -2,15 +2,44 @@
 from __future__ import annotations
 
 import os
+import html
+import httpx
+import re
 import smtplib
 from email.message import EmailMessage
 
 
 def send_code(address: str, code: str, purpose: str) -> str:
+    if not re.fullmatch(r"[0-9]{6}", code) or purpose not in {"signup", "password_reset"}:
+        raise RuntimeError("Invalid verification request.")
+    api_key = os.getenv("RESEND_API_KEY", "").strip()
+    sender = os.getenv("RESEND_FROM", "").strip()
+    if api_key or sender:
+        if not api_key or not sender:
+            raise RuntimeError("Email verification is temporarily unavailable. Please try again later.")
+        action = "Verify your email" if purpose == "signup" else "Reset your password"
+        text = f"{action} for Shreehan HQ. Your code is {code}. It expires in 10 minutes. If you did not request this, ignore this email."
+        try:
+            response = httpx.post(
+                "https://api.resend.com/emails",
+                headers={"Authorization": f"Bearer {api_key}"},
+                json={"from": sender, "to": [address], "subject": f"{action} — Shreehan HQ",
+                      "text": text,
+                      "html": f'<div style="font-family:Arial,sans-serif;max-width:480px;margin:auto;padding:24px"><h1>{action}</h1><p>Your Shreehan HQ verification code is:</p><p style="font-size:32px;letter-spacing:6px;font-weight:bold">{html.escape(code)}</p><p>This code expires in 10 minutes. Never share it with anyone.</p><p>If you did not request this, you can ignore this email.</p></div>'},
+                timeout=15,
+            )
+            response.raise_for_status()
+            result = response.json()
+            if not isinstance(result, dict) or not result.get("id"):
+                raise ValueError("Missing delivery receipt")
+        except (httpx.HTTPError, ValueError) as exc:
+            # Never expose provider bodies, addresses, credentials or codes in errors/logs.
+            raise RuntimeError("We could not send your code. Please try again in a minute.") from None
+        return "email"
     host = os.getenv("SMTP_HOST")
     if not host:
-        if os.getenv("APP_ENV", "development") != "development":
-            raise RuntimeError("SMTP_HOST must be configured outside local development")
+        if os.getenv("VERCEL") or os.getenv("APP_ENV", "development") != "development":
+            raise RuntimeError("Email verification is temporarily unavailable. Please try again later.")
         print(f"[LOCAL OTP] {purpose} for {address}: {code}", flush=True)
         return "development_log"
     message = EmailMessage()

@@ -6,7 +6,7 @@ A Class II learning workspace with one five-column Kanban board, a Notion-backed
 
 ## Run locally
 
-Install Node.js 22, Python 3.12+, and uv. Copy `.env.example` to `.env`, then set `OPENROUTER_API_KEY` and `NOTION_TOKEN` as needed. Public direct Drive files linked in Notion can import without a Drive API credential; syncing all files in linked folders requires the read-only Drive settings in `.env.example`. For real signup/recovery email, configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, and a provider-approved `SMTP_FROM` in `.env`, then restart the app. Port 587 uses STARTTLS; port 465 uses implicit TLS. Without SMTP, development OTPs appear only in the server log, and the signup page says so.
+Install Node.js 22, Python 3.12+, and uv. Copy `.env.example` to `.env`, then set `OPENROUTER_API_KEY` and `NOTION_TOKEN` as needed. Public direct Drive files linked in Notion can import without a Drive API credential; syncing all files in linked folders requires the read-only Drive settings in `.env.example`. For Resend signup/recovery email on Vercel, follow [docs/EMAIL_OTP.md](docs/EMAIL_OTP.md) and configure server-only `RESEND_API_KEY` and `RESEND_FROM` with a verified sender domain. For SMTP instead, configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, and a provider-approved `SMTP_FROM` in `.env`, then restart the app. Port 587 uses STARTTLS; port 465 uses implicit TLS. Without SMTP, development OTPs appear only in the server log, and the signup page says so.
 
 ```sh
 npm ci --prefix frontend
