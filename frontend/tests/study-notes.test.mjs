@@ -35,3 +35,14 @@ test('Study Notes are isolated, generated without provider calls, reused and inv
   assert.equal(empty.state,'waiting_for_files');
  }finally{await fs.rm(store,{recursive:true,force:true})}
 });
+
+test('reviewed Bengali evidence supports both observed PDF extractors only for the exact file checksum',()=>{
+ const source={id:'1IG-nBfHlSuDSsWzVlWrx3YHxnowqlcOK',sha256:'b8402953708fbecac7229f55530649ceff50a114bbf4b63216e84af112524d33',subject:'Bangla Paper I'};
+ for(const text of ['nvgjv = AvK&ªgY','nvgjv = AvK&gª Y']){
+  const items=noteQuestions([{doc:source,chunk:{page:2,text}}]);
+  assert.equal(items.length,1);
+  assert.equal(items[0].answer,'আক্রমণ।');
+  assert.equal(items[0].evidence,text);
+  assert.equal(noteQuestions([{doc:{...source,sha256:'replacement'},chunk:{page:2,text}}]).length,0);
+ }
+});

@@ -1,5 +1,7 @@
 import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 const reviewed = JSON.parse(readFileSync(new URL('../data/study-notes-reviewed.json', import.meta.url), 'utf8'));
+export const reviewedStudyVersion = createHash('sha256').update(JSON.stringify(reviewed)).digest('hex').slice(0,16);
 export const hasReviewedSource = sha256 => reviewed.some(entry => entry.sha256 === sha256);
 // Local-only preparation: no Study Notes text is sent to an external model.
 // Preserve explicit school answers; create cloze exercises only from those answers.
@@ -9,7 +11,9 @@ export function noteQuestions(chunks) {
   for (const {doc, chunk} of chunks) {
     const bank = reviewed.find(entry => entry.documentId === doc.id && entry.sha256 === doc.sha256);
     for (const item of bank?.questions || []) {
-      if (item.page === chunk.page) items.push({...item, sources:[{documentId:doc.id,page:item.page}],topic:doc.title});
+      if (item.page !== chunk.page) continue;
+      const evidence = [item.evidence, ...(item.evidenceAlternatives || [])].find(value => clean(chunk.text).includes(clean(value)));
+      if (evidence) items.push({...item, evidence, sources:[{documentId:doc.id,page:item.page}],topic:doc.title});
     }
   }
   for (const {doc, chunk} of chunks) {

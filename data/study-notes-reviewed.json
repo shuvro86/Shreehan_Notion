@@ -197,7 +197,7 @@
         "page": 2,
         "question": "“মদিনা” শব্দের অর্থ কী?",
         "answer": "আরবের একটি শহর।",
-        "evidence": "1| gw`bv = Avi‡ei GKwU kni                                     2| nvgjv = AvK&ªgY",
+        "evidence": "gw`bv = Avi‡ei GKwU kni",
         "type": "Short answer",
         "options": []
       },
@@ -205,9 +205,12 @@
         "page": 2,
         "question": "“হামলা” শব্দের অর্থ কী?",
         "answer": "আক্রমণ।",
-        "evidence": "1| gw`bv = Avi‡ei GKwU kni                                     2| nvgjv = AvK&ªgY",
+        "evidence": "nvgjv = AvK&ªgY",
         "type": "Short answer",
-        "options": []
+        "options": [],
+        "evidenceAlternatives": [
+          "nvgjv = AvK&gª Y"
+        ]
       },
       {
         "page": 2,

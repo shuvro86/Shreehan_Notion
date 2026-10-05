@@ -1,4 +1,4 @@
-import {noteQuestions} from './study-notes.mjs';
+import {noteQuestions, reviewedStudyVersion} from './study-notes.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {acquireLock} from './sync-lock.mjs';
@@ -236,7 +236,7 @@ export async function prepareSubject(library, subject, {store = root, generate =
     const saved = await read(file, {subjects: {}});
     saved.subjects ||= {};
     const sources = sourceIds(group.documents);
-    const version = hash([collection === 'Study Note' ? 'study-local-v3' : 'ocr-min-60-v2', group.records.map(record => [record.id, record.url]), sources]);
+    const version = hash([collection === 'Study Note' ? `study-local-v4:${reviewedStudyVersion}` : 'ocr-min-60-v2', group.records.map(record => [record.id, record.url]), sources]);
     const bankKey = collection === 'Subject Materials' ? subject : `${collection}:${subject}`;
     let entry = saved.subjects[bankKey];
     const stale = refresh || !entry || entry.version !== version || !same(entry.sources, sources);
