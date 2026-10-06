@@ -35,6 +35,12 @@ test('teacher creates a class task, reviews a submission, and sees pending cards
  await expect(card.locator('.cw-status.pending')).toBeVisible();
  await expect(page.locator('.cw-notice strong')).toContainText(`${initialPending+1} pending`);
  await page.screenshot({path:'../tmp/teacher-updated-desktop.png',fullPage:true});
+ await page.setViewportSize({width:390,height:844});
+ const cardPosition=await card.boundingBox();
+ expect(cardPosition?.y).toBeLessThan(680);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
+ await page.screenshot({path:'../tmp/teacher-compact-mobile-pending.png',fullPage:true});
+ await page.setViewportSize({width:1280,height:800});
  const studentContext=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
  const student=await studentContext.newPage();
  await studentContext.request.post('/api/auth/login',{data:{username:'classroom_student',password:'classroom-test'}});

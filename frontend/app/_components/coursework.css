@@ -41,3 +41,20 @@
 .cw-dialog{border:1px solid #e4e5f4;box-shadow:0 28px 80px #1a2b5070}
 @media(max-width:760px){.cw-notice{padding:17px!important;gap:12px!important}.cw-notice strong{font-size:16px}.cw-notice-arrow{display:none}.cw-notice-icon{width:39px;height:39px}.cw-card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){.cw-card,.cw-notice,.cw-stars button,.cw-page .cw-primary{transition:none!important;animation:none!important;transform:none!important}}
+/* Keep the teacher's active cards close to the top of the page. */
+.cw-header{padding-block:16px}
+.cw-brand{grid-template-columns:36px 1fr}
+.cw-main{padding-top:28px}
+.cw-heading{margin-bottom:20px;gap:16px}
+.cw-heading h1{font-size:clamp(26px,2.8vw,36px);margin-bottom:7px}
+.cw-heading p{line-height:1.45}
+.cw-eyebrow{margin-bottom:8px!important}
+.cw-notice{padding:14px 18px!important;margin-bottom:16px!important;gap:13px!important}
+.cw-notice-icon{width:38px;height:38px}
+.cw-notice strong{font-size:17px}
+.cw-notice small{font-size:11px}
+.cw-notice-arrow{padding:7px 11px}
+.cw-stats{margin-bottom:24px}
+.cw-stats>div{padding:16px 19px}
+@media(max-width:760px){.cw-header{padding:14px 16px}.cw-main{padding-top:22px}.cw-heading{gap:12px;margin-bottom:16px}.cw-heading h1{font-size:27px;line-height:1.16;margin-bottom:7px}.cw-heading p{font-size:13px;line-height:1.45}.cw-notice{padding:12px 14px!important;margin-bottom:14px!important;gap:10px!important}.cw-notice-icon{width:34px;height:34px}.cw-notice strong{font-size:15px}.cw-notice small{font-size:11px;line-height:1.35}.cw-stats{margin-bottom:20px}}
+@media(max-width:760px){.cw-teacher .cw-main{padding-top:16px}.cw-teacher .cw-heading{margin-bottom:12px}.cw-teacher .cw-heading p:not(.cw-eyebrow){display:none}.cw-teacher .cw-stats{margin-bottom:14px}.cw-teacher .cw-work-heading h2{font-size:18px;margin:0}.cw-teacher .cw-filters{margin:12px 0 14px}}
