@@ -18,12 +18,17 @@
 .cw-card:hover{transform:translateY(-3px);box-shadow:0 16px 32px #23395717}
 .cw-card .cw-subject{color:var(--cw-accent);background:#ffffffbd;padding:7px 10px;border-radius:7px}
 .cw-card .cw-status{font-size:11px}
-.cw-subject-mathematics,.cw-subject-bangla-2{--cw-accent:#6757d8;--cw-tint:#f0edff}
-.cw-subject-bangla-1,.cw-subject-poetry{--cw-accent:#c3559c;--cw-tint:#fff0f8}
-.cw-subject-bangladesh-studies,.cw-subject-history{--cw-accent:#c47738;--cw-tint:#fff5e9}
-.cw-subject-english-language,.cw-subject-english-dictation-spelling{--cw-accent:#3477bd;--cw-tint:#ecf7ff}
-.cw-subject-english-literature,.cw-subject-geography{--cw-accent:#16898e;--cw-tint:#e8f9f7}
+.cw-subject-mathematics{--cw-accent:#6757d8;--cw-tint:#f0edff}
+.cw-subject-bangla-1{--cw-accent:#c3559c;--cw-tint:#fff0f8}
+.cw-subject-bangla-2{--cw-accent:#8b59bd;--cw-tint:#f6edff}
+.cw-subject-bangladesh-studies{--cw-accent:#c47738;--cw-tint:#fff5e9}
+.cw-subject-english-language{--cw-accent:#3477bd;--cw-tint:#ecf7ff}
+.cw-subject-english-dictation-spelling{--cw-accent:#5361c0;--cw-tint:#eef0ff}
+.cw-subject-english-literature{--cw-accent:#16898e;--cw-tint:#e8f9f7}
+.cw-subject-history{--cw-accent:#ae6544;--cw-tint:#fff0e9}
+.cw-subject-geography{--cw-accent:#318777;--cw-tint:#e8f7f1}
 .cw-subject-science{--cw-accent:#33864c;--cw-tint:#ecf8ec}
+.cw-subject-poetry{--cw-accent:#c55172;--cw-tint:#fff0f4}
 .cw-stars{gap:2px}
 .cw-stars button:nth-child(1),.cw-stars button:nth-child(2){color:#ef7674}
 .cw-stars button:nth-child(3),.cw-stars button:nth-child(4){color:#eb9957}
