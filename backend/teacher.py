@@ -81,6 +81,42 @@ class Work(BaseModel):
         return value
 
 
+class ClassTask(BaseModel):
+    """A task created without a student picker goes to every active student."""
+    kind: Literal["Homework", "Assignment"]
+    subject: str
+    title: str = Field(min_length=1, max_length=200)
+    instructions: str = Field(default="", max_length=10000)
+    due_date: date
+
+    @field_validator("title")
+    @classmethod
+    def clean_title(cls, value):
+        return Work.clean_title(value)
+
+    @field_validator("subject")
+    @classmethod
+    def valid_subject(cls, value):
+        return Work.valid_subject(value)
+
+
+@router.post("/class-task", status_code=201)
+def create_class_task(body: ClassTask, user=Depends(teacher_only)):
+    """Fan out one teacher task atomically, preserving student-owned reviews."""
+    with connection() as db:
+        students = db.execute("SELECT id FROM users WHERE verified_at IS NOT NULL AND id NOT IN (SELECT user_id FROM teachers) ORDER BY id").fetchall()
+        if not students:
+            raise HTTPException(409, "An active student account is needed before creating a task.")
+        timestamp = now()
+        ids = []
+        for student in students:
+            item_id = str(uuid4())
+            db.execute("INSERT INTO coursework (id,teacher_id,student_id,kind,subject,title,instructions,due_date,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                       (item_id, user["id"], student["id"], body.kind, body.subject, body.title, body.instructions, body.due_date.isoformat(), timestamp, timestamp))
+            ids.append(item_id)
+    return {"count": len(ids), "ids": ids}
+
+
 @router.post("", status_code=201)
 def create_work(body: Work, user=Depends(teacher_only)):
     source_url = ""

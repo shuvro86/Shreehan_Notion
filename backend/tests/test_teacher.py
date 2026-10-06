@@ -24,6 +24,43 @@ def login(client, name):
 def work(**overrides):
     return {'student_id':'student','kind':'Homework','subject':'Mathematics','title':'Fractions','instructions':'Complete page 44','due_date':'2026-10-07',**overrides}
 
+
+def test_class_task_reaches_all_active_students_and_preserves_individual_reviews(classroom):
+    c = classroom
+    body = {'kind': 'Assignment', 'subject': 'Science', 'title': 'Tomorrow’s observation',
+            'instructions': 'Describe a rock.', 'due_date': '2026-10-07'}
+    login(c, 'student')
+    assert c.post('/api/coursework/class-task', json=body).status_code == 403
+    login(c, 'teacher')
+    for changes in ({'subject': 'Unknown'}, {'title': '   '}, {'kind': 'Exam'}, {'due_date': 'invalid'}):
+        assert c.post('/api/coursework/class-task', json={**body, **changes}).status_code == 422
+    created = c.post('/api/coursework/class-task', json=body)
+    assert created.status_code == 201
+    assert created.json()['count'] == 2
+    assert len(set(created.json()['ids'])) == 2
+    teacher_items = c.get('/api/coursework').json()['items']
+    assert {i['student_name'] for i in teacher_items} == {'student', 'other'}
+    assert all(i['kind'] == 'Assignment' and i['subject'] == 'Science' and i['status'] == 'pending' for i in teacher_items)
+    first = next(i for i in teacher_items if i['student_name'] == 'student')
+    second = next(i for i in teacher_items if i['student_name'] == 'other')
+    assert c.put(f"/api/coursework/{first['id']}/review", json={'status': 'completed', 'score': 8}).status_code == 200
+    login(c, 'student')
+    assert [i['id'] for i in c.get('/api/coursework').json()['items']] == [first['id']]
+    login(c, 'other')
+    assert [i['id'] for i in c.get('/api/coursework').json()['items']] == [second['id']]
+    assert c.get('/api/coursework').json()['items'][0]['status'] == 'pending'
+
+
+def test_class_task_requires_an_active_student(classroom):
+    c = classroom
+    login(c, 'teacher')
+    with connection() as db:
+        db.execute("UPDATE users SET verified_at=NULL WHERE username IN ('student','other')")
+    response = c.post('/api/coursework/class-task', json={
+        'kind': 'Homework', 'subject': 'Poetry', 'title': 'Read a poem', 'due_date': '2026-10-07'})
+    assert response.status_code == 409
+    assert c.get('/api/coursework').json()['items'] == []
+
 def test_teacher_student_lifecycle_and_isolation(classroom):
     c=classroom
     assert c.get('/api/coursework').status_code==401
