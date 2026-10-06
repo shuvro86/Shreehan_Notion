@@ -6,7 +6,29 @@ import html
 import httpx
 import re
 import smtplib
+import hashlib
 from email.message import EmailMessage
+
+
+def send_teacher_remarks(student: str, work: dict) -> None:
+    """Send only saved remarks to the configured parent; never accept a client recipient."""
+    api_key = os.getenv("RESEND_API_KEY", "").strip()
+    sender = os.getenv("RESEND_FROM", "").strip()
+    if not api_key or not sender:
+        raise RuntimeError("Remarks email is unavailable. Configure Resend on the server.")
+    text = (f"Teacher remarks for {student}\n\n{work['kind']}: {work['title']}\n"
+            f"Subject: {work['subject']}\nDue: {work['due_date']}\nStatus: {work['status']}\n"
+            f"Rating: {str(work['score']) + '/10' if work['score'] else 'Not rated'}\n\n{work['remarks']}")
+    key = hashlib.sha256(f"{work['id']}:{work['updated_at']}:{text}".encode()).hexdigest()
+    try:
+        response = httpx.post("https://api.resend.com/emails", headers={"Authorization": f"Bearer {api_key}", "Idempotency-Key": f"teacher-{key}"},
+                              json={"from": sender, "to": ["sun.srs86@gmail.com"], "subject": "Teacher remarks — Shreehan HQ", "text": text}, timeout=15)
+        response.raise_for_status()
+        result = response.json()
+        if not isinstance(result, dict) or not result.get("id"):
+            raise ValueError("Missing receipt")
+    except (httpx.HTTPError, ValueError):
+        raise RuntimeError("Email could not be sent. Your saved remarks are safe; please retry.") from None
 
 
 def send_code(address: str, code: str, purpose: str) -> str:

@@ -1,0 +1,19 @@
+- Create a user named 'teacher' with the privately supplied initial password for the new account for Shreehan's teacher. 
+- When the teacher logs in, he should be able to view and manage students Homework and Assignments. 
+- He should also be able to entry for next day assignments, homework as per list of subject choose.
+- He can also mark previously submitted homework and assignments as completed or pending and mark them 1-10 where 1 is the lowest and 10 is the highest. View this mark as stars for interective preview. 
+- Teacher can send email by clicking a button to 'sun.srs86@gmail.com' as a comment or remarks for the student.
+- Make the teacher dashboard responsive and user-friendly, enterprise edgy and professional. 
+- The following subject should be in the list when teacher is creating homework and assignments for the students:
+  - Mathematics
+  - Bangla 1 
+  - Bangla 2
+  - Bangladesh Studies
+  - English Language
+  - English Dictation & Spelling
+  - English Literature
+  - History
+  - geography
+  - Science
+  - Poetry
+  

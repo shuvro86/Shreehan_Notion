@@ -58,6 +58,20 @@ def initialize_database():
         db.executescript("""
         CREATE TABLE IF NOT EXISTS cloud_content (key TEXT PRIMARY KEY, value BLOB NOT NULL);
         CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE COLLATE NOCASE, email TEXT NOT NULL UNIQUE COLLATE NOCASE, password_hash TEXT, verified_at TEXT, created_at TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS teachers (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE);
+        CREATE TABLE IF NOT EXISTS coursework (
+            id TEXT PRIMARY KEY, teacher_id TEXT NOT NULL REFERENCES teachers(user_id),
+            student_id TEXT NOT NULL REFERENCES users(id), kind TEXT NOT NULL CHECK(kind IN ('Homework','Assignment')),
+            subject TEXT NOT NULL, title TEXT NOT NULL, instructions TEXT NOT NULL DEFAULT '', due_date TEXT NOT NULL,
+            source_id TEXT, source_url TEXT NOT NULL DEFAULT '',
+            status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','completed')),
+            score INTEGER CHECK(score BETWEEN 1 AND 10), remarks TEXT NOT NULL DEFAULT '',
+            submission TEXT NOT NULL DEFAULT '', submitted_at TEXT, reviewed_at TEXT,
+            created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
+            UNIQUE(teacher_id,student_id,source_id)
+        );
+        CREATE INDEX IF NOT EXISTS ix_coursework_student ON coursework(student_id,due_date);
+        CREATE INDEX IF NOT EXISTS ix_coursework_teacher ON coursework(teacher_id,due_date);
         CREATE TABLE IF NOT EXISTS otp_challenges (id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, purpose TEXT NOT NULL CHECK(purpose IN ('signup','password_reset')), code_hash TEXT NOT NULL, expires_at TEXT NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, consumed_at TEXT, created_at TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, expires_at TEXT NOT NULL, created_at TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS boards (id TEXT PRIMARY KEY, user_id TEXT NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE, title TEXT NOT NULL, created_at TEXT NOT NULL);

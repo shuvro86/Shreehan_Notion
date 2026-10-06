@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useLibrary } from './_components/use-library';
 import Homework from './_components/homework';
+import './_components/coursework.css';
 import UnseenPaper from './_components/unseen-paper';
 import CollectionSync from './_components/collection-sync';
 import { ArrowRight, ArrowUpRight, BookOpen, Bot, CalendarDays, Check, CheckCheck, ChevronDown, ChevronLeft, ChevronRight, ClipboardList, Clock3, CloudSun, Columns3, ExternalLink, FileText, FolderOpen, GraduationCap, Grid2X2, History, KeyRound, LayoutDashboard, ListTodo, LogOut, Menu, Plus, Search, Sparkles, Target, X } from 'lucide-react';
@@ -181,6 +182,7 @@ export default function Home() {
     {current?.name === 'Exam' && <ExamSchedule/>}
     {current?.name === 'Study Note' && <UnseenPaper documents={library.documents} bank={studyNotePractice} studyNotes/>}
     {current?.name === 'Analytical Material' && <UnseenPaper documents={library.documents} bank={subjectPractice} drivePending={sync.drivePending===true}/>}
+    {['Overview','Homework List','Assignment'].includes(active)&&<a className="cw-student-link" href="/coursework"><div><strong>Teacher homework & assignments</strong><span>Submit your work, see star ratings, and read your teacher’s remarks.</span></div><ArrowRight size={20}/></a>}
     {active==='Homework List'&&<Homework data={library.homework} documents={library.documents} syncLabel={syncLabel}/>}
     {current && current.name !== 'Homework List' && <section className="panel imported-collection"><div className="section-heading"><div><h2>{syncCollection ? `Synced material in ${current.name}` : `Documents in ${current.name}`}</h2><p>{syncCollection ? 'Notes and files from this Notion collection.' : 'Originals imported from your Notion workspace.'}</p></div><a className="secondary-button" href={`/library?collection=${encodeURIComponent(current.name)}`}>Browse library <ArrowUpRight size={14}/></a></div>
      {syncCollection && library.records.filter(r=>r.collection===current.name).map(r=><a className="imported-file-row" key={r.id} href={r.url} target="_blank" rel="noreferrer"><FileText size={19}/><span><strong>{r.title}</strong><small>{r.date?`${r.date} · `:''}{r.body?r.body.replace(/\s+/g,' ').slice(0,150):'Notion note'}</small></span><ExternalLink size={16}/></a>)}

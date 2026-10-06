@@ -28,9 +28,14 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
         if (!active) return;
         if (response.status === 401) signedOut();
         else if (response.ok) {
-          setAuthorized(true);
+          const user = await response.json();
+          if (!active) return;
+          const target = user.role === 'teacher' ? '/teacher' : '/';
+          if (isLogin || (user.role === 'teacher' && pathname === '/') || (user.role !== 'teacher' && pathname === '/teacher')) {
+            setAuthorized(false);
+            router.replace(target);
+          } else setAuthorized(true);
           setOffline(false);
-          if (isLogin) router.replace('/');
         } else setOffline(true);
       } catch { if (active) setOffline(true); }
       finally { checking = false; }

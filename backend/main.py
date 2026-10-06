@@ -18,6 +18,7 @@ from backend import content
 from backend.auth import COOKIE, auth_router, current_user
 from backend.db import initialize_database
 from backend.workspace import router as workspace_router
+from backend.teacher import router as teacher_router
 from backend.security import apply_security_headers, cross_origin_write
 
 STATIC_DIR = Path(os.getenv("APP_STATIC_DIR", str(ROOT / "frontend" / "out"))).resolve()
@@ -40,6 +41,7 @@ app = FastAPI(title="Shreehan HQ API", lifespan=lifespan)
 app.include_router(auth_router)
 app.include_router(content.router, dependencies=[Depends(current_user)])
 app.include_router(workspace_router)
+app.include_router(teacher_router)
 
 
 @app.middleware("http")

@@ -74,7 +74,7 @@ def current_user(request: Request):
     if not token:
         raise HTTPException(401, "Please sign in to continue.")
     with connection() as db:
-        row = db.execute("SELECT users.id,users.username,users.email FROM sessions JOIN users ON users.id=sessions.user_id WHERE sessions.token_hash=? AND sessions.expires_at>? AND sessions.last_active_at>? AND users.verified_at IS NOT NULL", (token_hash(token), now(), idle_cutoff())).fetchone()
+        row = db.execute("SELECT users.id,users.username,users.email,CASE WHEN EXISTS (SELECT 1 FROM teachers WHERE teachers.user_id=users.id) THEN 'teacher' ELSE 'student' END AS role FROM sessions JOIN users ON users.id=sessions.user_id WHERE sessions.token_hash=? AND sessions.expires_at>? AND sessions.last_active_at>? AND users.verified_at IS NOT NULL", (token_hash(token), now(), idle_cutoff())).fetchone()
     if not row:
         raise HTTPException(401, "Your session has expired. Please sign in again.")
     return dict(row)
