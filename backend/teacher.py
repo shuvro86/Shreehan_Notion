@@ -257,8 +257,8 @@ def email_remarks(item_id: str, user=Depends(teacher_only)):
     with connection() as db:
         row = owned(db, item_id, user)
         student = db.execute("SELECT username FROM users WHERE id=?", (row["student_id"],)).fetchone()["username"]
-    if not row["remarks"].strip():
-        raise HTTPException(400, "Save a comment before sending email.")
+    if not row["reviewed_at"]:
+        raise HTTPException(400, "Save a review before notifying the guardian.")
     try:
         send_teacher_remarks(student, row)
     except RuntimeError as exc:

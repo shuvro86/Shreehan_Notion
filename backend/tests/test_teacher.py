@@ -298,10 +298,14 @@ def test_validation_sources_and_email(classroom, monkeypatch):
     monkeypatch.setattr(teacher,'send_teacher_remarks',lambda student,row:sent.append((student,row)))
     assert c.post(f'/api/coursework/{item}/email').status_code==200
     assert sent[0][0]=='student' and sent[0][1]['remarks']=='Good progress'
+    plain=c.post('/api/coursework',json=work(title='Status-only review')).json()['id']
+    assert c.put(f'/api/coursework/{plain}/review',json={'status':'half_done','score':5}).status_code==200
+    assert c.post(f'/api/coursework/{plain}/email').status_code==200
+    assert sent[-1][1]['review_state']=='half_done' and sent[-1][1]['remarks']==''
     def fail(*args): raise RuntimeError('Delivery failed')
     monkeypatch.setattr(teacher,'send_teacher_remarks',fail)
     assert c.post(f'/api/coursework/{item}/email').status_code==503
-    assert c.get('/api/coursework').json()['items'][0]['remarks']=='Good progress'
+    assert next(row for row in c.get('/api/coursework').json()['items'] if row['id']==item)['remarks']=='Good progress'
 
 def test_remarks_provider_is_fixed_recipient_and_idempotent(monkeypatch):
     monkeypatch.setenv('RESEND_API_KEY','test-key')

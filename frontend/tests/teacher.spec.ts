@@ -10,6 +10,8 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await page.getByLabel('Password',{exact:true}).fill('classroom-test');
  await page.getByRole('button',{name:'Enter my workspace',exact:true}).click();
  await expect(page).toHaveURL(/\/teacher$/);
+ let guardianRequests=0;
+ await page.route('**/api/coursework/*/email',route=>{guardianRequests++;return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({message:'Email accepted.'})});});
  await expect(page.getByRole('button',{name:'Create Task',exact:true})).toBeVisible();
  await expect(page.getByRole('button',{name:/tasks? not done/})).toBeVisible();
  await expect(page.getByRole('combobox',{name:'Filter student'})).toHaveCount(0);
@@ -20,7 +22,8 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(page.getByRole('tab',{name:/Not Done/})).toHaveAttribute('aria-selected','true');
  await expect(page.getByRole('tab',{name:/Half Done/})).toBeVisible();
  await expect(page.getByRole('tab',{name:/^Done/})).toBeVisible();
- await expect(page.getByText('Change password')).toBeVisible();
+ await expect(page.getByRole('navigation').getByRole('button',{name:'Change password'})).toBeVisible();
+ expect(await page.getByRole('navigation').getByRole('button').allTextContents()).toEqual(['Change password','Sign out']);
  await expect(page.getByLabel('Filter by calendar date')).toHaveValue(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
  const initialPending=Number((await page.locator('.cw-notice strong').innerText()).match(/^\d+/)?.[0]);
  await page.getByRole('button',{name:'Create Task',exact:true}).click();
@@ -60,6 +63,18 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(task.locator('.cw-card')).toHaveCount(2);
  await page.screenshot({path:'../tmp/teacher-updated-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});
+ for(const name of ['Change password','Sign out']){
+  const bounds=await page.getByRole('navigation').getByRole('button',{name}).boundingBox();
+  expect(bounds).not.toBeNull();
+  expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(390);
+ }
+ await page.setViewportSize({width:320,height:700});
+ for(const name of ['Change password','Sign out']){
+  const bounds=await page.getByRole('navigation').getByRole('button',{name}).boundingBox();
+  expect(bounds).not.toBeNull();
+  expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(320);
+ }
+ await page.setViewportSize({width:390,height:844});
  await expect(page.getByRole('heading',{name:'How is Shreehan doing today?'})).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
  await page.screenshot({path:'../tmp/teacher-compact-mobile-pending.png',fullPage:true});
@@ -88,9 +103,13 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await card.getByLabel('Comments / remarks').fill('Good observation.');
  await card.getByLabel('Review Status').selectOption('done');
  await card.getByRole('button',{name:'Save review'}).click();
+ await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toBeVisible();
+ expect(guardianRequests).toBe(1);
  await page.getByRole('tab',{name:/Half Done/}).click();
  await expect(task.locator('summary')).toContainText('Half Done');
  await expect(task).toHaveCount(1);
+ await task.locator('summary').click();
+ await expect(card.getByLabel('Comments / remarks')).toHaveValue('');
  await expect(page.locator('.cw-notice strong')).toContainText(`${initialPending} task`);
  await page.reload();
  await page.getByRole('tab',{name:/Half Done/}).click();
@@ -109,8 +128,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await page.getByRole('tab',{name:/Not Done/}).click();
  await expect(remainingTask).toHaveCount(0);
 
- // Verify the combined email action without contacting the real mail provider.
- await page.route('**/api/coursework/*/email',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({message:'Email accepted.'})}));
+ // Verify the guardian action without contacting the real mail provider.
  await page.getByRole('button',{name:'Create Task',exact:true}).click();
  const mailTitle=`Poetry task ${Date.now()}`;
  await dialog.getByRole('combobox',{name:'Subject',exact:true}).selectOption('Poetry');
@@ -146,11 +164,40 @@ test('teacher sees one class task and filters its completion state', async ({bro
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
  await page.screenshot({path:'../tmp/teacher-updated-mobile-form.png',fullPage:true});
  await dialog.getByRole('button',{name:'Cancel'}).click();
- await page.getByText('Change password',{exact:true}).click();
+ await page.getByRole('navigation').getByRole('button',{name:'Change password'}).click();
  const passwordForm=page.locator('.cw-password');
  await passwordForm.getByLabel('New password').fill('teacher-new-pass');
  await passwordForm.getByLabel('Confirm password').fill('different-pass');
  await passwordForm.getByRole('button',{name:'Save password'}).click();
  await expect(passwordForm.getByRole('alert')).toContainText('Passwords do not match.');
  await ctx.close();await studentContext.close();
+});
+
+test('a failed guardian send keeps the review draft and does not claim notification',async({browser})=>{
+ const ctx=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
+ const page=await ctx.newPage();
+ await ctx.request.post('/api/auth/login',{data:{username:'teacher',password:'classroom-test'}});
+ await page.goto('/teacher');
+ await page.route('**/api/coursework/*/email',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Guardian email is temporarily unavailable.'})}));
+ await page.getByRole('button',{name:'Create Task',exact:true}).click();
+ const dialog=page.getByRole('dialog');
+ const title=`Review retry ${Date.now()}`;
+ await dialog.getByLabel('Title',{exact:true}).fill(title);
+ await dialog.getByLabel('Due date').fill(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
+ await dialog.getByRole('button',{name:'Create Task',exact:true}).click();
+ const task=page.locator('.cw-class-task').filter({hasText:title});
+ await task.locator('summary').click();
+ const card=task.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
+ await card.getByLabel('Comments / remarks').fill('Please practise the next page.');
+ await card.getByRole('button',{name:'Save review'}).click();
+ await expect(card.getByRole('alert')).toContainText('Review saved, but Guardian has not been notified.');
+ await expect(card.getByLabel('Comments / remarks')).toHaveValue('Please practise the next page.');
+ await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toHaveCount(0);
+ await page.unroute('**/api/coursework/*/email');
+ await page.route('**/api/coursework/*/email',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({message:'Email accepted.'})}));
+ await card.getByRole('button',{name:'Update to Guardian'}).click();
+ await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toBeVisible();
+ await task.locator('summary').click();
+ await expect(card.getByLabel('Comments / remarks')).toHaveValue('');
+ await ctx.close();
 });

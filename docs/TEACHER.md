@@ -8,4 +8,14 @@
 7. Change the color and block position of the Today’s Feedback so that teacher can easily identify this.
 8. Change the label from ‘Change Update’ to ’Update to Guardian’ in the review section.
 9. When he submit the review, after pressing button, it will show a message in interactive way that Guardian has been notified. Also clear the data from the text box.
-10. In teacher user, keep the password change facility.
+10. In teacher user, keep the password change facility. The button should be before Singout button of the banner.
+
+
+## Color Scheme
+
+- Accent Yellow: `#ecad0a` - accent lines, highlights
+- Blue Primary: `#209dd7` - links, key sections
+- Purple Secondary: `#753991` - submit buttons, important actions
+- Dark Navy: `#032147` - main headings
+- Gray Text: `#888888` - supporting text, labels
+- Background White `rgba(252, 252, 252, 1)` - Background Color
