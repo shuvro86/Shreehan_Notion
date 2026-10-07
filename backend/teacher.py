@@ -1,5 +1,6 @@
 """Teacher-managed work and student-owned submissions, shared by SQLite and Turso."""
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 import sqlite3
 from typing import Literal
 from uuid import uuid4
@@ -13,6 +14,7 @@ from backend.content import current_library
 from backend.mailer import send_teacher_remarks
 
 router = APIRouter(prefix="/api/coursework", tags=["coursework"])
+feedback_router = APIRouter(prefix="/api/teacher-feedback", tags=["teacher feedback"])
 SUBJECTS = ["Mathematics", "Bangla 1", "Bangla 2", "Bangladesh Studies", "English Language",
             "English Dictation & Spelling", "English Literature", "History", "Geography", "Science", "Poetry"]
 
@@ -21,6 +23,39 @@ def teacher_only(user=Depends(current_user)):
     if user["role"] != "teacher":
         raise HTTPException(403, "Teacher access required.")
     return user
+
+
+def bangladesh_day():
+    return datetime.now(ZoneInfo("Asia/Dhaka")).date().isoformat()
+
+
+class DailyFeedback(BaseModel):
+    body: str = Field(min_length=1, max_length=5000)
+
+    @field_validator("body")
+    @classmethod
+    def not_blank(cls, value):
+        if not value.strip():
+            raise ValueError("Write an update before sending it.")
+        return value.strip()
+
+
+@feedback_router.get("/today")
+def today_feedback(user=Depends(teacher_only)):
+    day = bangladesh_day()
+    with connection() as db:
+        row = db.execute("SELECT id,day,body,created_at,updated_at,read_at FROM daily_teacher_feedback WHERE teacher_id=? AND day=?", (user["id"], day)).fetchone()
+    return {"day": day, "feedback": dict(row) if row else None}
+
+
+@feedback_router.put("/today")
+def save_today_feedback(body: DailyFeedback, user=Depends(teacher_only)):
+    day, timestamp = bangladesh_day(), now()
+    with connection() as db:
+        db.execute("INSERT INTO daily_teacher_feedback (id,teacher_id,day,body,created_at,updated_at) VALUES (?,?,?,?,?,?) ON CONFLICT(teacher_id,day) DO UPDATE SET body=excluded.body,updated_at=excluded.updated_at,read_at=NULL",
+                   (str(uuid4()), user["id"], day, body.body, timestamp, timestamp))
+        row = db.execute("SELECT id,day,body,created_at,updated_at,read_at FROM daily_teacher_feedback WHERE teacher_id=? AND day=?", (user["id"], day)).fetchone()
+    return {"day": day, "feedback": dict(row)}
 
 
 def owned(db, item_id, user):

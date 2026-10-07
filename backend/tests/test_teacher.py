@@ -25,6 +25,42 @@ def work(**overrides):
     return {'student_id':'student','kind':'Homework','subject':'Mathematics','title':'Fractions','instructions':'Complete page 44','due_date':'2026-10-07',**overrides}
 
 
+def test_daily_teacher_feedback_reaches_admin_and_tracks_read_state(classroom):
+    c = classroom
+    with connection() as db:
+        db.execute('INSERT INTO users VALUES (?,?,?,?,?,?)', ('shuvro','shuvro','shuvro@example.test',hash_password('test-pass'),now(),now()))
+        db.execute("INSERT INTO account_roles VALUES ('shuvro','admin')")
+    login(c, 'student')
+    assert c.get('/api/teacher-feedback/today').status_code == 403
+    assert c.put('/api/teacher-feedback/today',json={'body':'Hidden'}).status_code == 403
+    assert c.get('/api/admin/feedback').status_code == 403
+    login(c, 'teacher')
+    assert c.get('/api/teacher-feedback/today').json() == {'day':teacher.bangladesh_day(),'feedback':None}
+    assert c.put('/api/teacher-feedback/today',json={'body':'  '}).status_code == 422
+    first = c.put('/api/teacher-feedback/today',json={'body':'Shreehan completed his reading.\nNeeds spelling practice.'})
+    assert first.status_code == 200
+    note_id = first.json()['feedback']['id']
+    assert first.json()['feedback']['day'] == teacher.bangladesh_day()
+    assert c.put('/api/teacher-feedback/today',json={'body':'Revised daily update.'}).json()['feedback']['id'] == note_id
+    with connection() as db:
+        assert db.execute('SELECT COUNT(*) AS n FROM daily_teacher_feedback').fetchone()['n'] == 1
+    login(c, 'second_teacher')
+    assert c.get('/api/teacher-feedback/today').json()['feedback'] is None
+    login(c, 'shuvro')
+    assert c.get('/api/teacher-feedback/today').status_code == 403
+    notifications = c.get('/api/admin/feedback').json()
+    assert notifications['unread'] == 1
+    assert notifications['items'][0]['body'] == 'Revised daily update.'
+    assert notifications['items'][0]['teacher_name'] == 'teacher'
+    assert c.put('/api/admin/feedback/missing/read').status_code == 404
+    assert c.put(f'/api/admin/feedback/{note_id}/read').status_code == 200
+    assert c.get('/api/admin/feedback').json()['unread'] == 0
+    login(c, 'teacher')
+    assert c.put('/api/teacher-feedback/today',json={'body':'Another update after admin read it.'}).status_code == 200
+    login(c, 'shuvro')
+    assert c.get('/api/admin/feedback').json()['unread'] == 1
+
+
 def test_admin_role_management_and_role_boundaries(classroom):
     c = classroom
     with connection() as db:

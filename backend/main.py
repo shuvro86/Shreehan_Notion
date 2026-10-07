@@ -18,7 +18,7 @@ from backend import content
 from backend.auth import COOKIE, auth_router, current_user, learning_user
 from backend.db import initialize_database
 from backend.workspace import router as workspace_router
-from backend.teacher import router as teacher_router
+from backend.teacher import router as teacher_router, feedback_router
 from backend.admin import router as admin_router
 from backend.security import apply_security_headers, cross_origin_write
 from backend.menu_access import allowed_path, first_path
@@ -44,6 +44,7 @@ app.include_router(auth_router)
 app.include_router(content.router, dependencies=[Depends(learning_user)])
 app.include_router(workspace_router)
 app.include_router(teacher_router)
+app.include_router(feedback_router)
 app.include_router(admin_router)
 
 

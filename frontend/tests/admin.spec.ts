@@ -49,3 +49,34 @@ test('shuvro administers users from the admin page',async({browser})=>{
  await page.screenshot({path:'../tmp/admin-users-mobile.png',fullPage:true});
  await context.close();
 });
+
+test('teacher daily feedback appears as a full admin notification',async({browser})=>{
+ const teacherContext=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
+ const teacher=await teacherContext.newPage();
+ await teacherContext.request.post('/api/auth/login',{data:{username:'teacher',password:'classroom-test'}});
+ await teacher.goto('/teacher');
+ const note=`Shreehan finished reading today.\nPlease watch his spelling practice ${Date.now()}.`;
+ await teacher.getByLabel('Today’s feedback').fill(note);
+ await teacher.getByRole('button',{name:'Send to admin'}).click();
+ await expect(teacher.getByText('Saved for admin. You can update this note today.')).toBeVisible();
+ await teacher.reload();
+ await expect(teacher.getByLabel('Today’s feedback')).toHaveValue(note);
+ const adminContext=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
+ const admin=await adminContext.newPage();
+ await adminContext.request.post('/api/auth/login',{data:{username:'shuvro',password:'classroom-test'}});
+ await admin.goto('/admin');
+ await admin.getByRole('button',{name:/Teacher updates/}).click();
+ await expect(admin.getByRole('heading',{name:'Notifications'})).toBeVisible();
+ const notification=admin.locator('.admin-feedback-item').filter({hasText:note});
+ await expect(notification).toHaveCount(1);
+ await expect(notification).toContainText('teacher');
+ await expect(notification.getByText(note,{exact:true})).toBeVisible();
+ await expect(admin.locator('.admin-unread')).toContainText('1');
+ await notification.getByRole('button',{name:'Mark as read'}).click();
+ await expect(notification.getByText('Read',{exact:true})).toBeVisible();
+ await expect(admin.locator('.admin-unread')).toHaveCount(0);
+ await admin.setViewportSize({width:390,height:844});
+ expect(await admin.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
+ await admin.screenshot({path:'../tmp/admin-feedback-mobile.png',fullPage:true});
+ await teacherContext.close();await adminContext.close();
+});

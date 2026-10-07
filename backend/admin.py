@@ -86,6 +86,27 @@ def change_menu_access(body: MenuChange, _actor=Depends(admin_only)):
         return {"roles": {role: menu_settings(db, role) for role in MENU_ITEMS}}
 
 
+@router.get("/feedback")
+def teacher_feedback(_actor=Depends(admin_only)):
+    with connection() as db:
+        items = [dict(row) for row in db.execute("""
+            SELECT f.id,f.day,f.body,f.created_at,f.updated_at,f.read_at,u.username AS teacher_name
+            FROM daily_teacher_feedback f JOIN users u ON u.id=f.teacher_id
+            ORDER BY f.updated_at DESC LIMIT 100
+        """)]
+        unread = db.execute("SELECT COUNT(*) AS count FROM daily_teacher_feedback WHERE read_at IS NULL").fetchone()["count"]
+    return {"items": items, "unread": unread}
+
+
+@router.put("/feedback/{feedback_id}/read")
+def read_teacher_feedback(feedback_id: str, _actor=Depends(admin_only)):
+    with connection() as db:
+        if not db.execute("SELECT id FROM daily_teacher_feedback WHERE id=?", (feedback_id,)).fetchone():
+            raise HTTPException(404, "Update not found.")
+        db.execute("UPDATE daily_teacher_feedback SET read_at=COALESCE(read_at,?) WHERE id=?", (now(), feedback_id))
+    return {"message": "Update marked as read."}
+
+
 @router.post("/users", status_code=201)
 def create_user(body: AccountCreate, _actor=Depends(admin_only)):
     try:

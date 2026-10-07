@@ -74,6 +74,12 @@ def initialize_database():
         );
         CREATE INDEX IF NOT EXISTS ix_coursework_student ON coursework(student_id,due_date);
         CREATE INDEX IF NOT EXISTS ix_coursework_teacher ON coursework(teacher_id,due_date);
+        CREATE TABLE IF NOT EXISTS daily_teacher_feedback (
+            id TEXT PRIMARY KEY, teacher_id TEXT NOT NULL REFERENCES teachers(user_id) ON DELETE CASCADE,
+            day TEXT NOT NULL, body TEXT NOT NULL, created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
+            read_at TEXT, UNIQUE(teacher_id,day)
+        );
+        CREATE INDEX IF NOT EXISTS ix_daily_feedback_updated ON daily_teacher_feedback(updated_at);
         CREATE TABLE IF NOT EXISTS otp_challenges (id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, purpose TEXT NOT NULL CHECK(purpose IN ('signup','password_reset')), code_hash TEXT NOT NULL, expires_at TEXT NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, consumed_at TEXT, created_at TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, expires_at TEXT NOT NULL, created_at TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS boards (id TEXT PRIMARY KEY, user_id TEXT NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE, title TEXT NOT NULL, created_at TEXT NOT NULL);

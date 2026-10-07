@@ -19,6 +19,7 @@ MENU_ITEMS = {
     "admin": (
         ("admin_accounts", "Accounts", "/admin", True),
         ("admin_menus", "Menu access", "/admin", True),
+        ("admin_feedback", "Teacher updates", "/admin", True),
         ("admin_setup", "Setup", "/admin", False),
     ),
 }

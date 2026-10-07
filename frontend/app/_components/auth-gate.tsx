@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 const MenuContext=createContext<string[]>([]);
 export const useMenuAccess=()=>useContext(MenuContext);
-const menuPaths:Record<string,string>={overview:'/',tasks:'/',collections:'/',library:'/library',assistant:'/assistant',practice:'/practice',kanban:'/kanban',coursework:'/coursework',teacher_dashboard:'/teacher',admin_accounts:'/admin',admin_menus:'/admin',admin_setup:'/admin'};
+const menuPaths:Record<string,string>={overview:'/',tasks:'/',collections:'/',library:'/library',assistant:'/assistant',practice:'/practice',kanban:'/kanban',coursework:'/coursework',teacher_dashboard:'/teacher',admin_accounts:'/admin',admin_menus:'/admin',admin_feedback:'/admin',admin_setup:'/admin'};
 
 export default function AuthGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
