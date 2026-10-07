@@ -21,6 +21,7 @@ from backend.workspace import router as workspace_router
 from backend.teacher import router as teacher_router
 from backend.admin import router as admin_router
 from backend.security import apply_security_headers, cross_origin_write
+from backend.menu_access import allowed_path, first_path
 
 STATIC_DIR = Path(os.getenv("APP_STATIC_DIR", str(ROOT / "frontend" / "out"))).resolve()
 
@@ -94,9 +95,15 @@ def site(path: str, request: Request):
         raise HTTPException(404, "Page not found")
     if path != "login" and not path.startswith("_next/") and path not in ("favicon.ico", "robots.txt"):
         try:
-            current_user(request)
+            user = current_user(request)
         except HTTPException:
             return RedirectResponse("/login", status_code=303)
+        page_path = "/" + path.strip("/")
+        if page_path in ("/", "/teacher", "/coursework", "/admin", "/library", "/assistant", "/practice", "/kanban"):
+            from backend.db import connection
+            with connection() as db:
+                if not allowed_path(db, user["role"], page_path):
+                    return RedirectResponse(first_path(db, user["role"]), status_code=303)
     if path == "documents/import-report.json":
         return JSONResponse(content.current_library(), headers={"Cache-Control":"no-store"})
     if path.startswith("documents/") and not content.active_asset("/" + path):

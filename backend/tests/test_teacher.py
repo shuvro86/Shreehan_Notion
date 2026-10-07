@@ -53,6 +53,67 @@ def test_admin_role_management_and_role_boundaries(classroom):
     assert {s['username'] for s in c.get('/api/coursework').json()['students']} == {'teacher','other'}
 
 
+def test_admin_creates_updates_and_deletes_accounts(classroom):
+    c = classroom
+    with connection() as db:
+        db.execute('INSERT INTO users VALUES (?,?,?,?,?,?)', ('shuvro','shuvro','shuvro@example.test',hash_password('test-pass'),now(),now()))
+        db.execute("INSERT INTO account_roles VALUES ('shuvro','admin')")
+    login(c, 'shuvro')
+    body = {'username':'new_student','email':'new@example.test','password':'new-pass','role':'student'}
+    assert c.post('/api/admin/users',json={**body,'email':'invalid'}).status_code == 400
+    created = c.post('/api/admin/users',json=body)
+    assert created.status_code == 201
+    user_id = created.json()['id']
+    assert c.post('/api/admin/users',json=body).status_code == 409
+    with connection() as db:
+        assert db.execute('SELECT id FROM boards WHERE user_id=?',(user_id,)).fetchone() is not None
+    updated = c.put(f'/api/admin/users/{user_id}',json={'username':'new_teacher','email':'teacher2@example.test','role':'teacher','password':'changed-pass'})
+    assert updated.status_code == 200
+    assert next(user for user in updated.json()['users'] if user['id']==user_id)['role']=='teacher'
+    assert c.put('/api/admin/users/shuvro',json={'username':'changed','email':'changed@example.test','role':'student'}).status_code == 400
+    assert c.delete('/api/admin/users/shuvro').status_code == 400
+    assert c.post('/api/auth/login',json={'username':'new_teacher','password':'changed-pass'}).status_code == 200
+    task=c.post('/api/coursework',json=work())
+    assert task.status_code == 201
+    login(c, 'shuvro')
+    assert c.delete(f'/api/admin/users/{user_id}').status_code == 200
+    assert c.delete(f'/api/admin/users/{user_id}').status_code == 404
+    with connection() as db:
+        assert db.execute('SELECT id FROM users WHERE id=?',(user_id,)).fetchone() is None
+        assert db.execute('SELECT id FROM coursework WHERE teacher_id=?',(user_id,)).fetchone() is None
+    login(c, 'student')
+    assert c.get('/api/admin/users').status_code == 403
+    assert c.post('/api/admin/users',json=body).status_code == 403
+    assert c.delete('/api/admin/users/teacher').status_code == 403
+
+
+def test_admin_controls_role_menu_access(classroom):
+    c=classroom
+    with connection() as db:
+        db.execute('INSERT INTO users VALUES (?,?,?,?,?,?)', ('shuvro','shuvro','shuvro@example.test',hash_password('test-pass'),now(),now()))
+        db.execute("INSERT INTO account_roles VALUES ('shuvro','admin')")
+    login(c,'shuvro')
+    menus=c.get('/api/admin/menu-access').json()['roles']
+    assert {item['key'] for item in menus['student']} >= {'overview','library','coursework'}
+    assert c.put('/api/admin/menu-access',json={'role':'admin','menu_key':'admin_accounts','enabled':False}).status_code==400
+    assert c.put('/api/admin/menu-access',json={'role':'teacher','menu_key':'library','enabled':False}).status_code==400
+    result=c.put('/api/admin/menu-access',json={'role':'student','menu_key':'library','enabled':False})
+    assert result.status_code==200
+    assert next(item for item in result.json()['roles']['student'] if item['key']=='library')['enabled'] is False
+    login(c,'student')
+    assert 'library' not in c.get('/api/auth/me').json()['menus']
+    response=c.get('/library',follow_redirects=False)
+    assert response.status_code==303 and response.headers['location']=='/'
+    assert c.get('/',follow_redirects=False).status_code==200
+    assert c.get('/api/admin/menu-access').status_code==403
+    login(c,'shuvro')
+    assert c.put('/api/admin/menu-access',json={'role':'teacher','menu_key':'teacher_dashboard','enabled':False}).status_code==200
+    assert c.put('/api/admin/menu-access',json={'role':'teacher','menu_key':'coursework','enabled':False}).status_code==409
+    login(c,'teacher')
+    teacher_page=c.get('/teacher',follow_redirects=False)
+    assert teacher_page.status_code==303 and teacher_page.headers['location']=='/coursework'
+
+
 def test_class_task_reaches_all_active_students_and_preserves_individual_reviews(classroom):
     c = classroom
     body = {'kind': 'Assignment', 'subject': 'Science', 'title': 'Tomorrow’s observation',

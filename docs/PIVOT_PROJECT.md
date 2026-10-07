@@ -305,3 +305,29 @@ The `/admin` workspace has Accounts and Setup menus. Accounts lists users and le
 The Next.js production build and TypeScript check passed. All 43 backend tests passed, including role changes, admin isolation, historical teacher-reference retention, session role resolution, and class-task targeting; all 26 JavaScript sync tests passed. Release `f441a18` was pushed to GitHub main and its Vercel production deployment reached Ready. Before account activation, a production read-only check found the requested recovery email attached to an unverified `user` account with one pending OTP and no sessions, board, tasks, or coursework.
 
 After the new code was ready, a production transaction activated that pending account as `shuvro` with the requested recovery email and a newly generated password, removed its stale OTP, and set explicit roles: `shreehan=student`, `teacher=student`, `shuvro=admin`. The `teacher` account's historical teacher row and its two authored coursework assignments were retained. An independent readback confirmed all three active roles and no foreign-key violations. Production admin login returned role `admin`; the admin user list showed the requested roles; student tasks, coursework, and learning library APIs returned 403 to admin; logout revoked the session. A real browser verified Accounts and Setup menus, sign-out, and no horizontal overflow at 390px. The initial fast browser test clicked before page hydration and submitted the static form; rerunning after the first auth check passed. No live coursework or email was created or sent.
+
+## Shuvro account and user administration (2026-10-07)
+
+### Implemented architecture and decisions
+
+The existing active production `shuvro` account already had the explicit `admin` role. Its password was reset to the user-requested value with the application PBKDF2 hasher; all previous sessions were revoked. The password and hash are deliberately not recorded here. A readback verified the new password hash before continuing.
+
+The existing admin-only `/admin` workspace now supports creating, editing, viewing, and deleting users. `POST /api/admin/users` creates an active account with a validated username, email, password, selected role, and starter personal data. `PUT /api/admin/users/{id}` updates username, email, role, and optionally password, then revokes that account's sessions. `DELETE /api/admin/users/{id}` removes the account and its authored or assigned coursework in one database transaction; user-owned boards, sessions, OTPs, dashboard tasks, and progress follow existing foreign-key cascades. The current admin cannot edit or delete their own account through the user list; they can change their own password in Setup. The existing role endpoint remains available. All admin APIs require a live admin session. Role changes retain historic teacher rows as coursework references. Notion/Drive source scope, content sync, and email integrations are unchanged.
+
+The Accounts UI lists users and their status, email, and role. Add user and Edit forms set account fields, and Delete asks for confirmation with the data-loss effect stated. The mobile layout keeps names and actions readable. The login gate continues to route admin users to `/admin`.
+
+### Observed verification and release status
+
+The production account lookup confirmed `shuvro` was active and admin before the reset, and the reset readback verified the requested password hash and revoked sessions. The frontend typecheck and production build passed. All eight teacher/admin backend tests passed, including account creation, duplicate rejection, updating details and role, self-edit/delete protection, and deleting an account with authored coursework. The isolated admin browser flow passed for login, listing, add, edit, delete, and 390px mobile layout without horizontal overflow; its screenshot was visually inspected. GitHub and Vercel release checks are pending at this point.
+
+## Administrator menu access controls (2026-10-07)
+
+### Implemented architecture and decisions
+
+A `role_menu_access` table stores enabled/disabled overrides by role and menu key. Defaults allow the existing student, teacher, and admin menus. The new `backend/menu_access.py` catalog defines which menus belong to each role; the admin UI cannot grant a student a teacher or administrator workspace. The administrator Accounts and Menu access controls are locked on, and at least one menu must remain enabled for every role. `GET/PUT /api/admin/menu-access` require an admin session. The `/api/auth/me` response includes the current role's enabled menu keys. The client session gate, student navigation, and admin tabs use these keys; direct requests for disabled top-level pages redirect to the role's first enabled page. API role authorization remains enforced independently. These settings govern menu and page access, not a new permission to call another role's API.
+
+The existing `/admin` workspace now has an interactive Menu access tab showing student, teacher, and admin menus with on/off controls. Changes save immediately and appear after the affected account's next session check. Teacher and student source integrations, sync, and email behavior are unchanged.
+
+### Observed verification and release status
+
+The frontend typecheck and production build passed. All 45 backend tests passed, including rejection of cross-role and locked-menu edits, persisted student library disablement, last-menu protection, and direct-page redirects. The isolated browser flow passed for admin create/edit/delete, disabling the student Document library menu, its disappearance from student navigation, redirecting a direct `/library` visit, and restoring the setting. The teacher browser regression also passed. The 390px admin layout had no horizontal overflow. GitHub and Vercel release checks are pending at this point.

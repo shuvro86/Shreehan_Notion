@@ -262,7 +262,9 @@ def reset_password(body: PasswordTicket):
 
 @auth_router.get("/me")
 def me(user=Depends(current_user)):
-    return user
+    from backend.menu_access import enabled_menus
+    with connection() as db:
+        return {**user, "menus": enabled_menus(db, user["role"])}
 
 
 @auth_router.post("/logout")

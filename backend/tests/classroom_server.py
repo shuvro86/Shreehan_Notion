@@ -12,10 +12,11 @@ def main():
         from backend.auth import hash_password
         initialize_database()
         with connection() as db:
-            for name in ('teacher', 'classroom_student', 'classroom_student_two'):
+            for name in ('teacher', 'classroom_student', 'classroom_student_two', 'shuvro'):
                 db.execute('INSERT INTO users VALUES (?,?,?,?,?,?)',
                            (name, name, name+'@example.test', hash_password('classroom-test'), now(), now()))
             db.execute('INSERT INTO teachers VALUES (?)', ('teacher',))
+            db.execute("INSERT INTO account_roles VALUES ('shuvro','admin')")
         import uvicorn
         uvicorn.run('backend.main:app', host='127.0.0.1', port=int(os.getenv('CLASSROOM_TEST_PORT', '8017')))
 

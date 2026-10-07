@@ -1,13 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+
+const MenuContext=createContext<string[]>([]);
+export const useMenuAccess=()=>useContext(MenuContext);
+const menuPaths:Record<string,string>={overview:'/',tasks:'/',collections:'/',library:'/library',assistant:'/assistant',practice:'/practice',kanban:'/kanban',coursework:'/coursework',teacher_dashboard:'/teacher',admin_accounts:'/admin',admin_menus:'/admin',admin_setup:'/admin'};
 
 export default function AuthGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
   const [offline, setOffline] = useState(false);
+  const [menus,setMenus]=useState<string[]>([]);
   const isLogin = pathname === '/login';
   useEffect(() => {
     let active = true;
@@ -30,8 +35,10 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
         else if (response.ok) {
           const user = await response.json();
           if (!active) return;
-          const target = user.role === 'admin' ? '/admin' : user.role === 'teacher' ? '/teacher' : '/';
-          const allowed = user.role === 'admin' ? pathname.startsWith('/admin') : user.role === 'teacher' ? pathname === '/teacher' || pathname === '/coursework' : pathname !== '/teacher' && !pathname.startsWith('/admin');
+          const allowedMenus:string[]=user.menus||[];
+          setMenus(allowedMenus);
+          const target=allowedMenus.map(key=>menuPaths[key]).find(Boolean)||'/login';
+          const allowed=allowedMenus.some(key=>menuPaths[key]===pathname);
           if (isLogin || !allowed) {
             setAuthorized(false);
             router.replace(target);
@@ -81,5 +88,5 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
     };
   }, [isLogin, pathname, router]);
   if (isLogin) return <>{children}</>;
-  return authorized ? <>{children}</> : <div className="auth-loading" role="status" aria-live="polite">{offline ? 'Connection interrupted. Retrying your session…' : 'Opening your workspace…'}</div>;
+  return authorized ? <MenuContext.Provider value={menus}>{children}</MenuContext.Provider> : <div className="auth-loading" role="status" aria-live="polite">{offline ? 'Connection interrupted. Retrying your session…' : 'Opening your workspace…'}</div>;
 }
