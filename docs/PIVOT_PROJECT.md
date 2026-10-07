@@ -397,3 +397,13 @@ The teacher task list has two side-by-side searches: Calendar search and Status 
 ### Observed verification and release status
 
 The Next.js production build and TypeScript check passed. All 48 backend tests and four isolated teacher/admin Playwright flows passed. Browser checks covered both search directions, clearing the other control, class-task visibility as review status changes, absence of teacher tabs and work-type search, and side-by-side 320px layout without horizontal overflow. The mobile screenshot was visually inspected. Commit `86b756d` reached GitHub main; Vercel deployment `dpl_8Rp2M2V7B72aFnPt8JJjGGfnhfH6` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Live read-only checks returned HTTP 200 for `/login`, HTTP 303 to login for unauthenticated `/teacher`, and HTTP 401 for unauthenticated `/api/coursework`. No production coursework was changed for smoke testing.
+
+## Teacher task modal and feedback labels (2026-10-07)
+
+### Implemented behavior and decisions
+
+The teacher's task creation trigger, modal heading, and submit button now say **Assign task**. The teacher task modal has an opaque off-white base with a subtle blue-to-yellow gradient, yellow top accent, and navy shadow; it sits above notification toasts. The styling uses the established teacher palette and does not affect student dialogs. The daily feedback form's existing-note button label changed from **Update feedback** to **Notify Guardian** as requested. This is a label-only change: the daily note still saves through `/api/teacher-feedback/today` and appears in Shuvro's admin notifications; guardian email remains the separate coursework review action. No backend, database, Notion/Drive, sync, or email integration changed.
+
+### Observed verification and release status
+
+The Next.js production build and TypeScript check passed. All 48 backend tests and four isolated teacher/admin browser flows passed. Browser checks covered the renamed create and feedback controls, task assignment, and computed opaque gradient and yellow modal accent. The mobile task-modal screenshot was visually inspected after the opacity correction. GitHub and Vercel release status is pending.

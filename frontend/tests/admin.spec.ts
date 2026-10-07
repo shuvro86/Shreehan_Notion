@@ -64,10 +64,10 @@ test('teacher daily feedback appears as a full admin notification',async({browse
  await expect(teacher.getByLabel('Today’s feedback')).toHaveValue('');
  await Promise.all([teacher.waitForEvent('load'),confirmation.getByRole('button',{name:'Done'}).click()]);
  await expect(teacher.getByLabel('Today’s feedback')).toHaveValue('');
- await expect(teacher.getByRole('button',{name:'Update feedback'})).toBeDisabled();
+ await expect(teacher.getByRole('button',{name:'Notify Guardian'})).toBeDisabled();
  const revisedNote=`${note}\nReading has improved.`;
  await teacher.getByLabel('Today’s feedback').fill(revisedNote);
- await teacher.getByRole('button',{name:'Update feedback'}).click();
+ await teacher.getByRole('button',{name:'Notify Guardian'}).click();
  const revision=teacher.getByRole('dialog',{name:'Feedback updated'});
  await expect(revision.getByText('Previous update')).toBeVisible();
  await expect(revision.getByText(note,{exact:true})).toBeVisible();

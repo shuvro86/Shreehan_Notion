@@ -12,7 +12,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(page).toHaveURL(/\/teacher$/);
  let guardianRequests=0;
  await page.route('**/api/coursework/*/email',route=>{guardianRequests++;return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({message:'Email accepted.'})});});
- await expect(page.getByRole('button',{name:'Create Task',exact:true})).toBeVisible();
+ await expect(page.getByRole('button',{name:'Assign task',exact:true})).toBeVisible();
  await expect(page.getByRole('button',{name:/tasks? not done/})).toBeVisible();
  await expect(page.getByRole('combobox',{name:'Filter student'})).toHaveCount(0);
  await expect(page.getByLabel('Search work')).toHaveCount(0);
@@ -28,9 +28,13 @@ test('teacher sees one class task and filters its completion state', async ({bro
  expect(await page.getByRole('navigation').getByRole('button').allTextContents()).toEqual(['Change password','Sign out']);
  await expect(page.getByLabel('Calendar search')).toHaveValue(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
  const initialPending=Number((await page.locator('.cw-notice strong').innerText()).match(/^\d+/)?.[0]);
- await page.getByRole('button',{name:'Create Task',exact:true}).click();
+ await page.getByRole('button',{name:'Assign task',exact:true}).click();
  const dialog=page.getByRole('dialog');
  await expect(dialog).toBeVisible();
+ await expect(dialog.getByRole('heading',{name:'Assign task'})).toBeVisible();
+ expect(await dialog.evaluate(element=>getComputedStyle(element).backgroundImage)).toContain('linear-gradient');
+ expect(await dialog.evaluate(element=>getComputedStyle(element).backgroundColor)).toBe('rgb(252, 252, 252)');
+ expect(await dialog.evaluate(element=>getComputedStyle(element).borderTopColor)).toBe('rgb(236, 173, 10)');
  await expect(dialog.getByText('This task will be assigned to every active student.',{exact:false})).toBeVisible();
  await expect(dialog.getByText('Student',{exact:true})).toHaveCount(0);
  await expect(dialog.getByText('Existing Notion work (optional)')).toHaveCount(0);
@@ -41,7 +45,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await dialog.getByLabel('Title',{exact:true}).fill(title);
  await dialog.getByLabel('Instructions',{exact:true}).fill('Describe a rock from your science lesson.');
  const dueDate=await dialog.getByLabel('Due date').inputValue();
- await dialog.getByRole('button',{name:'Create Task',exact:true}).click();
+ await dialog.getByRole('button',{name:'Assign task',exact:true}).click();
  await expect(dialog).not.toBeVisible();
  const task=page.locator('.cw-class-task').filter({hasText:title});
  await expect(page.getByLabel('Calendar search')).toHaveValue(dueDate);
@@ -149,11 +153,11 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(remainingTask).toHaveCount(0);
 
  // Verify the guardian action without contacting the real mail provider.
- await page.getByRole('button',{name:'Create Task',exact:true}).click();
+ await page.getByRole('button',{name:'Assign task',exact:true}).click();
  const mailTitle=`Poetry task ${Date.now()}`;
  await dialog.getByRole('combobox',{name:'Subject',exact:true}).selectOption('Poetry');
  await dialog.getByLabel('Title',{exact:true}).fill(mailTitle);
- await dialog.getByRole('button',{name:'Create Task',exact:true}).click();
+ await dialog.getByRole('button',{name:'Assign task',exact:true}).click();
  await page.getByLabel('Calendar search').fill(dueDate);
  const mailTask=page.locator('.cw-class-task').filter({hasText:mailTitle});
  await expect(mailTask).toHaveCount(1);
@@ -179,7 +183,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await page.setViewportSize({width:390,height:844});
  await page.screenshot({path:'../tmp/teacher-updated-mobile.png',fullPage:true});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
- await page.getByRole('button',{name:'Create Task',exact:true}).click();
+ await page.getByRole('button',{name:'Assign task',exact:true}).click();
  await expect(dialog).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
  await page.screenshot({path:'../tmp/teacher-updated-mobile-form.png',fullPage:true});
@@ -199,12 +203,12 @@ test('a failed guardian send keeps the review draft and does not claim notificat
  await ctx.request.post('/api/auth/login',{data:{username:'teacher',password:'classroom-test'}});
  await page.goto('/teacher');
  await page.route('**/api/coursework/*/email',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Guardian email is temporarily unavailable.'})}));
- await page.getByRole('button',{name:'Create Task',exact:true}).click();
+ await page.getByRole('button',{name:'Assign task',exact:true}).click();
  const dialog=page.getByRole('dialog');
  const title=`Review retry ${Date.now()}`;
  await dialog.getByLabel('Title',{exact:true}).fill(title);
  await dialog.getByLabel('Due date').fill(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
- await dialog.getByRole('button',{name:'Create Task',exact:true}).click();
+ await dialog.getByRole('button',{name:'Assign task',exact:true}).click();
  const task=page.locator('.cw-class-task').filter({hasText:title});
  await task.locator('summary').click();
  const card=task.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
