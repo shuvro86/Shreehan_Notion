@@ -91,3 +91,9 @@
 .cw-task-detail .cw-card h3{font-size:16px;margin:12px 0 5px}
 .cw-task-detail .cw-card form{margin-top:12px;padding-top:12px}
 @media(max-width:760px){.cw-teacher .cw-header{padding:10px 14px}.cw-teacher .cw-main{padding:12px 14px 20px}.cw-teacher .cw-heading{flex-direction:row;align-items:center;gap:8px}.cw-teacher .cw-heading h1{font-size:20px;margin:0}.cw-teacher .cw-heading .cw-primary{padding:8px 9px;font-size:11px}.cw-teacher .cw-heading .cw-primary svg{width:14px}.cw-teacher .cw-eyebrow{font-size:8px!important;letter-spacing:1px}.cw-teacher .cw-notice{padding:8px 10px!important}.cw-teacher .cw-notice-icon{display:none}.cw-teacher .cw-stats>div{padding:8px;grid-template-columns:1fr}.cw-teacher .cw-stats strong{font-size:18px}.cw-class-task summary{padding:11px;gap:7px;flex-wrap:wrap}.cw-task-title{order:1;flex-basis:calc(100% - 32px)}.cw-task-chevron{order:2}.cw-class-task .cw-status{margin-left:auto}.cw-task-detail{padding:10px}}
+.cw-teacher .cw-class-task .cw-delete{padding:6px 9px;border-color:#efcbd0;color:#a52e3e;background:#fff;font-size:11px;white-space:nowrap}
+.cw-teacher .cw-class-task .cw-delete:hover{background:#fff0f2}
+.cw-teacher .cw-task-detail .cw-card{border-top-width:3px;background:#fff}
+.cw-teacher .cw-task-detail .cw-card-top{margin-bottom:10px}
+.cw-teacher .cw-task-detail .cw-subject{text-transform:none;letter-spacing:0;font-size:13px}
+@media(max-width:760px){.cw-teacher .cw-class-task .cw-delete{order:2;margin-left:auto}.cw-teacher .cw-task-chevron{order:3}}

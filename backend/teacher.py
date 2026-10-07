@@ -49,6 +49,19 @@ def list_work(user=Depends(current_user)):
     with connection() as db:
         items = [dict(r) for r in db.execute(f"SELECT c.*,u.username AS student_name FROM coursework c JOIN users u ON u.id=c.student_id WHERE c.{key}=? ORDER BY c.due_date DESC,c.created_at DESC", (user["id"],))]
         students = [dict(r) for r in db.execute("SELECT id,username FROM users WHERE verified_at IS NOT NULL AND id NOT IN (SELECT user_id FROM teachers) ORDER BY username")] if teacher else []
+    if teacher:
+        grouped = {}
+        for item in items:
+            group = grouped.get(item["created_at"])
+            if group is None:
+                group = {**item, "assignments": []}
+                grouped[item["created_at"]] = group
+            group["assignments"].append(item)
+        items = list(grouped.values())
+        for group in items:
+            assignments = group["assignments"]
+            group["status"] = "completed" if all(item["status"] == "completed" for item in assignments) else "pending"
+            group["student_count"] = len(assignments)
     return {"role": user["role"], "items": items, "students": students, "subjects": SUBJECTS}
 
 
@@ -115,6 +128,16 @@ def create_class_task(body: ClassTask, user=Depends(teacher_only)):
                        (item_id, user["id"], student["id"], body.kind, body.subject, body.title, body.instructions, body.due_date.isoformat(), timestamp, timestamp))
             ids.append(item_id)
     return {"count": len(ids), "ids": ids}
+
+
+@router.delete("/class-task/{item_id}")
+def delete_class_task(item_id: str, user=Depends(teacher_only)):
+    """Remove one teacher task and every student assignment created with it."""
+    with connection() as db:
+        row = owned(db, item_id, user)
+        assignments = db.execute("SELECT id FROM coursework WHERE teacher_id=? AND created_at=?", (user["id"], row["created_at"])).fetchall()
+        db.execute("DELETE FROM coursework WHERE teacher_id=? AND created_at=?", (user["id"], row["created_at"]))
+    return {"deleted": len(assignments)}
 
 
 @router.post("", status_code=201)

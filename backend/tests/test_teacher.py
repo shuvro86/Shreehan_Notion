@@ -39,16 +39,36 @@ def test_class_task_reaches_all_active_students_and_preserves_individual_reviews
     assert created.json()['count'] == 2
     assert len(set(created.json()['ids'])) == 2
     teacher_items = c.get('/api/coursework').json()['items']
-    assert {i['student_name'] for i in teacher_items} == {'student', 'other'}
-    assert all(i['kind'] == 'Assignment' and i['subject'] == 'Science' and i['status'] == 'pending' for i in teacher_items)
-    first = next(i for i in teacher_items if i['student_name'] == 'student')
-    second = next(i for i in teacher_items if i['student_name'] == 'other')
+    assert len(teacher_items) == 1
+    assert teacher_items[0]['student_count'] == 2
+    assert {i['student_name'] for i in teacher_items[0]['assignments']} == {'student', 'other'}
+    assert teacher_items[0]['kind'] == 'Assignment' and teacher_items[0]['subject'] == 'Science' and teacher_items[0]['status'] == 'pending'
+    first = next(i for i in teacher_items[0]['assignments'] if i['student_name'] == 'student')
+    second = next(i for i in teacher_items[0]['assignments'] if i['student_name'] == 'other')
     assert c.put(f"/api/coursework/{first['id']}/review", json={'status': 'completed', 'score': 8}).status_code == 200
     login(c, 'student')
     assert [i['id'] for i in c.get('/api/coursework').json()['items']] == [first['id']]
     login(c, 'other')
     assert [i['id'] for i in c.get('/api/coursework').json()['items']] == [second['id']]
     assert c.get('/api/coursework').json()['items'][0]['status'] == 'pending'
+
+
+def test_teacher_deletes_one_class_task_and_all_its_assignments(classroom):
+    c = classroom
+    login(c, 'teacher')
+    body = {'kind': 'Homework', 'subject': 'Poetry', 'title': 'Read a poem', 'due_date': '2026-10-07'}
+    first = c.post('/api/coursework/class-task', json=body).json()
+    second = c.post('/api/coursework/class-task', json={**body, 'title': 'Write a poem'}).json()
+    items = c.get('/api/coursework').json()['items']
+    assert len(items) == 2
+    assert c.delete(f"/api/coursework/class-task/{first['ids'][0]}").json() == {'deleted': 2}
+    assert [i['title'] for i in c.get('/api/coursework').json()['items']] == ['Write a poem']
+    assert c.delete(f"/api/coursework/class-task/{first['ids'][0]}").status_code == 404
+    login(c, 'second_teacher')
+    assert c.delete(f"/api/coursework/class-task/{second['ids'][0]}").status_code == 404
+    login(c, 'student')
+    assert c.delete(f"/api/coursework/class-task/{second['ids'][0]}").status_code == 403
+    assert [i['title'] for i in c.get('/api/coursework').json()['items']] == ['Write a poem']
 
 
 def test_class_task_requires_an_active_student(classroom):

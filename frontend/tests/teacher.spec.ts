@@ -39,7 +39,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await page.getByRole('combobox',{name:'Filter status'}).selectOption('Not Done');
  await expect(task).toHaveCount(1);
  await task.locator('summary').click();
- const card=task.locator('.cw-card').filter({hasText:'classroom_student ·'}).first();
+ const card=task.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
  await expect(task.locator('.cw-card')).toHaveCount(2);
  await page.screenshot({path:'../tmp/teacher-updated-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});
@@ -73,7 +73,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await page.getByRole('combobox',{name:'Filter status'}).selectOption('All');
  const remainingTask=page.locator('.cw-class-task').filter({hasText:title});
  await remainingTask.locator('summary').click();
- const remainingCard=remainingTask.locator('.cw-card').filter({hasText:'classroom_student_two ·'});
+ const remainingCard=remainingTask.locator('.cw-card').filter({has:page.getByText('classroom_student_two',{exact:true})});
  await remainingCard.getByLabel('Review status').selectOption('completed');
  await remainingCard.getByRole('button',{name:'Save review'}).click();
  await expect(remainingTask.locator('summary')).toContainText('Completed');
@@ -91,7 +91,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await dialog.getByRole('button',{name:'Create Task',exact:true}).click();
  const mailTask=page.locator('.cw-class-task').filter({hasText:mailTitle});
  await mailTask.locator('summary').click();
- const mailCard=mailTask.locator('.cw-card').filter({hasText:'classroom_student ·'}).first();
+ const mailCard=mailTask.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
  await mailCard.getByLabel('Comments / remarks').fill('Read with expression.');
  await mailCard.getByLabel('Review status').selectOption('completed');
  await mailCard.getByRole('button',{name:'Save & email'}).click();
@@ -100,6 +100,11 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(studentCard.getByRole('img',{name:'Rating: 8 out of 10'})).toBeVisible();
  await expect(student.locator('.cw-card').filter({hasText:mailTitle}).getByText('Read with expression.',{exact:true})).toBeVisible();
  await expect(studentCard.getByText('Good observation.',{exact:true})).toBeVisible();
+ page.once('dialog', dialog=>dialog.accept());
+ await mailTask.getByRole('button',{name:'Delete record'}).click();
+ await expect(mailTask).toHaveCount(0);
+ await student.reload();
+ await expect(student.locator('.cw-card').filter({hasText:mailTitle})).toHaveCount(0);
  await page.setViewportSize({width:390,height:844});
  await page.screenshot({path:'../tmp/teacher-updated-mobile.png',fullPage:true});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();

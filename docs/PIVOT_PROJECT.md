@@ -269,3 +269,15 @@ The teacher header, banner, summary cards, filters, and task rows use tighter sp
 ### Observed verification and release status
 
 The Next.js production build and typecheck passed, along with all five teacher API tests. The isolated Playwright classroom flow with two active students passed: one class-task row for one Create Task action, both student review cards inside it, Not Done and Completed filtering, independent student submission and completion, mocked email action, and no horizontal overflow at 390px. Desktop and mobile screenshots were visually inspected. Commit `b8051fb` was pushed to GitHub main. Vercel deployment `dpl_4zLzdZZF9zhwsoBRwSMXbSbypsfZ` reached READY and was aliased to `https://shreehan-notion.vercel.app`. Live read-only checks returned HTTP 200 for `/login` and `/teacher`, and HTTP 401 for unauthenticated `/api/coursework`. No production coursework or email was created during verification.
+
+## Teacher task record and deletion correction (2026-10-07)
+
+### Observed cause and implemented behavior
+
+A read-only production Turso query showed that each recent Create Task action stored exactly three `coursework` rows with the same creation timestamp, one for each of the three active students. The earlier dashboard release grouped these visually but expanded them into three full task cards, so the teacher still saw three records. The authenticated teacher `GET /api/coursework` response now returns one task entry per creation timestamp with student assignments nested in `assignments`, and the dashboard shows one task heading with compact student review panels instead of repeating the title, subject, due date, and instructions three times. Student `GET /api/coursework` still returns only that student's assignment. The teacher's Completed and Not Done states aggregate the nested assignments as before.
+
+A **Delete record** button on each teacher task asks for confirmation, then calls `DELETE /api/coursework/class-task/{item_id}`. The endpoint checks teacher ownership and removes every student assignment created with that task in one transaction. This also removes submissions, scores, and remarks attached to those assignments. Other tasks are unaffected. Existing class tasks are handled without a schema migration. Notion/Drive source scope, sync, and email integrations are unchanged.
+
+### Observed verification and release status
+
+The frontend typecheck and production build passed. All six teacher API tests passed, including one teacher task for two assignments, cross-teacher delete rejection, student delete rejection, and deletion of only the selected task. The isolated two-student Playwright flow passed, including class task creation, independent review and completion, status filtering, confirmed deletion, and disappearance from the student view. Production deletion was not used for verification. GitHub and Vercel release checks remain pending at this point.
