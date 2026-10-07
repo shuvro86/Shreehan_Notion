@@ -203,6 +203,7 @@ def test_existing_coursework_review_states_are_backfilled(classroom):
     assert c.put(f'/api/coursework/{item}/review', json={'status':'completed','score':8}).status_code == 200
     with connection() as db:
         db.execute('ALTER TABLE coursework DROP COLUMN review_state')
+        db.execute("DELETE FROM app_migrations WHERE name='coursework_review_state'")
     initialize_database()
     with connection() as db:
         row = db.execute('SELECT status,review_state FROM coursework WHERE id=?', (item,)).fetchone()
