@@ -407,3 +407,13 @@ The teacher's task creation trigger, modal heading, and submit button now say **
 ### Observed verification and release status
 
 The Next.js production build and TypeScript check passed. All 48 backend tests and four isolated teacher/admin browser flows passed. Browser checks covered the renamed create and feedback controls, task assignment, and computed opaque gradient and yellow modal accent. The mobile task-modal screenshot was visually inspected after the opacity correction. Commit `6119893` reached GitHub main; Vercel deployment `dpl_CHEiWEDR785PXrjDUhgEcdVhUy3G` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Live read-only checks returned HTTP 200 for `/login` and HTTP 303 to login for unauthenticated `/teacher`. No production coursework or feedback was changed for smoke testing.
+
+## Teacher daily update panel color (2026-10-07)
+
+### Implemented behavior and scope
+
+The teacher-only Daily Classroom Update panel now uses a light blue background derived from the established `#209dd7` primary color. Its yellow accent border, navy heading, gray supporting copy, and feedback form remain. This is a presentation-only change in the teacher stylesheet; student and admin UI, feedback storage and notifications, coursework, database, Notion/Drive scope, sync, and email integrations are unchanged.
+
+### Observed verification and release status
+
+The Next.js production build and TypeScript check passed. Both isolated teacher browser flows passed, and the mobile screenshot was visually inspected for contrast and layout. GitHub and Vercel release status is pending.
