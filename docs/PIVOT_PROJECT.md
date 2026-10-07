@@ -257,3 +257,15 @@ The Next.js static build passed. All 41 backend tests and 26 JavaScript sync tes
 ### Compact teacher header refinement (2026-10-06)
 
 The teacher page header, hero spacing, pending notification, and summary cards are more compact so active work appears sooner at desktop and mobile widths. The notification count and its action remain visible. This is a presentation-only adjustment; teacher permissions, task fanout, Notion/Drive sources, email delivery, and database records are unchanged. The Next.js build passed. A 390px Playwright check put the first pending card within 680px of the top of the page, confirmed no horizontal overflow, and passed the full teacher-to-student workflow. Desktop and mobile screenshots were visually inspected. Vercel deployment `dpl_8viAfyrdiuGexnfYr8uEKxzK3dxR` reached READY and is aliased to `https://shreehan-notion.vercel.app`. Live smoke checks passed for teacher login, dashboard access, all eleven subject styles, protected coursework APIs, invalid class-task rejection, and logout/401; no coursework or email was created. The compact-header commit `4950f1b` is deployed.
+
+## Teacher class-task grouping and status filters (2026-10-07)
+
+### Implemented behavior and decisions
+
+One Create Task action still assigns one coursework row to each active student so submissions, scores, remarks, and completion remain independent. The teacher dashboard now groups rows created by that action into one class-task entry using their shared creation timestamp. Expanding the entry exposes the individual student reviews. This also groups class tasks created before this change. The teacher counts and status filter operate on class tasks: **Completed** means every assigned student row is completed; **Not Done** means at least one is pending; **Awaiting review** means at least one pending row has an unreviewed submission. The form guards against rapid repeat submission. No database schema, Notion/Drive source scope, sync integration, email integration, or student API changed.
+
+The teacher header, banner, summary cards, filters, and task rows use tighter spacing on desktop and mobile. These are dashboard presentation changes; student coursework remains individually accessible.
+
+### Observed verification and release status
+
+The Next.js production build and typecheck passed. The isolated Playwright classroom flow with two active students passed: one class-task row for one Create Task action, both student review cards inside it, Not Done and Completed filtering, independent student submission and completion, mocked email action, and no horizontal overflow at 390px. Desktop and mobile screenshots were visually inspected. GitHub push and Vercel production deployment are pending at the time of this entry.
