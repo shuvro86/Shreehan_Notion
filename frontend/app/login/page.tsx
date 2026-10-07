@@ -82,8 +82,7 @@ export default function LoginPage() {
             {notice && <p className="auth-notice" role="status"><Check size={15} />{notice}</p>}
             <button className="auth-submit" disabled={busy}>{busy ? 'One moment…' : button[step]}<ArrowRight size={19} /></button>
           </form>
-          <div className="auth-divider"><span>OR</span></div>
-          <div className="auth-switch">{step === 'login' ? <>New around here? <button onClick={() => go('signup')}>Create an account</button></> : <button onClick={() => go('login')}>← Back to sign in</button>}</div>
+          {step !== 'login' && <div className="auth-switch"><button onClick={() => go('login')}>← Back to sign in</button></div>}
           <div className="auth-safe"><ShieldCheck size={17} /> A little space that’s all yours.</div>
         </div>
       </section>

@@ -441,3 +441,13 @@ The `/login` client page now uses the approved colorful classroom concept: a res
 ### Observed verification and release status
 
 The Next.js production build and TypeScript check passed, all 49 backend tests passed, and all 26 JavaScript sync tests passed. The login page rendered through a local isolated FastAPI instance, and browser checks confirmed desktop and mobile layouts, no horizontal overflow at 320px, and transitions from sign-in to signup and password recovery. No real account action was submitted during those checks. Commit `fcb05b4` reached GitHub main. Vercel deployment `dpl_38cwzhpopxwFwbxZvgn1398QTGie` reached Ready, and the public `https://shreehan-notion.vercel.app/login` rendered the new design. Live read-only requests returned HTTP 200 for `/login`, HTTP 303 to login for unauthenticated `/teacher`, and HTTP 401 for unauthenticated `/api/auth/me`. No production account action was submitted during smoke testing.
+
+## Login account-creation entry removal (2026-10-07)
+
+### Implemented behavior and scope
+
+The sign-in view no longer displays the **OR** divider, the **New around here?** prompt, or **Create an account**. Password recovery retains its **Back to sign in** action. This is a login-page presentation change; signup and verification handlers and backend endpoints are unchanged. Authentication, session behavior, database, email integration, Notion/Drive source scope, and sync are unchanged. No migration is required.
+
+### Observed verification and release status
+
+The Next.js production build and TypeScript check passed, all 49 backend tests passed, and all 26 JavaScript sync tests passed. In a local isolated FastAPI browser check, the sign-in view had no account-creation prompt or divider, and the password-recovery view still showed Back to sign in. No account action was submitted. Production release verification is pending.
