@@ -10,7 +10,7 @@ MENU_ITEMS = {
         ("assistant", "Digital Twin", "/assistant", False),
         ("practice", "Class 2 practice", "/practice", False),
         ("kanban", "Project board", "/kanban", False),
-        ("coursework", "Teacher work", "/coursework", False),
+        ("coursework", "Assigned homework", "/coursework", False),
     ),
     "teacher": (
         ("teacher_dashboard", "Teacher dashboard", "/teacher", False),

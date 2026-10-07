@@ -92,7 +92,7 @@ def teacher_feedback(_actor=Depends(admin_only)):
         items = [dict(row) for row in db.execute("""
             SELECT f.id,f.day,f.body,f.created_at,f.updated_at,f.read_at,u.username AS teacher_name
             FROM daily_teacher_feedback f JOIN users u ON u.id=f.teacher_id
-            ORDER BY f.updated_at DESC LIMIT 100
+            ORDER BY f.day DESC, f.updated_at DESC
         """)]
         unread = db.execute("SELECT COUNT(*) AS count FROM daily_teacher_feedback WHERE read_at IS NULL").fetchone()["count"]
     return {"items": items, "unread": unread}

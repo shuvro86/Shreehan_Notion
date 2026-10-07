@@ -78,6 +78,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(task.getByRole('button',{name:'Delete record'})).toBeVisible();
  const card=task.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
  await expect(task.locator('.cw-card')).toHaveCount(2);
+ await expect(task.getByRole('button',{name:'Update to Guardian'})).toHaveCount(0);
  await page.screenshot({path:'../tmp/teacher-updated-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});
  for(const name of ['Change password','Sign out']){
@@ -165,7 +166,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  const mailCard=mailTask.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
  await mailCard.getByLabel('Comments / remarks').fill('Read with expression.');
  await mailCard.getByLabel('Review Status').selectOption('done');
- await mailCard.getByRole('button',{name:'Update to Guardian'}).click();
+ await mailCard.getByRole('button',{name:'Save review'}).click();
  await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toBeVisible();
  await page.getByLabel('Status type search').selectOption('half_done');
  await expect(mailTask).toBeVisible();
@@ -219,9 +220,41 @@ test('a failed guardian send keeps the review draft and does not claim notificat
  await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toHaveCount(0);
  await page.unroute('**/api/coursework/*/email');
  await page.route('**/api/coursework/*/email',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({message:'Email accepted.'})}));
- await card.getByRole('button',{name:'Update to Guardian'}).click();
+ await card.getByRole('button',{name:'Save review'}).click();
  await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toBeVisible();
  await task.locator('summary').click();
  await expect(card.getByLabel('Comments / remarks')).toHaveValue('');
  await ctx.close();
+});
+
+test('a student sees only their assigned work grouped and filtered by due date',async({browser})=>{
+ const teacherContext=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
+ await teacherContext.request.post('/api/auth/login',{data:{username:'teacher',password:'classroom-test'}});
+ const ownTitle=`My reading task ${Date.now()}`;
+ const otherTitle=`Other student task ${Date.now()}`;
+ const own=await teacherContext.request.post('/api/coursework',{data:{student_id:'classroom_student',kind:'Homework',subject:'English Literature',title:ownTitle,instructions:'Read a chapter.',due_date:'2032-06-15'}});
+ const other=await teacherContext.request.post('/api/coursework',{data:{student_id:'classroom_student_two',kind:'Assignment',subject:'Science',title:otherTitle,instructions:'Draw a diagram.',due_date:'2032-06-16'}});
+ expect(own.status()).toBe(201);
+ expect(other.status()).toBe(201);
+ const studentContext=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
+ await studentContext.request.post('/api/auth/login',{data:{username:'classroom_student',password:'classroom-test'}});
+ const student=await studentContext.newPage();
+ await student.goto('/coursework');
+ await expect(student.getByRole('heading',{name:'Your teacher’s work, day by day.'})).toBeVisible();
+ await expect(student.getByText(ownTitle,{exact:true})).toBeVisible();
+ await expect(student.getByText(otherTitle,{exact:true})).toHaveCount(0);
+ const day=student.locator('.cw-student-day').filter({has:student.locator('time[datetime="2032-06-15"]')});
+ await expect(day.getByText(ownTitle,{exact:true})).toBeVisible();
+ await student.getByLabel('Filter assigned work by due date').fill('2032-06-16');
+ await expect(student.getByText(ownTitle,{exact:true})).toHaveCount(0);
+ await expect(student.getByText('No work is due on this date.')).toBeVisible();
+ await student.getByRole('group',{name:'Assigned due dates'}).getByRole('button',{name:/All dates/}).click();
+ await expect(student.getByText(ownTitle,{exact:true})).toBeVisible();
+ await student.setViewportSize({width:390,height:844});
+ const signOutBounds=await student.getByRole('button',{name:'Sign out'}).boundingBox();
+ expect(signOutBounds).not.toBeNull();
+ expect(signOutBounds!.x+signOutBounds!.width).toBeLessThanOrEqual(390);
+ expect(await student.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
+ await student.screenshot({path:'../tmp/student-assigned-work-mobile.png',fullPage:true});
+ await teacherContext.close();await studentContext.close();
 });

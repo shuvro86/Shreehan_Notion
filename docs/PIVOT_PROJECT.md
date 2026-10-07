@@ -417,3 +417,17 @@ The teacher-only Daily Classroom Update panel now uses a light blue background d
 ### Observed verification and release status
 
 The Next.js production build and TypeScript check passed. Both isolated teacher browser flows passed, and the mobile screenshot was visually inspected for contrast and layout. Commit `291b35f` reached GitHub main; Vercel deployment `dpl_GoA7cCqxXXdo4WgkjMXcBLdtRD3X` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. A live read-only request returned HTTP 200 for `/login`. No production feedback was changed for smoke testing.
+
+## Date-wise teacher comments and student assignments (2026-10-07)
+
+### Implemented architecture, scope, and decisions
+
+Shuvro's Teacher updates view now presents the final daily teacher comment in a date-ordered table with teacher, complete comment, last update, read state, and a mark-as-read action. A date input narrows the history; the admin feedback API sorts by comment day and returns the complete history instead of the latest 100. On narrow screens, the same full text and actions appear in readable cards. The existing one-note-per-teacher-per-day storage and read tracking remain. This is the daily classroom update sent to the admin, not a student's coursework review comment.
+
+The teacher's review detail keeps Save review and Edit task, and removes the separate **Update to Guardian** action. Save review continues to persist review state, stars, and remarks and send the existing guardian email. The teacher dashboard brand now displays a code-native open-book and knowledge-spark mark using the teacher palette. No external image asset or integration was added.
+
+The student coursework view uses the existing authenticated `/api/coursework` response, which is scoped server-side to that student. It groups only those assigned homework and assignment records by due date and offers a date picker plus direct date chips. The selected date changes the visible groups without altering records; All dates restores the complete student-scoped list. Submission and teacher feedback controls remain in each task card. The student menu and learning-hub link point to this assigned-homework view. Student access to the separate learning resources is unchanged. No database migration, Notion/Drive source scope, sync, or guardian recipient change is required.
+
+### Observed verification and release status
+
+Observed locally: the Next.js production build and TypeScript check passed, all 49 backend tests passed, and all five isolated teacher/admin/student browser flows passed. The browser checks covered the complete date-wise admin comment, date filtering, read tracking, removal of the extra guardian button, student-only assignment visibility, due-date filtering, and mobile bounds. The admin, student, and teacher mobile screenshots were visually inspected. GitHub and Vercel release verification is pending. No production data has been changed for this verification.

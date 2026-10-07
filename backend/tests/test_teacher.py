@@ -61,6 +61,22 @@ def test_daily_teacher_feedback_reaches_admin_and_tracks_read_state(classroom):
     assert c.get('/api/admin/feedback').json()['unread'] == 1
 
 
+def test_admin_final_teacher_comments_are_date_ordered(classroom):
+    c = classroom
+    with connection() as db:
+        db.execute('INSERT INTO users VALUES (?,?,?,?,?,?)', ('shuvro','shuvro','shuvro@example.test',hash_password('test-pass'),now(),now()))
+        db.execute("INSERT INTO account_roles VALUES ('shuvro','admin')")
+        for note_id, day, body in (('older','2025-01-04','Final reading comment.'),('newer','2025-01-05','Final maths comment.\nNext step: fractions.')):
+            db.execute('INSERT INTO daily_teacher_feedback (id,teacher_id,day,body,created_at,updated_at) VALUES (?,?,?,?,?,?)',
+                       (note_id,'teacher',day,body,now(),now()))
+    login(c,'shuvro')
+    response = c.get('/api/admin/feedback')
+    assert response.status_code == 200
+    assert [(item['day'],item['body']) for item in response.json()['items']] == [
+        ('2025-01-05','Final maths comment.\nNext step: fractions.'),
+        ('2025-01-04','Final reading comment.')]
+
+
 def test_admin_role_management_and_role_boundaries(classroom):
     c = classroom
     with connection() as db:
