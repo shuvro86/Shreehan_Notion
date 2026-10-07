@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 from backend.main import app
-from backend.db import connection, now
+from backend.db import connection, initialize_database, now
 from backend.auth import hash_password
 from backend import teacher, mailer
 
@@ -178,6 +178,37 @@ def test_class_task_reaches_all_active_students_and_preserves_individual_reviews
     assert c.get('/api/coursework').json()['items'][0]['status'] == 'pending'
 
 
+def test_three_review_states_are_saved_and_grouped(classroom):
+    c = classroom
+    login(c, 'teacher')
+    created = c.post('/api/coursework/class-task', json={'kind':'Homework','subject':'Science','title':'Read today','due_date':'2026-10-07'})
+    first, second = created.json()['ids']
+    assert c.get('/api/coursework').json()['items'][0]['review_state'] == 'not_done'
+    half = c.put(f'/api/coursework/{first}/review', json={'status':'half_done','score':5,'remarks':'Working through the lesson.'})
+    assert half.status_code == 200
+    assert half.json()['status'] == 'pending' and half.json()['review_state'] == 'half_done'
+    assert c.get('/api/coursework').json()['items'][0]['review_state'] == 'half_done'
+    assert c.put(f'/api/coursework/{second}/review', json={'status':'completed','score':9}).status_code == 200
+    assert c.get('/api/coursework').json()['items'][0]['review_state'] == 'half_done'
+    assert c.put(f'/api/coursework/{first}/review', json={'status':'completed','score':8}).status_code == 200
+    assert c.get('/api/coursework').json()['items'][0]['review_state'] == 'done'
+    assert c.put(f'/api/coursework/{first}/review', json={'status':'pending','score':None}).status_code == 200
+    assert c.get('/api/coursework').json()['items'][0]['review_state'] == 'half_done'
+
+
+def test_existing_coursework_review_states_are_backfilled(classroom):
+    c = classroom
+    login(c, 'teacher')
+    item = c.post('/api/coursework', json=work()).json()['id']
+    assert c.put(f'/api/coursework/{item}/review', json={'status':'completed','score':8}).status_code == 200
+    with connection() as db:
+        db.execute('ALTER TABLE coursework DROP COLUMN review_state')
+    initialize_database()
+    with connection() as db:
+        row = db.execute('SELECT status,review_state FROM coursework WHERE id=?', (item,)).fetchone()
+    assert row['status'] == 'completed' and row['review_state'] == 'done'
+
+
 def test_teacher_deletes_one_class_task_and_all_its_assignments(classroom):
     c = classroom
     login(c, 'teacher')
@@ -280,11 +311,12 @@ def test_remarks_provider_is_fixed_recipient_and_idempotent(monkeypatch):
         calls.append(kwargs)
         return httpx.Response(200,json={'id':'test-id'},request=httpx.Request('POST',url))
     monkeypatch.setattr(mailer.httpx,'post',send)
-    row={'id':'w','updated_at':'v1','kind':'Homework','title':'Title','subject':'Science','due_date':'2026-10-07','status':'completed','score':8,'remarks':'Keep going'}
+    row={'id':'w','updated_at':'v1','kind':'Homework','title':'Title','subject':'Science','due_date':'2026-10-07','status':'pending','review_state':'half_done','score':8,'remarks':'Keep going'}
     mailer.send_teacher_remarks('student',row)
     mailer.send_teacher_remarks('student',row)
     assert calls[0]['json']['to']==['sun.srs86@gmail.com']
     assert '8/10' in calls[0]['json']['text']
+    assert 'Status: Half Done' in calls[0]['json']['text']
     assert calls[0]['headers']['Idempotency-Key']==calls[1]['headers']['Idempotency-Key']
     monkeypatch.delenv('RESEND_API_KEY')
     with pytest.raises(RuntimeError): mailer.send_teacher_remarks('student',row)

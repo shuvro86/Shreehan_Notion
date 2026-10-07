@@ -1,10 +1,11 @@
 # Teacher dashboard update
-
-- Remove the “All students” filter from the teacher dashboard.
-- Rename “+ Create work” to “+ Create Task”.
-- Show only pending tasks as cards, with a distinct color for each subject.
-- Add a notification box that shows the number of pending items and leads the teacher to the cards so they can review and complete them.
-- Use a colorful, polished background and typography.
-- Remove “Existing Notion work (optional)” and “Student” from the Create Task form.
-- Make the 1–10 star rating more colorful and animated.
-- Improve the layout and interaction where it makes the dashboard easier to use.
+1. In teacher user, Status and Review Status will be same and those are 'Done', 'Half Done' and 'Not Done’
+2. Update the starts only when Save button will be pressed
+3. In the dashboard, data will be presented in tab page with the status category what is mentioned in the sl 1 . Remove the status filter since you are using tab.
+4. ‘Not Done’ tab category selected first in the landing page.
+5. Use different color for those categories.
+6. In the calendar date, current date will be selected first.
+7. Change the color and block position of the Today’s Feedback so that teacher can easily identify this.
+8. Change the label from ‘Change Update’ to ’Update to Guardian’ in the review section.
+9. When he submit the review, after pressing button, it will show a message in interactive way that Guardian has been notified. Also clear the data from the text box.
+10. In teacher user, keep the password change facility.

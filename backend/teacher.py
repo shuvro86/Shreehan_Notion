@@ -98,6 +98,9 @@ def list_work(user=Depends(current_user)):
         for group in items:
             assignments = group["assignments"]
             group["status"] = "completed" if all(item["status"] == "completed" for item in assignments) else "pending"
+            group["review_state"] = ("done" if all(item["review_state"] == "done" for item in assignments)
+                                     else "not_done" if all(item["review_state"] == "not_done" for item in assignments)
+                                     else "half_done")
             group["student_count"] = len(assignments)
     return {"role": user["role"], "items": items, "students": students, "subjects": SUBJECTS}
 
@@ -209,7 +212,7 @@ def edit_work(item_id: str, body: Work, user=Depends(teacher_only)):
 
 
 class Review(BaseModel):
-    status: Literal["pending", "completed"]
+    status: Literal["pending", "half_done", "completed"]
     score: int | None = Field(default=None, ge=1, le=10, strict=True)
     remarks: str = Field(default="", max_length=4000)
 
@@ -219,8 +222,9 @@ def review(item_id: str, body: Review, user=Depends(teacher_only)):
     with connection() as db:
         owned(db, item_id, user)
         timestamp = now()
-        db.execute("UPDATE coursework SET status=?,score=?,remarks=?,reviewed_at=?,updated_at=? WHERE id=?",
-                   (body.status, body.score, body.remarks, timestamp, timestamp, item_id))
+        review_state = {"pending": "not_done", "half_done": "half_done", "completed": "done"}[body.status]
+        db.execute("UPDATE coursework SET status=?,review_state=?,score=?,remarks=?,reviewed_at=?,updated_at=? WHERE id=?",
+                   ("completed" if body.status == "completed" else "pending", review_state, body.score, body.remarks, timestamp, timestamp, item_id))
         return owned(db, item_id, user)
 
 
@@ -244,7 +248,7 @@ def submit(item_id: str, body: Submission, user=Depends(current_user)):
         if row["status"] == "completed":
             raise HTTPException(409, "Ask your teacher to reopen this work before resubmitting.")
         timestamp = now()
-        db.execute("UPDATE coursework SET submission=?,submitted_at=?,score=NULL,reviewed_at=NULL,updated_at=? WHERE id=?", (body.submission, timestamp, timestamp, item_id))
+        db.execute("UPDATE coursework SET submission=?,submitted_at=?,score=NULL,review_state='not_done',reviewed_at=NULL,updated_at=? WHERE id=?", (body.submission, timestamp, timestamp, item_id))
         return owned(db, item_id, user)
 
 

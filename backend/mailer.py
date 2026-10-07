@@ -16,8 +16,10 @@ def send_teacher_remarks(student: str, work: dict) -> None:
     sender = os.getenv("RESEND_FROM", "").strip()
     if not api_key or not sender:
         raise RuntimeError("Remarks email is unavailable. Configure Resend on the server.")
+    status = {"not_done": "Not Done", "half_done": "Half Done", "done": "Done"}.get(
+        work.get("review_state"), {"pending": "Not Done", "completed": "Done"}.get(work["status"], work["status"]))
     text = (f"Teacher remarks for {student}\n\n{work['kind']}: {work['title']}\n"
-            f"Subject: {work['subject']}\nDue: {work['due_date']}\nStatus: {work['status']}\n"
+            f"Subject: {work['subject']}\nDue: {work['due_date']}\nStatus: {status}\n"
             f"Rating: {str(work['score']) + '/10' if work['score'] else 'Not rated'}\n\n{work['remarks']}")
     key = hashlib.sha256(f"{work['id']}:{work['updated_at']}:{text}".encode()).hexdigest()
     try:

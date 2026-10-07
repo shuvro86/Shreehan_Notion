@@ -67,6 +67,7 @@ def initialize_database():
             subject TEXT NOT NULL, title TEXT NOT NULL, instructions TEXT NOT NULL DEFAULT '', due_date TEXT NOT NULL,
             source_id TEXT, source_url TEXT NOT NULL DEFAULT '',
             status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','completed')),
+            review_state TEXT NOT NULL DEFAULT 'not_done' CHECK(review_state IN ('not_done','half_done','done')),
             score INTEGER CHECK(score BETWEEN 1 AND 10), remarks TEXT NOT NULL DEFAULT '',
             submission TEXT NOT NULL DEFAULT '', submitted_at TEXT, reviewed_at TEXT,
             created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
@@ -98,6 +99,10 @@ def initialize_database():
             db.execute("ALTER TABLE sessions ADD COLUMN last_active_at TEXT")
             db.execute("UPDATE sessions SET last_active_at=created_at")
         db.execute("CREATE INDEX IF NOT EXISTS ix_sessions_expiry ON sessions(expires_at)")
+        work_columns = {row["name"] for row in db.execute("PRAGMA table_info(coursework)")}
+        if "review_state" not in work_columns:
+            db.execute("ALTER TABLE coursework ADD COLUMN review_state TEXT NOT NULL DEFAULT 'not_done' CHECK(review_state IN ('not_done','half_done','done'))")
+            db.execute("UPDATE coursework SET review_state=CASE WHEN status='completed' THEN 'done' WHEN reviewed_at IS NOT NULL THEN 'half_done' ELSE 'not_done' END")
         if not os.getenv("TURSO_DATABASE_URL"):
             db.execute("PRAGMA user_version=2")
 
