@@ -90,8 +90,8 @@ def test_removed_documents_and_previews_cannot_be_downloaded(tmp_path, monkeypat
     monkeypatch.setattr(content,'SYNC_DIR',tmp_path)
     monkeypatch.setattr(main,'STATIC_DIR',public)
     monkeypatch.setenv('DATABASE_PATH',str(tmp_path/'test.db'))
-    monkeypatch.setattr(main,'current_user',lambda request:{'id':'test'})
-    main.app.dependency_overrides[current_user]=lambda:{'id':'test'}
+    monkeypatch.setattr(main,'current_user',lambda request:{'id':'test','role':'student'})
+    main.app.dependency_overrides[current_user]=lambda:{'id':'test','role':'student'}
     library={'documents':[{'url':'/api/documents/file-version/original.pdf','pages':[]},{'url':'/documents/seed.pdf','pages':[]}]}
     monkeypatch.setattr(content,'current_library',lambda:library)
     try:

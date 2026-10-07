@@ -25,6 +25,34 @@ def work(**overrides):
     return {'student_id':'student','kind':'Homework','subject':'Mathematics','title':'Fractions','instructions':'Complete page 44','due_date':'2026-10-07',**overrides}
 
 
+def test_admin_role_management_and_role_boundaries(classroom):
+    c = classroom
+    with connection() as db:
+        db.execute('INSERT INTO users VALUES (?,?,?,?,?,?)', ('shuvro','shuvro','shuvro@example.test',hash_password('test-pass'),now(),now()))
+        db.execute("INSERT INTO account_roles VALUES ('shuvro','admin')")
+    login(c, 'shuvro')
+    assert c.get('/api/auth/me').json()['role'] == 'admin'
+    assert c.get('/api/admin/users').status_code == 200
+    assert c.get('/api/tasks').status_code == 403
+    assert c.get('/api/library').status_code == 403
+    assert c.get('/api/coursework').status_code == 403
+    assert c.put('/api/admin/users/shuvro/role', json={'role':'student'}).status_code == 400
+    assert c.put('/api/admin/users/teacher/role', json={'role':'student'}).status_code == 200
+    assert c.put('/api/admin/users/student/role', json={'role':'teacher'}).status_code == 200
+    with connection() as db:
+        assert db.execute("SELECT role FROM account_roles WHERE user_id='teacher'").fetchone()['role'] == 'student'
+        assert db.execute("SELECT user_id FROM teachers WHERE user_id='teacher'").fetchone() is not None
+        assert db.execute("SELECT user_id FROM teachers WHERE user_id='student'").fetchone() is not None
+    login(c, 'teacher')
+    assert c.get('/api/auth/me').json()['role'] == 'student'
+    assert c.get('/api/admin/users').status_code == 403
+    assert c.post('/api/coursework/class-task', json={'kind':'Homework','subject':'Science','title':'Read','due_date':'2026-10-07'}).status_code == 403
+    login(c, 'second_teacher')
+    created = c.post('/api/coursework/class-task', json={'kind':'Homework','subject':'Science','title':'Read','due_date':'2026-10-07'})
+    assert created.status_code == 201 and created.json()['count'] == 2
+    assert {s['username'] for s in c.get('/api/coursework').json()['students']} == {'teacher','other'}
+
+
 def test_class_task_reaches_all_active_students_and_preserves_individual_reviews(classroom):
     c = classroom
     body = {'kind': 'Assignment', 'subject': 'Science', 'title': 'Tomorrow’s observation',

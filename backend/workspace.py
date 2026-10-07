@@ -6,10 +6,10 @@ import sqlite3
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 
-from backend.auth import current_user
+from backend.auth import current_user, student_only
 from backend.db import connection, get_board, get_tasks, now
 
-router = APIRouter(prefix="/api", dependencies=[Depends(current_user)], tags=["workspace"])
+router = APIRouter(prefix="/api", dependencies=[Depends(student_only)], tags=["workspace"])
 
 
 class Card(BaseModel):

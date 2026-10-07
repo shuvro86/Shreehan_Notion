@@ -15,10 +15,11 @@ load_dotenv(ROOT / ".env")
 
 from backend.notion_worker import NotionSupervisor
 from backend import content
-from backend.auth import COOKIE, auth_router, current_user
+from backend.auth import COOKIE, auth_router, current_user, learning_user
 from backend.db import initialize_database
 from backend.workspace import router as workspace_router
 from backend.teacher import router as teacher_router
+from backend.admin import router as admin_router
 from backend.security import apply_security_headers, cross_origin_write
 
 STATIC_DIR = Path(os.getenv("APP_STATIC_DIR", str(ROOT / "frontend" / "out"))).resolve()
@@ -39,9 +40,10 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(title="Shreehan HQ API", lifespan=lifespan)
 app.include_router(auth_router)
-app.include_router(content.router, dependencies=[Depends(current_user)])
+app.include_router(content.router, dependencies=[Depends(learning_user)])
 app.include_router(workspace_router)
 app.include_router(teacher_router)
+app.include_router(admin_router)
 
 
 @app.middleware("http")
@@ -63,7 +65,7 @@ async def api_error(_request: Request, exc: HTTPException):
 
 
 @app.get("/api/documents/{document_id}/{filename}")
-def private_document(document_id: str, filename: str, _user=Depends(current_user)):
+def private_document(document_id: str, filename: str, _user=Depends(learning_user)):
     for part in (document_id, filename):
         if not part or part in (".", "..") or not all(c.isalnum() or c in "._-" for c in part):
             raise HTTPException(404, "Document not found")

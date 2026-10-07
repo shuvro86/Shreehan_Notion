@@ -30,8 +30,9 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
         else if (response.ok) {
           const user = await response.json();
           if (!active) return;
-          const target = user.role === 'teacher' ? '/teacher' : '/';
-          if (isLogin || (user.role === 'teacher' && pathname === '/') || (user.role !== 'teacher' && pathname === '/teacher')) {
+          const target = user.role === 'admin' ? '/admin' : user.role === 'teacher' ? '/teacher' : '/';
+          const allowed = user.role === 'admin' ? pathname.startsWith('/admin') : user.role === 'teacher' ? pathname === '/teacher' || pathname === '/coursework' : pathname !== '/teacher' && !pathname.startsWith('/admin');
+          if (isLogin || !allowed) {
             setAuthorized(false);
             router.replace(target);
           } else setAuthorized(true);

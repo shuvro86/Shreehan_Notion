@@ -281,3 +281,25 @@ A **Delete record** button on each teacher task asks for confirmation, then call
 ### Observed verification and release status
 
 The frontend typecheck and production build passed. All six teacher API tests passed, including one teacher task for two assignments, cross-teacher delete rejection, student delete rejection, and deletion of only the selected task. The isolated two-student Playwright flow passed, including class task creation, independent review and completion, status filtering, confirmed deletion, and disappearance from the student view. Production deletion was not used for verification. Commit `3ebcbaf` was pushed to GitHub main. Vercel deployment `dpl_BXDj1emXqeyi44ezVefmyJxrRMkP` reached READY and was aliased to `https://shreehan-notion.vercel.app`. Live read-only checks returned HTTP 200 for `/login` and `/teacher`, and HTTP 401 for unauthenticated `/api/coursework`.
+
+## Production account cleanup (2026-10-07)
+
+### Applied change and scope
+
+In the production Turso database, the existing `adm2` account was renamed to `shreehan` while retaining its user ID, email, password, board, dashboard tasks, and coursework assignment. The obsolete `adm` account and its one pending coursework assignment were deleted in the same transaction. Its board, cards, and dashboard tasks were removed by the existing foreign-key cascades. The teacher's other student assignments remain. No schema, application code, local SQLite database, Notion/Drive source scope, sync integration, or email integration changed.
+
+### Observed verification
+
+An independent production readback showed `shreehan`, `adm1`, `teacher`, and the unverified `user` account; `adm` and `adm2` usernames were absent. `shreehan` retained one coursework assignment, one board, and three dashboard tasks. `PRAGMA foreign_key_check` reported no violations. This was a direct production data change; no deployment or login test was performed.
+
+## Role-based administration (2026-10-07)
+
+### Implemented architecture and decisions
+
+An `account_roles` table now stores explicit `student`, `teacher`, or `admin` role overrides. Accounts without an override retain the prior behavior: teacher-table membership means teacher; all others are students. Historical `teachers` rows remain in place as foreign-key references for coursework, even when an account changes to student. Current role, rather than historical teacher-table membership, controls teacher APIs and class-task student targeting. Role changes revoke the affected account's sessions. Administrators cannot change their own role; inactive accounts cannot be promoted.
+
+The `/admin` workspace has Accounts and Setup menus. Accounts lists users and lets an admin assign roles; Setup explains the role workspaces and lets the admin change their password. The client session gate routes admins to `/admin`, teachers to `/teacher`, and students to the learning hub. The backend enforces admin-only account management, teacher-only task management, student-only personal workspace data, and student/teacher access to learning content. Admins are not included in class-task fanout. Existing Notion/Drive source and sync integrations and the email adapter are unchanged.
+
+### Observed verification and production status
+
+The Next.js production build and TypeScript check passed. All 43 backend tests passed, including role changes, admin isolation, historical teacher-reference retention, session role resolution, and class-task targeting; all 26 JavaScript sync tests passed. A production read-only check found that the requested recovery email is attached to an unverified `user` account with one pending OTP and no sessions, board, tasks, or coursework. Production role conversion, `shuvro` activation, and deployment are pending.

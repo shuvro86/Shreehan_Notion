@@ -58,6 +58,7 @@ def initialize_database():
         db.executescript("""
         CREATE TABLE IF NOT EXISTS cloud_content (key TEXT PRIMARY KEY, value BLOB NOT NULL);
         CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE COLLATE NOCASE, email TEXT NOT NULL UNIQUE COLLATE NOCASE, password_hash TEXT, verified_at TEXT, created_at TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS account_roles (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, role TEXT NOT NULL CHECK(role IN ('student','teacher','admin')));
         CREATE TABLE IF NOT EXISTS teachers (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE);
         CREATE TABLE IF NOT EXISTS coursework (
             id TEXT PRIMARY KEY, teacher_id TEXT NOT NULL REFERENCES teachers(user_id),

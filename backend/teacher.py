@@ -44,11 +44,13 @@ def source_items():
 
 @router.get("")
 def list_work(user=Depends(current_user)):
+    if user["role"] == "admin":
+        raise HTTPException(403, "Classroom access requires a student or teacher role.")
     teacher = user["role"] == "teacher"
     key = "teacher_id" if teacher else "student_id"
     with connection() as db:
         items = [dict(r) for r in db.execute(f"SELECT c.*,u.username AS student_name FROM coursework c JOIN users u ON u.id=c.student_id WHERE c.{key}=? ORDER BY c.due_date DESC,c.created_at DESC", (user["id"],))]
-        students = [dict(r) for r in db.execute("SELECT id,username FROM users WHERE verified_at IS NOT NULL AND id NOT IN (SELECT user_id FROM teachers) ORDER BY username")] if teacher else []
+        students = [dict(r) for r in db.execute("SELECT users.id,users.username FROM users LEFT JOIN account_roles ON account_roles.user_id=users.id WHERE users.verified_at IS NOT NULL AND COALESCE(account_roles.role, CASE WHEN EXISTS (SELECT 1 FROM teachers WHERE teachers.user_id=users.id) THEN 'teacher' ELSE 'student' END)='student' ORDER BY users.username")] if teacher else []
     if teacher:
         grouped = {}
         for item in items:
@@ -117,7 +119,7 @@ class ClassTask(BaseModel):
 def create_class_task(body: ClassTask, user=Depends(teacher_only)):
     """Fan out one teacher task atomically, preserving student-owned reviews."""
     with connection() as db:
-        students = db.execute("SELECT id FROM users WHERE verified_at IS NOT NULL AND id NOT IN (SELECT user_id FROM teachers) ORDER BY id").fetchall()
+        students = db.execute("SELECT users.id FROM users LEFT JOIN account_roles ON account_roles.user_id=users.id WHERE users.verified_at IS NOT NULL AND COALESCE(account_roles.role, CASE WHEN EXISTS (SELECT 1 FROM teachers WHERE teachers.user_id=users.id) THEN 'teacher' ELSE 'student' END)='student' ORDER BY users.id").fetchall()
         if not students:
             raise HTTPException(409, "An active student account is needed before creating a task.")
         timestamp = now()
@@ -149,7 +151,7 @@ def create_work(body: Work, user=Depends(teacher_only)):
             raise HTTPException(400, "Choose an available source of the same work type.")
         source_url = source["url"]
     with connection() as db:
-        if not db.execute("SELECT id FROM users WHERE id=? AND verified_at IS NOT NULL AND id NOT IN (SELECT user_id FROM teachers)", (body.student_id,)).fetchone():
+        if not db.execute("SELECT users.id FROM users LEFT JOIN account_roles ON account_roles.user_id=users.id WHERE users.id=? AND users.verified_at IS NOT NULL AND COALESCE(account_roles.role, CASE WHEN EXISTS (SELECT 1 FROM teachers WHERE teachers.user_id=users.id) THEN 'teacher' ELSE 'student' END)='student'", (body.student_id,)).fetchone():
             raise HTTPException(400, "Choose an active student.")
         item_id, timestamp = str(uuid4()), now()
         try:
