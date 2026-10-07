@@ -42,6 +42,11 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await dialog.getByRole('button',{name:'Create Task',exact:true}).click();
  await expect(dialog).not.toBeVisible();
  const task=page.locator('.cw-class-task').filter({hasText:title});
+ await expect(page.getByLabel('Filter by calendar date')).toHaveValue(dueDate);
+ await expect(task).toHaveCount(1);
+ await page.reload();
+ await expect(page.getByLabel('Filter by calendar date')).toHaveValue(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
+ await expect(task).toHaveCount(1);
  await page.getByLabel('Filter by calendar date').fill(dueDate);
  await expect(task).toHaveCount(1);
  await expect(task).toHaveClass(/cw-subject-science/);
