@@ -416,4 +416,4 @@ The teacher-only Daily Classroom Update panel now uses a light blue background d
 
 ### Observed verification and release status
 
-The Next.js production build and TypeScript check passed. Both isolated teacher browser flows passed, and the mobile screenshot was visually inspected for contrast and layout. GitHub and Vercel release status is pending.
+The Next.js production build and TypeScript check passed. Both isolated teacher browser flows passed, and the mobile screenshot was visually inspected for contrast and layout. Commit `291b35f` reached GitHub main; Vercel deployment `dpl_GoA7cCqxXXdo4WgkjMXcBLdtRD3X` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. A live read-only request returned HTTP 200 for `/login`. No production feedback was changed for smoke testing.
