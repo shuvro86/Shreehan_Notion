@@ -450,4 +450,4 @@ The sign-in view no longer displays the **OR** divider, the **New around here?**
 
 ### Observed verification and release status
 
-The Next.js production build and TypeScript check passed, all 49 backend tests passed, and all 26 JavaScript sync tests passed. In a local isolated FastAPI browser check, the sign-in view had no account-creation prompt or divider, and the password-recovery view still showed Back to sign in. No account action was submitted. Production release verification is pending.
+The Next.js production build and TypeScript check passed, all 49 backend tests passed, and all 26 JavaScript sync tests passed. In a local isolated FastAPI browser check, the sign-in view had no account-creation prompt or divider, and the password-recovery view still showed Back to sign in. No account action was submitted. Commit `f1f4a8f` reached GitHub main; Vercel production deployment `dpl_5F4BzYtm5AjKMcwJcemocay9wvSm` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. A fresh live browser session confirmed that `/login` displays neither the account-creation prompt nor the divider.
