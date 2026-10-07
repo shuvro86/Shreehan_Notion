@@ -431,3 +431,13 @@ The student coursework view uses the existing authenticated `/api/coursework` re
 ### Observed verification and release status
 
 Observed locally: the Next.js production build and TypeScript check passed, all 49 backend tests passed, and all five isolated teacher/admin/student browser flows passed. The browser checks covered the complete date-wise admin comment, date filtering, read tracking, removal of the extra guardian button, student-only assignment visibility, due-date filtering, and mobile bounds. The admin, student, and teacher mobile screenshots were visually inspected. Commit `0db5115` reached GitHub main; Vercel production deployment `dpl_C5gHbaMLgwaTxmrRLe2kmeuTzzzQ` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Live read-only checks returned HTTP 200 for `/login`, HTTP 303 to login for unauthenticated `/teacher`, and HTTP 401 for unauthenticated `/api/admin/feedback` and `/api/coursework`. No production data was changed for smoke testing.
+
+## Animated login design (2026-10-07)
+
+### Implemented architecture, scope, and decisions
+
+The `/login` client page now uses the approved colorful classroom concept: a responsive blue and violet learning scene, CSS-drawn book, pencil, clouds, sun, stars, and gentle motion. The form uses the same bright palette, a more prominent call to action, and reduced-motion support. All artwork is code-native CSS; no image service or asset dependency was added. The existing signup, email-code verification, password setup, sign-in, forgot-password, reset-code, and password-reset API calls and state transitions remain. The visual change is limited to the login page and stylesheet. Authentication, session storage, backend APIs, database, Notion/Drive source scope, sync, and email integrations are unchanged. No migration is required.
+
+### Observed verification and release status
+
+The Next.js production build and TypeScript check passed, all 49 backend tests passed, and all 26 JavaScript sync tests passed. The login page rendered through a local isolated FastAPI instance, and browser checks confirmed desktop and mobile layouts, no horizontal overflow at 320px, and transitions from sign-in to signup and password recovery. No real account action was submitted during those checks. Production deployment is pending verification and will be recorded here after release.

@@ -69,7 +69,7 @@ def test_otp_wrong_code_limited_and_board_scope(client):
 def test_static_login_and_api_guard(client):
     browser, _, _ = client
     assert browser.get("/login").status_code == 200
-    assert "Welcome back" in browser.get("/login").text
+    assert "Ready to explore?" in browser.get("/login").text
     assert browser.get("/api/library").status_code == 401
     assert browser.post("/api/assistant", json={"message": "Hello"}).status_code == 401
 
