@@ -387,3 +387,13 @@ The teacher feedback form loaded the current day's saved note into the entry box
 ### Observed verification and release status
 
 The Next.js production build and TypeScript check passed. All 48 backend tests and four isolated teacher/admin browser flows passed. Browser checks covered the initial and updated confirmation dialogs, previous/new text, immediate and post-refresh empty entry box, and Shuvro's updated notification. The desktop dialog screenshot was visually inspected. Commit `ffe62da` reached GitHub main; Vercel deployment `dpl_EjNzvpsGCXKvqVj1qWTxbr8kjyJU` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Live read-only checks returned HTTP 200 for `/login` and HTTP 303 to login for unauthenticated `/teacher`. No production feedback was modified for smoke testing.
+
+## Teacher task search controls (2026-10-07)
+
+### Implemented behavior and decisions
+
+The teacher task list has two side-by-side searches: Calendar search and Status type search. Calendar defaults to the current Asia/Dhaka date while status is unset. Selecting a status clears the date; choosing a date clears the status. Clearing the active control shows all class tasks. Status choices are Not Done, Half Done, and Done, using the existing class-task aggregation. The former teacher status tabs and work-type filter were removed so no third teacher task search remains. The summary counts and Not Done banner remain; activating the banner selects Not Done and clears the date. Creating a class task selects its due date and clears status so the new task stays visible. Student filters, coursework APIs, stored data, admin UI, Notion/Drive scope, sync, and email integrations are unchanged. No migration is needed.
+
+### Observed verification and release status
+
+The Next.js production build and TypeScript check passed. All 48 backend tests and four isolated teacher/admin Playwright flows passed. Browser checks covered both search directions, clearing the other control, class-task visibility as review status changes, absence of teacher tabs and work-type search, and side-by-side 320px layout without horizontal overflow. The mobile screenshot was visually inspected. GitHub and Vercel release status is pending.
