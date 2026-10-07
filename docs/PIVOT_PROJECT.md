@@ -377,3 +377,13 @@ The daily teacher feedback form previously updated local text and status without
 ### Observed verification and release status
 
 The Next.js production build and TypeScript check passed. All 48 backend tests passed. All four isolated teacher/admin Playwright flows passed, including visibility immediately after creating a tomorrow-due task, visibility after returning to today's default calendar date, automatic reload after both feedback actions, persistence of the revised note, and its full admin notification. Commit `93a7eda` reached GitHub main; Vercel deployment `dpl_3miqn6SntcXQAxDqzjYLYuCYqaBj` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Live read-only checks returned HTTP 200 for `/login`, HTTP 303 to login for unauthenticated `/teacher`, and HTTP 401 for unauthenticated `/api/coursework`. No production task or feedback was changed by the smoke test.
+
+## Teacher feedback entry reset and confirmation (2026-10-07)
+
+### Observed cause and implemented behavior
+
+The teacher feedback form loaded the current day's saved note into the entry box after every page refresh. This made a completed submission look like an unsent draft. It now keeps the saved note separately and starts with an empty entry box, including after returning to the page. On a successful first send or update, the entry box clears immediately and an interactive confirmation dialog displays the submitted text; updates also show the previous text beside the new version. Closing the dialog refreshes the teacher page and leaves the entry box empty. A failed save leaves the draft in place and shows the API error. The existing one-note-per-teacher-per-day backend behavior, Shuvro's full-text notification, Notion/Drive source scope, sync, and guardian email integration are unchanged. No schema change is required.
+
+### Observed verification and release status
+
+The Next.js production build and TypeScript check passed. All 48 backend tests and four isolated teacher/admin browser flows passed. Browser checks covered the initial and updated confirmation dialogs, previous/new text, immediate and post-refresh empty entry box, and Shuvro's updated notification. The desktop dialog screenshot was visually inspected. GitHub and Vercel release status is pending.
