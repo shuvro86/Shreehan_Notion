@@ -37,7 +37,7 @@
 .auth-story h1{text-shadow:0 6px 18px #403a9180}.auth-story h1 em{color:#ffe375;text-shadow:3px 5px 0 #a250b8}.auth-story p{color:#fff7fe}
 .auth-sun{background:#ffe36e;box-shadow:0 0 0 17px #ffe88551,0 0 60px #ffe475a8}.auth-sun:after{color:#ff9569}
 .auth-cloud{background:#fff;filter:drop-shadow(0 7px 0 #7de0ec8c)}
-.auth-cloud.auth-cloud-one{left:2%;top:65%}
+.auth-cloud.auth-cloud-one{left:2%;top:75%}
 .auth-book{filter:drop-shadow(15px 22px 0 #3056a16e)}.auth-book .auth-book-left,.auth-book .auth-book-right{background:#fff8db;box-shadow:inset 0 0 0 2px #f3ddb8}.auth-book .auth-book-left:after{color:#ed6e88}.auth-book .auth-book-right:after{color:#50c39b}.auth-book .auth-book-spine{background:#f9bf5a}
 .auth-pencil{background:linear-gradient(90deg,#ff8b80 45%,#fa5791 45%);box-shadow:8px 13px 0 #354ca36e}.auth-pencil:before{border-top-color:#ffdfac}
 .auth-star{color:#ffe875;text-shadow:0 0 15px #fff5ad}.auth-scene-note{color:#6551a7;box-shadow:4px 6px 0 #34509c6b}
@@ -52,3 +52,17 @@
 @keyframes sunpulse{50%{box-shadow:0 0 0 26px #ffe88530,0 0 75px #ffe475bb}}
 @media(max-width:520px){.auth-cloud.auth-cloud-one{display:none}}
 @media(max-width:360px){.auth-scene-pill{display:none}}
+
+/* Keep the illustration clear of the heading as the two-column scene narrows. */
+@media(max-width:1100px){.auth-story p{display:none}}
+@media(max-width:900px){.auth-cloud.auth-cloud-one{display:none}}
+@media(max-width:520px){
+  .auth-card{padding-top:24px;padding-bottom:28px}
+  .auth-card-icon{margin-bottom:12px}
+  .auth-subtitle{margin-bottom:16px}
+  .auth-card form{gap:12px}
+  .auth-card label{gap:6px}
+  .auth-card label input{height:51px}
+  .auth-password button{top:6px}
+  .auth-safe{margin-top:23px}
+}

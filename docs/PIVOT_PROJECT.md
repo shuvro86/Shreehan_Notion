@@ -471,3 +471,13 @@ The `/login` stylesheet now applies the prototype's brighter teal, violet, coral
 ### Observed verification and release status
 
 Observed locally: the Next.js production build and TypeScript check passed. The built login route was inspected at 1440px and 320px; both had no horizontal overflow. At 320px, the decorative cloud and top pill were hidden to keep the heading and brand readable. The password recovery view still opened from the sign-in view. No account action was submitted. Commit `a7a6061` reached GitHub main; Vercel production deployment `dpl_DhKU91M6jLwaGiPqvrVCWay6ABNY` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. A fresh live browser displayed the palette, and the 320px live view had no horizontal overflow. Read-only live checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/auth/me`. No production account action was submitted.
+
+## Login layout across screen sizes (2026-10-08)
+
+### Implemented architecture, scope, and decisions
+
+The `/login` responsive stylesheet keeps the colorful animated scene while moving its left cloud below desktop copy, hiding that decoration in the stacked tablet layout, and hiding the scene paragraph at narrow laptop widths where it intersects the sun. Phone form spacing is reduced so the primary action appears sooner in the viewport. These are CSS-only changes. Login markup and authentication APIs, session behavior, database, email integration, Notion/Drive source scope, and sync remain unchanged. No migration is required.
+
+### Observed verification and release status
+
+The Next.js production build and TypeScript check passed. Browser checks covered 1920px desktop, 1366px and 1024px laptops, the 901px/900px layout boundary, 768px tablet, and 520px/390px/375px/320px mobile widths. No horizontal overflow or title/cloud overlap was observed. At 390×844, the sign-in action ends within the initial viewport. Tablet and mobile screenshots were visually inspected. The mobile password-recovery view opened and returned to sign-in without an account action. Production deployment is pending.
