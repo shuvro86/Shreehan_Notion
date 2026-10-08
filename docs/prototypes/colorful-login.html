@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shreehan HQ — colorful login prototype</title>
+  <style>
+    :root{font-family:ui-rounded,"Avenir Next",Avenir,"Trebuchet MS",sans-serif;color:#233354;background:#fce9f5}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh}
+    button,input{font:inherit}
+    .page{min-height:100vh;display:grid;place-items:center;padding:44px 24px 58px;position:relative;overflow:hidden;background:radial-gradient(circle at 8% 12%,#ffb8a9 0 9%,transparent 26%),radial-gradient(circle at 93% 85%,#a8a2ff 0 9%,transparent 28%),radial-gradient(circle at 90% 8%,#ffe58b 0 7%,transparent 22%),linear-gradient(125deg,#c3f3ef 0%,#fff2c7 43%,#ffdbe8 75%,#d6c4ff 100%)}
+    .page:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#655ab831 1.5px,transparent 1.5px);background-size:27px 27px;pointer-events:none}
+    .shell{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;width:min(1180px,100%);min-height:700px;border:7px solid #fff;border-radius:34px;overflow:hidden;box-shadow:0 30px 75px #734b9b35,0 10px 0 #9071bc30}
+    .scene{position:relative;min-height:686px;overflow:hidden;color:white;background:radial-gradient(circle at 80% 22%,#ffdd74 0 5%,transparent 21%),radial-gradient(circle at 13% 76%,#ef6eaa 0 10%,transparent 37%),linear-gradient(138deg,#14baca 0%,#526ad9 47%,#a04dd0 76%,#ef6a9f 100%)}
+    .scene:before{content:"";position:absolute;width:460px;height:460px;left:42%;top:30%;border:2px dashed #ffffff80;border-radius:50%;transform:rotate(-20deg)}
+    .scene:after{content:"";position:absolute;width:800px;height:240px;left:-70px;bottom:-133px;border-radius:50%;background:#ffce67;box-shadow:0 -27px 0 #58d5b6,0 -54px 0 #86e2ee;transform:rotate(-7deg)}
+    .brand{position:absolute;z-index:5;top:34px;left:40px;display:flex;align-items:center;gap:12px;font-size:26px;font-weight:900;letter-spacing:-1.4px}
+    .brand-mark{display:grid;place-items:center;width:46px;height:46px;border-radius:15px;background:#ffdc53;color:#5c43a9;font-size:32px;transform:rotate(-9deg);box-shadow:4px 5px 0 #284ea06b}
+    .brand-dot{color:#ffe66a}
+    .top-pill,.kicker{display:inline-flex;align-items:center;border:1px solid #ffffff94;background:#ffffff38;backdrop-filter:blur(5px);font-weight:900;letter-spacing:.1em}
+    .top-pill{position:absolute;z-index:5;right:30px;top:42px;border-radius:30px;padding:10px 13px;font-size:10px}
+    .story{position:absolute;z-index:4;top:143px;left:53px}
+    .kicker{gap:8px;padding:9px 13px;border-radius:30px;font-size:11px}
+    .kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:#ffea72;box-shadow:0 0 0 4px #fff5}
+    h1{margin:24px 0 15px;font-size:clamp(50px,5.4vw,76px);line-height:.99;letter-spacing:-.065em;text-shadow:0 6px 18px #403a9180}
+    h1 em{font-style:normal;color:#ffe375;text-shadow:3px 5px 0 #a250b8;display:inline-block;transform:rotate(-2deg)}
+    .story p{max-width:370px;margin:0;color:#fff7fe;font-size:16px;font-weight:600;line-height:1.6}
+    .sun{position:absolute;right:17%;top:36%;width:99px;height:99px;border-radius:50%;background:#ffe36e;box-shadow:0 0 0 17px #ffe88551,0 0 60px #ffe475a8}
+    .sun:after{content:"✦";position:absolute;top:20px;left:33px;color:#ff9569;font-size:46px}
+    .cloud{position:absolute;z-index:2;width:119px;height:31px;border-radius:99px;background:#fff;box-shadow:0 7px 0 #7de0ec8c}
+    .cloud:before,.cloud:after{content:"";position:absolute;border-radius:50%;background:#fff}
+    .cloud:before{width:59px;height:59px;bottom:5px;left:22px}.cloud:after{width:48px;height:48px;bottom:3px;right:14px}
+    .cloud.one{top:56%;left:11%}.cloud.two{top:55%;right:8%;transform:scale(.7)}
+    .book{position:absolute;z-index:3;left:21%;bottom:67px;width:275px;height:176px;transform:rotate(-9deg);filter:drop-shadow(15px 22px 0 #3056a16e)}
+    .page-left,.page-right{position:absolute;top:0;width:50%;height:100%;border:7px solid white;border-bottom-width:12px;background:#fff8db;box-shadow:inset 0 0 0 2px #f3ddb8}
+    .page-left{left:0;border-radius:16px 5px 5px 18px;transform:skewY(9deg)}.page-right{right:0;border-radius:5px 16px 18px 5px;transform:skewY(-9deg)}
+    .page-left:after{content:"A  B  C";position:absolute;top:54px;left:22px;font-size:27px;font-weight:900;letter-spacing:2px;color:#ed6e88}.page-right:after{content:"★  ✿";position:absolute;top:42px;left:27px;color:#50c39b;font-size:32px}
+    .spine{position:absolute;left:48%;top:5px;z-index:2;width:8px;height:94%;border-radius:50%;background:#f9bf5a}
+    .pencil{position:absolute;z-index:3;right:18%;bottom:120px;width:35px;height:177px;border:5px solid white;border-radius:16px 16px 4px 4px;background:linear-gradient(90deg,#ff8b80 45%,#fa5791 45%);transform:rotate(29deg);box-shadow:8px 13px 0 #354ca36e}
+    .pencil:before{content:"";position:absolute;bottom:-33px;left:1px;border-left:12px solid transparent;border-right:12px solid transparent;border-top:32px solid #ffdfac}.pencil:after{content:"";position:absolute;top:20px;left:-5px;width:35px;height:8px;background:white}
+    .star{position:absolute;z-index:3;color:#ffe875;text-shadow:0 0 15px #fff5ad}.star.a{top:43%;left:11%;font-size:24px}.star.b{top:24%;right:14%;font-size:31px}.star.c{right:9%;bottom:34%;font-size:26px}.star.d{left:47%;top:49%;font-size:17px}
+    .scene-note{position:absolute;z-index:5;right:7%;bottom:35px;border-radius:13px;padding:12px 15px;background:#fff;color:#6551a7;box-shadow:4px 6px 0 #34509c6b;font-size:12px;font-weight:900;transform:rotate(5deg)}
+    .card{display:flex;align-items:center;justify-content:center;padding:48px 55px;background:radial-gradient(circle at 98% 2%,#ffe3b0 0 5%,transparent 24%),radial-gradient(circle at 5% 94%,#cef9ec 0 8%,transparent 27%),linear-gradient(155deg,#fff 25%,#fff1fb 100%)}
+    .card-inner{width:min(400px,100%)}
+    .card-icon{display:grid;place-items:center;width:62px;height:62px;margin-bottom:26px;border-radius:19px;background:linear-gradient(135deg,#ffe568,#ff98af 50%,#bd8ced);box-shadow:5px 6px 0 #d8c5ed;color:#fff;font-size:30px;transform:rotate(-5deg)}
+    .eyebrow{color:#7652c0;font-size:11px;font-weight:900;letter-spacing:.17em}
+    h2{margin:10px 0;font-size:clamp(31px,3vw,40px);line-height:1.1;letter-spacing:-.055em;color:#25345c}
+    .subtitle{margin:0 0 29px;color:#687994;font-size:14px;line-height:1.6}
+    .field{display:block;margin-bottom:17px;color:#365477;font-size:12px;font-weight:900}
+    .field-title{display:flex;align-items:center;gap:8px;margin-bottom:8px}.field-title b{color:#9360d5;font-size:16px}
+    .field input{display:block;width:100%;height:55px;padding:0 16px;border:2px solid #deddf5;border-radius:14px;background:#fff;color:#53627e;box-shadow:0 3px 0 #ebe3fb;font-size:14px;outline:none}
+    .field input::placeholder{color:#aab4c7}.password{position:relative}.password input{padding-right:49px}.eye{position:absolute;right:13px;top:16px;color:#8290aa;font-size:20px}
+    .forgot{display:block;width:max-content;margin:-4px 0 23px auto;border:0;background:none;color:#7551c4;font-size:12px;font-weight:900}
+    .submit{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:57px;border:0;border-radius:15px;background:linear-gradient(105deg,#6259d5 0%,#a353ce 48%,#f4769e 78%,#ff9b64 100%);color:#fff;box-shadow:0 10px 0 #e4c8ee,0 17px 25px #a657b14a;font-size:15px;font-weight:900}.submit span{font-size:23px;line-height:1}
+    .safe{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:39px;padding-top:18px;border-top:1px solid #e8e9f3;color:#8996ad;font-size:11px}.safe b{color:#45c4a0;font-size:18px}
+    .prototype-note{position:absolute;z-index:5;bottom:13px;left:50%;transform:translateX(-50%);border-radius:99px;padding:8px 14px;background:#263862ec;color:#fff;font-size:11px;font-weight:800;white-space:nowrap}
+    @media(max-width:900px){.shell{max-width:600px;display:block}.scene{height:340px;min-height:340px}.brand{top:23px;left:27px}.top-pill{top:28px;right:23px}.story{top:102px;left:33px}.story h1{font-size:50px;margin:14px 0 8px}.story p{display:none}.sun{width:70px;height:70px;right:13%;top:48%}.sun:after{font-size:30px;top:16px;left:24px}.book{width:150px;height:95px;left:auto;right:8%;bottom:18px}.page-left:after{font-size:13px;top:25px;left:9px}.page-right:after{font-size:17px;top:20px;left:16px}.pencil,.scene-note,.cloud.two{display:none}.cloud.one{left:50%;top:68%;transform:scale(.6)}.scene:after{bottom:-175px}.card{padding:37px 44px 41px}}
+    @media(max-width:520px){.page{padding:10px 10px 46px;place-items:start center}.shell{border-width:4px;border-radius:24px}.scene{height:290px;min-height:290px}.brand{font-size:20px}.brand-mark{width:37px;height:37px;font-size:26px}.top-pill{top:27px;right:16px;padding:8px;font-size:8px}.story{top:94px;left:26px}.story h1{font-size:39px}.sun{width:55px;height:55px;right:12%;top:46%}.sun:after{font-size:26px;top:12px;left:17px}.book{width:112px;height:70px;right:10%;bottom:20px}.page-left:after{font-size:10px;top:17px;left:6px}.page-right:after{font-size:14px;top:12px;left:9px}.card{padding:31px 25px 36px}.subtitle{margin-bottom:23px}.prototype-note{bottom:9px;font-size:9px}}
+    @media(max-width:360px){.book{width:80px;height:54px;right:5%;bottom:12px}.top-pill{display:none}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="shell">
+      <section class="scene" aria-label="Colorful learning scene">
+        <div class="brand"><span class="brand-mark">s·</span><span>shreehan<span class="brand-dot">.</span></span></div>
+        <span class="top-pill">✦ YOUR LEARNING SPACE</span>
+        <div class="story"><span class="kicker">A BRIGHTER DAY STARTS HERE</span><h1>Big dreams.<br><em>Little steps.</em></h1><p>Every lesson is a new adventure. Come on in and see what you can discover today!</p></div>
+        <div class="sun" aria-hidden="true"></div><div class="cloud one" aria-hidden="true"></div><div class="cloud two" aria-hidden="true"></div>
+        <div class="book" aria-hidden="true"><span class="page-left"></span><span class="page-right"></span><span class="spine"></span></div><div class="pencil" aria-hidden="true"></div>
+        <span class="star a" aria-hidden="true">✦</span><span class="star b" aria-hidden="true">✳</span><span class="star c" aria-hidden="true">✦</span><span class="star d" aria-hidden="true">✦</span>
+        <span class="scene-note">✶ Learn · Imagine · Grow</span>
+      </section>
+      <section class="card" aria-label="Sign in preview">
+        <div class="card-inner">
+          <div class="card-icon" aria-hidden="true">✦</div><span class="eyebrow">WELCOME TO SHREEHAN HQ</span><h2>Ready to explore?</h2><p class="subtitle">Your ideas, discoveries, and little wins are waiting for you.</p>
+          <label class="field"><span class="field-title"><b aria-hidden="true">♙</b> Username</span><input readonly placeholder="Your favorite name" aria-label="Username preview"></label>
+          <label class="field"><span class="field-title"><b aria-hidden="true">⚿</b> Password</span><span class="password"><input readonly type="password" placeholder="Enter your password" aria-label="Password preview"><span class="eye" aria-hidden="true">◉</span></span></label>
+          <span class="forgot">Forgot password?</span><button class="submit" type="button" aria-disabled="true">Enter my workspace <span aria-hidden="true">→</span></button>
+          <div class="safe"><b aria-hidden="true">◇</b> A little space that’s all yours.</div>
+        </div>
+      </section>
+    </div>
+    <span class="prototype-note">VISUAL PROTOTYPE · SIGN IN IS INACTIVE</span>
+  </main>
+</body>
+</html>

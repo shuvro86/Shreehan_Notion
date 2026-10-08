@@ -451,3 +451,23 @@ The sign-in view no longer displays the **OR** divider, the **New around here?**
 ### Observed verification and release status
 
 The Next.js production build and TypeScript check passed, all 49 backend tests passed, and all 26 JavaScript sync tests passed. In a local isolated FastAPI browser check, the sign-in view had no account-creation prompt or divider, and the password-recovery view still showed Back to sign in. No account action was submitted. Commit `f1f4a8f` reached GitHub main; Vercel production deployment `dpl_5F4BzYtm5AjKMcwJcemocay9wvSm` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. A fresh live browser session confirmed that `/login` displays neither the account-creation prompt nor the divider.
+
+## More colorful login prototype (2026-10-08)
+
+### Prototype scope and decisions
+
+`docs/prototypes/colorful-login.html` is a standalone visual prototype based on the current `/login` sign-in view. It preserves the split learning-scene and form layout, wording, username and password fields, recovery link appearance, and primary action while increasing the saturation of the scene, page background, illustration, and form accents. The preview has no scripts, form submission, or authentication calls. The live Next.js `/login` route, authentication APIs, session behavior, database, email integration, Notion/Drive source scope, and sync are unchanged. No new integration or migration is involved.
+
+### Observed verification and release status
+
+The prototype file was created after source inspection. At the user's request, no app, build, tests, or browser preview was executed. Visual and responsive behavior remain unverified. This prototype has not been applied to the live login route or deployed.
+
+## Brighter login palette release (2026-10-08)
+
+### Implemented architecture, scope, and decisions
+
+The `/login` stylesheet now applies the prototype's brighter teal, violet, coral, gold, and mint palette to the existing animated scene and sign-in card. The CSS-drawn artwork, responsive layout, reduced-motion rule, login page markup, and authentication state machine remain. This is a presentation-only change; authentication APIs, session storage, backend, database, email integration, Notion/Drive source scope, and sync are unchanged. No migration is required.
+
+### Observed verification and release status
+
+Observed locally: the Next.js production build and TypeScript check passed. The built login route was inspected at 1440px and 320px; both had no horizontal overflow. At 320px, the decorative cloud and top pill were hidden to keep the heading and brand readable. The password recovery view still opened from the sign-in view. No account action was submitted. Production deployment is pending.
