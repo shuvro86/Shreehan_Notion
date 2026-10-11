@@ -554,4 +554,4 @@ The teacher Calendar search's visible formatted-date surface now has the same fi
 
 ### Observed verification and release status
 
-TypeScript checking and the Next.js production build passed. The focused isolated teacher browser flow passed and measured equal 42px visible heights for Calendar search and Status type search on desktop and at 320px; the date picker and filter flow also passed. The desktop screenshot was visually checked. Production release status follows after deployment.
+TypeScript checking and the Next.js production build passed. The focused isolated teacher browser flow passed and measured equal 42px visible heights for Calendar search and Status type search on desktop and at 320px; the date picker and filter flow also passed. The desktop screenshot was visually checked. Release `e076406` reached GitHub `main`. Vercel deployment `dpl_HKAegUWHUHLixAjLw83e72kr6wjo` reached READY and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/coursework/notifications`.
