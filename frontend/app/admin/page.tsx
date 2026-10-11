@@ -4,6 +4,7 @@ import { FormEvent, useCallback, useEffect, useState } from 'react';
 import { BellRing, KeyRound, LogOut, Pencil, Plus, Settings2, ShieldCheck, Trash2, Users } from 'lucide-react';
 import {useMenuAccess} from '../_components/auth-gate';
 import './admin.css';
+import ClassroomNotifications from '../_components/classroom-notifications';
 
 type Role = 'student' | 'teacher' | 'admin';
 type Account = { id: string; username: string; email: string; active: number; role: Role };
@@ -102,7 +103,7 @@ export default function AdminPage() {
   }
 
   return <main className="admin-page">
-    <header className="admin-header"><div><span className="admin-mark"><ShieldCheck size={23}/></span><div><strong>Shreehan HQ</strong><small>ADMINISTRATION</small></div></div><button onClick={async () => { await fetch('/api/auth/logout', {method:'POST'}); window.location.assign('/login'); }}><LogOut size={17}/> Sign out</button></header>
+    <header className="admin-header"><div><span className="admin-mark"><ShieldCheck size={23}/></span><div><strong>Shreehan HQ</strong><small>ADMINISTRATION</small></div></div><ClassroomNotifications/><button onClick={async () => { await fetch('/api/auth/logout', {method:'POST'}); window.location.assign('/login'); }}><LogOut size={17}/> Sign out</button></header>
     <div className="admin-layout"><nav aria-label="Administration menu"><button className={tab==='accounts'?'selected':''} onClick={()=>setTab('accounts')}><Users size={18}/> Accounts</button><button className={tab==='menus'?'selected':''} onClick={()=>setTab('menus')}><Settings2 size={18}/> Menu access</button><button className={tab==='feedback'?'selected':''} onClick={()=>setTab('feedback')}><BellRing size={18}/> Teacher updates{unread>0&&<span className="admin-unread">{unread}</span>}</button>{setupEnabled&&<button className={tab==='setup'?'selected':''} onClick={()=>setTab('setup')}><KeyRound size={18}/> Setup</button>}</nav>
       <section className="admin-content"><div className="admin-heading"><span>ADMIN WORKSPACE</span><h1>{tab==='accounts'?'Manage users':tab==='menus'?'Menu access':tab==='feedback'?'Teacher updates':'Application setup'}</h1><p>{tab==='accounts'?'Create accounts, update their details and roles, or remove them.':tab==='menus'?'Choose which menus each role can open.':tab==='feedback'?'Read each daily update about Shreehan and track what needs attention.':'Review role access and change your own password.'}</p></div>
       {error&&!formOpen&&<p className="admin-alert" role="alert">{error}</p>}{message&&<p className="admin-success" role="status">{message}</p>}

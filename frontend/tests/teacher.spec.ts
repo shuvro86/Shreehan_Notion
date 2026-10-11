@@ -10,8 +10,6 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await page.getByLabel('Password',{exact:true}).fill('classroom-test');
  await page.getByRole('button',{name:'Enter my workspace',exact:true}).click();
  await expect(page).toHaveURL(/\/teacher$/);
- let guardianRequests=0;
- await page.route('**/api/coursework/*/email',route=>{guardianRequests++;return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({message:'Email accepted.'})});});
  await expect(page.getByRole('button',{name:'Assign task',exact:true})).toBeVisible();
  await expect(page.getByRole('button',{name:/tasks? not done/})).toBeVisible();
  await expect(page.getByRole('combobox',{name:'Filter student'})).toHaveCount(0);
@@ -25,8 +23,9 @@ test('teacher sees one class task and filters its completion state', async ({bro
  const searches=page.locator('.cw-teacher-searches');
  expect(await searches.locator('label').allTextContents()).toEqual(expect.arrayContaining([expect.stringContaining('Calendar search'),expect.stringContaining('Status type search')]));
  await expect(page.getByRole('navigation').getByRole('button',{name:'Change password'})).toBeVisible();
- expect(await page.getByRole('navigation').getByRole('button').allTextContents()).toEqual(['Change password','Sign out']);
- await expect(page.getByLabel('Calendar search')).toHaveValue(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
+ expect(await page.getByRole('navigation').getByRole('button').allTextContents()).toEqual(['Change password',' Notifications','Sign out']);
+ await expect(page.getByLabel('Calendar search')).toHaveValue('');
+ await expect(page.locator('.cw-teacher-searches label').filter({hasText:'Status type search'})).toHaveClass(/active/);
  const initialPending=Number((await page.locator('.cw-notice strong').innerText()).match(/^\d+/)?.[0]);
  await page.getByRole('button',{name:'Assign task',exact:true}).click();
  const dialog=page.getByRole('dialog');
@@ -52,7 +51,8 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(page.getByLabel('Status type search')).toHaveValue('');
  await expect(task).toHaveCount(1);
  await page.reload();
- await expect(page.getByLabel('Calendar search')).toHaveValue(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
+ await expect(page.getByLabel('Calendar search')).toHaveValue('');
+ await expect(page.locator('.cw-teacher-searches label').filter({hasText:'Status type search'})).toHaveClass(/active/);
  await expect(task).toHaveCount(1);
  await page.getByLabel('Calendar search').fill(dueDate);
  await expect(task).toHaveCount(1);
@@ -128,8 +128,8 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await card.getByLabel('Comments / remarks').fill('Good observation.');
  await card.getByLabel('Review Status').selectOption('done');
  await card.getByRole('button',{name:'Save review'}).click();
- await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toBeVisible();
- expect(guardianRequests).toBe(1);
+ await expect(page.getByRole('status').filter({hasText:'Review saved. The student can see it in the app.'})).toBeVisible();
+ expect(await ctx.request.post('/api/coursework/missing/email').then(response=>response.status())).toBe(405);
  await page.getByLabel('Status type search').selectOption('half_done');
  await expect(task.locator('summary')).toContainText('Half Done');
  await expect(task).toHaveCount(1);
@@ -153,7 +153,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await page.getByLabel('Status type search').selectOption('not_done');
  await expect(remainingTask).toHaveCount(0);
 
- // Verify the guardian action without contacting the real mail provider.
+ // Verify the saved review reaches the student in the app.
  await page.getByRole('button',{name:'Assign task',exact:true}).click();
  const mailTitle=`Poetry task ${Date.now()}`;
  await dialog.getByRole('combobox',{name:'Subject',exact:true}).selectOption('Poetry');
@@ -167,7 +167,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await mailCard.getByLabel('Comments / remarks').fill('Read with expression.');
  await mailCard.getByLabel('Review Status').selectOption('done');
  await mailCard.getByRole('button',{name:'Save review'}).click();
- await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toBeVisible();
+ await expect(page.getByRole('status').filter({hasText:'Review saved. The student can see it in the app.'})).toBeVisible();
  await page.getByLabel('Status type search').selectOption('half_done');
  await expect(mailTask).toBeVisible();
  await mailTask.locator('summary').click();
@@ -198,32 +198,27 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await ctx.close();await studentContext.close();
 });
 
-test('a failed guardian send keeps the review draft and does not claim notification',async({browser})=>{
+test('a failed review keeps the draft and shows the error',async({browser})=>{
  const ctx=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
  const page=await ctx.newPage();
  await ctx.request.post('/api/auth/login',{data:{username:'teacher',password:'classroom-test'}});
  await page.goto('/teacher');
- await page.route('**/api/coursework/*/email',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Guardian email is temporarily unavailable.'})}));
  await page.getByRole('button',{name:'Assign task',exact:true}).click();
  const dialog=page.getByRole('dialog');
  const title=`Review retry ${Date.now()}`;
  await dialog.getByLabel('Title',{exact:true}).fill(title);
- await dialog.getByLabel('Due date').fill(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
  await dialog.getByRole('button',{name:'Assign task',exact:true}).click();
  const task=page.locator('.cw-class-task').filter({hasText:title});
  await task.locator('summary').click();
  const card=task.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
  await card.getByLabel('Comments / remarks').fill('Please practise the next page.');
+ await page.route('**/api/coursework/*/review',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Review unavailable.'})}));
  await card.getByRole('button',{name:'Save review'}).click();
- await expect(card.getByRole('alert')).toContainText('Review saved, but Guardian has not been notified.');
+ await expect(card.getByRole('alert')).toContainText('Review unavailable.');
  await expect(card.getByLabel('Comments / remarks')).toHaveValue('Please practise the next page.');
- await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toHaveCount(0);
- await page.unroute('**/api/coursework/*/email');
- await page.route('**/api/coursework/*/email',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({message:'Email accepted.'})}));
+ await page.unroute('**/api/coursework/*/review');
  await card.getByRole('button',{name:'Save review'}).click();
- await expect(page.getByRole('status').filter({hasText:'Guardian has been notified'})).toBeVisible();
- await task.locator('summary').click();
- await expect(card.getByLabel('Comments / remarks')).toHaveValue('');
+ await expect(page.getByRole('status').filter({hasText:'Review saved. The student can see it in the app.'})).toBeVisible();
  await ctx.close();
 });
 
@@ -257,4 +252,38 @@ test('a student sees only their assigned work grouped and filtered by due date',
  expect(await student.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBeTruthy();
  await student.screenshot({path:'../tmp/student-assigned-work-mobile.png',fullPage:true});
  await teacherContext.close();await studentContext.close();
+});
+
+test('teacher summary follows Shreehan’s own submission',async({browser})=>{
+ const teacherContext=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
+ await teacherContext.request.post('/api/auth/login',{data:{username:'teacher',password:'classroom-test'}});
+ const title=`Shreehan summary ${Date.now()}`;
+ const created=await teacherContext.request.post('/api/coursework/class-task',{data:{kind:'Homework',subject:'Science',title,instructions:'Write one sentence.',due_date:'2032-06-15'}});
+ expect(created.status()).toBe(201);
+ const work=await teacherContext.request.get('/api/coursework');
+ const assignments=work.json().then(data=>data.items.find((item:{title:string})=>item.title===title).assignments);
+ const group=await assignments;
+ const shreehan=group.find((item:{student_id:string})=>item.student_id==='classroom_student');
+ const other=group.find((item:{student_id:string})=>item.student_id==='classroom_student_two');
+ const page=await teacherContext.newPage();
+ await page.route('**/api/coursework',async route=>{
+  if(route.request().method()!=='GET')return route.continue();
+  const response=await route.fetch();const data=await response.json();
+  for(const item of data.items){for(const assignment of item.assignments||[]){if(assignment.student_id==='classroom_student')assignment.student_name='Shreehan';}}
+  await route.fulfill({response,json:data});
+ });
+ await page.goto('/teacher');
+ const task=page.locator('.cw-class-task').filter({hasText:title});
+ await expect(task.locator('.cw-task-submitted')).toHaveText('Not submitted by Shreehan');
+ const otherContext=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
+ await otherContext.request.post('/api/auth/login',{data:{username:'classroom_student_two',password:'classroom-test'}});
+ await otherContext.request.put(`/api/coursework/${other.id}/submission`,{data:{submission:'Other answer'}});
+ await page.reload();
+ await expect(task.locator('.cw-task-submitted')).toHaveText('Not submitted by Shreehan');
+ const studentContext=await browser.newContext({baseURL:process.env.E2E_BASE_URL});
+ await studentContext.request.post('/api/auth/login',{data:{username:'classroom_student',password:'classroom-test'}});
+ await studentContext.request.put(`/api/coursework/${shreehan.id}/submission`,{data:{submission:'Shreehan answer'}});
+ await page.reload();
+ await expect(task.locator('.cw-task-submitted')).toContainText('Submit by Shreehan');
+ await teacherContext.close();await otherContext.close();await studentContext.close();
 });

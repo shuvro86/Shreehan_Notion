@@ -3,7 +3,7 @@ from fastapi.testclient import TestClient
 from backend.main import app
 from backend.db import connection, initialize_database, now
 from backend.auth import hash_password
-from backend import teacher, mailer
+from backend import teacher
 
 @pytest.fixture
 def classroom(tmp_path, monkeypatch):
@@ -52,6 +52,7 @@ def test_daily_teacher_feedback_reaches_admin_and_tracks_read_state(classroom):
     assert notifications['unread'] == 1
     assert notifications['items'][0]['body'] == 'Revised daily update.'
     assert notifications['items'][0]['teacher_name'] == 'teacher'
+    assert c.get('/api/coursework/notifications').json()['items'][0]['text'] == 'New update from teacher'
     assert c.put('/api/admin/feedback/missing/read').status_code == 404
     assert c.put(f'/api/admin/feedback/{note_id}/read').status_code == 200
     assert c.get('/api/admin/feedback').json()['unread'] == 0
@@ -277,7 +278,7 @@ def test_teacher_student_lifecycle_and_isolation(classroom):
     assert c.get('/api/auth/me').json()['role']=='student'
     assert c.get('/api/coursework/sources').status_code==403
     assert c.post('/api/coursework',json=work()).status_code==403
-    assert c.post(f'/api/coursework/{item}/email').status_code==403
+    assert c.post(f'/api/coursework/{item}/email').status_code==405
     assert c.put(f'/api/coursework/{item}/review',json={'status':'completed','score':10}).status_code==403
     assert c.put(f'/api/coursework/{item}/submission',json={'submission':'   '}).status_code==422
     assert c.put(f'/api/coursework/{item}/submission',json={'submission':'My answers: 1/2 and 1/4'}).status_code==200
@@ -294,7 +295,7 @@ def test_teacher_student_lifecycle_and_isolation(classroom):
     revised=c.put(f'/api/coursework/{item}/submission',json={'submission':'Revised answers'}).json()
     assert revised['score'] is None and revised['reviewed_at'] is None
 
-def test_validation_sources_and_email(classroom, monkeypatch):
+def test_validation_sources_and_in_app_notifications(classroom, monkeypatch):
     c=classroom
     monkeypatch.setattr(teacher,'current_library',lambda:{'homework':{'items':[{'id':'source','title':'Old work','notionUrl':'https://notion.so/example'}]},'records':[]})
     login(c,'teacher')
@@ -305,39 +306,15 @@ def test_validation_sources_and_email(classroom, monkeypatch):
     body=work(source_id='homework:source')
     item=c.post('/api/coursework',json=body).json()['id']
     assert c.post('/api/coursework',json=body).status_code==409
-    assert c.post(f'/api/coursework/{item}/email').status_code==400
+    assert c.post(f'/api/coursework/{item}/email').status_code==405
     for score in (0,11,1.5,True):
         assert c.put(f'/api/coursework/{item}/review',json={'status':'pending','score':score}).status_code==422
-    for score in (1,10,None):
-        assert c.put(f'/api/coursework/{item}/review',json={'status':'completed','score':score,'remarks':'Good progress'}).status_code==200
-    sent=[]
-    monkeypatch.setattr(teacher,'send_teacher_remarks',lambda student,row:sent.append((student,row)))
-    assert c.post(f'/api/coursework/{item}/email').status_code==200
-    assert sent[0][0]=='student' and sent[0][1]['remarks']=='Good progress'
-    plain=c.post('/api/coursework',json=work(title='Status-only review')).json()['id']
-    assert c.put(f'/api/coursework/{plain}/review',json={'status':'half_done','score':5}).status_code==200
-    assert c.post(f'/api/coursework/{plain}/email').status_code==200
-    assert sent[-1][1]['review_state']=='half_done' and sent[-1][1]['remarks']==''
-    def fail(*args): raise RuntimeError('Delivery failed')
-    monkeypatch.setattr(teacher,'send_teacher_remarks',fail)
-    assert c.post(f'/api/coursework/{item}/email').status_code==503
-    assert next(row for row in c.get('/api/coursework').json()['items'] if row['id']==item)['remarks']=='Good progress'
-
-def test_remarks_provider_is_fixed_recipient_and_idempotent(monkeypatch):
-    monkeypatch.setenv('RESEND_API_KEY','test-key')
-    monkeypatch.setenv('RESEND_FROM','onboarding@resend.dev')
-    calls=[]
-    import httpx
-    def send(url,**kwargs):
-        calls.append(kwargs)
-        return httpx.Response(200,json={'id':'test-id'},request=httpx.Request('POST',url))
-    monkeypatch.setattr(mailer.httpx,'post',send)
-    row={'id':'w','updated_at':'v1','kind':'Homework','title':'Title','subject':'Science','due_date':'2026-10-07','status':'pending','review_state':'half_done','score':8,'remarks':'Keep going'}
-    mailer.send_teacher_remarks('student',row)
-    mailer.send_teacher_remarks('student',row)
-    assert calls[0]['json']['to']==['sun.srs86@gmail.com']
-    assert '8/10' in calls[0]['json']['text']
-    assert 'Status: Half Done' in calls[0]['json']['text']
-    assert calls[0]['headers']['Idempotency-Key']==calls[1]['headers']['Idempotency-Key']
-    monkeypatch.delenv('RESEND_API_KEY')
-    with pytest.raises(RuntimeError): mailer.send_teacher_remarks('student',row)
+    login(c,'student')
+    assert any(event['id']==f'assigned:{item}' for event in c.get('/api/coursework/notifications').json()['items'])
+    assert c.put(f'/api/coursework/{item}/submission',json={'submission':'Finished'}).status_code==200
+    login(c,'teacher')
+    assert any(event['id']==f'submission:{item}' for event in c.get('/api/coursework/notifications').json()['items'])
+    assert c.put(f'/api/coursework/{item}/review',json={'status':'completed','score':10,'remarks':'Good progress'}).status_code==200
+    login(c,'student')
+    assert any(event['id']==f'review:{item}' for event in c.get('/api/coursework/notifications').json()['items'])
+    assert c.post(f'/api/coursework/{item}/email').status_code==405

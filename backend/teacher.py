@@ -11,12 +11,31 @@ from pydantic import BaseModel, Field, field_validator
 from backend.auth import current_user
 from backend.db import connection, now
 from backend.content import current_library
-from backend.mailer import send_teacher_remarks
 
 router = APIRouter(prefix="/api/coursework", tags=["coursework"])
 feedback_router = APIRouter(prefix="/api/teacher-feedback", tags=["teacher feedback"])
 SUBJECTS = ["Mathematics", "Bangla 1", "Bangla 2", "Bangladesh Studies", "English Language",
             "English Dictation & Spelling", "English Literature", "History", "Geography", "Science", "Poetry"]
+
+
+@router.get("/notifications")
+def notifications(user=Depends(current_user)):
+    """Recent classroom events visible to the signed-in role."""
+    events = []
+    with connection() as db:
+        if user["role"] == "teacher":
+            rows = db.execute("SELECT c.id,c.title,c.submitted_at,u.username FROM coursework c JOIN users u ON u.id=c.student_id WHERE c.teacher_id=? AND c.submitted_at IS NOT NULL ORDER BY c.submitted_at DESC LIMIT 20", (user["id"],)).fetchall()
+            events = [{"id": "submission:" + row["id"], "text": f"{row['username']} submitted {row['title']}", "at": row["submitted_at"]} for row in rows]
+        elif user["role"] == "student":
+            rows = db.execute("SELECT id,title,created_at,reviewed_at FROM coursework WHERE student_id=? ORDER BY updated_at DESC LIMIT 20", (user["id"],)).fetchall()
+            for row in rows:
+                events.append({"id": "assigned:" + row["id"], "text": f"New task: {row['title']}", "at": row["created_at"]})
+                if row["reviewed_at"]:
+                    events.append({"id": "review:" + row["id"], "text": f"Teacher reviewed {row['title']}", "at": row["reviewed_at"]})
+        elif user["role"] == "admin":
+            rows = db.execute("SELECT f.id,f.updated_at,t.username FROM daily_teacher_feedback f JOIN users t ON t.id=f.teacher_id ORDER BY f.updated_at DESC LIMIT 20").fetchall()
+            events = [{"id": "feedback:" + row["id"], "text": f"New update from {row['username']}", "at": row["updated_at"]} for row in rows]
+    return {"items": sorted(events, key=lambda event: event["at"], reverse=True)[:20]}
 
 
 def teacher_only(user=Depends(current_user)):
@@ -250,17 +269,3 @@ def submit(item_id: str, body: Submission, user=Depends(current_user)):
         timestamp = now()
         db.execute("UPDATE coursework SET submission=?,submitted_at=?,score=NULL,review_state='not_done',reviewed_at=NULL,updated_at=? WHERE id=?", (body.submission, timestamp, timestamp, item_id))
         return owned(db, item_id, user)
-
-
-@router.post("/{item_id}/email")
-def email_remarks(item_id: str, user=Depends(teacher_only)):
-    with connection() as db:
-        row = owned(db, item_id, user)
-        student = db.execute("SELECT username FROM users WHERE id=?", (row["student_id"],)).fetchone()["username"]
-    if not row["reviewed_at"]:
-        raise HTTPException(400, "Save a review before notifying the guardian.")
-    try:
-        send_teacher_remarks(student, row)
-    except RuntimeError as exc:
-        raise HTTPException(503, str(exc)) from None
-    return {"message": "Email accepted for delivery to sun.srs86@gmail.com."}
