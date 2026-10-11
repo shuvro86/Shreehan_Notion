@@ -534,4 +534,4 @@ The shared formatted date input now has an explicit, visible calendar button tha
 
 ### Observed verification and release status
 
-TypeScript checking and the Next.js production build passed. The focused isolated teacher browser flow verified the visible calendar icon calls the native picker, retains the `dd-Mon-yyyy` search display, filters tasks by the unchanged ISO value, and fits the 320px layout. The teacher desktop screenshot was visually checked. Production release status follows after deployment.
+TypeScript checking and the Next.js production build passed. The focused isolated teacher browser flow verified the visible calendar icon calls the native picker, retains the `dd-Mon-yyyy` search display, filters tasks by the unchanged ISO value, and fits the 320px layout. The teacher desktop screenshot was visually checked. Release `129f482` reached GitHub `main`; Vercel deployment `dpl_HuyPJsJwYbyhzter9s4Mbdupx3rz` reached READY and was aliased to `https://shreehan-notion.vercel.app`. Read-only production smoke checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/coursework/notifications`.
