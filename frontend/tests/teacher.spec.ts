@@ -44,6 +44,8 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await dialog.getByLabel('Title',{exact:true}).fill(title);
  await dialog.getByLabel('Instructions',{exact:true}).fill('Describe a rock from your science lesson.');
  const dueDate=await dialog.getByLabel('Due date').inputValue();
+ expect(dueDate).toBe(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
+ await expect(dialog.getByText(new Date(`${dueDate}T12:00:00+06:00`).toLocaleDateString('en-GB',{timeZone:'Asia/Dhaka',day:'2-digit',month:'short',year:'numeric'}).replace(/ /g,'-'))).toBeVisible();
  await dialog.getByRole('button',{name:'Assign task',exact:true}).click();
  await expect(dialog).not.toBeVisible();
  const task=page.locator('.cw-class-task').filter({hasText:title});

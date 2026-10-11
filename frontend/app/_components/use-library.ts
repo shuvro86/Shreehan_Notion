@@ -6,6 +6,7 @@ import unseen from '../../../data/unseen-practice.json';
 import type {HomeworkData} from './homework';
 import type { UnseenPractice } from '../_lib/unseen-practice';
 import type { SubjectPractice } from '../_lib/subject-practice';
+import {formatDateTime} from '../_lib/date-format';
 export function useLibrary(){
  const [library,setLibrary]=useState<typeof seed & {homework?:HomeworkData}>({...seed,documents:[] as typeof seed.documents,records:[] as typeof seed.records});
  const [unseenPractice,setUnseenPractice]=useState<UnseenPractice>(unseen);
@@ -19,6 +20,6 @@ export function useLibrary(){
   const unseenQuestions=unseenPractice.questions.filter(q=>q.sources.every(s=>reviewed.has(s.documentId))).map(q=>({...q,explanation:''}));
   return {...prepared,questions:[...prepared.questions.filter(q=>q.sources.every(s=>unchanged.has(s.documentId))),...unseenQuestions],analysis:prepared.analysis.filter(a=>unchanged.has(a.documentId)),coverageNote:['google_drive','notion_drive'].includes((library as typeof library & {sourceType?:string}).sourceType||'')?'Questions are based on readable pages in the synced Class II half-yearly folder. Syllabus topics without uploaded lessons are not treated as answered content. Check the original scans for diagrams and unclear OCR.':prepared.coverageNote};
  },[library,unseenPractice]);
- const syncLabel=sync.drivePending&&['syncing','partial'].includes(sync.state)?'Notion synced · Drive folder access needed':sync.state==='ok'?`Synced ${sync.lastSuccess?new Date(sync.lastSuccess).toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}):''}`:sync.state==='syncing'?'Syncing study sources…':sync.state==='partial'?'Synced · text extraction pending':sync.state==='error'?'Sync failed · saved copy':sync.state==='stale'?'Source updates delayed · saved copy':sync.state==='offline'?'Offline · saved copy':sync.state==='unconfigured'?'Notion sync needs configuration':'Connecting to Notion…';
+ const syncLabel=sync.drivePending&&['syncing','partial'].includes(sync.state)?'Notion synced · Drive folder access needed':sync.state==='ok'?`Synced ${sync.lastSuccess?formatDateTime(sync.lastSuccess):''}`:sync.state==='syncing'?'Syncing study sources…':sync.state==='partial'?'Synced · text extraction pending':sync.state==='error'?'Sync failed · saved copy':sync.state==='stale'?'Source updates delayed · saved copy':sync.state==='offline'?'Offline · saved copy':sync.state==='unconfigured'?'Notion sync needs configuration':'Connecting to Notion…';
  return {library,practice,sync,syncLabel,unseenPractice,subjectPractice,studyNotePractice};
 }

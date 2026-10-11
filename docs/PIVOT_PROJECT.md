@@ -513,3 +513,15 @@ Observed locally: the Next.js production build and TypeScript check passed, all 
 ### Observed production release and data reset
 
 Release `7b142c8` reached GitHub main and Vercel deployment `dpl_5NrEDHsTFwFZjJfp8xYVeG3XXGMq` reached Ready at `https://shreehan-notion.vercel.app`. With that code active, the production Turso reset deleted 3 `coursework` rows, 2 `daily_teacher_feedback` rows, 3 `dashboard_tasks` rows, and 9 `cards` rows. A fresh readback returned zero rows in all four tables; 3 users, 1 board, and 5 columns remained. This was a direct production data change; synced study sources and practice progress were not altered. After the reset, read-only live checks returned HTTP 200 for `/login`, redirected unauthenticated `/teacher` to `/login`, and returned HTTP 401 for unauthenticated `/api/coursework/notifications`.
+
+## Application date format, task default, and data clear (2026-10-12)
+
+### Resulting architecture, integrations, and scope
+
+Visible application dates use one Dhaka-time formatter in `frontend/app/_lib/date-format.ts`, producing `dd-Mon-yyyy`; timestamps retain their time after that date. Classroom, admin feedback, notifications, source record lists, homework, dashboard schedules, and sync status use it. Date controls keep ISO values for API/filter correctness while a shared date input wrapper shows the requested format. The teacher's new class task due date defaults to the current calendar date in Asia/Dhaka, including when the form is reopened. Existing task edits keep their saved due date. The FastAPI schema and API date storage remain ISO; no Notion, Drive, email, or other integration changed.
+
+Classroom notifications are generated from `coursework` and `daily_teacher_feedback`; they have no separate table. The requested production clear targets those two tables plus `dashboard_tasks` and Kanban `cards`. It preserves accounts, board structure, study-source snapshots, and practice progress.
+
+### Observed verification and release status
+
+Next.js 16.3.8 client-component and forms guides were read before editing. TypeScript checking and the production build passed. All 48 backend tests and 26 JavaScript sync tests passed. The isolated teacher browser flow passed after the date control adjustment, checking today's Dhaka due date, `dd-Mon-yyyy` display, assignment flow, and 320px layout. A read-only production Turso check found 4 coursework rows and zero rows in the other three target tables. The direct production clear completed; a fresh readback found zero rows in all four target tables, with 3 users, 1 board, and 5 board columns preserved. Git push, deployment, and production smoke verification are pending at this point.

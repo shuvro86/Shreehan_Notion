@@ -6,6 +6,8 @@ import {useMenuAccess} from '../_components/auth-gate';
 import './admin.css';
 import ClassroomNotifications from '../_components/classroom-notifications';
 import {showSavePopup} from '../_components/save-popup';
+import {formatDate,formatDateTime} from '../_lib/date-format';
+import FormattedDateInput from '../_components/formatted-date-input';
 
 type Role = 'student' | 'teacher' | 'admin';
 type Account = { id: string; username: string; email: string; active: number; role: Role };
@@ -17,10 +19,10 @@ const emptyDraft = (): Draft => ({username:'', email:'', password:'', role:'stud
 function FeedbackTable({items,unread,busy,onRefresh,onMarkRead}:{items:TeacherUpdate[];unread:number;busy:string;onRefresh:()=>void;onMarkRead:(id:string)=>void}) {
   const [date,setDate]=useState('');
   const visible=date?items.filter(item=>item.day===date):items;
-  const dayLabel=(day:string)=>new Date(`${day}T12:00:00+06:00`).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'Asia/Dhaka'});
-  const updatedLabel=(value:string)=>new Date(value).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Dhaka'});
+  const dayLabel=formatDate;
+  const updatedLabel=formatDateTime;
   return <div className="admin-card"><div className="admin-card-title"><h2>Final teacher comments <span className="admin-count">{unread} new</span></h2><button onClick={onRefresh}>Refresh</button></div>
-    <div className="admin-feedback-controls"><label>Comment date<input type="date" aria-label="Filter teacher comments by date" value={date} onChange={event=>setDate(event.target.value)}/></label>{date&&<button type="button" onClick={()=>setDate('')}>All dates</button>}<span>{visible.length} {visible.length===1?'daily comment':'daily comments'}</span></div>
+    <div className="admin-feedback-controls"><label>Comment date<FormattedDateInput label="Filter teacher comments by date" value={date} onChange={event=>setDate(event.target.value)}/></label>{date&&<button type="button" onClick={()=>setDate('')}>All dates</button>}<span>{visible.length} {visible.length===1?'daily comment':'daily comments'}</span></div>
     {visible.length?<><div className="admin-feedback-scroll"><table className="admin-feedback-table" aria-label="Final teacher comments by date"><thead><tr><th scope="col">Date</th><th scope="col">Teacher</th><th scope="col">Final comment</th><th scope="col">Last updated</th><th scope="col">State</th><th scope="col">Action</th></tr></thead><tbody>{visible.map(item=><tr key={item.id} className={item.read_at?'read':'unread'}><td><time dateTime={item.day}>{dayLabel(item.day)}</time></td><td>{item.teacher_name}</td><td className="admin-feedback-comment">{item.body}</td><td>{updatedLabel(item.updated_at)}</td><td><span className={item.read_at?'admin-read-label':'admin-new-label'}>{item.read_at?'Read':'New'}</span></td><td>{!item.read_at&&<button disabled={busy===item.id} onClick={()=>onMarkRead(item.id)}>Mark as read</button>}</td></tr>)}</tbody></table></div><div className="admin-feedback-mobile">{visible.map(item=><article key={item.id} className={`admin-feedback-mobile-item ${item.read_at?'read':'unread'}`}><div><time dateTime={item.day}>{dayLabel(item.day)}</time><span className={item.read_at?'admin-read-label':'admin-new-label'}>{item.read_at?'Read':'New'}</span></div><small>{item.teacher_name} · Updated {updatedLabel(item.updated_at)}</small><p>{item.body}</p>{!item.read_at&&<button disabled={busy===item.id} onClick={()=>onMarkRead(item.id)}>Mark as read</button>}</article>)}</div></>:<p className="admin-note">{date?'No final teacher comments on this date.':'No teacher updates yet. New daily feedback will appear here.'}</p>}
   </div>;
 }
