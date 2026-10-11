@@ -5,6 +5,7 @@ import { BellRing, KeyRound, LogOut, Pencil, Plus, Settings2, ShieldCheck, Trash
 import {useMenuAccess} from '../_components/auth-gate';
 import './admin.css';
 import ClassroomNotifications from '../_components/classroom-notifications';
+import {showSavePopup} from '../_components/save-popup';
 
 type Role = 'student' | 'teacher' | 'admin';
 type Account = { id: string; username: string; email: string; active: number; role: Role };
@@ -61,11 +62,11 @@ export default function AdminPage() {
     if(item.locked)return;
     setBusy(`${role}:${item.key}`);setError('');setMessage('');
     setRoleMenus(current=>current?{...current,[role]:current[role].map(menu=>menu.key===item.key?{...menu,enabled:!item.enabled}:menu)}:current);
-    try{const response=await fetch('/api/admin/menu-access',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({role,menu_key:item.key,enabled:!item.enabled})});const result=await response.json();if(!response.ok)throw new Error(result.error||'Could not update menu access.');setRoleMenus(result.roles);setMessage('Menu access saved. Affected users will see the change on their next session check.');}
+    try{const response=await fetch('/api/admin/menu-access',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({role,menu_key:item.key,enabled:!item.enabled})});const result=await response.json();if(!response.ok)throw new Error(result.error||'Could not update menu access.');setRoleMenus(result.roles);setMessage('Menu access saved. Affected users will see the change on their next session check.');showSavePopup('Menu access saved.');}
     catch(caught){setError(caught instanceof Error?caught.message:'Could not update menu access.');void loadMenus();}
     finally{setBusy('');}
   }
-  async function markFeedbackRead(id:string){setBusy(id);setError('');try{const response=await fetch(`/api/admin/feedback/${encodeURIComponent(id)}/read`,{method:'PUT'});const result=await response.json();if(!response.ok)throw new Error(result.error||'Could not mark this update as read.');await loadFeedback();}catch(caught){setError(caught instanceof Error?caught.message:'Could not mark this update as read.');}finally{setBusy('');}}
+  async function markFeedbackRead(id:string){setBusy(id);setError('');try{const response=await fetch(`/api/admin/feedback/${encodeURIComponent(id)}/read`,{method:'PUT'});const result=await response.json();if(!response.ok)throw new Error(result.error||'Could not mark this update as read.');await loadFeedback();showSavePopup('Teacher update marked as read.');}catch(caught){setError(caught instanceof Error?caught.message:'Could not mark this update as read.');}finally{setBusy('');}}
 
   function openForm(account?:Account) {
     setError(''); setMessage(''); setEditingId(account?.id || null);
@@ -77,14 +78,14 @@ export default function AdminPage() {
     try {
       const payload=editingId&&!draft.password?{username:draft.username,email:draft.email,role:draft.role}:draft;
       const result=await adminRequest(editingId?`/${encodeURIComponent(editingId)}`:'', editingId?'PUT':'POST', payload);
-      setAccounts(result.users); setFormOpen(false); setMessage(editingId?'Account updated. Its previous sessions were closed.':'Account created and ready to sign in.');
+      setAccounts(result.users); setFormOpen(false); setMessage(editingId?'Account updated. Its previous sessions were closed.':'Account created and ready to sign in.');showSavePopup(editingId?'Account updated.':'Account created.');
     } catch(caught) { setError(caught instanceof Error?caught.message:'Could not save this account.'); }
     finally { setBusy(''); }
   }
   async function deleteUser(account:Account) {
     if(!window.confirm(`Delete ${account.username}? Their account data, coursework, submissions, and reviews will be permanently removed.`))return;
     setBusy(account.id); setError(''); setMessage('');
-    try { const result=await adminRequest(`/${encodeURIComponent(account.id)}`,'DELETE'); setAccounts(result.users); setMessage(`${account.username} was deleted.`); }
+    try { const result=await adminRequest(`/${encodeURIComponent(account.id)}`,'DELETE'); setAccounts(result.users); setMessage(`${account.username} was deleted.`);showSavePopup('Account deleted.'); }
     catch(caught) { setError(caught instanceof Error?caught.message:'Could not delete this account.'); }
     finally { setBusy(''); }
   }
@@ -97,7 +98,7 @@ export default function AdminPage() {
     try {
       const response = await fetch('/api/auth/change-password', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({new_password, confirm_password: new_password}) });
       if (!response.ok) throw new Error((await response.json()).error || 'Could not change password.');
-      form.reset(); setMessage('Password changed. Other sessions were closed.');
+      form.reset(); setMessage('Password changed. Other sessions were closed.');showSavePopup('Password changed.');
     } catch (caught) { setError(caught instanceof Error ? caught.message : 'Could not change password.'); }
     finally { setBusy(''); }
   }

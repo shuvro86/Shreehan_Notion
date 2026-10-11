@@ -4,31 +4,12 @@ import { useEffect, useState, type DragEvent, type FormEvent } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Check, ChevronDown, Columns3, GripVertical, MoreHorizontal, Pencil, Plus, Sparkles, Trash2, X } from 'lucide-react';
 import './kanban.css';
+import {showSavePopup} from '../_components/save-popup';
 
 type Card = { id: string; title: string; details: string };
 type Column = { id: string; name: string; cards: Card[] };
 
-const initialBoard: Column[] = [
-  { id: 'ideas', name: 'Ideas', cards: [
-    { id: 'idea-1', title: 'Build a better morning routine', details: 'Pick a calm start that leaves room for breakfast, a little reading, and getting ready without rushing.' },
-    { id: 'idea-2', title: 'Make a mini weather journal', details: 'Notice the sky each day and draw one small picture of the weather.' },
-  ] },
-  { id: 'up-next', name: 'Up next', cards: [
-    { id: 'next-1', title: 'Choose a book for this week', details: 'Find a story that sounds fun and read a few pages together.' },
-    { id: 'next-2', title: 'Plan a paper airplane challenge', details: 'Fold three designs and see which one flies the farthest.' },
-  ] },
-  { id: 'in-progress', name: 'In progress', cards: [
-    { id: 'progress-1', title: 'Create a neighbourhood map', details: 'Add the park, the library, and a path between a few favourite places.' },
-    { id: 'progress-2', title: 'Practise multiplication facts', details: 'Try a short round of the 2, 5, and 10 times tables each afternoon.' },
-  ] },
-  { id: 'review', name: 'Review', cards: [
-    { id: 'review-1', title: 'Finish the solar system poster', details: 'Check the planet order, add labels, and make sure every planet has a colour.' },
-  ] },
-  { id: 'done', name: 'Done', cards: [
-    { id: 'done-1', title: 'Organise the art supplies', details: 'Put pencils, paper, and paints back in their home so the next idea is easy to start.' },
-    { id: 'done-2', title: 'Read a story aloud', details: 'Take turns reading and share a favourite part at the end.' },
-  ] },
-];
+const initialBoard: Column[] = ['Ideas','Up next','In progress','Review','Done'].map((name,index)=>({id:`column-${index}`,name,cards:[]}));
 
 const storageKey = 'shreehan-kanban-v1';
 
@@ -49,18 +30,8 @@ export default function KanbanPage() {
       const response = await fetch('/api/board', { cache: 'no-store' });
       if (!response.ok) throw Error('Could not load your board.');
       const data: { columns: Column[] } = await response.json();
-      let next = data.columns;
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        try {
-          const legacy = JSON.parse(saved) as Column[];
-          if (Array.isArray(legacy) && legacy.length === 5 && legacy.every(column => typeof column.name === 'string' && Array.isArray(column.cards))) {
-            const migrated = next.map((column, index) => ({ ...column, name: legacy[index].name, cards: legacy[index].cards.filter(card => typeof card.id === 'string' && typeof card.title === 'string' && typeof card.details === 'string') }));
-            const save = await fetch('/api/board', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ columns: migrated }) });
-            if (save.ok) { next = (await save.json()).columns; localStorage.removeItem(storageKey); }
-          }
-        } catch { /* Keep server data if legacy storage is malformed. */ }
-      }
+      const next = data.columns;
+      localStorage.removeItem(storageKey);
       if (active) { setColumns(next); setReady(true); }
     } catch { if (active) setSaveError('Could not load your board. Refresh to try again.'); }
   })(); return () => { active = false; }; }, []);
@@ -72,6 +43,7 @@ export default function KanbanPage() {
       const response = await fetch('/api/board', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ columns: next }) });
       if (!response.ok) throw Error();
       setColumns((await response.json()).columns);
+      showSavePopup('Board changes saved.');
     } catch { setSaveError('Could not save that change. Please try again.'); }
   }
 

@@ -113,6 +113,9 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await studentCard.getByRole('button',{name:'Submit work',exact:true}).click();
  await expect(studentCard.getByText('Awaiting review',{exact:true})).toBeVisible();
  await page.getByRole('button',{name:'Refresh',exact:true}).click();
+ await expect(page.getByLabel('Calendar search')).toHaveValue('');
+ await expect(page.locator('.cw-teacher-searches label').filter({hasText:'Status type search'})).toHaveClass(/active/);
+ await task.locator('summary').click();
  await expect(card.getByText('Granite is a hard rock.',{exact:true})).toBeVisible();
  await expect(task.locator('summary .cw-task-submitted time')).toBeVisible();
  const submittedDay=await task.locator('summary .cw-task-submitted time').getAttribute('datetime');
@@ -129,6 +132,8 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await card.getByLabel('Review Status').selectOption('done');
  await card.getByRole('button',{name:'Save review'}).click();
  await expect(page.getByRole('status').filter({hasText:'Review saved. The student can see it in the app.'})).toBeVisible();
+ await page.getByRole('button',{name:'Refresh now'}).click();
+ await expect(page.getByLabel('Calendar search')).toHaveValue('');
  expect(await ctx.request.post('/api/coursework/missing/email').then(response=>response.status())).toBe(405);
  await page.getByLabel('Status type search').selectOption('half_done');
  await expect(task.locator('summary')).toContainText('Half Done');
@@ -146,7 +151,10 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await remainingTask.locator('summary').click();
  const remainingCard=remainingTask.locator('.cw-card').filter({has:page.getByText('classroom_student_two',{exact:true})});
  await remainingCard.getByLabel('Review Status').selectOption('done');
+ await expect(remainingCard.getByRole('button',{name:'Save review'})).toBeDisabled();
+ await remainingCard.getByRole('button',{name:'Rate 7 out of 10'}).click();
  await remainingCard.getByRole('button',{name:'Save review'}).click();
+ await page.getByRole('button',{name:'Refresh now'}).click();
  await page.getByLabel('Status type search').selectOption('done');
  await expect(remainingTask.locator('summary')).toContainText('Done');
  await expect(remainingTask).toHaveCount(1);
@@ -166,8 +174,10 @@ test('teacher sees one class task and filters its completion state', async ({bro
  const mailCard=mailTask.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
  await mailCard.getByLabel('Comments / remarks').fill('Read with expression.');
  await mailCard.getByLabel('Review Status').selectOption('done');
+ await mailCard.getByRole('button',{name:'Rate 6 out of 10'}).click();
  await mailCard.getByRole('button',{name:'Save review'}).click();
  await expect(page.getByRole('status').filter({hasText:'Review saved. The student can see it in the app.'})).toBeVisible();
+ await page.getByRole('button',{name:'Refresh now'}).click();
  await page.getByLabel('Status type search').selectOption('half_done');
  await expect(mailTask).toBeVisible();
  await mailTask.locator('summary').click();
@@ -212,6 +222,8 @@ test('a failed review keeps the draft and shows the error',async({browser})=>{
  await task.locator('summary').click();
  const card=task.locator('.cw-card').filter({has:page.getByText('classroom_student',{exact:true})});
  await card.getByLabel('Comments / remarks').fill('Please practise the next page.');
+ await expect(card.getByRole('button',{name:'Save review'})).toBeDisabled();
+ await card.getByRole('button',{name:'Rate 4 out of 10'}).click();
  await page.route('**/api/coursework/*/review',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Review unavailable.'})}));
  await card.getByRole('button',{name:'Save review'}).click();
  await expect(card.getByRole('alert')).toContainText('Review unavailable.');
@@ -219,6 +231,8 @@ test('a failed review keeps the draft and shows the error',async({browser})=>{
  await page.unroute('**/api/coursework/*/review');
  await card.getByRole('button',{name:'Save review'}).click();
  await expect(page.getByRole('status').filter({hasText:'Review saved. The student can see it in the app.'})).toBeVisible();
+ await page.getByRole('button',{name:'Refresh now'}).click();
+ await expect(page.getByLabel('Calendar search')).toHaveValue('');
  await ctx.close();
 });
 

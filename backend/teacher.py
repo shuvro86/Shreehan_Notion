@@ -232,7 +232,7 @@ def edit_work(item_id: str, body: Work, user=Depends(teacher_only)):
 
 class Review(BaseModel):
     status: Literal["pending", "half_done", "completed"]
-    score: int | None = Field(default=None, ge=1, le=10, strict=True)
+    score: int = Field(ge=1, le=10, strict=True)
     remarks: str = Field(default="", max_length=4000)
 
 

@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useLibrary } from './_components/use-library';
 import { useMenuAccess } from './_components/auth-gate';
+import {showSavePopup} from './_components/save-popup';
 import Homework from './_components/homework';
 import './_components/coursework.css';
 import UnseenPaper from './_components/unseen-paper';
@@ -20,7 +21,7 @@ const collections = [
   { name: 'CT', description: 'Small checkpoints, steady growth.', icon: Target, color: 'blue', id: '3cb9ecdd38af804c84e9ca5417b5e150', tag: 'CHECK YOUR PROGRESS' },
 ];
 type Task = { id: string; title: string; subject: string; done: boolean; priority: string };
-const initialTasks: Task[] = [ { id: '1', title: 'Revise fractions & decimals', subject: 'Mathematics', done: false, priority: 'High' }, { id: '2', title: 'Finish the science worksheet', subject: 'Science', done: false, priority: 'Medium' }, { id: '3', title: 'Read the next literature chapter', subject: 'English Literature', done: true, priority: 'Low' } ];
+const initialTasks: Task[] = [];
 const subjects = ['Mathematics', 'Science', 'English Literature', 'Bangla', 'Bangladesh Studies', 'Geography', 'History', 'Moral Studies'];
 const schedule = [ ['Mathematics', 'Fractions & decimals', '09:00', '09:45', 'orange'], ['Science', 'The world around us', '10:00', '10:45', 'green'], ['English Literature', 'Reading & reflection', '11:15', '12:00', 'purple'] ];
 type HeroMessage = { title: string; text: string; source: string };
@@ -111,13 +112,12 @@ export default function Home() {
  useEffect(() => { let active = true; (async () => { try {
    const [response, me] = await Promise.all([fetch('/api/tasks', { cache: 'no-store' }), fetch('/api/auth/me', { cache: 'no-store' })]);
    if (!response.ok) throw Error();
-   let next: Task[] = (await response.json()).tasks;
+   const next: Task[] = (await response.json()).tasks;
    if (me.ok) setAccount((await me.json()).username);
-   const saved = localStorage.getItem('shreehan-tasks-v1');
-   if (saved) { try { const legacy = JSON.parse(saved); if (Array.isArray(legacy) && legacy.every(t => typeof t.id === 'string' && typeof t.title === 'string' && typeof t.done === 'boolean' && typeof t.subject === 'string' && typeof t.priority === 'string')) { const migration = await fetch('/api/tasks', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tasks: legacy }) }); if (migration.ok) { next = (await migration.json()).tasks; localStorage.removeItem('shreehan-tasks-v1'); } } } catch {} }
+   localStorage.removeItem('shreehan-tasks-v1');
    if (active) { setTasks(next); setTasksReady(true); }
   } catch { if (active) setTaskError('Could not load your tasks. Refresh to try again.'); } })(); return () => { active = false; }; }, []);
- async function saveTasks(next: Task[]) { if (!tasksReady) return; setTaskError(''); try { const response = await fetch('/api/tasks', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tasks: next }) }); if (!response.ok) throw Error(); setTasks((await response.json()).tasks); } catch { setTaskError('Could not save your tasks. Please try again.'); } }
+ async function saveTasks(next: Task[]) { if (!tasksReady) return; setTaskError(''); try { const response = await fetch('/api/tasks', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tasks: next }) }); if (!response.ok) throw Error(); setTasks((await response.json()).tasks); showSavePopup('Your task list was saved.'); } catch { setTaskError('Could not save your tasks. Please try again.'); } }
  async function signOut() { const response = await fetch('/api/auth/logout', { method: 'POST' }); if (response.ok || response.status === 401) window.location.assign('/login'); }
  async function changePassword(event: FormEvent<HTMLFormElement>) {
   event.preventDefault(); setPasswordError(''); setPasswordBusy(true);
@@ -129,7 +129,7 @@ export default function Home() {
    const response = await fetch('/api/auth/change-password', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({new_password,confirm_password}) });
    const result = await response.json().catch(() => ({}));
    if (!response.ok) throw new Error(result.error || 'Could not change your password.');
-   setPasswordSuccess(true);
+   setPasswordSuccess(true);showSavePopup('Password changed.');
   } catch (error) { setPasswordError(error instanceof Error ? error.message : 'Could not change your password.'); }
   finally { setPasswordBusy(false); }
  }

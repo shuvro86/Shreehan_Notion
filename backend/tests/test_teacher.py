@@ -209,7 +209,9 @@ def test_three_review_states_are_saved_and_grouped(classroom):
     assert c.get('/api/coursework').json()['items'][0]['review_state'] == 'half_done'
     assert c.put(f'/api/coursework/{first}/review', json={'status':'completed','score':8}).status_code == 200
     assert c.get('/api/coursework').json()['items'][0]['review_state'] == 'done'
-    assert c.put(f'/api/coursework/{first}/review', json={'status':'pending','score':None}).status_code == 200
+    assert c.put(f'/api/coursework/{first}/review', json={'status':'pending','score':None}).status_code == 422
+    assert c.put(f'/api/coursework/{first}/review', json={'status':'pending'}).status_code == 422
+    assert c.put(f'/api/coursework/{first}/review', json={'status':'pending','score':7}).status_code == 200
     assert c.get('/api/coursework').json()['items'][0]['review_state'] == 'half_done'
 
 
@@ -307,7 +309,7 @@ def test_validation_sources_and_in_app_notifications(classroom, monkeypatch):
     item=c.post('/api/coursework',json=body).json()['id']
     assert c.post('/api/coursework',json=body).status_code==409
     assert c.post(f'/api/coursework/{item}/email').status_code==405
-    for score in (0,11,1.5,True):
+    for score in (0,11,1.5,True,None):
         assert c.put(f'/api/coursework/{item}/review',json={'status':'pending','score':score}).status_code==422
     login(c,'student')
     assert any(event['id']==f'assigned:{item}' for event in c.get('/api/coursework/notifications').json()['items'])

@@ -495,3 +495,17 @@ The teacher task search now starts in status mode with amber styling on Status t
 The Next.js 16.3.8 client-component guide in `frontend/node_modules/next/dist/docs/` was read before the frontend changes. TypeScript checking and a production build passed. The focused backend teacher suite passed 12 tests after the change, including role-scoped notification delivery and the removed email route. All 48 backend tests and 26 JavaScript sync tests passed. Four isolated Playwright teacher/student flows passed, including notification-free review saving, failed review draft retention, 320px layout bounds, mutually exclusive amber search styling, and both Shreehan submission labels when another student submitted first. The teacher mobile screenshot was visually checked. Production deployment status follows below.
 
 Production release `9b9d362` reached GitHub main. Vercel deployment `dpl_C35kBj5C4xvhFCucXTvtqBS2NakP` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login`, redirected unauthenticated `/teacher` to `/login`, and returned HTTP 401 for unauthenticated `/api/coursework/notifications`. No production coursework, account, feedback, or email was created during smoke testing.
+
+## Classroom review confirmation and task reset (2026-10-11)
+
+### Implemented design
+
+The teacher Refresh button performs a full page reload, returning the teacher search to its default Status type mode and amber highlight. A review now requires a 1–10 star rating in both the teacher form and the coursework API; comments remain optional. After a successful review, a shared save confirmation appears and refreshes the page after a short display period, or immediately when its Refresh now button is used. Failed saves retain the draft and do not display a success confirmation.
+
+A shared save confirmation is also wired to teacher task changes and student submissions, admin account/menu/read-state/password changes, dashboard tasks and password changes, Kanban changes, and practice progress. The existing teacher daily-feedback confirmation retains its before/after text and Done-triggered refresh. This is a frontend presentation change; write APIs still own validation and persistence.
+
+To keep the requested task reset durable, new accounts start with an empty dashboard task list and empty Kanban columns. The frontend no longer migrates old browser-stored task or board data into the database. The planned production data reset targets user-authored `coursework` (including submissions and reviews), `daily_teacher_feedback`, `dashboard_tasks`, and Kanban `cards`. Accounts, boards/columns, and Notion/Drive source snapshots are outside this deletion scope.
+
+### Verification and production status
+
+Observed locally: the Next.js production build and TypeScript check passed, all 48 backend tests passed, and six isolated browser flows passed. Browser checks covered the required star rating, optional comments, save confirmation and refresh, default amber status search after Refresh, student submissions, dashboard and Kanban confirmations, and admin menu confirmation. The read-only production pre-deletion counts were: `coursework` 3, `daily_teacher_feedback` 2, `dashboard_tasks` 3, and `cards` 9.

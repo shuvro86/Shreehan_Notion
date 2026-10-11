@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Check, CheckCheck, Chevr
 import seed from '../../../data/library.json';
 import { useLibrary } from './use-library';
 import './library.css';
+import {showSavePopup} from './save-popup';
 
 type Doc = typeof seed.documents[number] & {driveUrl?: string};
 export default function Library({ initialMode = 'library' }: { initialMode?: 'library' | 'practice' }) {
@@ -30,7 +31,7 @@ export default function Library({ initialMode = 'library' }: { initialMode?: 'li
  useEffect(()=>{let active=true;(async()=>{try{const response=await fetch('/api/practice-progress',{cache:'no-store'});if(!response.ok)return;let next:string[]=(await response.json()).known;const saved=localStorage.getItem('shreehan-practice-v1');if(saved){try{const legacy=JSON.parse(saved);if(Array.isArray(legacy)){const migrated=await fetch('/api/practice-progress',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({known:legacy.filter((x:unknown)=>typeof x==='string')})});if(migrated.ok){next=(await migrated.json()).known;localStorage.removeItem('shreehan-practice-v1')}}}catch{}}if(active)setKnown(next)}catch{}})();return()=>{active=false}},[]);
  useEffect(()=>{ const close=(e:KeyboardEvent)=>{if(e.key==='Escape'){setSelected(null);setAudit(false)}};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close)},[]);
  function openDocument(doc:Doc,n=1){setSelected(doc);setPage(n);setReaderMode('original');}
- async function mark(id:string){const next=known.includes(id)?known.filter(x=>x!==id):[...known,id];try{const response=await fetch('/api/practice-progress',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({known:next})});if(response.ok)setKnown((await response.json()).known)}catch{}}
+ async function mark(id:string){const next=known.includes(id)?known.filter(x=>x!==id):[...known,id];try{const response=await fetch('/api/practice-progress',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({known:next})});if(response.ok){setKnown((await response.json()).known);showSavePopup('Practice progress saved.');}}catch{}}
  const terms=query.toLowerCase().trim().split(/\s+/).filter(Boolean);
  const documents=useMemo(()=>library.documents.filter(d=>(collection==='All collections'||d.collection===collection)&&(subject==='All subjects'||d.subject===subject)&&terms.every(t=>`${d.title} ${d.filename} ${d.subject} ${d.collection} ${d.pages.map(p=>p.text).join(' ')}`.toLowerCase().includes(t))),[collection,subject,query,library]);
  const questions=practice.questions.filter(q=>(subject==='All subjects'||q.subject===subject)&&(questionType==='All types'||q.type===questionType)&&terms.every(t=>`${q.question} ${q.answer} ${q.topic} ${q.subject}`.toLowerCase().includes(t)));

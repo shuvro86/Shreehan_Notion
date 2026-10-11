@@ -10,14 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 NAMES = ["Ideas", "Up next", "In progress", "Review", "Done"]
-SAMPLE_CARDS = [
-    [("Build a better morning routine", "Pick a calm start that leaves room for breakfast, a little reading, and getting ready without rushing."), ("Make a mini weather journal", "Notice the sky each day and draw one small picture of the weather.")],
-    [("Choose a book for this week", "Find a story that sounds fun and read a few pages together."), ("Plan a paper airplane challenge", "Fold three designs and see which one flies the farthest.")],
-    [("Create a neighbourhood map", "Add the park, the library, and a path between a few favourite places."), ("Practise multiplication facts", "Try a short round of the 2, 5, and 10 times tables each afternoon.")],
-    [("Finish the solar system poster", "Check the planet order, add labels, and make sure every planet has a colour.")],
-    [("Organise the art supplies", "Put pencils, paper, and paints back in their home so the next idea is easy to start."), ("Read a story aloud", "Take turns reading and share a favourite part at the end.")],
-]
-SAMPLE_TASKS = [("Revise fractions & decimals", "Mathematics", "High", 0), ("Finish the science worksheet", "Science", "Medium", 0), ("Read the next literature chapter", "English Literature", "Low", 1)]
+
 
 
 def now() -> str:
@@ -119,10 +112,6 @@ def create_starter_data(db: sqlite3.Connection, user_id: str):
     for index, name in enumerate(NAMES):
         column_id = str(uuid.uuid4())
         db.execute("INSERT INTO columns VALUES (?,?,?,?)", (column_id, board_id, index, name))
-        for position, (title, details) in enumerate(SAMPLE_CARDS[index]):
-            db.execute("INSERT INTO cards VALUES (?,?,?,?,?,?,?)", (str(uuid.uuid4()), column_id, position, title, details, timestamp, timestamp))
-    for position, (title, subject, priority, done) in enumerate(SAMPLE_TASKS):
-        db.execute("INSERT INTO dashboard_tasks VALUES (?,?,?,?,?,?,?)", (str(uuid.uuid4()), user_id, title, subject, priority, done, position))
 
 
 def get_board(db: sqlite3.Connection, user_id: str):

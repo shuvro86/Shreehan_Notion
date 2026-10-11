@@ -8,7 +8,7 @@ def main():
     with tempfile.TemporaryDirectory(prefix='shreehan-classroom-') as directory:
         os.environ.update(DATABASE_PATH=str(Path(directory)/'classroom.db'), TURSO_DATABASE_URL='',
                           NOTION_SYNC_DISABLED='1', APP_ENV='development', VERCEL='')
-        from backend.db import connection, initialize_database, now
+        from backend.db import connection, create_starter_data, initialize_database, now
         from backend.auth import hash_password
         initialize_database()
         with connection() as db:
@@ -17,6 +17,8 @@ def main():
                            (name, name, name+'@example.test', hash_password('classroom-test'), now(), now()))
             db.execute('INSERT INTO teachers VALUES (?)', ('teacher',))
             db.execute("INSERT INTO account_roles VALUES ('shuvro','admin')")
+            for name in ('classroom_student', 'classroom_student_two'):
+                create_starter_data(db, name)
         import uvicorn
         uvicorn.run('backend.main:app', host='127.0.0.1', port=int(os.getenv('CLASSROOM_TEST_PORT', '8017')))
 

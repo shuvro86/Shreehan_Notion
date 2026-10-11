@@ -29,8 +29,10 @@ def test_signup_login_reset_and_persistent_board(client):
     assert browser.get("/api/auth/me").json()["username"] == "shreehan"
     columns = browser.get("/api/board").json()["columns"]
     assert len(columns) == 5
-    assert sum(len(column["cards"]) for column in columns) == 9
+    assert sum(len(column["cards"]) for column in columns) == 0
+    assert browser.get('/api/tasks').json()['tasks'] == []
     columns[0]["name"] = "Dreams"
+    columns[0]["cards"].append({"id": "moving-card", "title": "A fresh idea", "details": "Move across columns"})
     moved = columns[0]["cards"].pop()
     columns[2]["cards"].append(moved)
     columns[4]["cards"].append({"id": "new-card", "title": "A little win", "details": "Saved to SQLite"})
