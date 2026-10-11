@@ -25,6 +25,11 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(page.getByRole('navigation').getByRole('button',{name:'Change password'})).toBeVisible();
  expect(await page.getByRole('navigation').getByRole('button').allTextContents()).toEqual(['Change password',' Notifications','Sign out']);
  await expect(page.getByLabel('Calendar search')).toHaveValue('');
+ const calendarButton=page.getByRole('button',{name:'Open date picker'});
+ await expect(calendarButton).toBeVisible();
+ await page.getByLabel('Calendar search').evaluate((input:HTMLInputElement)=>{input.showPicker=()=>{input.dataset.pickerOpened='true';};});
+ await calendarButton.click();
+ await expect(page.getByLabel('Calendar search')).toHaveAttribute('data-picker-opened','true');
  await expect(page.locator('.cw-teacher-searches label').filter({hasText:'Status type search'})).toHaveClass(/active/);
  const initialPending=Number((await page.locator('.cw-notice strong').innerText()).match(/^\d+/)?.[0]);
  await page.getByRole('button',{name:'Assign task',exact:true}).click();
@@ -57,6 +62,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(page.locator('.cw-teacher-searches label').filter({hasText:'Status type search'})).toHaveClass(/active/);
  await expect(task).toHaveCount(1);
  await page.getByLabel('Calendar search').fill(dueDate);
+ await expect(page.locator('.cw-teacher-searches .formatted-date-input > span')).toHaveText(new Date(`${dueDate}T12:00:00+06:00`).toLocaleDateString('en-GB',{timeZone:'Asia/Dhaka',day:'2-digit',month:'short',year:'numeric'}).replace(/ /g,'-'));
  await expect(task).toHaveCount(1);
  await expect(task).toHaveClass(/cw-subject-science/);
  await expect(task.locator('summary')).toContainText('2 students');

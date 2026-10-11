@@ -525,3 +525,13 @@ Classroom notifications are generated from `coursework` and `daily_teacher_feedb
 ### Observed verification and release status
 
 Next.js 16.3.8 client-component and forms guides were read before editing. TypeScript checking and the production build passed. All 48 backend tests and 26 JavaScript sync tests passed. The isolated teacher browser flow passed after the date control adjustment, checking today's Dhaka due date, `dd-Mon-yyyy` display, assignment flow, and 320px layout. A read-only production Turso check found 4 coursework rows and zero rows in the other three target tables. The direct production clear completed; a fresh readback found zero rows in all four target tables, with 3 users, 1 board, and 5 board columns preserved. Release `727640a` reached GitHub `main`. The Git-triggered Vercel deployment `dpl_3bSgEqiCtQgGvzUk1RPmbEc215EX` reached READY and is aliased to `https://shreehan-notion.vercel.app`. Live read-only checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/library` and `/api/coursework/notifications`. A post-deployment Turso readback still found zero rows in all four cleared tables. The separate direct CLI deployment attempt did not complete; the ready Git-triggered deployment is serving production.
+
+## Teacher calendar search control restored (2026-10-12)
+
+### Resulting behavior and decision
+
+The shared formatted date input now has an explicit, visible calendar button that opens the native date picker. In the teacher's Calendar search, the selected day still displays as `dd-Mon-yyyy`, while its underlying ISO date value continues to drive creation, due-date, and submission filtering. The same button is available on other formatted date controls. This is a frontend control change; API storage, database schema, task data, and external integrations are unchanged.
+
+### Observed verification and release status
+
+TypeScript checking and the Next.js production build passed. The focused isolated teacher browser flow verified the visible calendar icon calls the native picker, retains the `dd-Mon-yyyy` search display, filters tasks by the unchanged ISO value, and fits the 320px layout. The teacher desktop screenshot was visually checked. Production release status follows after deployment.
