@@ -25,6 +25,9 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(page.getByRole('navigation').getByRole('button',{name:'Change password'})).toBeVisible();
  expect(await page.getByRole('navigation').getByRole('button').allTextContents()).toEqual(['Change password',' Notifications','Sign out']);
  await expect(page.getByLabel('Calendar search')).toHaveValue('');
+ const visualDateField=page.locator('.cw-teacher-searches .formatted-date-input > span');
+ const statusField=page.getByLabel('Status type search');
+ expect((await visualDateField.boundingBox())?.height).toBe((await statusField.boundingBox())?.height);
  const calendarButton=page.getByRole('button',{name:'Open date picker'});
  await expect(calendarButton).toBeVisible();
  await page.getByLabel('Calendar search').evaluate((input:HTMLInputElement)=>{input.showPicker=()=>{input.dataset.pickerOpened='true';};});
@@ -95,6 +98,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
   expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(390);
  }
  await page.setViewportSize({width:320,height:700});
+ expect((await visualDateField.boundingBox())?.height).toBe((await statusField.boundingBox())?.height);
  const calendarBounds=await page.getByLabel('Calendar search').boundingBox();
  const statusBounds=await page.getByLabel('Status type search').boundingBox();
  expect(calendarBounds).not.toBeNull();

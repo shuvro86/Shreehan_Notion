@@ -545,3 +545,13 @@ The student dashboard's teacher coursework link is now a distinct classroom card
 ### Observed verification and release status
 
 The Next.js 16.3.8 client-component and page guides were checked before editing. TypeScript checking and the production build passed. An isolated student browser flow passed with a mocked Notion homework item: it found separate accessible teacher and Father sections, verified the Notion item and date, followed the teacher card to `/coursework`, and found no horizontal overflow at 320px. Desktop and mobile screenshots were visually inspected. A read-only production snapshot check found one published Notion Homework source, two homework items, and no Homework documents. The existing authenticated live-source regression was updated to use the current item count and titles instead of assuming five specific items; it still requires E2E credentials and was not run in this isolated fixture. Release `587d393` reached GitHub `main`. Vercel production deployment `dpl_9ZrG5R6QRk4U7BHHbVpVXfUL4ksY` reached READY and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/library` and `/api/coursework`. Authenticated production rendering of the two homework sections was not exercised; the isolated browser flow and production snapshot readback cover their source wiring.
+
+## Teacher search field height alignment (2026-10-12)
+
+### Resulting behavior and scope
+
+The teacher Calendar search's visible formatted-date surface now has the same fixed 42px height as the Status type search select. This is scoped to the teacher search row; the date picker, `dd-Mon-yyyy` display, active filter behavior, API values, database, and external integrations are unchanged.
+
+### Observed verification and release status
+
+TypeScript checking and the Next.js production build passed. The focused isolated teacher browser flow passed and measured equal 42px visible heights for Calendar search and Status type search on desktop and at 320px; the date picker and filter flow also passed. The desktop screenshot was visually checked. Production release status follows after deployment.
