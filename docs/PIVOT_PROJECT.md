@@ -509,3 +509,7 @@ To keep the requested task reset durable, new accounts start with an empty dashb
 ### Verification and production status
 
 Observed locally: the Next.js production build and TypeScript check passed, all 48 backend tests passed, and six isolated browser flows passed. Browser checks covered the required star rating, optional comments, save confirmation and refresh, default amber status search after Refresh, student submissions, dashboard and Kanban confirmations, and admin menu confirmation. The read-only production pre-deletion counts were: `coursework` 3, `daily_teacher_feedback` 2, `dashboard_tasks` 3, and `cards` 9.
+
+### Observed production release and data reset
+
+Release `7b142c8` reached GitHub main and Vercel deployment `dpl_5NrEDHsTFwFZjJfp8xYVeG3XXGMq` reached Ready at `https://shreehan-notion.vercel.app`. With that code active, the production Turso reset deleted 3 `coursework` rows, 2 `daily_teacher_feedback` rows, 3 `dashboard_tasks` rows, and 9 `cards` rows. A fresh readback returned zero rows in all four tables; 3 users, 1 board, and 5 columns remained. This was a direct production data change; synced study sources and practice progress were not altered. After the reset, read-only live checks returned HTTP 200 for `/login`, redirected unauthenticated `/teacher` to `/login`, and returned HTTP 401 for unauthenticated `/api/coursework/notifications`.
