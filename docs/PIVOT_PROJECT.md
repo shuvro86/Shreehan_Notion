@@ -535,3 +535,13 @@ The shared formatted date input now has an explicit, visible calendar button tha
 ### Observed verification and release status
 
 TypeScript checking and the Next.js production build passed. The focused isolated teacher browser flow verified the visible calendar icon calls the native picker, retains the `dd-Mon-yyyy` search display, filters tasks by the unchanged ISO value, and fits the 320px layout. The teacher desktop screenshot was visually checked. Release `129f482` reached GitHub `main`; Vercel deployment `dpl_HuyPJsJwYbyhzter9s4Mbdupx3rz` reached READY and was aliased to `https://shreehan-notion.vercel.app`. Read-only production smoke checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/coursework/notifications`.
+
+## Student homework hub split (2026-10-12)
+
+### Resulting architecture, integrations, and source scope
+
+The student dashboard's teacher coursework link is now a distinct classroom card with a direct `/coursework` route. It stays visible on Overview, Homework List, and Assignment when the student's coursework menu is enabled. The Homework List view presents a second, visually separate **Homework List from Father** section. That section continues to render `library.homework` instructions, checklist state, dates, source links, and Homework documents from the existing Notion sync. Its search, status filter, and original Notion links remain in place. The generic Notion collection banner is omitted on this view so the two sources are clear. The Homework List page heading explains the separation. No API, database schema, permissions, sync schedule, or source mapping changed.
+
+### Observed verification and release status
+
+The Next.js 16.3.8 client-component and page guides were checked before editing. TypeScript checking and the production build passed. An isolated student browser flow passed with a mocked Notion homework item: it found separate accessible teacher and Father sections, verified the Notion item and date, followed the teacher card to `/coursework`, and found no horizontal overflow at 320px. Desktop and mobile screenshots were visually inspected. A read-only production snapshot check found one published Notion Homework source, two homework items, and no Homework documents. The existing authenticated live-source regression was updated to use the current item count and titles instead of assuming five specific items; it still requires E2E credentials and was not run in this isolated fixture. Push, deployment, and production smoke status follow after release.
