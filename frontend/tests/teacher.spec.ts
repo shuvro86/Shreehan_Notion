@@ -23,7 +23,9 @@ test('teacher sees one class task and filters its completion state', async ({bro
  const searches=page.locator('.cw-teacher-searches');
  expect(await searches.locator('label').allTextContents()).toEqual(expect.arrayContaining([expect.stringContaining('Calendar search'),expect.stringContaining('Status type search')]));
  await expect(page.getByRole('navigation').getByRole('button',{name:'Change password'})).toBeVisible();
- expect(await page.getByRole('navigation').getByRole('button').allTextContents()).toEqual(['Change password',' Notifications','Sign out']);
+ expect(await page.getByRole('navigation').getByRole('button').count()).toBe(3);
+ await expect(page.getByRole('button',{name:'Notifications'})).toContainText('Notifications');
+ expect(await page.getByRole('button',{name:'Notifications'}).evaluate(element=>getComputedStyle(element).color)).toBe('rgb(103, 80, 164)');
  await expect(page.getByLabel('Calendar search')).toHaveValue('');
  const visualDateField=page.locator('.cw-teacher-searches .formatted-date-input > span');
  const statusField=page.getByLabel('Status type search');
@@ -39,9 +41,9 @@ test('teacher sees one class task and filters its completion state', async ({bro
  const dialog=page.getByRole('dialog');
  await expect(dialog).toBeVisible();
  await expect(dialog.getByRole('heading',{name:'Assign task'})).toBeVisible();
- expect(await dialog.evaluate(element=>getComputedStyle(element).backgroundImage)).toContain('linear-gradient');
- expect(await dialog.evaluate(element=>getComputedStyle(element).backgroundColor)).toBe('rgb(252, 252, 252)');
- expect(await dialog.evaluate(element=>getComputedStyle(element).borderTopColor)).toBe('rgb(236, 173, 10)');
+ expect(await page.locator('.cw-teacher').evaluate(element=>getComputedStyle(element).getPropertyValue('--md-primary').trim())).toBe('#6750a4');
+ expect(await dialog.evaluate(element=>getComputedStyle(element).backgroundColor)).toBe('rgb(247, 242, 250)');
+ expect(await dialog.evaluate(element=>getComputedStyle(element).borderTopColor)).toBe('rgb(202, 196, 208)');
  await expect(dialog.getByText('This task will be assigned to every active student.',{exact:false})).toBeVisible();
  await expect(dialog.getByText('Student',{exact:true})).toHaveCount(0);
  await expect(dialog.getByText('Existing Notion work (optional)')).toHaveCount(0);

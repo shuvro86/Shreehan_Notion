@@ -565,3 +565,13 @@ The teacher assignment dialog gives the Subject select and the visible Due date 
 ### Observed verification and release status
 
 The Next.js 16.3.8 CSS and client-component guides were checked before editing. TypeScript checking and the production build passed. The focused isolated teacher browser flow passed, measuring equal form-field heights and confirming that saved instructions appear in the collapsed row and remain visible at 320px. Desktop screenshots of the dialog and task row were visually inspected. Release `05037d4` reached GitHub `main`. Vercel deployment `dpl_9sVDP1EJwCwwbjrZcxVDDZbSSmNe` reached READY and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/coursework/notifications`.
+
+## Teacher workspace Material Design 3 (2026-10-12)
+
+### Resulting architecture, integrations, source scope, and decisions
+
+The authenticated teacher view at `/teacher` now imports a separate `teacher-material.css` layer after the existing coursework styles. It defines Material Design 3 color roles and applies them to the teacher app bar, actions, surface containers, status chips, forms, task list, review cards, notifications, and dialogs. The teacher workspace uses a light surface scheme with purple primary and tonal containers. The student coursework view and other routes retain their existing design. No component library, runtime dependency, API, database change, migration, source mapping, or external integration was added. Notion and Drive source scope, synchronization, teacher task storage, and role permissions are unchanged. The existing 42px search fields and 44px assignment fields remain aligned.
+
+### Observed verification and release status
+
+The installed Next.js 16.3.8 CSS and client-component guides and official Material Design 3 color-role and typography guidance were checked. TypeScript checking and the production build passed. Four isolated teacher/student browser flows passed, including assignment, review, filtering, and 320px layout coverage. Desktop, mobile, and assignment-dialog screenshots were visually inspected; this found a low-contrast notifications action, which was corrected before release. Push, deployment, and live verification status are recorded after completion.
