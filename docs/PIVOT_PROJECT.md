@@ -605,3 +605,13 @@ The teacher-only `teacher-neumorphism.css` canvas and matching raised/inset surf
 ### Observed verification and release status
 
 The installed Next.js 16.3.8 CSS guide was reviewed before editing. TypeScript checking and the production build passed. Four isolated teacher/student browser flows passed, including the computed white canvas and dialog background, assignment, review, filtering, and 320px layout coverage. The desktop screenshot was visually inspected. Release `813e7b9` reached GitHub `main`. The Git-triggered Vercel production deployment `dpl_Ea9zrqzvajjPq2vw5CJ5QvJjVEwA` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login`, redirected unauthenticated `/teacher` to `/login`, and returned HTTP 401 for unauthenticated `/api/coursework`. Authenticated production rendering was covered by the isolated browser suite rather than a live account session.
+
+## Teacher workspace enterprise redesign (2026-10-12)
+
+### Resulting architecture, integrations, source scope, and decisions
+
+The authenticated `/teacher` view now imports `teacher-enterprise.css` after the shared coursework layer, replacing the prior `teacher-neumorphism.css` treatment. The dashboard uses a restrained navy header, quiet grid texture, white bordered work surfaces, high-contrast type, a single purple assignment/review action color, blue navigation and selection cues, and amber attention cues. The task queue is visually grouped and appears before the daily feedback form in document order; task rows and expanded student review cards use thin borders and compact status badges for faster scanning. The teacher heading now names the page “Classroom overview” and describes the main tasks directly. Existing assignment, review, filtering, date handling, notifications, password, and feedback behavior remains in place. The style is scoped to `.cw-teacher`; student coursework and other routes retain their design. No dependency, API, database, Notion or Drive integration, source scope, synchronization, or role-permission change was made.
+
+### Observed verification and release status
+
+The installed Next.js 16.3.8 CSS and page guides were reviewed before editing. TypeScript checking and the production build passed. Four isolated teacher/student browser flows passed, including assignment, review, filtering, status color, dialog styling, and 320px layout coverage. Desktop, mobile, and assignment-dialog screenshots were visually inspected. Release status follows after deployment.
