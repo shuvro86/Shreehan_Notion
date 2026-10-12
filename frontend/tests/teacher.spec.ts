@@ -46,6 +46,9 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(dialog.getByText('Student',{exact:true})).toHaveCount(0);
  await expect(dialog.getByText('Existing Notion work (optional)')).toHaveCount(0);
  await expect(dialog.getByRole('combobox',{name:'Subject',exact:true}).locator('option')).toHaveCount(11);
+ const subjectField=dialog.getByRole('combobox',{name:'Subject',exact:true});
+ const dueDateField=dialog.locator('.cw-form-grid .formatted-date-input > span');
+ expect((await subjectField.boundingBox())?.height).toBe((await dueDateField.boundingBox())?.height);
  const title=`Science task ${Date.now()}`;
  await dialog.getByRole('combobox',{name:'Work type'}).selectOption('Assignment');
  await dialog.getByRole('combobox',{name:'Subject',exact:true}).selectOption('Science');
@@ -54,6 +57,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  const dueDate=await dialog.getByLabel('Due date').inputValue();
  expect(dueDate).toBe(new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Dhaka'}));
  await expect(dialog.getByText(new Date(`${dueDate}T12:00:00+06:00`).toLocaleDateString('en-GB',{timeZone:'Asia/Dhaka',day:'2-digit',month:'short',year:'numeric'}).replace(/ /g,'-'))).toBeVisible();
+ await page.screenshot({path:'../tmp/teacher-assignment-form.png'});
  await dialog.getByRole('button',{name:'Assign task',exact:true}).click();
  await expect(dialog).not.toBeVisible();
  const task=page.locator('.cw-class-task').filter({hasText:title});
@@ -69,6 +73,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(task).toHaveCount(1);
  await expect(task).toHaveClass(/cw-subject-science/);
  await expect(task.locator('summary')).toContainText('2 students');
+ await expect(task.locator('summary .cw-task-instructions')).toHaveText('Describe a rock from your science lesson.');
  await expect(task.locator('summary .cw-task-submitted')).toContainText('Not submitted');
  await expect(task.locator('summary').getByRole('button',{name:'Delete record'})).toHaveCount(0);
  await page.getByLabel('Calendar search').fill('2030-01-01');
@@ -98,6 +103,7 @@ test('teacher sees one class task and filters its completion state', async ({bro
   expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(390);
  }
  await page.setViewportSize({width:320,height:700});
+ await expect(task.locator('summary .cw-task-instructions')).toBeVisible();
  expect((await visualDateField.boundingBox())?.height).toBe((await statusField.boundingBox())?.height);
  const calendarBounds=await page.getByLabel('Calendar search').boundingBox();
  const statusBounds=await page.getByLabel('Status type search').boundingBox();

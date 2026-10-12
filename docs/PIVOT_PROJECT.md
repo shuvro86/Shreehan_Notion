@@ -555,3 +555,13 @@ The teacher Calendar search's visible formatted-date surface now has the same fi
 ### Observed verification and release status
 
 TypeScript checking and the Next.js production build passed. The focused isolated teacher browser flow passed and measured equal 42px visible heights for Calendar search and Status type search on desktop and at 320px; the date picker and filter flow also passed. The desktop screenshot was visually checked. Release `e076406` reached GitHub `main`. Vercel deployment `dpl_HKAegUWHUHLixAjLw83e72kr6wjo` reached READY and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/coursework/notifications`.
+
+## Teacher assignment form and task preview (2026-10-12)
+
+### Resulting behavior, architecture, and source scope
+
+The teacher assignment dialog gives the Subject select and the visible Due date control the same 44px height. Teacher class-task rows now show a two-line preview of saved instructions beneath the title; expanding a row still shows the full instructions and student review cards. Tasks without instructions keep the existing compact row. These changes are limited to the teacher coursework component, its stylesheet, and its focused browser test. The stored instruction text, date value and `dd-Mon-yyyy` display, API, database schema, and external integrations are unchanged.
+
+### Observed verification and release status
+
+The Next.js 16.3.8 CSS and client-component guides were checked before editing. TypeScript checking and the production build passed. The focused isolated teacher browser flow passed, measuring equal form-field heights and confirming that saved instructions appear in the collapsed row and remain visible at 320px. Desktop screenshots of the dialog and task row were visually inspected. Production release status follows after deployment.
