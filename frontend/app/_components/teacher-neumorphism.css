@@ -1,30 +1,30 @@
 /* Soft raised and inset surfaces are intentionally scoped to the teacher workspace. */
 .cw-teacher {
-  --neu-bg:rgb(252,252,240);
+  --neu-bg:rgba(252,252,252,1);
   --neu-text:#032147;
   --neu-muted:#888888;
   --neu-accent:#209dd7;
   --neu-action:#753991;
   --neu-highlight:#ecad0a;
   --neu-light:#ffffff;
-  --neu-shadow:#d7d7c8;
+  --neu-shadow:#d7dbe0;
   --neu-raised:8px 8px 18px var(--neu-shadow),-8px -8px 18px var(--neu-light);
   --neu-raised-small:4px 4px 10px var(--neu-shadow),-4px -4px 10px var(--neu-light);
-  --neu-inset:inset 4px 4px 9px #deded1,inset -4px -4px 9px #ffffff;
+  --neu-inset:inset 4px 4px 9px #e1e4e8,inset -4px -4px 9px #ffffff;
   background:var(--neu-bg);
   color:var(--neu-text);
   font-family:'Avenir Next',Avenir,'Trebuchet MS',Arial,sans-serif;
 }
-.cw-teacher .cw-header{background:var(--neu-bg);color:var(--neu-text);border-bottom:0;box-shadow:0 5px 14px #d7d7c880;padding-block:12px}
+.cw-teacher .cw-header{background:var(--neu-bg);color:var(--neu-text);border-bottom:0;box-shadow:0 5px 14px #d7dbe080;padding-block:12px}
 .cw-teacher .cw-brand{color:var(--neu-text)}
 .cw-teacher .cw-brand>span{background:var(--neu-bg);border:0;border-radius:14px;color:var(--neu-accent);box-shadow:var(--neu-raised-small)}
 .cw-teacher .cw-brand>span svg path:first-child{fill:var(--neu-accent);stroke:var(--neu-accent)}
 .cw-teacher .cw-brand small{color:var(--neu-muted)}
 .cw-teacher .cw-header nav>button,.cw-teacher .cw-password>button,.cw-teacher .classroom-notifications>button{min-height:40px;background:var(--neu-bg);border:0;border-radius:14px;color:var(--neu-accent);box-shadow:var(--neu-raised-small)}
-.cw-teacher .cw-header nav>button:hover,.cw-teacher .cw-password>button:hover,.cw-teacher .classroom-notifications>button:hover{background:#f1f5e9;box-shadow:var(--neu-inset)}
+.cw-teacher .cw-header nav>button:hover,.cw-teacher .cw-password>button:hover,.cw-teacher .classroom-notifications>button:hover{background:#eef4f8;box-shadow:var(--neu-inset)}
 .cw-teacher .classroom-notification-panel,.cw-teacher .cw-password-panel{background:var(--neu-bg);border:0;border-radius:18px;color:var(--neu-text);box-shadow:var(--neu-raised)}
 .cw-teacher .classroom-notification-panel>div button{color:var(--neu-accent)}
-.cw-teacher .classroom-notification-panel li{border-top-color:#e5e2d2}
+.cw-teacher .classroom-notification-panel li{border-top-color:#e1e5ea}
 .cw-teacher .classroom-notification-panel li time{color:var(--neu-muted)}
 .cw-teacher .cw-main{max-width:1200px;padding-top:28px}
 .cw-teacher .cw-heading{margin-bottom:20px}
@@ -52,14 +52,14 @@
 .cw-teacher .cw-work-heading h2{font-size:22px}
 .cw-teacher .cw-work-heading h2 span{background:var(--neu-bg);color:var(--neu-accent);box-shadow:var(--neu-inset)}
 .cw-teacher .cw-work-heading>button,.cw-teacher .cw-actions>button:not(.cw-primary){border:0;background:var(--neu-bg);color:var(--neu-accent);box-shadow:var(--neu-raised-small)}
-.cw-teacher .cw-work-heading>button:hover,.cw-teacher .cw-actions>button:not(.cw-primary):hover{background:#f1f5e9;box-shadow:var(--neu-inset)}
+.cw-teacher .cw-work-heading>button:hover,.cw-teacher .cw-actions>button:not(.cw-primary):hover{background:#eef4f8;box-shadow:var(--neu-inset)}
 .cw-teacher .cw-teacher-searches{margin:18px 0 9px}
 .cw-teacher .cw-teacher-searches label{font-size:12px;font-weight:650}
-.cw-teacher input,.cw-teacher select,.cw-teacher textarea{background:var(--neu-bg);border:1px solid #d7d7c8;border-radius:12px;color:var(--neu-text);box-shadow:var(--neu-inset)}
+.cw-teacher input,.cw-teacher select,.cw-teacher textarea{background:var(--neu-bg);border:1px solid #d7dbe0;border-radius:12px;color:var(--neu-text);box-shadow:var(--neu-inset)}
 .cw-teacher input:focus,.cw-teacher select:focus,.cw-teacher textarea:focus{border-color:var(--neu-accent);outline:2px solid var(--neu-accent);outline-offset:2px}
 .cw-teacher .cw-teacher-searches label.active{color:var(--neu-accent)!important}
 .cw-teacher .cw-teacher-searches label.active select,.cw-teacher .cw-teacher-searches label.active .formatted-date-input>span{background:#e6f5fb;border:2px solid var(--neu-accent);color:var(--neu-text);box-shadow:var(--neu-inset)}
-.cw-teacher .formatted-date-input>span,.cw-teacher .cw-form-grid .formatted-date-input>span{background:var(--neu-bg);border:1px solid #d7d7c8;border-radius:12px;color:var(--neu-text);font-size:14px;box-shadow:var(--neu-inset)}
+.cw-teacher .formatted-date-input>span,.cw-teacher .cw-form-grid .formatted-date-input>span{background:var(--neu-bg);border:1px solid #d7dbe0;border-radius:12px;color:var(--neu-text);font-size:14px;box-shadow:var(--neu-inset)}
 .cw-teacher .cw-teacher-searches .formatted-date-input>span{height:42px}
 .cw-teacher .cw-form-grid .formatted-date-input>span{height:44px}
 .cw-teacher .formatted-date-input:focus-within>span{outline:3px solid var(--neu-accent);outline-offset:2px}
@@ -67,7 +67,7 @@
 .cw-teacher .cw-task-columns{font-weight:700}
 .cw-teacher .cw-task-list{display:grid;gap:16px}
 .cw-teacher .cw-class-task{background:var(--neu-bg);border:0;border-left:4px solid var(--neu-highlight);border-radius:20px;box-shadow:var(--neu-raised);overflow:hidden}
-.cw-teacher .cw-class-task:hover{background:#faf7df}
+.cw-teacher .cw-class-task:hover{background:#f6f9fb}
 .cw-teacher .cw-class-task[open]{background:var(--neu-bg)}
 .cw-teacher .cw-class-task summary{min-height:70px;padding:15px 18px}
 .cw-teacher .cw-class-task summary:focus-visible{outline:3px solid var(--neu-accent);outline-offset:-3px;border-radius:20px}
@@ -78,17 +78,17 @@
 .cw-teacher .cw-status.not_done{background:#fff1c2;color:#624800}
 .cw-teacher .cw-status.half_done{background:#e2f3fb;color:#244b78}
 .cw-teacher .cw-status.done{background:#e8f5e9;color:#24563a}
-.cw-teacher .cw-task-detail{background:#f4f4e8;border-top:1px solid #e2e0d1;padding:18px}
+.cw-teacher .cw-task-detail{background:#f2f5f8;border-top:1px solid #dfe4e9;padding:18px}
 .cw-teacher .cw-task-detail .cw-card{background:var(--neu-bg);border:0;border-radius:18px;box-shadow:var(--neu-raised-small);transform:none}
 .cw-teacher .cw-card:hover{transform:none;box-shadow:var(--neu-raised-small)}
-.cw-teacher .cw-card form{border-top-color:#e2e0d1}
+.cw-teacher .cw-card form{border-top-color:#dfe4e9}
 .cw-teacher .cw-task-submitted,.cw-teacher .cw-saved-remarks,.cw-teacher .cw-submission{background:var(--neu-bg);border:0;border-radius:12px;color:var(--neu-text);box-shadow:var(--neu-inset)}
 .cw-teacher .cw-stars button,.cw-teacher .cw-stars button:nth-child(n){color:#9a6500;box-shadow:none}
 .cw-teacher .cw-stars button:hover,.cw-teacher .cw-stars button:focus-visible{background:#fff3cb;transform:none;filter:none}
 .cw-teacher .cw-rating>span,.cw-teacher .cw-saved-remarks strong{color:var(--neu-muted)}
 .cw-teacher .cw-class-task .cw-delete{background:var(--neu-bg);border:0;color:#a03745;border-radius:12px;box-shadow:var(--neu-raised-small)}
 .cw-teacher .cw-class-task .cw-delete:hover{background:#f6e4e7;box-shadow:var(--neu-inset)}
-.cw-teacher .cw-dialog,.cw-teacher .cw-feedback-dialog{background:var(--neu-bg);border:0;border-radius:24px;box-shadow:12px 12px 35px #9e9e91,-12px -12px 35px #ffffff;padding:24px}
+.cw-teacher .cw-dialog,.cw-teacher .cw-feedback-dialog{background:var(--neu-bg);border:0;border-radius:24px;box-shadow:12px 12px 35px #9aa6b2,-12px -12px 35px #ffffff;padding:24px}
 .cw-teacher .cw-dialog h2,.cw-teacher .cw-feedback-dialog h2{color:var(--neu-text)}
 .cw-teacher .cw-dialog>p,.cw-teacher .cw-feedback-dialog>p{color:var(--neu-muted)}
 .cw-teacher .cw-feedback-dialog-copy{background:var(--neu-bg);border:0;border-radius:12px;box-shadow:var(--neu-inset)}
@@ -99,7 +99,7 @@
 .cw-teacher .cw-success{color:#24563a}
 .cw-teacher .cw-empty{background:var(--neu-bg);border:0;border-radius:20px;color:var(--neu-muted);box-shadow:var(--neu-inset)}
 .cw-teacher .cw-empty h3{color:var(--neu-text)}
-.cw-teacher .cw-footer{border-top-color:#e2e0d1}
+.cw-teacher .cw-footer{border-top-color:#dfe4e9}
 @media(max-width:760px){
   .cw-teacher .cw-main{padding:18px 14px 24px}
   .cw-teacher .cw-heading{align-items:flex-start;gap:10px}

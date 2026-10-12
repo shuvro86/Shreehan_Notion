@@ -42,8 +42,9 @@ test('teacher sees one class task and filters its completion state', async ({bro
  await expect(dialog).toBeVisible();
  await expect(dialog.getByRole('heading',{name:'Assign task'})).toBeVisible();
  expect(await page.locator('.cw-teacher').evaluate(element=>getComputedStyle(element).getPropertyValue('--neu-accent').trim())).toBe('#209dd7');
- expect(await dialog.evaluate(element=>getComputedStyle(element).backgroundColor)).toBe('rgb(252, 252, 240)');
- expect(await dialog.evaluate(element=>getComputedStyle(element).boxShadow)).toContain('rgb(158, 158, 145)');
+ expect(await page.locator('.cw-teacher').evaluate(element=>getComputedStyle(element).backgroundColor)).toBe('rgb(252, 252, 252)');
+ expect(await dialog.evaluate(element=>getComputedStyle(element).backgroundColor)).toBe('rgb(252, 252, 252)');
+ expect(await dialog.evaluate(element=>getComputedStyle(element).boxShadow)).toContain('rgb(154, 166, 178)');
  expect(await page.locator('.cw-heading h1').evaluate(element=>getComputedStyle(element).color)).toBe('rgb(3, 33, 71)');
  expect(await page.getByRole('button',{name:'Assign task',exact:true}).first().evaluate(element=>getComputedStyle(element).backgroundColor)).toBe('rgb(117, 57, 145)');
  expect(await page.locator('.cw-notice').evaluate(element=>getComputedStyle(element).borderLeftColor)).toBe('rgb(236, 173, 10)');

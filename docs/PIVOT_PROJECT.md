@@ -595,3 +595,13 @@ The teacher-only `teacher-neumorphism.css` layer keeps its raised and inset surf
 ### Observed verification and release status
 
 The installed Next.js 16.3.8 CSS guide was reviewed before editing. TypeScript checking and the production build passed. Four isolated teacher/student browser flows passed, including computed palette checks, assignment, review, filtering, and 320px layout coverage. Desktop and mobile screenshots were visually inspected. Release `a98a8dd` reached GitHub `main`. The Git-triggered Vercel production deployment `dpl_F4MDuoqEG6uniEp5VjKuQsCqvsfU` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login`, redirected unauthenticated `/teacher` to `/login`, and returned HTTP 401 for unauthenticated `/api/coursework`. Authenticated production rendering was covered by the isolated browser suite rather than a live account session.
+
+## Teacher workspace neutral white canvas (2026-10-12)
+
+### Resulting architecture, integrations, source scope, and decisions
+
+The teacher-only `teacher-neumorphism.css` canvas and matching raised/inset surfaces now use the requested `rgba(252,252,252,1)` background. Neutral gray shadows, borders, hover surfaces, and task-detail backgrounds replace the previous warm-white supporting neutrals, keeping the neumorphic depth crisp on white. Navy headings, gray supporting text, blue links, purple actions, and yellow accents remain in the teacher palette. The student coursework view and other routes are unchanged. No dependency, API, database, Notion or Drive integration, source scope, synchronization, or role-permission change was made.
+
+### Observed verification and release status
+
+The installed Next.js 16.3.8 CSS guide was reviewed before editing. TypeScript checking and the production build passed. Four isolated teacher/student browser flows passed, including the computed white canvas and dialog background, assignment, review, filtering, and 320px layout coverage. The desktop screenshot was visually inspected. Production release status follows after deployment.
