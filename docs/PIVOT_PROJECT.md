@@ -575,3 +575,13 @@ The authenticated teacher view at `/teacher` now imports a separate `teacher-mat
 ### Observed verification and release status
 
 The installed Next.js 16.3.8 CSS and client-component guides and official Material Design 3 color-role and typography guidance were checked. TypeScript checking and the production build passed. Four isolated teacher/student browser flows passed, including assignment, review, filtering, and 320px layout coverage. Desktop, mobile, and assignment-dialog screenshots were visually inspected; this found a low-contrast notifications action, which was corrected before release. Release `e4c2ef3` reached GitHub `main`. Vercel production deployment `dpl_C9dRoa12XMuX7CJeosJjzLZMA8wL` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login`, redirected unauthenticated `/teacher` to `/login`, and returned HTTP 401 for unauthenticated `/api/coursework`. Authenticated production rendering was not exercised; the isolated browser suite covered the teacher UI.
+
+## Teacher workspace Neumorphism theme (2026-10-12)
+
+### Resulting architecture, integrations, source scope, and decisions
+
+The authenticated `/teacher` view now imports `teacher-neumorphism.css` after the shared coursework styles. It replaces the prior Material Design 3 teacher layer with a blue-gray canvas, paired light/dark raised shadows for cards and actions, and inset shadows for fields, status chips, and selected controls. Focus outlines and dark text remain explicit so the soft surfaces do not carry meaning by shadow alone. The style is scoped under `.cw-teacher`; the student coursework view and other routes keep their existing appearance. No runtime dependency, API, database schema, source mapping, or external integration changed. Notion and Drive source scope, synchronization, teacher task storage, and role permissions remain as implemented. The 42px teacher search fields and 44px assignment fields remain aligned.
+
+### Observed verification and release status
+
+The installed Next.js 16.3.8 CSS and deployment guides were read before the style change. TypeScript checking, the production build, and four isolated teacher/student browser flows passed, including assignment, review, filtering, and 320px layout coverage. Desktop and mobile screenshots were inspected; subject labels were darkened for contrast after that inspection. Release and production smoke results are pending.
