@@ -585,3 +585,13 @@ The authenticated `/teacher` view now imports `teacher-neumorphism.css` after th
 ### Observed verification and release status
 
 The installed Next.js 16.3.8 CSS and deployment guides were read before the style change. TypeScript checking, the production build, and four isolated teacher/student browser flows passed, including assignment, review, filtering, and 320px layout coverage. Desktop and mobile screenshots were inspected; subject labels were darkened for contrast after that inspection. Release `f4811de` reached GitHub `main`. The Git-triggered Vercel production deployment `dpl_9dELKQgSxK3vmy5XauapUZJvVV4B` reached Ready and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login`, redirected unauthenticated `/teacher` to `/login`, and returned HTTP 401 for unauthenticated `/api/coursework`. Authenticated production rendering was not exercised; the isolated browser suite covered the teacher UI.
+
+## Teacher workspace palette update (2026-10-12)
+
+### Resulting architecture, integrations, source scope, and decisions
+
+The teacher-only `teacher-neumorphism.css` layer keeps its raised and inset surfaces and now uses the requested warm white canvas `rgb(252,252,240)`, navy headings `#032147`, gray supporting text `#888888`, blue links and section accents `#209dd7`, purple primary actions `#753991`, and yellow `#ecad0a` accent lines and highlights. Shadows and inset fields were warmed to suit the canvas; text on pale yellow labels remains navy for readability. The student coursework view and all other routes remain outside this style scope. No dependency, API, database, Notion or Drive integration, content source, synchronization, or role-permission change was made.
+
+### Observed verification and release status
+
+The installed Next.js 16.3.8 CSS guide was reviewed before editing. TypeScript checking and the production build passed. Four isolated teacher/student browser flows passed, including computed palette checks, assignment, review, filtering, and 320px layout coverage. Desktop and mobile screenshots were visually inspected. Production release status follows after deployment.
