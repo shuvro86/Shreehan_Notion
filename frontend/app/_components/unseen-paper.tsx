@@ -42,6 +42,9 @@ export default function UnseenPaper({ documents, bank, drivePending, studyNotes 
  const subjectDocuments = documents.filter(doc => selected?.documentIds.includes(doc.id));
  const questions = selected?.questions || [];
  const visible = questions.slice(0, selected?.target || 15);
+ const topicNames = [...new Set(visible.map(question => question.topic))];
+ const externalSources = [...new Map(questions.filter(question => question.sourceUrl).map(question => [question.sourceUrl, {url:question.sourceUrl!, title:question.sourceTitle || question.topic}])).values()];
+ const sourceCount = subjectDocuments.length + externalSources.length;
  const reveal = (id: string) => setRevealed(current => current.includes(id) ? current.filter(item => item !== id) : [...current, id]);
  async function generateMore() {
   if (!selected || busy) return;
@@ -69,10 +72,10 @@ export default function UnseenPaper({ documents, bank, drivePending, studyNotes 
  }
  return <section className="unseen-paper-module" aria-label={studyNotes ? "Study Notes questions" : "Analytical Material"}>
   <div className="unseen-paper-heading">
-   <div><div className="eyebrow"><span/> {studyNotes ? "STUDY NOTES · CLASS 2" : "SUBJECT MATERIALS · CLASS 2"}</div><h2>{studyNotes ? "Study Notes questions & answers" : "Analytical Material"}</h2><p>Choose a subject from Notion. Each question and answer comes from its linked study material.</p></div>
+   <div><div className="eyebrow"><span/> {studyNotes ? "STUDY NOTES · CLASS 2" : "SUBJECT MATERIALS · CLASS 2"}</div><h2>{studyNotes ? "Study Notes questions & answers" : "Analytical Material"}</h2><p>Choose a subject. Each question and answer comes from linked study material.</p></div>
    <div className="unseen-paper-count" aria-live="polite"><strong>{visible.length}</strong><span>of {selected?.target || 15} questions</span></div>
   </div>
-  {studyNotes && <p className="unseen-paper-note">New and edited notes refresh automatically after sync. Production checks are scheduled every five minutes; processing can take longer. Unclear scans may need review.</p>}
+  {studyNotes && <p className="unseen-paper-note">Study Notes are grouped by lesson. Open a linked PDF to check an answer against the original notes.</p>}
   {!studyNotes && <div className="subject-sync-control">
    <button className="sync-notion-button" onClick={syncNotion} disabled={syncProgress.state==='running'}><Sparkles size={16}/>{syncProgress.state==='running'?'Syncing…':'Sync Notion'}</button>
    {syncProgress.state !== 'idle' && <div className="subject-sync-status" aria-live="polite">
@@ -87,14 +90,16 @@ export default function UnseenPaper({ documents, bank, drivePending, studyNotes 
   </div>
   {!subjects.length && <p className="unseen-finished">{studyNotes ? "Add subject notes and readable PDFs to Study Notes in Notion. Questions appear after synchronization and analysis." : "Subject Materials will appear here when Notion finishes syncing."}</p>}
   {selected && <>
-   <div className="unseen-paper-note"><Sparkles size={18}/><span>{subjectDocuments.length} linked {subjectDocuments.length === 1 ? 'file' : 'files'} for {subject}. {studyNotes ? "Questions refresh automatically when these files change." : "Generate More adds five questions."} Check the linked page if an answer seems unclear.</span></div>
+   <div className="unseen-paper-note"><Sparkles size={18}/><span>{sourceCount} linked {sourceCount === 1 ? 'file' : 'files'} for {subject}. {externalSources.length ? 'These reviewed questions follow the three Moral Studies notes in Drive.' : studyNotes ? "Questions refresh automatically when these files change." : "Generate More adds five questions."} Check the linked page if an answer seems unclear.</span></div>
    {selected.state !== 'ready' && <div className="unseen-pending" role="status"><strong>{selected.message}</strong></div>}
-   <details className="unseen-source-list"><summary>View {subject} source material ({subjectDocuments.length} files)</summary>
+   <details className="unseen-source-list"><summary>View {subject} source material ({sourceCount} files)</summary>
     {selected.notionUrls.filter(Boolean).map(url => <a key={url} href={url} target="_blank" rel="noreferrer"><FileText size={14}/>{studyNotes ? "Study Notes in Notion" : "Subject Materials in Notion"}</a>)}
     {subjectDocuments.map(doc => <a key={doc.id} href={`/library?doc=${encodeURIComponent(doc.id)}&page=1`} target="_blank" rel="noreferrer"><FileText size={14}/>{doc.title}</a>)}
+    {externalSources.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer"><FileText size={14}/>{source.title}</a>)}
    </details>
    {!questions.length && <p className="unseen-finished">Questions will appear when the linked material has been read and checked.</p>}
-   <div className="unseen-question-grid">{visible.map((q, index) => {
+   {topicNames.map(topic => <div key={topic} className="unseen-topic-group"><h3>{topic} <span>{visible.filter(question => question.topic === topic).length} questions</span></h3><div className="unseen-question-grid">{visible.map((q, index) => {
+    if (q.topic !== topic) return null;
     const shown = revealed.includes(q.id);
     return <article className="unseen-question-card" key={q.id} data-question-id={q.id}>
      <div className="unseen-question-meta"><span>{q.subject} · {q.topic}</span><span>{q.type}</span></div>
@@ -102,9 +107,9 @@ export default function UnseenPaper({ documents, bank, drivePending, studyNotes 
      {q.options.length ? <div className="unseen-options">{q.options.map(option => <button key={option} disabled={shown} aria-pressed={answers[q.id] === option} className={`${answers[q.id] === option ? 'selected' : ''} ${shown && option === q.answer ? 'correct' : ''}`} onClick={() => setAnswers(current => ({ ...current, [q.id]: option }))}>{option}{shown && option === q.answer && <Check size={14}/>}</button>)}</div> : <textarea aria-label={`Your answer: ${q.question}`} placeholder="Write your answer here…" value={answers[q.id] || ''} onChange={event => setAnswers(current => ({...current, [q.id]: event.target.value}))} disabled={shown}/>}
      <div className="unseen-question-actions"><button className="unseen-answer-button" aria-expanded={shown} aria-controls={`answer-${q.id}`} onClick={() => reveal(q.id)}>{shown ? 'Hide answer' : 'Show answer'}<ChevronRight size={15}/></button></div>
      <div id={`answer-${q.id}`} hidden={!shown} className="unseen-model-answer"><small>MODEL ANSWER · CLASS 2</small><p>{q.answer}</p></div>
-     <div className="unseen-sources">{q.sources.map(source => <a key={`${source.documentId}-${source.page}`} href={`/library?doc=${encodeURIComponent(source.documentId)}&page=${source.page}`} target="_blank" rel="noreferrer"><FileText size={12}/>Read source · page {source.page}</a>)}</div>
+     <div className="unseen-sources">{q.sources.map(source => <a key={`${source.documentId}-${source.page}`} href={q.sourceUrl ? `${q.sourceUrl}#page=${source.page}` : `/library?doc=${encodeURIComponent(source.documentId)}&page=${source.page}`} target="_blank" rel="noreferrer"><FileText size={12}/>Read source · page {source.page}</a>)}</div>
     </article>;
-   })}</div>
+   })}</div></div>)}
    {error && <p className="unseen-pending" role="alert">{error}</p>}
    {!studyNotes && <button className="unseen-more-button" disabled={busy || syncProgress.state==='running' || selected.state !== 'ready' || questions.length < selected.target} onClick={generateMore}><Sparkles size={17}/>{busy ? 'Generating five questions…' : 'Generate More'}<span>+5 questions</span></button>}
   </>}

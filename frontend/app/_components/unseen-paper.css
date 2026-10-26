@@ -17,6 +17,7 @@
 .unseen-source-list{margin-top:16px;color:#345e40;font-size:12px;line-height:1.8}
 .unseen-source-list summary{cursor:pointer;font-weight:600}
 .unseen-source-list a,.unseen-paper-module .unseen-sources a{display:flex;align-items:center;gap:6px;text-decoration:underline;text-underline-offset:3px;padding:5px 0;overflow-wrap:anywhere}
+.unseen-topic-group{margin-top:28px}.unseen-topic-group>h3{display:flex;align-items:baseline;justify-content:space-between;gap:12px;color:#20583a;font-size:17px}.unseen-topic-group>h3 span{color:#64816d;font-size:11px;font-weight:500;white-space:nowrap}
 .unseen-pending{margin-top:12px;padding:12px;background:#fff4d7;border-radius:8px;color:#73520e;font-size:13px}
 .unseen-paper-module .unseen-paper-heading p,.unseen-paper-module .unseen-paper-note{font-size:13px}
 .unseen-paper-module .unseen-options button,.unseen-paper-module textarea,.unseen-paper-module .unseen-answer-button,.unseen-paper-module .unseen-more-button{font-size:14px}

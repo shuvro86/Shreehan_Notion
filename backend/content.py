@@ -92,7 +92,23 @@ def current_subject_practice(library, collection='Subject Materials'):
         saved = cloud_json('subject-practice.json', {'subjects': {}})
     else:
         saved = read_json(SYNC_DIR / 'subject-practice.json', {'subjects': {}})
-    return subject_practice_view(library, saved, collection)
+    view = subject_practice_view(library, saved, collection)
+    if collection == 'Study Note':
+        # The three reviewed half-yearly Drive notes are available even when the
+        # scheduled Notion/Drive snapshot has not yet discovered this new folder.
+        moral = read_json(ROOT / 'data/moral-studies-half-yearly.json', {})
+        topics = moral.get('topics', [])
+        if len(topics) == 3 and all(len(topic.get('questions', [])) >= 18 for topic in topics):
+            questions = [question for topic in topics for question in topic['questions']]
+            view['subjects'] = [subject for subject in view['subjects'] if subject['name'] != 'Moral Studies']
+            view['subjects'].append({
+                'name': 'Moral Studies', 'notionUrls': [],
+                'documentIds': [], 'target': len(questions), 'state': 'ready',
+                'message': 'Reviewed from the three Moral Studies PDFs in Study Notes.',
+                'questions': questions,
+            })
+            view['subjects'].sort(key=lambda subject: subject['name'])
+    return view
 
 
 def sync_health():

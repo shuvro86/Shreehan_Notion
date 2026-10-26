@@ -65,3 +65,19 @@ def test_study_notes_bank_is_isolated_and_removed_sources_hide_answers():
     assert content.subject_practice_view(library, saved, 'Study Note')['subjects'][0]['questions'] == []
     library['records'] = []
     assert content.subject_practice_view(library, saved, 'Study Note')['subjects'] == []
+
+
+def test_reviewed_moral_studies_bank_uses_only_three_drive_notes():
+    moral = content.read_json(content.ROOT / 'data/moral-studies-half-yearly.json', {})
+    topics = moral['topics']
+    assert {topic['title'] for topic in topics} == {'Being Kind', 'Being Forgiving', 'Being Truthful'}
+    assert [len(topic['questions']) for topic in topics] == [18, 18, 18]
+    assert len({question['id'] for topic in topics for question in topic['questions']}) == 54
+    for topic in topics:
+        for question in topic['questions']:
+            assert question['topic'] == topic['title']
+            assert question['sourceUrl'] == topic['sourceUrl']
+            assert question['sources'][0]['documentId'] == topic['sourceId']
+            assert question['answer'] and question['question']
+    view = content.current_subject_practice({'records': [], 'documents': []}, 'Study Note')
+    assert next(subject for subject in view['subjects'] if subject['name'] == 'Moral Studies')['target'] == 54
