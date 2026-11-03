@@ -10,7 +10,8 @@ import './_components/coursework.css';
 import './_components/homework-hub.css';
 import UnseenPaper from './_components/unseen-paper';
 import CollectionSync from './_components/collection-sync';
-import { ArrowRight, ArrowUpRight, BookOpen, Bot, CalendarDays, Check, CheckCheck, ChevronDown, ChevronLeft, ChevronRight, ClipboardList, Clock3, CloudSun, Columns3, ExternalLink, FileText, FolderOpen, GraduationCap, Grid2X2, History, KeyRound, LayoutDashboard, ListTodo, LogOut, Menu, Plus, Search, Sparkles, Target, X } from 'lucide-react';
+import ExamSyllabus from './_components/exam-syllabus';
+import { ArrowRight, ArrowUpRight, BookOpen, Bot, CalendarDays, Check, CheckCheck, ChevronDown, ChevronLeft, ChevronRight, ClipboardList, CloudSun, Columns3, ExternalLink, FileText, FolderOpen, GraduationCap, Grid2X2, History, KeyRound, LayoutDashboard, ListTodo, LogOut, Menu, Plus, Search, Sparkles, Target, X } from 'lucide-react';
 
 const collections = [
   { name: 'Homework List', description: 'Homework from Father, synced from Notion.', icon: ListTodo, color: 'green', id: '3c89ecdd38af80349a22f4d5af9fde88', tag: 'KEEP MOVING FORWARD' },
@@ -51,40 +52,8 @@ const heroMessages: HeroMessage[] = [
  { title: '“There is neither this world nor the world beyond for one who doubts.”', text: 'Trust your ability to learn, then take the next small step.', source: 'Bhagavad Gita 4.40' },
  { title: '“No effort is ever lost.”', text: 'Every page read, problem solved, and kind act is part of your journey.', source: 'Bhagavad Gita 2.40' },
 ];
-type ExamItem = { id: string; date: string; subject: string; start: string; end: string; note?: string };
-const examSchedule: ExamItem[] = [
- { id: 'english-language', date: '2026-09-12', subject: 'English Language', start: '09:00', end: '10:30' },
- { id: 'bangla-dictation', date: '2026-09-13', subject: 'Bangla Dictation & Spelling', start: '09:00', end: '10:00' },
- { id: 'poetry-reading-drawing', date: '2026-09-13', subject: 'Poetry, Reading & Drawing', start: '10:15', end: '11:45' },
- { id: 'geography', date: '2026-09-14', subject: 'Geography', start: '09:00', end: '10:30' },
- { id: 'bangla-paper-i', date: '2026-09-15', subject: 'Bangla Paper I', start: '09:00', end: '10:30' },
- { id: 'bangladesh-studies', date: '2026-09-16', subject: 'Bangladesh Studies', start: '09:00', end: '10:15' },
- { id: 'moral-studies', date: '2026-09-17', subject: 'Islamic Studies / Moral Studies', start: '09:00', end: '10:15' },
- { id: 'mathematics', date: '2026-09-19', subject: 'Mathematics', start: '09:00', end: '10:30', note: 'Saturday' },
- { id: 'bangla-paper-ii', date: '2026-09-20', subject: 'Bangla Paper II', start: '09:00', end: '10:30', note: 'Sunday' },
- { id: 'science', date: '2026-09-21', subject: 'Science', start: '09:00', end: '10:30', note: 'Monday' },
- { id: 'history', date: '2026-09-22', subject: 'History', start: '09:00', end: '10:30', note: 'Tuesday' },
- { id: 'english-literature', date: '2026-09-23', subject: 'English Literature', start: '09:00', end: '10:30', note: 'Wednesday' },
- { id: 'english-dictation', date: '2026-09-24', subject: 'English Dictation & Spelling', start: '09:00', end: '10:15', note: 'Thursday' },
-];
 type DayContext = { dateLabel?: string; historyUnavailable?: boolean; location: string; weather: { temperature: number | null; code: number | null }; events: Array<{ year?: number; text: string; region?: 'Bangladesh' | 'World'; sourceUrl?: string }> };
 function weatherLabel(code: number | null) { if (code === null) return 'Weather loading'; if (code === 0) return 'Clear skies'; if ([1, 2].includes(code)) return 'A few clouds'; if (code === 3) return 'Cloudy'; if ([45, 48].includes(code)) return 'Misty'; if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(code)) return 'Rainy'; if ([71, 73, 75, 77, 85, 86].includes(code)) return 'Snowy'; if ([95, 96, 99].includes(code)) return 'Stormy'; return 'Today’s weather'; }
-
-function ExamSchedule() {
- const [filter, setFilter] = useState<'all' | 'upcoming' | 'completed'>('all');
- const [selected, setSelected] = useState<string | null>(null);
- const now = new Date();
- const endTime = (exam: ExamItem) => { const [hours, minutes] = exam.end.split(':').map(Number); const date = new Date(`${exam.date}T00:00:00`); date.setHours(hours, minutes, 0, 0); return date; };
- const isComplete = (exam: ExamItem) => now >= endTime(exam);
- const visible = examSchedule.filter(exam => filter === 'all' || (filter === 'completed' ? isComplete(exam) : !isComplete(exam)));
- const completed = examSchedule.filter(isComplete).length;
- return <section className="exam-module">
-  <div className="exam-module-head"><div><div className="eyebrow"><span/> FIRST MONTHLY · CLASS 2</div><h2>Your exam runway.</h2><p>Know what is coming, and give each subject your best little step.</p></div><div className="exam-progress"><strong>{completed}/{examSchedule.length}</strong><span>completed</span></div></div>
-  <div className="exam-toolbar"><div className="exam-filters">{([['all', 'All exams'], ['upcoming', 'Upcoming'], ['completed', 'Completed']] as const).map(([key, label]) => <button key={key} className={filter === key ? 'active' : ''} onClick={() => setFilter(key)}>{label}<span>{key === 'all' ? examSchedule.length : key === 'completed' ? completed : examSchedule.length - completed}</span></button>)}</div><span className="exam-updated"><Clock3 size={13}/> Live status · {formatDate(now)}</span></div>
-  <div className="exam-list">{visible.map(exam => { const done = isComplete(exam); const open = selected === exam.id; return <div className={`exam-row ${done ? 'completed' : ''} ${open ? 'expanded' : ''}`} key={exam.id}><button className="exam-row-main" onClick={() => setSelected(open ? null : exam.id)} aria-expanded={open}><span className="exam-date"><strong>{formatDate(exam.date)}</strong></span><span className="exam-subject"><strong>{exam.subject}</strong><small>{exam.note || new Date(`${exam.date}T00:00:00`).toLocaleDateString('en-US', { weekday: 'long' })}</small></span><span className="exam-time"><Clock3 size={14}/>{exam.start} – {exam.end}</span><span className={`exam-state ${done ? 'done' : ''}`}>{done ? <><Check size={13}/> Complete</> : 'Get ready'}</span><ChevronDown className="exam-chevron" size={16}/></button>{open && <div className="exam-details"><span>{done ? 'This exam has finished.' : 'This is your next chance to show what you know.'}</span><span>Be seated 15 minutes before the start time.</span></div>}</div> })}{!visible.length && <div className="exam-empty"><CheckCheck size={24}/><strong>Every exam is complete.</strong><p>Lovely work, Shreehan. Keep your learning rhythm going.</p></div>}</div>
-  <div className="exam-footnote">Schedule from the First Monthly Examination 2026–2027 · Times follow your device clock.</div>
- </section>;
-}
 
 export default function Home() {
  const menus=useMenuAccess();
@@ -155,7 +124,7 @@ export default function Home() {
  const driveSource = (library as typeof library & {sourceType?: string}).sourceType === 'google_drive';
  useEffect(()=>{if((active==='Overview'&&!menus.includes('overview'))||(active==='My tasks'&&!menus.includes('tasks'))||(collections.some(c=>c.name===active)&&!menus.includes('collections')))setActive(menus.includes('overview')?'Overview':menus.includes('tasks')?'My tasks':'Homework List');},[active,menus]);
  const current = driveSource ? undefined : collections.find(c => c.name === active);
- const syncCollection = current?.name === 'Study Note' || current?.name === 'Exam' || current?.name === 'Assignment' ? current.name : null;
+ const syncCollection = current?.name === 'Study Note' || current?.name === 'Assignment' ? current.name : null;
  function navigate(name: string) { setActive(name); setMobile(false); setSearchOpen(false); setQuery(''); }
  const visibleTasks = tasks.filter(t => taskFilter === 'All tasks' || (taskFilter === 'Completed' ? t.done : !t.done));
  const weekStart = new Date(Date.UTC(2026, 8, 14 + week * 7, 12));
@@ -183,13 +152,13 @@ export default function Home() {
      {!driveSource && menus.includes('collections') && <section className="collections-section"><div className="section-heading"><div><h2>Your workspace <span className="count-badge">8</span></h2><p>Less searching. More learning.</p></div><div className="view-toggle"><button aria-label="Grid view" aria-pressed={!list} className={!list ? 'on' : ''} onClick={() => setList(false)}><Grid2X2 size={16}/></button><button aria-label="List view" aria-pressed={list} className={list ? 'on' : ''} onClick={() => setList(true)}><ClipboardList size={17}/></button></div></div><div className={`collection-grid ${list ? 'list-view' : ''}`}>{collections.map(c => <button key={c.name} className="collection-card" onClick={() => navigate(c.name)}><div className="card-top"><span className={`icon-tile ${c.color}`}><c.icon size={22} strokeWidth={1.7}/></span><ArrowUpRight className="card-arrow" size={17}/></div><h3>{c.name}</h3><p>{c.description}</p><div className="card-footer"><span>{c.tag}</span><ArrowRight size={14}/></div></button>)}</div></section>}
      {driveSource && <section className="collections-section"><div className="section-heading"><div><h2>Half-yearly study files</h2><p>Science, Geography, and the current syllabus from Google Drive.</p></div><a className="secondary-button" href="https://drive.google.com/drive/folders/1pg3lbrlzwxJClmKCMQEpZg-9aMIrHnwr" target="_blank" rel="noreferrer">Open source folder <ExternalLink size={14}/></a></div><div className="collection-grid"><a className="collection-card" href="/library?collection=Syllabus"><h3>Syllabus</h3><p>Check the latest exam topics.</p></a><a className="collection-card" href="/library?subject=Science"><h3>Science</h3><p>Food for Health and Rocks and Minerals.</p></a><a className="collection-card" href="/library?subject=Geography"><h3>Geography</h3><p>Landforms, wonders, and weather.</p></a></div></section>}
     </>}
-    {current && current.name !== 'Homework List' && <section className="collection-detail"><span className={`icon-tile ${current.color}`}><current.icon size={28}/></span><div><span className="eyebrow">SHREEHAN HQ COLLECTION</span><h2>{current.tag.toLowerCase().replace(/^./, s => s.toUpperCase())}.</h2><p>{current.description} Open the original collection to view and manage your documents in Notion.</p></div><div className="collection-detail-actions"><a className="primary-button" href={`https://app.notion.com/p/${current.id}`} target="_blank" rel="noreferrer">Open in Notion <ExternalLink size={16}/></a>{syncCollection && <CollectionSync collection={syncCollection}/>}</div></section>}
-    {current?.name === 'Exam' && <ExamSchedule/>}
+    {current && !['Homework List','Exam'].includes(current.name) && <section className="collection-detail"><span className={`icon-tile ${current.color}`}><current.icon size={28}/></span><div><span className="eyebrow">SHREEHAN HQ COLLECTION</span><h2>{current.tag.toLowerCase().replace(/^./, s => s.toUpperCase())}.</h2><p>{current.description} Open the original collection to view and manage your documents in Notion.</p></div><div className="collection-detail-actions"><a className="primary-button" href={`https://app.notion.com/p/${current.id}`} target="_blank" rel="noreferrer">Open in Notion <ExternalLink size={16}/></a>{syncCollection && <CollectionSync collection={syncCollection}/>}</div></section>}
+    {current?.name === 'Exam' && <ExamSyllabus/>}
     {current?.name === 'Study Note' && <UnseenPaper documents={library.documents} bank={studyNotePractice} studyNotes/>}
     {current?.name === 'Analytical Material' && <UnseenPaper documents={library.documents} bank={subjectPractice} drivePending={sync.drivePending===true}/>}
     {menus.includes('coursework')&&['Overview','Homework List','Assignment'].includes(active)&&<a className="cw-student-link teacher-coursework-card" href="/coursework"><span className="teacher-coursework-icon" aria-hidden="true"><GraduationCap size={27}/></span><span className="teacher-coursework-copy"><small>FROM YOUR TEACHER <i/> CLASSROOM</small><strong>Teacher-assigned work</strong><span>See due dates, submit your answers, and read feedback from your teacher.</span></span><span className="teacher-coursework-action">Open classroom <ArrowUpRight size={18}/></span></a>}
     {active==='Homework List'&&<Homework data={library.homework} documents={library.documents} syncLabel={syncLabel}/>}
-    {current && current.name !== 'Homework List' && <section className="panel imported-collection"><div className="section-heading"><div><h2>{syncCollection ? `Synced material in ${current.name}` : `Documents in ${current.name}`}</h2><p>{syncCollection ? 'Notes and files from this Notion collection.' : 'Originals imported from your Notion workspace.'}</p></div><a className="secondary-button" href={`/library?collection=${encodeURIComponent(current.name)}`}>Browse library <ArrowUpRight size={14}/></a></div>
+    {current && !['Homework List','Exam'].includes(current.name) && <section className="panel imported-collection"><div className="section-heading"><div><h2>{syncCollection ? `Synced material in ${current.name}` : `Documents in ${current.name}`}</h2><p>{syncCollection ? 'Notes and files from this Notion collection.' : 'Originals imported from your Notion workspace.'}</p></div><a className="secondary-button" href={`/library?collection=${encodeURIComponent(current.name)}`}>Browse library <ArrowUpRight size={14}/></a></div>
      {syncCollection && library.records.filter(r=>r.collection===current.name).map(r=><a className="imported-file-row" key={r.id} href={r.url} target="_blank" rel="noreferrer"><FileText size={19}/><span><strong>{r.title}</strong><small>{r.date?`${formatDate(r.date)} · `:''}{r.body?r.body.replace(/\s+/g,' ').slice(0,150):'Notion note'}</small></span><ExternalLink size={16}/></a>)}
      {library.documents.filter(d=>d.collection===current.name).map(d=><a className="imported-file-row" key={d.id} href={`/library?doc=${d.id}`}><FileText size={19}/><span><strong>{d.title}</strong><small>{d.kind} · {d.pages.length} pages · {d.subject}</small></span><ArrowUpRight size={16}/></a>)}
      {current.name==='CT' && library.records.filter(r=>r.collection==='CT').map(r=><div className="imported-file-row" key={r.id}><CalendarDays size={18}/><span><strong>{r.title}</strong><small>{r.date&&formatDate(r.date)} · {r.topics||'No topic specified'}</small></span></div>)}

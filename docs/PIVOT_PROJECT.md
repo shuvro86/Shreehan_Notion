@@ -2,6 +2,16 @@
 
 Updated: 2026-09-27 (Asia/Dhaka). Keep this working brief current when source scope, sync behavior, question generation, or deployment changes.
 
+## Exam section update (2026-11-03)
+
+**Observed source:** The connected Google Drive `syllabus.pdf` (file ID `1wjYczLYdFtruV5ETLMPUKpIXGuq2qVr0`) was fetched and its three pages reviewed. Page 2 was rendered to check Bangla text because PDF extraction uses a legacy encoding. The document identifies Maple Leaf International School, Class II July Session, Half-Yearly Examination 2026–2027. Its Islamic Studies section says Half-Yearly Exam 2026, 60 marks. It supplies subject topics, but **no individual exam dates or times**. The school warns that the syllabus can change without notice.
+
+**Implemented architecture and source scope:** The Exam collection now renders a dedicated client-side syllabus component, sourced from a reviewed transcription of the Drive PDF. It presents 15 subject areas across the three source pages, with area filters, topic search, expandable topic lists, source-page links, and an explicit missing-schedule notice. The previous hardcoded First Monthly September schedule and its completed/upcoming calculations were removed. The Exam view no longer renders the old Notion collection detail or imported Exam record list; underlying Notion data and sync integration were not deleted. The source PDF remains in Drive, linked from the UI; this change adds no runtime Drive credential or sync job. Bangla Paper I and II are summarized from the rendered source page, with the original page one click away for exact wording.
+
+**Decision:** The session years are displayed as stated in the PDF. No day or time is inferred from the old schedule or another file. The Exam view is a source-grounded study guide until a verified exam routine is explicitly incorporated.
+
+**Verification status:** `npm ci --offline`, `npm run typecheck`, `npm run build`, all 26 JavaScript sync tests, all 49 backend tests, and `git diff --check` passed locally on 2026-11-03. The source PDF had three pages according to `pdfinfo`; its second page was visually reviewed after rendering. The mobile Exam browser assertion was updated for the new interface. Browser interaction and deployed runtime behavior have not yet been verified.
+
 ## Source of truth
 
 The application connects directly to the **Shreehan HQ** TeamSpace in the Shreehan Notion workspace. Its half-yearly records link to the [Shreehan / Mapleleaf / 2 / Half Yearly Google Drive folder](https://drive.google.com/drive/folders/1pg3lbrlzwxJClmKCMQEpZg-9aMIrHnwr), owned by the connected account `sun.srs86@gmail.com`. Notion pages and databases remain the application's primary workspace source; the linked Drive folder supplies original study files. Sync its descendants, including future additions, edits, renames, moves, and deletions. Exclude unrelated parts of Drive.
