@@ -1,8 +1,16 @@
 # Project pivot: Class II half-yearly study source
 
-Updated: 2026-09-27 (Asia/Dhaka). Keep this working brief current when source scope, sync behavior, question generation, or deployment changes.
+Updated: 2026-11-03 (Asia/Dhaka). Keep this working brief current when source scope, sync behavior, question generation, or deployment changes.
 
-## Exam section update (2026-11-03)
+## Exam routine correction (2026-11-03)
+
+**Observed source:** The connected [Routine.pdf](https://drive.google.com/file/d/1H_ntNNaI9A7OMEMlkYUMyJBPlf2HRrE_/view) in the linked Drive folder was fetched and its one image-only page rendered for visual review. It is Maple Leaf International School’s Half-Yearly Examination 2026–2027 routine for Classes II–III (July Session). It lists 13 papers on 12 dates, November 28–December 10, 2026. The November 29 entries are separate papers at 9:00–10:00 am and 10:15–11:45 am. The printed notes say that Friday may be used in unavoidable circumstances, regular classes will not be held during exams, and students must be seated 15 minutes before each paper. The scan cuts off additional text below those legible notes, so no further instruction was transcribed.
+
+**Architecture, source scope, and decision:** The Exam collection now renders a dedicated client-side timeline from a reviewed static transcription of the 13 routine rows. It shows each exact date, weekday, subject, and start/end time in Dhaka time; status filters and search operate on those rows, and entries expand to show the 15-minute arrival time and source link. The prior syllabus-based Exam guide and its topic data were removed from this view. The syllabus remains a separate study source elsewhere in the application. Notion Exam records remain in the underlying workspace but do not render in this Exam view. The original PDF stays in Drive; there is no new runtime Drive credential or import job. Status means scheduled time relative to the Dhaka clock, not proof that a student attended.
+
+**Verification status:** The source page was visually checked against all 13 transcribed rows. A local check confirmed 13 rows on 12 dates, chronological order, matching weekdays, and valid time ranges. Frontend typecheck and production build passed; all 26 JavaScript sync tests and 49 backend tests passed. An isolated browser flow with mocked APIs verified all 13 rows, both November 29 papers through date search, expanded 10:00 am arrival guidance, no page errors, and no horizontal overflow at 390px; desktop and mobile screenshots were reviewed. Authenticated production viewing has not yet been checked. Production deployment is pending as this entry is written.
+
+## Previous Exam syllabus implementation (2026-11-03; superseded in the Exam view)
 
 **Observed source:** The connected Google Drive `syllabus.pdf` (file ID `1wjYczLYdFtruV5ETLMPUKpIXGuq2qVr0`) was fetched and its three pages reviewed. Page 2 was rendered to check Bangla text because PDF extraction uses a legacy encoding. The document identifies Maple Leaf International School, Class II July Session, Half-Yearly Examination 2026–2027. Its Islamic Studies section says Half-Yearly Exam 2026, 60 marks. It supplies subject topics, but **no individual exam dates or times**. The school warns that the syllabus can change without notice.
 

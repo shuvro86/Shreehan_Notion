@@ -38,12 +38,12 @@ test('mobile navigation and layout', async ({ page }) => {
   await page.getByRole('button', { name: 'Open navigation' }).click();
   await page.getByRole('navigation', { name: 'Collections', exact: true }).getByRole('button', { name: 'Exam', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Exam', exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Half-yearly exam guide' })).toBeVisible();
-  await expect(page.getByText('This syllabus does not list a day or time for each paper.')).toBeVisible();
-  await page.getByRole('button', { name: 'Math & science' }).click();
-  await expect(page.getByText('Showing 2 of 15 subject areas')).toBeVisible();
-  await page.getByRole('button', { name: /Mathematics/ }).click();
-  await expect(page.getByText(/Joy of Mathematics Book 3/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Half-yearly exam routine' })).toBeVisible();
+  await expect(page.getByText('Showing 13 of 13 papers')).toBeVisible();
+  await page.getByPlaceholder('Search subject or date').fill('29 Nov');
+  await expect(page.getByText('Showing 2 of 13 papers')).toBeVisible();
+  await page.getByRole('button', { name: /Poetry, Reading & Drawing/ }).click();
+  await expect(page.getByText(/10:00 am, 15 minutes before/)).toBeVisible();
   await page.getByRole('button', { name: 'New task', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');

@@ -10,7 +10,7 @@ import './_components/coursework.css';
 import './_components/homework-hub.css';
 import UnseenPaper from './_components/unseen-paper';
 import CollectionSync from './_components/collection-sync';
-import ExamSyllabus from './_components/exam-syllabus';
+import ExamRoutine from './_components/exam-routine';
 import { ArrowRight, ArrowUpRight, BookOpen, Bot, CalendarDays, Check, CheckCheck, ChevronDown, ChevronLeft, ChevronRight, ClipboardList, CloudSun, Columns3, ExternalLink, FileText, FolderOpen, GraduationCap, Grid2X2, History, KeyRound, LayoutDashboard, ListTodo, LogOut, Menu, Plus, Search, Sparkles, Target, X } from 'lucide-react';
 
 const collections = [
@@ -153,7 +153,7 @@ export default function Home() {
      {driveSource && <section className="collections-section"><div className="section-heading"><div><h2>Half-yearly study files</h2><p>Science, Geography, and the current syllabus from Google Drive.</p></div><a className="secondary-button" href="https://drive.google.com/drive/folders/1pg3lbrlzwxJClmKCMQEpZg-9aMIrHnwr" target="_blank" rel="noreferrer">Open source folder <ExternalLink size={14}/></a></div><div className="collection-grid"><a className="collection-card" href="/library?collection=Syllabus"><h3>Syllabus</h3><p>Check the latest exam topics.</p></a><a className="collection-card" href="/library?subject=Science"><h3>Science</h3><p>Food for Health and Rocks and Minerals.</p></a><a className="collection-card" href="/library?subject=Geography"><h3>Geography</h3><p>Landforms, wonders, and weather.</p></a></div></section>}
     </>}
     {current && !['Homework List','Exam'].includes(current.name) && <section className="collection-detail"><span className={`icon-tile ${current.color}`}><current.icon size={28}/></span><div><span className="eyebrow">SHREEHAN HQ COLLECTION</span><h2>{current.tag.toLowerCase().replace(/^./, s => s.toUpperCase())}.</h2><p>{current.description} Open the original collection to view and manage your documents in Notion.</p></div><div className="collection-detail-actions"><a className="primary-button" href={`https://app.notion.com/p/${current.id}`} target="_blank" rel="noreferrer">Open in Notion <ExternalLink size={16}/></a>{syncCollection && <CollectionSync collection={syncCollection}/>}</div></section>}
-    {current?.name === 'Exam' && <ExamSyllabus/>}
+    {current?.name === 'Exam' && <ExamRoutine/>}
     {current?.name === 'Study Note' && <UnseenPaper documents={library.documents} bank={studyNotePractice} studyNotes/>}
     {current?.name === 'Analytical Material' && <UnseenPaper documents={library.documents} bank={subjectPractice} drivePending={sync.drivePending===true}/>}
     {menus.includes('coursework')&&['Overview','Homework List','Assignment'].includes(active)&&<a className="cw-student-link teacher-coursework-card" href="/coursework"><span className="teacher-coursework-icon" aria-hidden="true"><GraduationCap size={27}/></span><span className="teacher-coursework-copy"><small>FROM YOUR TEACHER <i/> CLASSROOM</small><strong>Teacher-assigned work</strong><span>See due dates, submit your answers, and read feedback from your teacher.</span></span><span className="teacher-coursework-action">Open classroom <ArrowUpRight size={18}/></span></a>}
