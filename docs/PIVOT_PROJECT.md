@@ -10,7 +10,9 @@ Updated: 2026-09-27 (Asia/Dhaka). Keep this working brief current when source sc
 
 **Decision:** The session years are displayed as stated in the PDF. No day or time is inferred from the old schedule or another file. The Exam view is a source-grounded study guide until a verified exam routine is explicitly incorporated.
 
-**Verification status:** `npm ci --offline`, `npm run typecheck`, `npm run build`, all 26 JavaScript sync tests, all 49 backend tests, and `git diff --check` passed locally on 2026-11-03. The source PDF had three pages according to `pdfinfo`; its second page was visually reviewed after rendering. The mobile Exam browser assertion was updated for the new interface. Browser interaction and deployed runtime behavior have not yet been verified.
+**Verification status:** `npm ci --offline`, `npm run typecheck`, `npm run build`, all 26 JavaScript sync tests, all 49 backend tests, and `git diff --check` passed locally on 2026-11-03. The source PDF had three pages according to `pdfinfo`; its second page was visually reviewed after rendering. The mobile Exam browser assertion was updated for the new interface. Authenticated browser interaction has not yet been verified.
+
+**Production release observed:** Commit `2e86e8d` was pushed to GitHub `main`. Its Git-triggered Vercel production deployment `dpl_HnAN55exh5VkggqxmAqcvGvj8Svf` reached **Ready** and was aliased to `https://shreehan-notion.vercel.app`. Read-only live checks returned HTTP 200 for `/login` and HTTP 401 for unauthenticated `/api/library`. The Exam section itself was not opened in an authenticated production session. The Notion sync workflow is not triggered by this frontend/docs-only change; its scheduled operation is separate. A missing local uv cache prevented tests through `uv run --offline`, so the 49 backend tests were run with the existing compatible project virtual environment.
 
 ## Source of truth
 
