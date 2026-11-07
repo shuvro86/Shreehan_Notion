@@ -1,0 +1,532 @@
+{
+  "level": "Class 2",
+  "collection": "Study Note",
+  "subject": "Mathematics",
+  "topics": [
+    {
+      "title": "Mental mathematics and place value",
+      "questions": [
+        {
+          "id": "mathematics-01",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "What is 8 + 5?",
+          "answer": "13.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-02",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "What is 16 − 7?",
+          "answer": "9.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-03",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "What number is 9 tens and 6 ones?",
+          "answer": "96.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-04",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "How many tens are in 200?",
+          "answer": "20 tens.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-05",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "What is 8 less than 15?",
+          "answer": "7.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-06",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "What is 200 − 110?",
+          "answer": "90.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-07",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "What is 136 + 2?",
+          "answer": "138.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-08",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "What must be subtracted from 180 to get 170?",
+          "answer": "10.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-09",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "What is 399 + 1?",
+          "answer": "400.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-10",
+          "subject": "Mathematics",
+          "topic": "Mental mathematics and place value",
+          "type": "Short answer",
+          "question": "Which number comes just before 116?",
+          "answer": "115.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 5
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Multiplication and division",
+      "questions": [
+        {
+          "id": "mathematics-11",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "What is 7 × 2?",
+          "answer": "14.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-12",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "What is 12 × 3?",
+          "answer": "36.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-13",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "What is 20 × 4?",
+          "answer": "80.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-14",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "If one book costs Tk 5, how much do 3 books cost?",
+          "answer": "Tk 15.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 2
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-15",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "If each of 4 classes has 10 children, how many children are there?",
+          "answer": "40 children.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-16",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "What is 6 × 5?",
+          "answer": "30.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 4
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-17",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "What is 12 ÷ 3?",
+          "answer": "4.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 8
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-18",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "If 18 sweets are shared equally among 3 children, how many does each get?",
+          "answer": "6 sweets.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 8
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-19",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "What is 20 ÷ 5?",
+          "answer": "4.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 8
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-20",
+          "subject": "Mathematics",
+          "topic": "Multiplication and division",
+          "type": "Short answer",
+          "question": "What is 36 ÷ 4?",
+          "answer": "9.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 8
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Taka and paisa",
+      "questions": [
+        {
+          "id": "mathematics-21",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "How many paisa make Tk 1?",
+          "answer": "100 paisa.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-22",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "What is 60p + 60p + 60p in taka?",
+          "answer": "Tk 1.80.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-23",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "How many paisa are in Tk 3.98?",
+          "answer": "398 paisa.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-24",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "How many paisa are in Tk 20.66?",
+          "answer": "2,066 paisa.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4",
+              "page": 5
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1MajrOzcGIiNpM0x-V9KU4ow5oKDeRVV4/view",
+          "sourceTitle": "Math1.pdf"
+        },
+        {
+          "id": "mathematics-25",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "How many paisa are in Tk 25.75?",
+          "answer": "2,575 paisa.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 9
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-26",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "How many paisa are in Tk 4.05?",
+          "answer": "405 paisa.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 10
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-27",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "Write 895 paisa in taka.",
+          "answer": "Tk 8.95.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 12
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-28",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "Write 14,320 paisa in taka.",
+          "answer": "Tk 143.20.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 11
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-29",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "What is Tk 3.25 + Tk 1.20?",
+          "answer": "Tk 4.45.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 13
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        },
+        {
+          "id": "mathematics-30",
+          "subject": "Mathematics",
+          "topic": "Taka and paisa",
+          "type": "Short answer",
+          "question": "What is Tk 8.91 + Tk 1.25?",
+          "answer": "Tk 10.16.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY",
+              "page": 14
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/1-8v7hmVKkX5Baop3f6V1HHJT6XzEHClY/view",
+          "sourceTitle": "Math2.pdf"
+        }
+      ]
+    }
+  ]
+}

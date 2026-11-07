@@ -1,0 +1,571 @@
+{
+  "level": "Class 2",
+  "collection": "Study Note",
+  "subject": "Geography",
+  "topics": [
+    {
+      "title": "The shape of the land",
+      "questions": [
+        {
+          "id": "geography-01",
+          "subject": "Geography",
+          "topic": "The shape of the land",
+          "type": "Short answer",
+          "question": "What is a mountain?",
+          "answer": "A very high area of land.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-02",
+          "subject": "Geography",
+          "topic": "The shape of the land",
+          "type": "Short answer",
+          "question": "What is a valley?",
+          "answer": "A low area between hills or mountains.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-03",
+          "subject": "Geography",
+          "topic": "The shape of the land",
+          "type": "Short answer",
+          "question": "Which way does river water usually flow?",
+          "answer": "Downhill, towards lower land.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-04",
+          "subject": "Geography",
+          "topic": "The shape of the land",
+          "type": "Short answer",
+          "question": "How can water travel from mountains to the sea?",
+          "answer": "Through streams and rivers.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-05",
+          "subject": "Geography",
+          "topic": "The shape of the land",
+          "type": "Short answer",
+          "question": "What does downstream mean?",
+          "answer": "In the direction the water flows.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-06",
+          "subject": "Geography",
+          "topic": "The shape of the land",
+          "type": "Short answer",
+          "question": "What is a waterfall?",
+          "answer": "Water falling over a steep drop.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-07",
+          "subject": "Geography",
+          "topic": "The shape of the land",
+          "type": "Short answer",
+          "question": "Which continent is the River Nile in?",
+          "answer": "Africa.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-08",
+          "subject": "Geography",
+          "topic": "The shape of the land",
+          "type": "Short answer",
+          "question": "Why should we keep waste out of rivers?",
+          "answer": "It can pollute the water and harm living things.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 1
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Volcanoes",
+      "questions": [
+        {
+          "id": "geography-09",
+          "subject": "Geography",
+          "topic": "Volcanoes",
+          "type": "Short answer",
+          "question": "What is a volcano?",
+          "answer": "An opening in Earth’s surface where hot material can come out.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-10",
+          "subject": "Geography",
+          "topic": "Volcanoes",
+          "type": "Short answer",
+          "question": "What can come out when a volcano erupts?",
+          "answer": "Lava, ash and gases.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-11",
+          "subject": "Geography",
+          "topic": "Volcanoes",
+          "type": "Short answer",
+          "question": "What is magma?",
+          "answer": "Melted rock beneath Earth’s surface.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-12",
+          "subject": "Geography",
+          "topic": "Volcanoes",
+          "type": "Short answer",
+          "question": "What is lava?",
+          "answer": "Melted rock that reaches Earth’s surface.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-13",
+          "subject": "Geography",
+          "topic": "Volcanoes",
+          "type": "Short answer",
+          "question": "What happens when lava cools?",
+          "answer": "It becomes solid rock.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-14",
+          "subject": "Geography",
+          "topic": "Volcanoes",
+          "type": "Short answer",
+          "question": "What is the crater of a volcano?",
+          "answer": "The bowl-shaped hollow around its opening.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-15",
+          "subject": "Geography",
+          "topic": "Volcanoes",
+          "type": "Short answer",
+          "question": "What is Earth’s thin, solid outer layer called?",
+          "answer": "The crust.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-16",
+          "subject": "Geography",
+          "topic": "Volcanoes",
+          "type": "Short answer",
+          "question": "Is every mountain a volcano?",
+          "answer": "No, many mountains are not volcanoes.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 3
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        }
+      ]
+    },
+    {
+      "title": "World Wonders",
+      "questions": [
+        {
+          "id": "geography-17",
+          "subject": "Geography",
+          "topic": "World Wonders",
+          "type": "Short answer",
+          "question": "What is an iceberg?",
+          "answer": "A large piece of ice floating in the sea.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 6
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-18",
+          "subject": "Geography",
+          "topic": "World Wonders",
+          "type": "Short answer",
+          "question": "Where can we find natural wonders?",
+          "answer": "On land, in the sea and in the sky.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 6
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-19",
+          "subject": "Geography",
+          "topic": "World Wonders",
+          "type": "Short answer",
+          "question": "Name one wonder Azim saw in the story.",
+          "answer": "An iceberg, a cave or the northern lights.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 6
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-20",
+          "subject": "Geography",
+          "topic": "World Wonders",
+          "type": "Short answer",
+          "question": "What did Azim see inside the cave?",
+          "answer": "Many amazing shapes.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 6
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-21",
+          "subject": "Geography",
+          "topic": "World Wonders",
+          "type": "Short answer",
+          "question": "What are the northern lights?",
+          "answer": "Colourful lights that can be seen in the night sky.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 6
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-22",
+          "subject": "Geography",
+          "topic": "World Wonders",
+          "type": "Short answer",
+          "question": "Which wonder did Azim see floating in the sea?",
+          "answer": "An iceberg.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 6
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-23",
+          "subject": "Geography",
+          "topic": "World Wonders",
+          "type": "Short answer",
+          "question": "In which country is the Great Barrier Reef?",
+          "answer": "Australia.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 6
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-24",
+          "subject": "Geography",
+          "topic": "World Wonders",
+          "type": "Short answer",
+          "question": "In which country is Stonehenge?",
+          "answer": "The United Kingdom.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 6
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Experiencing the weather",
+      "questions": [
+        {
+          "id": "geography-25",
+          "subject": "Geography",
+          "topic": "Experiencing the weather",
+          "type": "Short answer",
+          "question": "What is weather?",
+          "answer": "What the sky and air are like at a place and time.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 7
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-26",
+          "subject": "Geography",
+          "topic": "Experiencing the weather",
+          "type": "Short answer",
+          "question": "Can the weather change during a day?",
+          "answer": "Yes, it can become sunny, rainy or windy.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 7
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-27",
+          "subject": "Geography",
+          "topic": "Experiencing the weather",
+          "type": "Short answer",
+          "question": "What is a breeze?",
+          "answer": "A gentle wind.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 7
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-28",
+          "subject": "Geography",
+          "topic": "Experiencing the weather",
+          "type": "Short answer",
+          "question": "What is a gale?",
+          "answer": "A very strong wind.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 7
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-29",
+          "subject": "Geography",
+          "topic": "Experiencing the weather",
+          "type": "Short answer",
+          "question": "What can help keep us dry in the rain?",
+          "answer": "An umbrella or a raincoat.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 7
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-30",
+          "subject": "Geography",
+          "topic": "Experiencing the weather",
+          "type": "Short answer",
+          "question": "What can we fly on a windy day?",
+          "answer": "A kite, when it is safe to do so.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 7
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-31",
+          "subject": "Geography",
+          "topic": "Experiencing the weather",
+          "type": "Short answer",
+          "question": "What can children make when it snows?",
+          "answer": "A snowman.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 7
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        },
+        {
+          "id": "geography-32",
+          "subject": "Geography",
+          "topic": "Experiencing the weather",
+          "type": "Short answer",
+          "question": "Why might a strong wind make an umbrella hard to hold?",
+          "answer": "The wind can push or turn the umbrella.",
+          "options": [],
+          "sources": [
+            {
+              "documentId": "10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo",
+              "page": 7
+            }
+          ],
+          "sourceUrl": "https://drive.google.com/file/d/10UoJ3ZoAG9Rh2xeOGMe0XjsuyX_H3Ruo/view",
+          "sourceTitle": "Geography.pdf"
+        }
+      ]
+    }
+  ]
+}

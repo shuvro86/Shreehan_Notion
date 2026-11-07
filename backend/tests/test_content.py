@@ -81,3 +81,23 @@ def test_reviewed_moral_studies_bank_uses_only_three_drive_notes():
             assert question['answer'] and question['question']
     view = content.current_subject_practice({'records': [], 'documents': []}, 'Study Note')
     assert next(subject for subject in view['subjects'] if subject['name'] == 'Moral Studies')['target'] == 54
+
+
+def test_reviewed_geography_and_mathematics_banks_have_linked_answers():
+    expected = {
+        'Geography': ('geography-half-yearly.json', 32, {'Geography.pdf'}),
+        'Mathematics': ('mathematics-half-yearly.json', 30, {'Math1.pdf', 'Math2.pdf'}),
+    }
+    view = content.current_subject_practice({'records': [], 'documents': []}, 'Study Note')
+    for name, (filename, count, source_titles) in expected.items():
+        bank = content.read_json(content.ROOT / 'data' / filename, {})
+        questions = [question for topic in bank['topics'] for question in topic['questions']]
+        assert len(questions) == count
+        assert len({question['id'] for question in questions}) == count
+        assert {question['sourceTitle'] for question in questions} == source_titles
+        assert all(question['question'] and question['answer'] and question['sources'][0]['page'] > 0 for question in questions)
+        assert all(question['sourceUrl'].endswith('/view') for question in questions)
+        subject = next(subject for subject in view['subjects'] if subject['name'] == name)
+        assert subject['state'] == 'ready'
+        assert subject['target'] == count
+        assert subject['questions'] == questions

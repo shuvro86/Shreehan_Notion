@@ -94,20 +94,25 @@ def current_subject_practice(library, collection='Subject Materials'):
         saved = read_json(SYNC_DIR / 'subject-practice.json', {'subjects': {}})
     view = subject_practice_view(library, saved, collection)
     if collection == 'Study Note':
-        # The three reviewed half-yearly Drive notes are available even when the
-        # scheduled Notion/Drive snapshot has not yet discovered this new folder.
-        moral = read_json(ROOT / 'data/moral-studies-half-yearly.json', {})
-        topics = moral.get('topics', [])
-        if len(topics) == 3 and all(len(topic.get('questions', [])) >= 18 for topic in topics):
-            questions = [question for topic in topics for question in topic['questions']]
-            view['subjects'] = [subject for subject in view['subjects'] if subject['name'] != 'Moral Studies']
+        # Reviewed Drive notes remain available before the scheduled importer
+        # discovers the PDFs. Each bank replaces older questions for its subject.
+        for filename, name, minimum in [
+            ('moral-studies-half-yearly.json', 'Moral Studies', 54),
+            ('geography-half-yearly.json', 'Geography', 30),
+            ('mathematics-half-yearly.json', 'Mathematics', 30),
+        ]:
+            bank = read_json(ROOT / 'data' / filename, {})
+            questions = [question for topic in bank.get('topics', []) for question in topic.get('questions', [])]
+            if bank.get('subject') != name or len(questions) < minimum:
+                continue
+            view['subjects'] = [subject for subject in view['subjects'] if subject['name'] != name]
             view['subjects'].append({
-                'name': 'Moral Studies', 'notionUrls': [],
-                'documentIds': [], 'target': len(questions), 'state': 'ready',
-                'message': 'Reviewed from the three Moral Studies PDFs in Study Notes.',
+                'name': name, 'notionUrls': [], 'documentIds': [],
+                'target': len(questions), 'state': 'ready',
+                'message': 'Reviewed from the linked Study Notes PDFs.',
                 'questions': questions,
             })
-            view['subjects'].sort(key=lambda subject: subject['name'])
+        view['subjects'].sort(key=lambda subject: subject['name'])
     return view
 
 

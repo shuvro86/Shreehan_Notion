@@ -90,7 +90,7 @@ export default function UnseenPaper({ documents, bank, drivePending, studyNotes 
   </div>
   {!subjects.length && <p className="unseen-finished">{studyNotes ? "Add subject notes and readable PDFs to Study Notes in Notion. Questions appear after synchronization and analysis." : "Subject Materials will appear here when Notion finishes syncing."}</p>}
   {selected && <>
-   <div className="unseen-paper-note"><Sparkles size={18}/><span>{sourceCount} linked {sourceCount === 1 ? 'file' : 'files'} for {subject}. {externalSources.length ? 'These reviewed questions follow the three Moral Studies notes in Drive.' : studyNotes ? "Questions refresh automatically when these files change." : "Generate More adds five questions."} Check the linked page if an answer seems unclear.</span></div>
+   <div className="unseen-paper-note"><Sparkles size={18}/><span>{sourceCount} linked {sourceCount === 1 ? 'file' : 'files'} for {subject}. {externalSources.length ? 'These questions were reviewed against the linked Drive notes.' : studyNotes ? "Questions refresh automatically when these files change." : "Generate More adds five questions."} Check the linked page if an answer seems unclear.</span></div>
    {selected.state !== 'ready' && <div className="unseen-pending" role="status"><strong>{selected.message}</strong></div>}
    <details className="unseen-source-list"><summary>View {subject} source material ({sourceCount} files)</summary>
     {selected.notionUrls.filter(Boolean).map(url => <a key={url} href={url} target="_blank" rel="noreferrer"><FileText size={14}/>{studyNotes ? "Study Notes in Notion" : "Subject Materials in Notion"}</a>)}
